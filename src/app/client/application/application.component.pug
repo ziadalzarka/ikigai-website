@@ -1,0 +1,83 @@
+doctype html
+.bg-light.py-5
+	.container.clearfix
+		h1.mb-4 Send job request
+		p.lead We will contact you as soon as possible.
+		hr
+		br
+		h2 Contact Information
+		br
+		.row
+			.col
+				.form-group
+					label Name
+					input.form-control(type='text' placeholder='Your name')
+				.form-group
+					label Email address
+					input.form-control(type='email' placeholder='example@example.com')
+				.form-group
+					label Address (optional)
+					input.form-control(type='text' placeholder='445 Mount Eden Road, Auckland')
+				.form-group
+					label Phone number (optional)
+					input.form-control(type='tel' placeholder='01097543010')
+		br
+		h2 Media
+		br
+		.row
+			.col-12.col-lg-6
+				label Posts per month
+				input(type='range' min='30' max='120' step='10')
+				span.thumb
+					span.value 47
+				label Photography
+				input(type="range" min="20" max="100" step="5")
+			.col-12.col-lg-6
+				label Videos
+				input(type="range" min="0" max="3")
+				label Minutes per video
+				input(type="range" min="1" max="5")
+		br
+		h2 Website
+		br
+		.row
+			.col-12.col-lg-6
+				label Do you want a website?
+				br
+				.d-block
+					.form-check.d-inline-block
+						input.form-check-input(type='radio' name='website' checked)
+						label.form-check-label Yes
+					.form-check.d-inline-block.mx-3
+						input.form-check-input(type='radio' name='website')
+						label.form-check-label No
+				br
+			.col-12.col-lg-6
+				label Do you want have a host?
+				br
+				.d-block
+					.form-check.d-inline-block
+						input.form-check-input(type='radio' name='host' checked)
+						label.form-check-label Yes
+					.form-check.d-inline-block.mx-3
+						input.form-check-input(type='radio' name='host')
+						label.form-check-label No
+				br
+				label Do you want have a domain?
+				br
+				.d-block
+					.form-check.d-inline-block
+						input.form-check-input(type='radio' name='host' checked)
+						label.form-check-label Yes
+					.form-check.d-inline-block.mx-3
+						input.form-check-input(type='radio' name='host')
+						label.form-check-label No
+		br
+		hr
+		.clearfix
+			h3.float-right Total Price: 645$
+		hr
+		.row
+			.col-12.col-lg-4.offset-lg-8
+				button.w-100.btn.btn-primary.btn.ml-auto(type='button') Send
+app-footer

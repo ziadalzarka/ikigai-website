@@ -8,3 +8,10 @@ html, body, app-root {
 	height: 6em;
 	overflow: hidden;
 }
+
+label {
+	color: #404040;
+	font-size: 1.25em;
+}
+
+@import 'gray/components/range';
