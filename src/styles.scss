@@ -2,3 +2,9 @@
 html, body, app-root {
 	height: 100%;
 }
+
+.clamp {
+	line-height: 1.5em;
+	height: 6em;
+	overflow: hidden;
+}

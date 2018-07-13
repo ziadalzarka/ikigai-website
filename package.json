@@ -22,6 +22,7 @@
     "@angular/platform-browser-dynamic": "^6.0.3",
     "@angular/router": "^6.0.3",
     "@mdi/font": "^2.5.94",
+    "clamp-js": "^0.7.0",
     "core-js": "^2.5.4",
     "ng-cli-pug-loader": "^0.1.3",
     "ngx-materialize": "^6.0.1",
