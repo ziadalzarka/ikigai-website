@@ -13,10 +13,11 @@ input[type=range],
 input[type=range]+.thumb {
   @extend .no-select;
 	cursor: pointer;
-	transition: width 0.2s, height 0.2s;
+	transition: width 0.2s, height 0.2s, top 0.2s;
 	&.active {
 		width: 30px;
 		height: 30px;
+		top: -30px;
 	}
 }
 
