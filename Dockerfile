@@ -17,7 +17,7 @@ RUN npm install
 COPY . .
 
 # Build angular
-RUN npm build
+RUN npm run build
 
 # Create server directory
 WORKDIR /usr/src/app/server
@@ -31,7 +31,7 @@ RUN npm install
 COPY ./server .
 
 # Build server
-RUN npm build
+RUN npm run build
 
 EXPOSE 8090
 CMD [ "npm", "start" ]
