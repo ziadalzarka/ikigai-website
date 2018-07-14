@@ -1,0 +1,80 @@
+enum Package {
+	Light,
+	Pro,
+	Enterprise
+}
+
+enum JobPosition {
+	Media,
+	Graphics,
+	Photography,
+	PublicRelations
+}
+
+enum Permission {
+	Administration,
+	Posts,
+	JobApplications,
+	ClientApplications,
+	ContactApplications
+}
+
+interface Contact {
+	name: String!
+	phoneNumber: String
+	email: String
+	address: String
+}
+
+type Settings {
+	index: Int! @unique
+	email: String!
+}
+
+type User {
+  id: ID! @unique
+  name: String!
+  username: String! @unique
+  password: String!
+	permissions: [Permission!]!
+	posts: [Post!]!
+}
+
+type Post {
+  id: ID! @unique
+  title: String!
+  body: String!
+  author: User!
+  isPublished: Boolean! @default(value: "false")
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type JobApplicaion implements Contact {
+	firstName:  String!
+	middleName: String!
+	lastName: String!
+	positions: [JobPosition!]!
+	resume: String!
+	linkedIn: String
+}
+
+type ClientApplication implements Contact {
+	postsPerMonth: Int!
+	photography: Boolean!
+	gifs: Int!
+	videos: Int!
+	videoMinutesCount: Int!
+	website: Boolean!
+	hasHost: Boolean!
+	hasDomain: Boolean!	
+	dealYears: Int!
+	# updated on add & edit
+	package: [Package!]!
+	totalPrice: Int!
+}
+
+type ContactApplication implements Contact {
+	question: String!
+	body: String!
+}
