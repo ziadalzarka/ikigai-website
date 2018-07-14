@@ -26,9 +26,10 @@
 			.col-12.col-lg-6
 				label Posts per month
 				span 30
-				input(type='range' min='30' max='120' step='10')
-				span.thumb
-					span.value 47
+				.form-group.range-field
+					input#slider(type='range' min='30' max='120' step='10')
+					span#thumb.thumb
+						span.value 47
 				label Photography
 				input(type="range" min="20" max="100" step="5")
 			.col-12.col-lg-6
