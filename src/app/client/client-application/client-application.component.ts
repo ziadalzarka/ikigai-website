@@ -1,8 +1,6 @@
-function init() {
-	loadMaterialize();
-}
-
 import { Component, OnInit } from '@angular/core';
+
+declare var loadMaterialize: any;
 
 @Component({
 	selector: 'app-client-application',
@@ -16,7 +14,7 @@ export class ClientApplicationComponent implements OnInit {
 	}
 
 	ngOnInit() {
-		init();
+		loadMaterialize();
 	}
 
 }

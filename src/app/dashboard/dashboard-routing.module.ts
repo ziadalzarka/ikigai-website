@@ -1,11 +1,21 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { LoginComponent } from '@app/dashboard/login/login.component';
 
-const routes: Routes = [{
-	path: '',
-	component: LoginComponent
-}];
+const routes: Routes = [
+	{
+		path: 'login',
+		loadChildren: 'app/dashboard/login/login.module#LoginModule',
+		data: {
+			state: 'dashboard-login'
+		}
+	},
+	{
+		path: '',
+		loadChildren: 'app/dashboard/overview/overview.module#OverviewModule',
+		data: {
+			state: 'dashboard-overview'
+		}
+	}];
 
 @NgModule({
 	imports: [RouterModule.forChild(routes)],
