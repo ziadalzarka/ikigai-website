@@ -4,4 +4,6 @@ services:
     ports: 
       - "8090:8090"
       - "4090:4090"
+    env_file:
+      - ./server/.env
     build: .

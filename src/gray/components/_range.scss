@@ -12,7 +12,12 @@ $range-width: 14px !default;
 input[type=range],
 input[type=range]+.thumb {
   @extend .no-select;
-  cursor: pointer;
+	cursor: pointer;
+	transition: width 0.2s, height 0.2s;
+	&.active {
+		width: 30px;
+		height: 30px;
+	}
 }
 
 input[type=range] {
