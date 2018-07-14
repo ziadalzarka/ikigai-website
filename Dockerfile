@@ -26,4 +26,5 @@ RUN npm install
 RUN npm run build
 
 EXPOSE 8090
+EXPOSE 4090
 CMD [ "npm", "start" ]
