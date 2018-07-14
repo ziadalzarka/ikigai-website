@@ -1,3 +1,7 @@
+function init() {
+	loadMaterialize();
+}
+
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -12,7 +16,7 @@ export class ClientApplicationComponent implements OnInit {
 	}
 
 	ngOnInit() {
-
+		init();
 	}
 
 }

@@ -31,6 +31,13 @@ const routes: Routes = [
 			state: 'contact'
 		}
 	},
+	{
+		path: 'dashboard',
+		loadChildren: 'app/dashboard/dashboard.module#DashboardModule',
+		data: {
+			state: 'dashboard'
+		}
+	},
 	{ path: '**', redirectTo: 'home', pathMatch: 'full' },
 ];
 
