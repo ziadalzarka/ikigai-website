@@ -8,6 +8,7 @@ COPY . .
 
 # Install angular dependencies
 RUN npm install
+RUN npm run postinstall
 
 # Build angular
 RUN npm run build
