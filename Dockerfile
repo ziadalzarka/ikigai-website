@@ -21,7 +21,6 @@ COPY ./server .
 # Install depenedencies
 RUN npm install
 
-
 # Build server
 RUN npm run build
 
