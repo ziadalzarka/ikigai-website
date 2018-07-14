@@ -1,0 +1,51 @@
+@import '~utils/responsive';
+.wrapper {
+  display: flex;
+  width: 100%;
+	align-items: stretch;
+}
+
+.closed-sidebar {
+  & #content #overlay {
+    width: 0;
+  }
+  & #sidebar {
+    margin-left: -20%;
+    @include lt-lg {
+      margin-left: -32.5%;
+    }
+    @include lt-md {
+      margin-left: -80%;
+    }
+  }
+}
+
+#content {
+	position: relative;
+  #overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    min-height: 100vh;
+    @include lt-md {
+      width: 100%;
+    }
+  }
+}
+
+#sidebar {
+  margin-left: 0;
+  min-width: 20%;
+  max-width: 20%;
+  min-height: 100vh;
+  @include lt-lg {
+    min-width: 32.5%;
+    max-width: 32.5%;
+  }
+  @include lt-md {
+    max-width: 80%;
+    min-width: 80%;
+  }
+}

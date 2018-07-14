@@ -2,13 +2,13 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { SettingsRoutingModule } from './settings-routing.module';
-import { SettingsComponent } from './settings/settings.component';
+import { EditFooterComponent } from './edit-footer/edit-footer.component';
 
 @NgModule({
 	imports: [
 		CommonModule,
 		SettingsRoutingModule
 	],
-	declarations: [SettingsComponent]
+	declarations: [EditFooterComponent]
 })
 export class SettingsModule { }

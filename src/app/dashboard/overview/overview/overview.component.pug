@@ -1,0 +1,25 @@
+.wrapper
+	nav#sidebar.bg-dark
+		.sidebar-header.px-4.pt-4.pb-2
+			h3.truncate-text.text-light Ziad Alzarka
+			p.text-subtitle Admin
+		ul.list-unstyled.components
+			li.bg-info
+				h4.text-light.text-center.py-3.m-0 Content
+			li
+				button.w-100.btn.btn-lg.text-light.shadow-none.btn-primary(routerLink="content/posts") Posts
+			li.bg-info
+				h4.text-light.text-center.py-3.m-0 Applications
+			li
+				button.w-100.btn.btn-lg.text-light.shadow-none.bg-transparent(routerLink="applications/clients") Client Applications
+			li
+				button.w-100.btn.btn-lg.text-light.shadow-none.bg-transparent(routerLink="applications/jobs") Job Applications
+			li.bg-info
+				h4.text-light.text-center.py-3.m-0 Settings
+			li
+				button.w-100.btn.btn-lg.text-light.shadow-none.bg-transparent(routerLink="settings/email") Emails
+			li
+				button.w-100.btn.btn-lg.text-light.shadow-none.bg-transparent(routerLink="settings/footer") Footer
+	#content.w-100
+		#overlay
+		router-outlet

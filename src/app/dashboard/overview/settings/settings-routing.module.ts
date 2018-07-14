@@ -1,10 +1,10 @@
-import { SettingsComponent } from './settings/settings.component';
+import { EditFooterComponent } from './edit-footer/edit-footer.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 const routes: Routes = [{
-	path: '',
-	component: SettingsComponent
+	path: 'footer',
+	component: EditFooterComponent
 }];
 
 @NgModule({

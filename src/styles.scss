@@ -20,5 +20,9 @@ label {
 
 $headings-color: #2c3e50;
 
+.text-subtitle {
+	color: #ccc;
+}
+
 @import 'node_modules/bootstrap/scss/bootstrap';
 @import 'theme/lux';
