@@ -1,32 +1,27 @@
 import { trigger, animate, style, group, query, transition } from '@angular/animations';
 
+const initial = query(':enter, :leave', style({ position: 'fixed', width: '100%' }));
+
+function constructQuery(from, middle, to) {
+	return group([
+		initial,
+		query(':enter', [
+			style({ transform: `translateX(${from}%)` }),
+			animate('0.5s ease-in-out', style({ transform: `translateX(${middle}%)` }))
+		]),
+		query(':leave', [
+			style({ transform: `translateX(${middle}%)` }),
+			animate('0.5s ease-in-out', style({ transform: `translateX(${to}%)` }))
+		])
+	]);
+}
+
+const swipeRight = constructQuery(100, 0, -100);
+const swipeLeft = constructQuery(-100, 0, 100);
+
 export const routerTransition = trigger('routerTransition', [
-	transition('client => home', [
-		group([
-			query(':enter, :leave', style({ position: 'fixed', width: '100%' }),
-				{ optional: true }),
-			query(':enter', [
-				style({ transform: 'translateX(-100%)' }),
-				animate('0.5s ease-in-out', style({ transform: 'translateX(0%)' }))
-			], { optional: true }),
-			query(':leave', [
-				style({ transform: 'translateX(0%)' }),
-				animate('0.5s ease-in-out', style({ transform: 'translateX(100%)' }))
-			], { optional: true }),
-		])
-	]),
-	transition('home => client', [
-		group([
-			query(':enter, :leave', style({ position: 'fixed', width: '100%' }),
-				{ optional: true }),
-			query(':enter', [
-				style({ transform: 'translateX(100%)' }),
-				animate('0.5s ease-in-out', style({ transform: 'translateX(0%)' }))
-			], { optional: true }),
-			query(':leave', [
-				style({ transform: 'translateX(0%)' }),
-				animate('0.5s ease-in-out', style({ transform: 'translateX(-100%)' }))
-			], { optional: true }),
-		])
-	])
+	transition('home => client', [swipeRight]),
+	transition('client => home', [swipeLeft]),
+	transition('home => work', [swipeLeft]),
+	transition('work => home', [swipeRight]),
 ]);

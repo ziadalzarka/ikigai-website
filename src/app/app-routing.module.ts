@@ -17,6 +17,13 @@ const routes: Routes = [
 			state: 'client'
 		}
 	},
+	{
+		path: 'work',
+		loadChildren: 'app/work/work.module#WorkModule',
+		data: {
+			state: 'work'
+		}
+	},
 	{ path: '**', redirectTo: 'home', pathMatch: 'full' },
 ];
 
