@@ -9,16 +9,24 @@
 }
 
 .bouncingBall {
-	position: absolute;
-	bottom: 5%;
-	right: 5%;
-	width: 100px;
-	height: 100px;
-	background: red;
-	border-radius: 50%;
-	z-index: 50;
+  position: absolute;
+  bottom: 5%;
+  right: 5%;
+  width: 100px;
+  height: 100px;
+  background: red;
+  border-radius: 50%;
+  z-index: 50;
 }
 
 #header {
-	max-width: 70%;
+  max-width: 70%;
+}
+
+#contact {
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin-right: auto;
+  margin-left: auto;
 }

@@ -1,15 +1,19 @@
 header.background-img.center-align.text-center.justify-content-center.py-5
-	img#header(src="assets/images/header.png")
-	p.lead.col-12.col-md-8.col-lg-6.mx-auto.my-5
-		| Ipsum adipisicing proident non officia amet anim. Est voluptate laborum deserunt cupidatat aliquip et ad id incididunt.
-		| Id quis aliquip commodo nostrud ullamco commodo qui dolor qui enim Lorem. Ipsum qui qui et eiusmod Lorem adipisicing
-		| aliquip dolor est amet tempor deserunt laboris. Pariatur sunt aliquip cillum velit in veniam quis non ea id labore velit.
-		| Deserunt aute est anim eiusmod eiusmod in. Consectetur ad voluptate nulla ipsum dolor pariatur dolore eu commodo.
-	button.d-none.d-md-inline-block.btn.btn-lg.btn-warning(routerLink="/work")
-		h5.text-light.my-0 I&apos;m looking for work
-	button.d-none.d-md-inline-block.btn.btn-lg.btn-light(routerLink="/client")
-		h5.my-0 I&apos;m a client
-	.container
+	.row
+		.col
+			img.mb-5#header(src="assets/images/header.png")
+	//- p.lead.text-light.col-12.col-md-8.col-lg-6.mx-auto.my-5
+	//- 	| Ipsum adipisicing proident non officia amet anim. Est voluptate laborum deserunt cupidatat aliquip et ad id incididunt.
+	//- 	| Id quis aliquip commodo nostrud ullamco commodo qui dolor qui enim Lorem. Ipsum qui qui et eiusmod Lorem adipisicing
+	//- 	| aliquip dolor est amet tempor deserunt laboris. Pariatur sunt aliquip cillum velit in veniam quis non ea id labore velit.
+	//- 	| Deserunt aute est anim eiusmod eiusmod in. Consectetur ad voluptate nulla ipsum dolor pariatur dolore eu commodo.
+	.container.mb-5
+		.row.d-none.d-md-inline-block
+			.col
+				button.btn.btn-lg.btn-warning(routerLink="/work")
+					h5.text-light.my-0 I&apos;m looking for work
+				button.btn.btn-lg.btn-light(routerLink="/client")
+					h5.my-0 I&apos;m a client
 		.row.d-md-none
 			.col-12
 				button.w-100.btn.btn-lg.btn-warning(routerLink="/work")
@@ -17,9 +21,13 @@ header.background-img.center-align.text-center.justify-content-center.py-5
 			.col-12
 				button.w-100.btn.btn-lg.btn-light(routerLink="/client")
 					h5.my-0 I&apos;m a client
+	button#contact.btn.btn-lg.btn-danger(routerLink="/contact")
+		h5.text-light.my-0 Contact us
 
 section#posts.py-5.bg-light
-	.container
+	.container.pt-4
+		h2.display-4 Posts
+		hr
 		.row
 			.col-12.col-xl-6.my-4
 				app-post-thumbnail

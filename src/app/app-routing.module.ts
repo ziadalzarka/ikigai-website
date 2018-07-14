@@ -24,6 +24,13 @@ const routes: Routes = [
 			state: 'work'
 		}
 	},
+	{
+		path: 'contact',
+		loadChildren: 'app/contact/contact.module#ContactModule',
+		data: {
+			state: 'contact'
+		}
+	},
 	{ path: '**', redirectTo: 'home', pathMatch: 'full' },
 ];
 

@@ -1,27 +1,31 @@
 import { trigger, animate, style, group, query, transition } from '@angular/animations';
 
-const initial = query(':enter, :leave', style({ position: 'fixed', width: '100%' }));
+export const initial = query(':enter, :leave', style({ position: 'fixed', width: '100%' }));
 
-function constructQuery(from, middle, to) {
+export function constructQuery(from, middle, to, dir = 'X') {
 	return group([
 		initial,
 		query(':enter', [
-			style({ transform: `translateX(${from}%)` }),
-			animate('0.5s ease-in-out', style({ transform: `translateX(${middle}%)` }))
+			style({ transform: `translate${dir}(${from}%)` }),
+			animate('0.5s ease-in-out', style({ transform: `translate${dir}(${middle}%)` }))
 		]),
 		query(':leave', [
-			style({ transform: `translateX(${middle}%)` }),
-			animate('0.5s ease-in-out', style({ transform: `translateX(${to}%)` }))
+			style({ transform: `translate${dir}(${middle}%)` }),
+			animate('0.5s ease-in-out', style({ transform: `translate${dir}(${to}%)` }))
 		])
 	]);
 }
 
-const swipeRight = constructQuery(100, 0, -100);
-const swipeLeft = constructQuery(-100, 0, 100);
+export const swipeRight = constructQuery(100, 0, -100);
+export const swipeLeft = constructQuery(-100, 0, 100);
+export const swipeDown = constructQuery(-100, 0, 100, 'Y');
+export const swipeUp = constructQuery(100, 0, -100, 'Y');
 
 export const routerTransition = trigger('routerTransition', [
 	transition('home => client', [swipeRight]),
 	transition('client => home', [swipeLeft]),
 	transition('home => work', [swipeLeft]),
 	transition('work => home', [swipeRight]),
+	transition('home => contact', [swipeDown]),
+	transition('contact => home', [swipeUp]),
 ]);

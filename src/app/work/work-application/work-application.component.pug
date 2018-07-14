@@ -1,1 +1,51 @@
-h1 shit
+.bg-light.py-5
+	.container.clearfix
+		h1.display-4.mb-2 Apply for work
+		p.lead We will contact you as soon as possible.
+		hr
+		h2 Contact Information
+		br
+		.row
+			.col-12.col-lg-6
+				.form-group
+					label First name
+					input.form-control(type='text' placeholder='مصطفى')
+				.form-group
+					label Middle name
+					input.form-control(type='text' placeholder='محمد')
+				.form-group
+					label Last name
+					input.form-control(type='text' placeholder='قلقيله')
+			.col-12.col-lg-6
+				.form-group
+					label Email address
+					input.form-control(type='email' placeholder='example@example.com')
+				.form-group
+					label Address (optional)
+					input.form-control(type='text' placeholder='445 Mount Eden Road, Auckland')
+				.form-group
+					label Phone number (optional)
+					input.form-control(type='tel' placeholder='01097543010')
+		br
+		h2 Applying for
+		br
+		label Prefered position
+		select.form-control
+			option Prefered position
+			option Graphics
+			option Photography
+			option Public Relations
+		br
+		h2 Protifolio
+		br
+		.form-group
+			label(for='resumeFile') CV / Resume / Portifolio
+			input#resumeFile.form-control-file(type='file')
+		.form-group
+				label LinkedIn Profile
+				input.form-control(type='text' placeholder='https://www.linkedin.com/in/...')
+		hr
+		.row
+			.col-12.col-lg-4.offset-lg-8
+				button.w-100.btn.btn-primary.btn.ml-auto(type='button') Send
+app-footer

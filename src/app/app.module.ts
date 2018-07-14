@@ -1,3 +1,4 @@
+import { GlobalModule } from './global/global.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
@@ -12,7 +13,8 @@ import { AppComponent } from './app.component';
 	imports: [
 		BrowserModule,
 		AppRoutingModule,
-		BrowserAnimationsModule
+		BrowserAnimationsModule,
+		GlobalModule
 	],
 	providers: [],
 	bootstrap: [AppComponent]

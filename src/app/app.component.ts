@@ -10,14 +10,16 @@ import { Router, RouteConfigLoadStart, RouteConfigLoadEnd } from '@angular/route
 })
 export class AppComponent implements OnInit {
 
+	loading: boolean = false;
+
 	constructor(private router: Router) { }
 
 	ngOnInit() {
 		this.router.events.subscribe(event => {
 			if (event instanceof RouteConfigLoadStart) {
-				console.log('loading');
+				this.loading = true;
 			} else if (event instanceof RouteConfigLoadEnd) {
-				console.log('loaded');
+				this.loading = false;
 			}
 		});
 	}
