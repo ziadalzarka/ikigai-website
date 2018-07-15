@@ -1,0 +1,10 @@
+.fab {
+	display: flex;
+	justify-content: center;
+	position: fixed;
+	bottom: 2%;
+	right: 2%;
+	border-radius: 50%;
+	width: 64px;
+	height: 64px;
+}

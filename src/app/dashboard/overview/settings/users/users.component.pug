@@ -1,65 +1,49 @@
 .p-5
 	.container-fluid
 		.row
-			.col
-				h2 Users
-				hr
+			.col.align-items-center.d-flex
+				h1 Users
+		br
+		br
 		.row
 			.col
 				table.table.table-hover
-					thead
+					thead.text-dark
 						tr
-							th(scope='col') Type
-							th(scope='col') Column heading
-							th(scope='col') Column heading
-							th(scope='col') Column heading
-					tbody
-						tr.table-active
-							th(scope='row') Active
-							td Column content
-							td Column content
-							td Column content
+							th Name
+							th Permissions
+							th Last Login
+							th Action
+					tbody.f-1.text-calm
 						tr
-							th(scope='row') Default
-							td Column content
-							td Column content
-							td Column content
-						tr.table-primary
-							th(scope='row') Primary
-							td Column content
-							td Column content
-							td Column content
-						tr.table-secondary
-							th(scope='row') Secondary
-							td Column content
-							td Column content
-							td Column content
-						tr.table-success
-							th(scope='row') Success
-							td Column content
-							td Column content
-							td Column content
-						tr.table-danger
-							th(scope='row') Danger
-							td Column content
-							td Column content
-							td Column content
-						tr.table-warning
-							th(scope='row') Warning
-							td Column content
-							td Column content
-							td Column content
-						tr.table-info
-							th(scope='row') Info
-							td Column content
-							td Column content
-							td Column content
-						tr.table-light
-							th(scope='row') Light
-							td Column content
-							td Column content
-							td Column content
-		hr
-		.row
-			.col-12.col-lg-4.offset-lg-8
-				button.w-100.btn.btn-primary.btn.ml-auto.mt-1(type='button') Save
+							td.align-middle Ziad Alzarka
+							td.align-middle Admin
+							td.align-middle Jul 15, 2018
+							td.align-middle
+								.btn-group.w-100
+									button.btn.btn-coffee.w-100(type='button') Log In
+									button.btn.btn-coffee.dropdown-toggle.dropdown-toggle-split(type='button' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false')
+										span.sr-only Toggle Actions
+									.dropdown-menu
+										a.dropdown-item Edit
+										a.dropdown-item Change Permissions
+										a.dropdown-item Statistics
+										.dropdown-divider
+										a.dropdown-item.text-danger Delete
+						tr
+							td.align-middle Mohap Akram
+							td.align-middle Posts, Job Applications
+							td.align-middle Jun 21, 2018
+							td.align-middle
+								.btn-group.w-100
+									button.btn.btn-coffee.w-100(type='button') Log In
+									button.btn.btn-coffee.dropdown-toggle.dropdown-toggle-split(type='button' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false')
+										span.sr-only Toggle Actions
+									.dropdown-menu
+										a.dropdown-item Edit
+										a.dropdown-item Change Permissions
+										a.dropdown-item Statistics
+										.dropdown-divider
+										a.dropdown-item.text-danger Delete
+button.btn.btn-coffee.fab
+	i.fas.fa-plus.f-5.text-white

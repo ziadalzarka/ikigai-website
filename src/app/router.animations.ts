@@ -31,7 +31,9 @@ export const routerTransition = trigger('routerTransition', [
 	transition('contact => home', [swipeUp]),
 
 	/* settings: posts, clients, jobs, emails, footer */
+	transition('users => emails, users => footer', [swipeUp]),
 	transition('emails => footer', [swipeUp]),
+	transition('emails => *', [swipeDown]),
 	transition('footer => *', [swipeDown]),
 
 ]);

@@ -1,28 +1,69 @@
 /* You can add global styles to this file, and also import other style files */
-html, body, app-root {
-	height: 100%;
+
+html,
+body,
+app-root {
+  height: 100%;
 }
 
 .clamp {
-	line-height: 1.5em;
-	height: 6em;
-	overflow: hidden;
+  line-height: 1.5em;
+  height: 6em;
+  overflow: hidden;
 }
 
 label {
-	color: #404040;
-	font-size: 1.25em;
+  color: #404040;
+  font-size: 1.25em;
 }
 
-@import 'materialize/range';
+.text-calm {
+  color: #606060 !important;
+}
 
-@import 'theme/variables';
+.f-1 {
+  font-size: 1.1em;
+}
 
-$headings-color: #2c3e50;
+.f-2 {
+  font-size: 1.2em;
+}
+
+.f-3 {
+  font-size: 1.4em;
+}
+
+.f-4 {
+  font-size: 1.6em;
+}
+
+.f-5 {
+  font-size: 1.8em;
+}
 
 .text-subtitle {
-	color: #ccc;
+  color: #ccc;
 }
 
+// range from materialize
+@import 'materialize/range';
+// bootstrap theming
+@import "../node_modules/bootstrap/scss/functions";
+@import "../node_modules/bootstrap/scss/mixins";
+// lux theme variables
+@import 'theme/variables';
+// colors
+$darkcalm: #292f32;
+$calm:#2c3135;
+$coffee:#584b4b;
+$ocean:#2c3e50;
+// customs
+$headings-color: $ocean;
+$theme-colors: ( "darkcalm": $darkcalm, "calm": $calm, "coffee": $coffee, "ocean": $ocean);
+// table
+$table-hover-bg: rgba($black, .025);
+// dropdown
+$dropdown-link-active-bg: $gray-300;
+// build the theme
 @import 'node_modules/bootstrap/scss/bootstrap';
 @import 'theme/lux';
