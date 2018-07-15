@@ -22,7 +22,7 @@ label {
 }
 
 .white-space-normal {
-	white-space: normal !important;
+  white-space: normal !important;
 }
 
 .f-1 {
@@ -71,3 +71,10 @@ $dropdown-link-active-bg: $gray-300;
 // build the theme
 @import 'node_modules/bootstrap/scss/bootstrap';
 @import 'theme/lux';
+// hide froala license thing
+a[href="https://froala.com/wysiwyg-editor"],
+a[href="https://www.froala.com/wysiwyg-editor?k=u"] {
+  display: none !important;
+  position: absolute;
+  top: -99999999px;
+}
