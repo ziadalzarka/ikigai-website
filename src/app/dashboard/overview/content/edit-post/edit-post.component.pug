@@ -1,2 +1,10 @@
 .p-5
-	#editor(froalaEditor)
+	#title(" [froalaEditor]='titleOptions' (keydown)='disableSelectAll($event)' ")
+		h1 Title
+	br
+	#editor(" [froalaEditor]='editorOptions'  [(froalaModel)]='editorContent' ")
+	br
+	hr
+	.row
+		.col-12.col-lg-4.offset-lg-8
+			button.w-100.btn.btn-primary.btn.ml-auto.mt-1(type='button') Save

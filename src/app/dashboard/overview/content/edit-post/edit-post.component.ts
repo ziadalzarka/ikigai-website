@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { froalaPlugins } from 'utils/utils';
 
 @Component({
 	selector: 'app-edit-post',
@@ -7,9 +8,35 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EditPostComponent implements OnInit {
 
+	public editorContent: string = '';
+
+	public titleOptions = {
+		toolbarInline: true,
+		pluginsEnabled: [],
+		htmlAllowedEmptyTags: ['h1'],
+		htmlAllowedTags: ['h1'],
+		wordDeniedTags: ['p'],
+		placeholderText: null,
+		toolbarContainer: '#empty'
+	};
+
+	public editorOptions = {
+		videoInsertButtons: ['videoBack', '|', 'videoByURL', 'videoEmbed'],
+		pluginsEnabled: froalaPlugins
+	};
+
 	constructor() { }
 
 	ngOnInit() {
+	}
+
+	disableSelectAll(event) {
+		if (event.ctrlKey) {
+			if (event.keyCode == 65) {
+				return false;
+			}
+		}
+		console.log(this.editorContent);
 	}
 
 }
