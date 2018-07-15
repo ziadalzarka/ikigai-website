@@ -1,3 +1,4 @@
+import { DashboardGuard } from './dashboard.guard';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
@@ -12,6 +13,7 @@ const routes: Routes = [
 	{
 		path: '',
 		loadChildren: 'app/dashboard/overview/overview.module#OverviewModule',
+		canActivate: [DashboardGuard],
 		data: {
 			state: 'dashboard-overview'
 		}

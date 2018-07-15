@@ -1,7 +1,10 @@
-import { EditEmailsComponent } from './edit-emails/edit-emails.component';
+import { UsersComponent } from './users/users.component';
 import { EditFooterComponent } from './edit-footer/edit-footer.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import {
+	EditEmailsComponent
+} from '@app/dashboard/overview/settings/edit-emails/edit-emails.component';
 
 const routes: Routes = [{
 	path: 'footer',
@@ -14,6 +17,12 @@ const routes: Routes = [{
 	component: EditEmailsComponent,
 	data: {
 		state: 'emails'
+	}
+}, {
+	path: 'users',
+	component: UsersComponent,
+	data: {
+		state: 'users'
 	}
 }];
 
