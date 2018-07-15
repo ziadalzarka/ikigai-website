@@ -9,7 +9,7 @@ import { UsersComponent } from './users/users.component';
 @NgModule({
 	imports: [
 		CommonModule,
-		SettingsRoutingModule
+		SettingsRoutingModule,
 	],
 	declarations: [EditFooterComponent, EditEmailsComponent, UsersComponent]
 })
