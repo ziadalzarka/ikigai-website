@@ -22,7 +22,7 @@ export class EditPostComponent implements OnInit {
 
 	public editorOptions = {
 		videoInsertButtons: ['videoBack', '|', 'videoByURL', 'videoEmbed'],
-		pluginsEnabled: froalaPlugins
+		inlineStyles: []
 	};
 
 	constructor() { }
