@@ -13,7 +13,7 @@ import { AppComponent } from './app.component';
 		BrowserModule,
 		AppRoutingModule,
 		BrowserAnimationsModule,
-		GlobalModule
+		GlobalModule,
 	],
 	providers: [],
 	bootstrap: [AppComponent]

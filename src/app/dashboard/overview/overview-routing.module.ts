@@ -7,6 +7,10 @@ const routes: Routes = [{
 	component: OverviewComponent,
 	children: [
 		{
+			path: 'content',
+			loadChildren: './content/content.module#ContentModule'
+		},
+		{
 			path: 'settings',
 			loadChildren: './settings/settings.module#SettingsModule'
 		}
