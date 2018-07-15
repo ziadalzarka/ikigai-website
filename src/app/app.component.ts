@@ -15,13 +15,17 @@ export class AppComponent implements OnInit {
 	constructor(private router: Router) { }
 
 	ngOnInit() {
+
+		/*
+		Uncomment if you want a loader to show up
+
 		this.router.events.subscribe(event => {
 			if (event instanceof RouteConfigLoadStart) {
 				this.loading = true;
 			} else if (event instanceof RouteConfigLoadEnd) {
 				this.loading = false;
 			}
-		});
+		});*/
 	}
 
 	getState(outlet) {

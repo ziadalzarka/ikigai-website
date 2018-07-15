@@ -1,6 +1,6 @@
 import { trigger, animate, style, group, query, transition } from '@angular/animations';
 
-export const initial = query(':enter, :leave', style({ position: 'fixed', width: '100%' }));
+export const initial = query(':enter, :leave', style({ position: 'absolute', width: '100%' }));
 
 export function constructQuery(from, middle, to, dir = 'X') {
 	return group([
@@ -22,10 +22,16 @@ export const swipeDown = constructQuery(-100, 0, 100, 'Y');
 export const swipeUp = constructQuery(100, 0, -100, 'Y');
 
 export const routerTransition = trigger('routerTransition', [
+	/* home, client, work */
 	transition('home => client', [swipeRight]),
 	transition('client => home', [swipeLeft]),
 	transition('home => work', [swipeLeft]),
 	transition('work => home', [swipeRight]),
 	transition('home => contact', [swipeDown]),
 	transition('contact => home', [swipeUp]),
+
+	/* settings: posts, clients, jobs, emails, footer */
+	transition('emails => footer', [swipeUp]),
+	transition('footer => *', [swipeDown]),
+
 ]);

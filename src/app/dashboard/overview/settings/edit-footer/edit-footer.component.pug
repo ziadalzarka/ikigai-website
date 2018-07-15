@@ -2,7 +2,7 @@
 	.container-fluid
 		.row
 			.col
-				h2 Footer
+				h2 Contact Information
 				hr
 		.row
 			.col-12
@@ -32,20 +32,17 @@
 					input.form-control(type='text' placeholder='https://www.instagram.com/...')
 		.row
 			.col
-				h3 Additional Info
+				h2 Additional Info
 				hr
+		.row
+			.col
 				.form-group
 					label Title
 					input.form-control(type='text' placeholder='Feedback')
 				.form-group
 					label Body
 					textarea.form-control(type='textarea' placeholder='Please send us your ideas, bug reports, suggestions! Any feedback would be appreciated.' row='3')
+		hr
 		.row
-			.col
-				h2 Emails
-				p.lead Note that the emails that will be sent to these email addresses are for the purpose of notifications only and cannot be replyed to!
-				hr
-				.form-group
-				label Job Applications Email
-				input.form-control(type='email' placeholder='example@example.com')
-				p Job applications will be sent to this email
+			.col-12.col-lg-4.offset-lg-8
+				button.w-100.btn.btn-primary.btn.ml-auto.mt-1(type='button') Save

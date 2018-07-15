@@ -4,22 +4,23 @@
 			h3.truncate-text.text-light Ziad Alzarka
 			p.text-subtitle Admin
 		ul.list-unstyled.components
-			li.bg-info
+			li.bg-success
 				h4.text-light.text-center.py-3.m-0 Content
 			li
 				button.w-100.btn.btn-lg.text-light.shadow-none.btn-primary(routerLink="content/posts") Posts
-			li.bg-info
+			li.bg-success
 				h4.text-light.text-center.py-3.m-0 Applications
 			li
-				button.w-100.btn.btn-lg.text-light.shadow-none.bg-transparent(routerLink="applications/clients") Client Applications
+				button.w-100.btn.btn-lg.text-light.shadow-none.bg-transparent(routerLink="applications/clients") Clients
 			li
-				button.w-100.btn.btn-lg.text-light.shadow-none.bg-transparent(routerLink="applications/jobs") Job Applications
-			li.bg-info
+				button.w-100.btn.btn-lg.text-light.shadow-none.bg-transparent(routerLink="applications/jobs") Jobs
+			li.bg-success
 				h4.text-light.text-center.py-3.m-0 Settings
 			li
-				button.w-100.btn.btn-lg.text-light.shadow-none.bg-transparent(routerLink="settings/email") Emails
+				button.w-100.btn.btn-lg.text-light.shadow-none.bg-transparent(routerLink="settings/emails") Emails
 			li
 				button.w-100.btn.btn-lg.text-light.shadow-none.bg-transparent(routerLink="settings/footer") Footer
 	#content.w-100
 		#overlay
-		router-outlet
+		div([@routerTransition]='getState(o)')
+			router-outlet(#o="outlet")

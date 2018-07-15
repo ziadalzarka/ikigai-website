@@ -8,7 +8,7 @@ const routes: Routes = [{
 	children: [
 		{
 			path: 'settings',
-			loadChildren: './settings/settings.module#SettingsModule',
+			loadChildren: './settings/settings.module#SettingsModule'
 		}
 	]
 }];
