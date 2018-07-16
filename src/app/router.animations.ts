@@ -6,12 +6,12 @@ export function constructQuery(from, middle, to, dir = 'X') {
 	return group([
 		initial,
 		query(':enter', [
-			style({ transform: `translate${dir}(${from}%)` }),
-			animate('0.5s ease-in-out', style({ transform: `translate${dir}(${middle}%)` }))
+			style({ transform: `translate${dir}(${from}%)`, opacity: 0 }),
+			animate('0.5s ease-in-out', style({ transform: `translate${dir}(${middle}%)`, opacity: 1 }))
 		]),
 		query(':leave', [
-			style({ transform: `translate${dir}(${middle}%)` }),
-			animate('0.5s ease-in-out', style({ transform: `translate${dir}(${to}%)` }))
+			style({ transform: `translate${dir}(${middle}%)`, opacity: 1 }),
+			animate('0.5s ease-in-out', style({ transform: `translate${dir}(${to}%)`, opacity: 0 }))
 		])
 	]);
 }
@@ -30,9 +30,22 @@ export const routerTransition = trigger('routerTransition', [
 	transition('home => contact', [swipeDown]),
 	transition('contact => home', [swipeUp]),
 
-	/* settings: posts, clients, jobs, emails, footer */
-	transition('users => emails, users => footer', [swipeUp]),
+	/* posts, clients, jobs, users, emails, footer */
+	// posts is at the top
+	// transition('edit => posts', [swipeDown]),
+	// transition('edit => *', [swipeUp]),
+	transition('edit => *', [swipeDown]),
+	transition('edit => *', [swipeUp]),
+	transition('posts => *', [swipeUp]),
+	// going down
 	transition('emails => footer', [swipeUp]),
+	transition('users => emails, users => footer', [swipeUp]),
+	transition('jobs => users, jobs => emails, jobs => footer', [swipeUp]),
+	transition('clients => jobs, clients => users, clients => emails, clients => footer', [swipeUp]),
+	// going up
+	transition('clients => *', [swipeDown]),
+	transition('jobs => *', [swipeDown]),
+	transition('users => *', [swipeDown]),
 	transition('emails => *', [swipeDown]),
 	transition('footer => *', [swipeDown]),
 

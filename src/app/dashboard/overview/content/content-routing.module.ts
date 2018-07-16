@@ -5,10 +5,16 @@ import { Routes, RouterModule } from '@angular/router';
 
 const routes: Routes = [{
 	path: 'posts',
-	component: PostsComponent
+	component: PostsComponent,
+	data: {
+		state: 'posts'
+	}
 }, {
 	path: 'edit',
-	component: EditPostComponent
+	component: EditPostComponent,
+	data: {
+		state: 'edit'
+	}
 }];
 
 @NgModule({

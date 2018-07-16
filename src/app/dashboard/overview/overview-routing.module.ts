@@ -13,6 +13,10 @@ const routes: Routes = [{
 		{
 			path: 'settings',
 			loadChildren: './settings/settings.module#SettingsModule'
+		},
+		{
+			path: 'applications',
+			loadChildren: './applications/applications.module#ApplicationsModule'
 		}
 	]
 }];

@@ -1,5 +1,6 @@
 import { routerTransition } from '@app/router.animations';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
 	selector: 'app-overview',
@@ -11,13 +12,9 @@ export class OverviewComponent implements OnInit {
 
 	sidebarHidden = false;
 
-	constructor() { }
+	constructor(private router: Router) { }
 
 	ngOnInit() {
-	}
-
-	getState(outlet) {
-		return outlet.activatedRouteData.state;
 	}
 
 	hideSidebar() {
@@ -27,4 +24,5 @@ export class OverviewComponent implements OnInit {
 	showSidebar() {
 		this.sidebarHidden = false;
 	}
+
 }

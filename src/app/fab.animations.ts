@@ -4,9 +4,9 @@ export const fabTransition = trigger('fabTransition', [
 	state('*', style({
 		transform: 'scale(0)'
 	})),
-	state('users', style({
+	state('show', style({
 		transform: 'scale(1)'
 	})),
-	transition('* => users', animate('0.1s ease-in')),
-	transition('users => *', animate('0.1s ease-out'))
+	transition('* => show', animate('0.1s ease-in')),
+	transition('show => *', animate('0.1s ease-out'))
 ]);

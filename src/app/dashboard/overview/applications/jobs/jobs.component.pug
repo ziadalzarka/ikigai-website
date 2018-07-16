@@ -1,0 +1,34 @@
+.p-5
+	.container-fluid
+		.row
+			.col.align-items-center.d-flex
+				h1 Job Applications
+		br
+		br
+		.row
+			.col
+				table.table.table-hover
+					thead.text-dark
+						tr
+							th Name
+							th Email Address
+							th Phone
+							th Position
+							th LinkedIn Profile
+					tbody.f-1.text-calm
+						tr((click)='showProfile("test")')
+							td.align-middle Mylene Benoit
+							td.align-middle mylenebenoit@gmail.com
+							td.align-middle +201096707442
+							td.align-middle Photography
+							td.align-middle
+								a(href='https://www.linkedin.com/in/mylene-benoit-a73132' target='_blank')
+									i.fa.fa-linkedin
+						tr
+							td.align-middle Mohap Akram
+							td.align-middle themadkid@gmail.com
+							td.align-middle +201067425491
+							td.align-middle Graphics
+							td.align-middle
+								a(href='https://www.linkedin.com/in/mylene-benoit-a73132' target='_blank')
+									i.fa.fa-linkedin

@@ -22,6 +22,7 @@
     "@angular/platform-browser-dynamic": "^6.0.3",
     "@angular/router": "^6.0.3",
     "@mdi/font": "^2.5.94",
+    "angular-6-clipboard": "^1.0.0",
     "angular-froala-wysiwyg": "^2.8.4",
     "bootstrap": "^4.1.2",
     "core-js": "^2.5.4",
