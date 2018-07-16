@@ -25,6 +25,14 @@ label {
   white-space: normal !important;
 }
 
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.dashed-border {
+  border: gray dashed 2px;
+}
+
 .f-1 {
   font-size: 1.1em !important;
 }

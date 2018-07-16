@@ -9,6 +9,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class OverviewComponent implements OnInit {
 
+	sidebarHidden = false;
+
 	constructor() { }
 
 	ngOnInit() {
@@ -18,4 +20,11 @@ export class OverviewComponent implements OnInit {
 		return outlet.activatedRouteData.state;
 	}
 
+	hideSidebar() {
+		this.sidebarHidden = true;
+	}
+
+	showSidebar() {
+		this.sidebarHidden = false;
+	}
 }

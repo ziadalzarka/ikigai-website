@@ -8,12 +8,23 @@ $sm-size: 80%;
   display: flex;
   width: 100%;
 	align-items: stretch;
+	& #miniSidebar {
+		margin-top: -5em;
+	}
 }
 
 .closed-sidebar {
+	& #content {
+		margin-top: 4em;
+	}
   & #content #overlay {
-    width: 0;
-  }
+    display: none;
+	}
+
+	& #miniSidebar {
+		margin-top: 0;
+	}
+	
   & #sidebar {
     margin-left: -$lg-size;
     @include lt-lg {
@@ -44,7 +55,8 @@ $sm-size: 80%;
   margin-left: 0;
   min-width: $lg-size;
   max-width: $lg-size;
-  min-height: 100vh;
+	min-height: 100vh;
+	transition: margin-left 0.5s;
   @include lt-lg {
     min-width: $md-size;
     max-width: $md-size;
@@ -53,4 +65,12 @@ $sm-size: 80%;
     max-width: $sm-size;
     min-width: $sm-size;
   }
+}
+
+#miniSidebar {
+	position: fixed;
+	min-width: 100vw;
+	max-height: fit-content;
+	height: 5em;
+	transition: margin-top 0.5s;
 }
