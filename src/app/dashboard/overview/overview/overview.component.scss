@@ -1,30 +1,26 @@
 @import '~utils/responsive';
-
 $lg-size: 22.5%;
 $md-size: 35%;
 $sm-size: 80%;
-
 .wrapper {
   display: flex;
   width: 100%;
-	align-items: stretch;
-	& #miniSidebar {
-		margin-top: -5em;
-	}
+  align-items: stretch;
 }
 
 .closed-sidebar {
-	& #content {
-		margin-top: 5em;
-	}
+  & #content {
+		// margin-top: 5em;
+		transform: translateY(5em);
+  }
   & #content #overlay {
     display: none;
-	}
-
-	& #miniSidebar {
-		margin-top: 0;
-	}
-	
+  }
+  & #miniSidebar {
+		// margin-top: 0;
+		transform: translateY(0);
+		opacity: 1;
+  }
   & #sidebar {
     margin-left: -$lg-size;
     @include lt-lg {
@@ -38,6 +34,10 @@ $sm-size: 80%;
 
 #content {
 	position: relative;
+	// margin-top: 0;
+	transform: translateY(0);
+	will-change: transform;
+	transition: transform 0.5s;
   #overlay {
     position: absolute;
     top: 0;
@@ -55,8 +55,8 @@ $sm-size: 80%;
   margin-left: 0;
   min-width: $lg-size;
   max-width: $lg-size;
-	min-height: 100vh;
-	transition: margin-left 0.5s;
+  min-height: 100vh;
+  transition: margin-left 0.5s;
   @include lt-lg {
     min-width: $md-size;
     max-width: $md-size;
@@ -68,9 +68,13 @@ $sm-size: 80%;
 }
 
 #miniSidebar {
-	position: fixed;
-	min-width: 100vw;
-	max-height: fit-content;
-	height: 5em;
-	transition: margin-top 0.5s;
+  opacity: 0;
+	// margin-top: -5em;
+	will-change: transform;
+	transform: translateY(-5em);
+  position: fixed;
+  min-width: 100vw;
+  max-height: fit-content;
+  height: 5em;
+  transition: transform 0.5s, opacity 0.5s;
 }

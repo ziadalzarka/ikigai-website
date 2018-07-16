@@ -1,4 +1,4 @@
-import { trigger, animate, style, group, query, transition } from '@angular/animations';
+import { trigger, animate, style, group, query, transition, state } from '@angular/animations';
 
 export const initial = query(':enter, :leave', style({ position: 'absolute', width: '100%' }));
 
@@ -21,6 +21,18 @@ export const swipeLeft = constructQuery(-100, 0, 100);
 export const swipeDown = constructQuery(-100, 0, 100, 'Y');
 export const swipeUp = constructQuery(100, 0, -100, 'Y');
 
+export const scale = group([
+	initial,
+	query(':enter', [
+		style({ transform: `scale(0)`, opacity: 0 }),
+		animate('0.5s ease-in-out', style({ transform: `scale(1)`, opacity: 1 }))
+	]),
+	query(':leave', [
+		style({ transform: `scale(1)`, opacity: 1 }),
+		animate('0.5s ease-in-out', style({ transform: `scale(0)`, opacity: 0 }))
+	])
+]);
+
 export const routerTransition = trigger('routerTransition', [
 	/* home, client, work */
 	transition('home => client', [swipeRight]),
@@ -30,11 +42,16 @@ export const routerTransition = trigger('routerTransition', [
 	transition('home => contact', [swipeDown]),
 	transition('contact => home', [swipeUp]),
 
+	/* login page */
+	transition('* => login', [scale]),
+	transition('login => *', [scale]),
+
 	/* posts, clients, jobs, users, emails, footer */
+
 	// posts is at the top
 	// transition('edit => posts', [swipeDown]),
 	// transition('edit => *', [swipeUp]),
-	transition('edit => *', [swipeDown]),
+	transition('edit => posts', [swipeDown]),
 	transition('edit => *', [swipeUp]),
 	transition('posts => *', [swipeUp]),
 	// going down

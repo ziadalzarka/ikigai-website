@@ -2,7 +2,7 @@
 	.container-fluid
 		.row
 			.col.align-items-center.d-flex
-				h1 Users
+				h1 Clients
 		br
 		br
 		.row
@@ -11,37 +11,24 @@
 					thead.text-dark
 						tr
 							th Name
-							th Permissions
-							th Last Login
-							th Action
+							th Email Address
+							th Phone
+							th Package
+							th Facebook Page
 					tbody.f-1.text-calm
-						tr
-							td.align-middle Ziad Alzarka
-							td.align-middle Admin
-							td.align-middle Jul 15, 2018
+						tr((click)='showProfile("test")')
+							td.align-middle Gray, Inc.
+							td.align-middle gray@gmail.com
+							td.align-middle +201096707442
+							td.align-middle.text-info Starter
 							td.align-middle
-								.btn-group.w-100
-									button.btn.btn-coffee.w-100(type='button') Log In
-									button.btn.btn-coffee.dropdown-toggle.dropdown-toggle-split(type='button' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false')
-										span.sr-only Toggle Actions
-									.dropdown-menu
-										a.dropdown-item Edit
-										a.dropdown-item Change Permissions
-										a.dropdown-item Statistics
-										.dropdown-divider
-										a.dropdown-item.text-danger Delete
+								a(href='https://facebook.com/zzthemadprogrammer' target='_blank')
+									i.fa.fa-facebook.f-3
 						tr
 							td.align-middle Mohap Akram
-							td.align-middle Posts, Job Applications
-							td.align-middle Jun 21, 2018
+							td.align-middle themadkid@gmail.com
+							td.align-middle +201067425491
+							td.align-middle.text-success Pro
 							td.align-middle
-								.btn-group.w-100
-									button.btn.btn-coffee.w-100(type='button') Log In
-									button.btn.btn-coffee.dropdown-toggle.dropdown-toggle-split(type='button' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false')
-										span.sr-only Toggle Actions
-									.dropdown-menu
-										a.dropdown-item Edit
-										a.dropdown-item Change Permissions
-										a.dropdown-item Statistics
-										.dropdown-divider
-										a.dropdown-item.text-danger Delete
+								a(href='https://www.facebook.com/mohapakram' target='_blank')
+									i.fa.fa-facebook.f-3

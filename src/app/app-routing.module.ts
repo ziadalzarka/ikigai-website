@@ -40,10 +40,10 @@ const routes: Routes = [
 		}
 	},
 	{
-		path: '404',
+		path: '**',
 		component: NotfoundComponent
 	},
-	{ path: '**', redirectTo: '404', pathMatch: 'full' },
+	// { path: '**', redirectTo: '404', pathMatch: 'full' },
 ];
 
 @NgModule({

@@ -4,9 +4,9 @@
 			h1.text-center Log In
 			.form-group
 				label Username
-				input.form-control(type='text' placeholder='Username')
+				input.form-control(type='text', placeholder='Username')
 			.form-group
 				label Password
-				input.form-control(type='password' placeholder='*******')
-			button.w-100.btn.btn-primary.btn.my-2(type='button') Log In
+				input.form-control(type='password', placeholder='*******')
+			button.w-100.btn.btn-primary.btn.my-2(type='button', [routerLink]="'/dashboard/content/edit'") Log In
 			p Only the site admin can create users.
