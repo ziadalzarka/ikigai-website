@@ -27,6 +27,7 @@ type AuthPayload {
 type User {
   id: ID!
   username: String!
+	permissions: [Permission!]!
   name: String!
   posts: [Post!]!
 }

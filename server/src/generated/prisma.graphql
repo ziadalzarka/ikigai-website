@@ -1,5 +1,213 @@
 # source: http://185.33.146.23:4466/ikigai/dev
-# timestamp: Tue Jul 17 2018 18:51:22 GMT+0200 (EET)
+# timestamp: Tue Jul 17 2018 19:25:38 GMT+0200 (EET)
+
+type AdditionalInfo {
+  title: String!
+  body: String!
+}
+
+"""A connection to a list of items."""
+type AdditionalInfoConnection {
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """A list of edges."""
+  edges: [AdditionalInfoEdge]!
+  aggregate: AggregateAdditionalInfo!
+}
+
+input AdditionalInfoCreateInput {
+  title: String!
+  body: String!
+}
+
+input AdditionalInfoCreateOneInput {
+  create: AdditionalInfoCreateInput
+}
+
+"""An edge in a connection."""
+type AdditionalInfoEdge {
+  """The item at the end of the edge."""
+  node: AdditionalInfo!
+
+  """A cursor for use in pagination."""
+  cursor: String!
+}
+
+enum AdditionalInfoOrderByInput {
+  title_ASC
+  title_DESC
+  body_ASC
+  body_DESC
+  id_ASC
+  id_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+  createdAt_ASC
+  createdAt_DESC
+}
+
+type AdditionalInfoPreviousValues {
+  title: String!
+  body: String!
+}
+
+type AdditionalInfoSubscriptionPayload {
+  mutation: MutationType!
+  node: AdditionalInfo
+  updatedFields: [String!]
+  previousValues: AdditionalInfoPreviousValues
+}
+
+input AdditionalInfoSubscriptionWhereInput {
+  """Logical AND on all given filters."""
+  AND: [AdditionalInfoSubscriptionWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [AdditionalInfoSubscriptionWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [AdditionalInfoSubscriptionWhereInput!]
+
+  """
+  The subscription event gets dispatched when it's listed in mutation_in
+  """
+  mutation_in: [MutationType!]
+
+  """
+  The subscription event gets only dispatched when one of the updated fields names is included in this list
+  """
+  updatedFields_contains: String
+
+  """
+  The subscription event gets only dispatched when all of the field names included in this list have been updated
+  """
+  updatedFields_contains_every: [String!]
+
+  """
+  The subscription event gets only dispatched when some of the field names included in this list have been updated
+  """
+  updatedFields_contains_some: [String!]
+  node: AdditionalInfoWhereInput
+}
+
+input AdditionalInfoUpdateDataInput {
+  title: String
+  body: String
+}
+
+input AdditionalInfoUpdateInput {
+  title: String
+  body: String
+}
+
+input AdditionalInfoUpdateOneInput {
+  create: AdditionalInfoCreateInput
+  disconnect: Boolean
+  delete: Boolean
+  update: AdditionalInfoUpdateDataInput
+  upsert: AdditionalInfoUpsertNestedInput
+}
+
+input AdditionalInfoUpsertNestedInput {
+  update: AdditionalInfoUpdateDataInput!
+  create: AdditionalInfoCreateInput!
+}
+
+input AdditionalInfoWhereInput {
+  """Logical AND on all given filters."""
+  AND: [AdditionalInfoWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [AdditionalInfoWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [AdditionalInfoWhereInput!]
+  title: String
+
+  """All values that are not equal to given value."""
+  title_not: String
+
+  """All values that are contained in given list."""
+  title_in: [String!]
+
+  """All values that are not contained in given list."""
+  title_not_in: [String!]
+
+  """All values less than the given value."""
+  title_lt: String
+
+  """All values less than or equal the given value."""
+  title_lte: String
+
+  """All values greater than the given value."""
+  title_gt: String
+
+  """All values greater than or equal the given value."""
+  title_gte: String
+
+  """All values containing the given string."""
+  title_contains: String
+
+  """All values not containing the given string."""
+  title_not_contains: String
+
+  """All values starting with the given string."""
+  title_starts_with: String
+
+  """All values not starting with the given string."""
+  title_not_starts_with: String
+
+  """All values ending with the given string."""
+  title_ends_with: String
+
+  """All values not ending with the given string."""
+  title_not_ends_with: String
+  body: String
+
+  """All values that are not equal to given value."""
+  body_not: String
+
+  """All values that are contained in given list."""
+  body_in: [String!]
+
+  """All values that are not contained in given list."""
+  body_not_in: [String!]
+
+  """All values less than the given value."""
+  body_lt: String
+
+  """All values less than or equal the given value."""
+  body_lte: String
+
+  """All values greater than the given value."""
+  body_gt: String
+
+  """All values greater than or equal the given value."""
+  body_gte: String
+
+  """All values containing the given string."""
+  body_contains: String
+
+  """All values not containing the given string."""
+  body_not_contains: String
+
+  """All values starting with the given string."""
+  body_starts_with: String
+
+  """All values not starting with the given string."""
+  body_not_starts_with: String
+
+  """All values ending with the given string."""
+  body_ends_with: String
+
+  """All values not ending with the given string."""
+  body_not_ends_with: String
+}
+
+type AggregateAdditionalInfo {
+  count: Int!
+}
 
 type AggregateClientApplication {
   count: Int!
@@ -870,6 +1078,7 @@ Long can represent values between -(2^63) and 2^63 - 1.
 scalar Long
 
 type Mutation {
+  createAdditionalInfo(data: AdditionalInfoCreateInput!): AdditionalInfo!
   createSettings(data: SettingsCreateInput!): Settings!
   createUser(data: UserCreateInput!): User!
   createPost(data: PostCreateInput!): Post!
@@ -885,12 +1094,14 @@ type Mutation {
   upsertSettings(where: SettingsWhereUniqueInput!, create: SettingsCreateInput!, update: SettingsUpdateInput!): Settings!
   upsertUser(where: UserWhereUniqueInput!, create: UserCreateInput!, update: UserUpdateInput!): User!
   upsertPost(where: PostWhereUniqueInput!, create: PostCreateInput!, update: PostUpdateInput!): Post!
+  updateManyAdditionalInfoes(data: AdditionalInfoUpdateInput!, where: AdditionalInfoWhereInput): BatchPayload!
   updateManySettingses(data: SettingsUpdateInput!, where: SettingsWhereInput): BatchPayload!
   updateManyUsers(data: UserUpdateInput!, where: UserWhereInput): BatchPayload!
   updateManyPosts(data: PostUpdateInput!, where: PostWhereInput): BatchPayload!
   updateManyJobApplicaions(data: JobApplicaionUpdateInput!, where: JobApplicaionWhereInput): BatchPayload!
   updateManyClientApplications(data: ClientApplicationUpdateInput!, where: ClientApplicationWhereInput): BatchPayload!
   updateManyContactApplications(data: ContactApplicationUpdateInput!, where: ContactApplicationWhereInput): BatchPayload!
+  deleteManyAdditionalInfoes(where: AdditionalInfoWhereInput): BatchPayload!
   deleteManySettingses(where: SettingsWhereInput): BatchPayload!
   deleteManyUsers(where: UserWhereInput): BatchPayload!
   deleteManyPosts(where: PostWhereInput): BatchPayload!
@@ -1268,6 +1479,7 @@ input PostWhereUniqueInput {
 }
 
 type Query {
+  additionalInfoes(where: AdditionalInfoWhereInput, orderBy: AdditionalInfoOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [AdditionalInfo]!
   settingses(where: SettingsWhereInput, orderBy: SettingsOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Settings]!
   users(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [User]!
   posts(where: PostWhereInput, orderBy: PostOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Post]!
@@ -1277,6 +1489,7 @@ type Query {
   settings(where: SettingsWhereUniqueInput!): Settings
   user(where: UserWhereUniqueInput!): User
   post(where: PostWhereUniqueInput!): Post
+  additionalInfoesConnection(where: AdditionalInfoWhereInput, orderBy: AdditionalInfoOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): AdditionalInfoConnection!
   settingsesConnection(where: SettingsWhereInput, orderBy: SettingsOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): SettingsConnection!
   usersConnection(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): UserConnection!
   postsConnection(where: PostWhereInput, orderBy: PostOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): PostConnection!
@@ -1293,7 +1506,17 @@ type Query {
 
 type Settings {
   index: Int!
-  email: String!
+  email: String
+  phone1: String
+  phone2: String
+  address: String
+  facebook: String
+  instagram: String
+  linkedIn: String
+  additionalInfo(where: AdditionalInfoWhereInput): AdditionalInfo
+  contactEmail: String
+  clientsEmail: String
+  jobsEmail: String
 }
 
 """A connection to a list of items."""
@@ -1308,7 +1531,17 @@ type SettingsConnection {
 
 input SettingsCreateInput {
   index: Int!
-  email: String!
+  email: String
+  phone1: String
+  phone2: String
+  address: String
+  facebook: String
+  instagram: String
+  linkedIn: String
+  contactEmail: String
+  clientsEmail: String
+  jobsEmail: String
+  additionalInfo: AdditionalInfoCreateOneInput
 }
 
 """An edge in a connection."""
@@ -1325,6 +1558,24 @@ enum SettingsOrderByInput {
   index_DESC
   email_ASC
   email_DESC
+  phone1_ASC
+  phone1_DESC
+  phone2_ASC
+  phone2_DESC
+  address_ASC
+  address_DESC
+  facebook_ASC
+  facebook_DESC
+  instagram_ASC
+  instagram_DESC
+  linkedIn_ASC
+  linkedIn_DESC
+  contactEmail_ASC
+  contactEmail_DESC
+  clientsEmail_ASC
+  clientsEmail_DESC
+  jobsEmail_ASC
+  jobsEmail_DESC
   id_ASC
   id_DESC
   updatedAt_ASC
@@ -1335,7 +1586,16 @@ enum SettingsOrderByInput {
 
 type SettingsPreviousValues {
   index: Int!
-  email: String!
+  email: String
+  phone1: String
+  phone2: String
+  address: String
+  facebook: String
+  instagram: String
+  linkedIn: String
+  contactEmail: String
+  clientsEmail: String
+  jobsEmail: String
 }
 
 type SettingsSubscriptionPayload {
@@ -1380,6 +1640,16 @@ input SettingsSubscriptionWhereInput {
 input SettingsUpdateInput {
   index: Int
   email: String
+  phone1: String
+  phone2: String
+  address: String
+  facebook: String
+  instagram: String
+  linkedIn: String
+  contactEmail: String
+  clientsEmail: String
+  jobsEmail: String
+  additionalInfo: AdditionalInfoUpdateOneInput
 }
 
 input SettingsWhereInput {
@@ -1453,6 +1723,367 @@ input SettingsWhereInput {
 
   """All values not ending with the given string."""
   email_not_ends_with: String
+  phone1: String
+
+  """All values that are not equal to given value."""
+  phone1_not: String
+
+  """All values that are contained in given list."""
+  phone1_in: [String!]
+
+  """All values that are not contained in given list."""
+  phone1_not_in: [String!]
+
+  """All values less than the given value."""
+  phone1_lt: String
+
+  """All values less than or equal the given value."""
+  phone1_lte: String
+
+  """All values greater than the given value."""
+  phone1_gt: String
+
+  """All values greater than or equal the given value."""
+  phone1_gte: String
+
+  """All values containing the given string."""
+  phone1_contains: String
+
+  """All values not containing the given string."""
+  phone1_not_contains: String
+
+  """All values starting with the given string."""
+  phone1_starts_with: String
+
+  """All values not starting with the given string."""
+  phone1_not_starts_with: String
+
+  """All values ending with the given string."""
+  phone1_ends_with: String
+
+  """All values not ending with the given string."""
+  phone1_not_ends_with: String
+  phone2: String
+
+  """All values that are not equal to given value."""
+  phone2_not: String
+
+  """All values that are contained in given list."""
+  phone2_in: [String!]
+
+  """All values that are not contained in given list."""
+  phone2_not_in: [String!]
+
+  """All values less than the given value."""
+  phone2_lt: String
+
+  """All values less than or equal the given value."""
+  phone2_lte: String
+
+  """All values greater than the given value."""
+  phone2_gt: String
+
+  """All values greater than or equal the given value."""
+  phone2_gte: String
+
+  """All values containing the given string."""
+  phone2_contains: String
+
+  """All values not containing the given string."""
+  phone2_not_contains: String
+
+  """All values starting with the given string."""
+  phone2_starts_with: String
+
+  """All values not starting with the given string."""
+  phone2_not_starts_with: String
+
+  """All values ending with the given string."""
+  phone2_ends_with: String
+
+  """All values not ending with the given string."""
+  phone2_not_ends_with: String
+  address: String
+
+  """All values that are not equal to given value."""
+  address_not: String
+
+  """All values that are contained in given list."""
+  address_in: [String!]
+
+  """All values that are not contained in given list."""
+  address_not_in: [String!]
+
+  """All values less than the given value."""
+  address_lt: String
+
+  """All values less than or equal the given value."""
+  address_lte: String
+
+  """All values greater than the given value."""
+  address_gt: String
+
+  """All values greater than or equal the given value."""
+  address_gte: String
+
+  """All values containing the given string."""
+  address_contains: String
+
+  """All values not containing the given string."""
+  address_not_contains: String
+
+  """All values starting with the given string."""
+  address_starts_with: String
+
+  """All values not starting with the given string."""
+  address_not_starts_with: String
+
+  """All values ending with the given string."""
+  address_ends_with: String
+
+  """All values not ending with the given string."""
+  address_not_ends_with: String
+  facebook: String
+
+  """All values that are not equal to given value."""
+  facebook_not: String
+
+  """All values that are contained in given list."""
+  facebook_in: [String!]
+
+  """All values that are not contained in given list."""
+  facebook_not_in: [String!]
+
+  """All values less than the given value."""
+  facebook_lt: String
+
+  """All values less than or equal the given value."""
+  facebook_lte: String
+
+  """All values greater than the given value."""
+  facebook_gt: String
+
+  """All values greater than or equal the given value."""
+  facebook_gte: String
+
+  """All values containing the given string."""
+  facebook_contains: String
+
+  """All values not containing the given string."""
+  facebook_not_contains: String
+
+  """All values starting with the given string."""
+  facebook_starts_with: String
+
+  """All values not starting with the given string."""
+  facebook_not_starts_with: String
+
+  """All values ending with the given string."""
+  facebook_ends_with: String
+
+  """All values not ending with the given string."""
+  facebook_not_ends_with: String
+  instagram: String
+
+  """All values that are not equal to given value."""
+  instagram_not: String
+
+  """All values that are contained in given list."""
+  instagram_in: [String!]
+
+  """All values that are not contained in given list."""
+  instagram_not_in: [String!]
+
+  """All values less than the given value."""
+  instagram_lt: String
+
+  """All values less than or equal the given value."""
+  instagram_lte: String
+
+  """All values greater than the given value."""
+  instagram_gt: String
+
+  """All values greater than or equal the given value."""
+  instagram_gte: String
+
+  """All values containing the given string."""
+  instagram_contains: String
+
+  """All values not containing the given string."""
+  instagram_not_contains: String
+
+  """All values starting with the given string."""
+  instagram_starts_with: String
+
+  """All values not starting with the given string."""
+  instagram_not_starts_with: String
+
+  """All values ending with the given string."""
+  instagram_ends_with: String
+
+  """All values not ending with the given string."""
+  instagram_not_ends_with: String
+  linkedIn: String
+
+  """All values that are not equal to given value."""
+  linkedIn_not: String
+
+  """All values that are contained in given list."""
+  linkedIn_in: [String!]
+
+  """All values that are not contained in given list."""
+  linkedIn_not_in: [String!]
+
+  """All values less than the given value."""
+  linkedIn_lt: String
+
+  """All values less than or equal the given value."""
+  linkedIn_lte: String
+
+  """All values greater than the given value."""
+  linkedIn_gt: String
+
+  """All values greater than or equal the given value."""
+  linkedIn_gte: String
+
+  """All values containing the given string."""
+  linkedIn_contains: String
+
+  """All values not containing the given string."""
+  linkedIn_not_contains: String
+
+  """All values starting with the given string."""
+  linkedIn_starts_with: String
+
+  """All values not starting with the given string."""
+  linkedIn_not_starts_with: String
+
+  """All values ending with the given string."""
+  linkedIn_ends_with: String
+
+  """All values not ending with the given string."""
+  linkedIn_not_ends_with: String
+  contactEmail: String
+
+  """All values that are not equal to given value."""
+  contactEmail_not: String
+
+  """All values that are contained in given list."""
+  contactEmail_in: [String!]
+
+  """All values that are not contained in given list."""
+  contactEmail_not_in: [String!]
+
+  """All values less than the given value."""
+  contactEmail_lt: String
+
+  """All values less than or equal the given value."""
+  contactEmail_lte: String
+
+  """All values greater than the given value."""
+  contactEmail_gt: String
+
+  """All values greater than or equal the given value."""
+  contactEmail_gte: String
+
+  """All values containing the given string."""
+  contactEmail_contains: String
+
+  """All values not containing the given string."""
+  contactEmail_not_contains: String
+
+  """All values starting with the given string."""
+  contactEmail_starts_with: String
+
+  """All values not starting with the given string."""
+  contactEmail_not_starts_with: String
+
+  """All values ending with the given string."""
+  contactEmail_ends_with: String
+
+  """All values not ending with the given string."""
+  contactEmail_not_ends_with: String
+  clientsEmail: String
+
+  """All values that are not equal to given value."""
+  clientsEmail_not: String
+
+  """All values that are contained in given list."""
+  clientsEmail_in: [String!]
+
+  """All values that are not contained in given list."""
+  clientsEmail_not_in: [String!]
+
+  """All values less than the given value."""
+  clientsEmail_lt: String
+
+  """All values less than or equal the given value."""
+  clientsEmail_lte: String
+
+  """All values greater than the given value."""
+  clientsEmail_gt: String
+
+  """All values greater than or equal the given value."""
+  clientsEmail_gte: String
+
+  """All values containing the given string."""
+  clientsEmail_contains: String
+
+  """All values not containing the given string."""
+  clientsEmail_not_contains: String
+
+  """All values starting with the given string."""
+  clientsEmail_starts_with: String
+
+  """All values not starting with the given string."""
+  clientsEmail_not_starts_with: String
+
+  """All values ending with the given string."""
+  clientsEmail_ends_with: String
+
+  """All values not ending with the given string."""
+  clientsEmail_not_ends_with: String
+  jobsEmail: String
+
+  """All values that are not equal to given value."""
+  jobsEmail_not: String
+
+  """All values that are contained in given list."""
+  jobsEmail_in: [String!]
+
+  """All values that are not contained in given list."""
+  jobsEmail_not_in: [String!]
+
+  """All values less than the given value."""
+  jobsEmail_lt: String
+
+  """All values less than or equal the given value."""
+  jobsEmail_lte: String
+
+  """All values greater than the given value."""
+  jobsEmail_gt: String
+
+  """All values greater than or equal the given value."""
+  jobsEmail_gte: String
+
+  """All values containing the given string."""
+  jobsEmail_contains: String
+
+  """All values not containing the given string."""
+  jobsEmail_not_contains: String
+
+  """All values starting with the given string."""
+  jobsEmail_starts_with: String
+
+  """All values not starting with the given string."""
+  jobsEmail_not_starts_with: String
+
+  """All values ending with the given string."""
+  jobsEmail_ends_with: String
+
+  """All values not ending with the given string."""
+  jobsEmail_not_ends_with: String
+  additionalInfo: AdditionalInfoWhereInput
 }
 
 input SettingsWhereUniqueInput {
@@ -1460,6 +2091,7 @@ input SettingsWhereUniqueInput {
 }
 
 type Subscription {
+  additionalInfo(where: AdditionalInfoSubscriptionWhereInput): AdditionalInfoSubscriptionPayload
   settings(where: SettingsSubscriptionWhereInput): SettingsSubscriptionPayload
   user(where: UserSubscriptionWhereInput): UserSubscriptionPayload
   post(where: PostSubscriptionWhereInput): PostSubscriptionPayload

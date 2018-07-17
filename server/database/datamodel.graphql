@@ -26,9 +26,24 @@ interface Contact {
 	address: String
 }
 
+type AdditionalInfo {
+	title: String!
+	body: String!
+}
+
 type Settings {
 	index: Int! @unique
-	email: String!
+	email: String
+	phone1: String
+	phone2: String
+	address: String
+	facebook: String
+	instagram: String
+	linkedIn: String
+	additionalInfo: AdditionalInfo
+	contactEmail: String
+	clientsEmail: String
+	jobsEmail: String
 }
 
 type User {

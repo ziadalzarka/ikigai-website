@@ -26,11 +26,11 @@ export const scale = group([
 	query(':enter', [
 		style({ transform: `scale(0)`, opacity: 0 }),
 		animate('0.5s ease-in-out', style({ transform: `scale(1)`, opacity: 1 }))
-	]),
+	], { optional: true }),
 	query(':leave', [
 		style({ transform: `scale(1)`, opacity: 1 }),
 		animate('0.5s ease-in-out', style({ transform: `scale(0)`, opacity: 0 }))
-	])
+	], { optional: true })
 ]);
 
 export const routerTransition = trigger('routerTransition', [

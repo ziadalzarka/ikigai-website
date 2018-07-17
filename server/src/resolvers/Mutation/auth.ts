@@ -20,12 +20,10 @@ export const auth = {
 		if (!user) {
 			throw new Error(`No such user found for username: ${username}`);
 		}
-
 		const valid = await bcrypt.compare(password, user.password);
 		if (!valid) {
 			throw new Error('Invalid password');
 		}
-
 		return {
 			user,
 			token: jwt.sign({ userId: user.id }, process.env.APP_SECRET),
