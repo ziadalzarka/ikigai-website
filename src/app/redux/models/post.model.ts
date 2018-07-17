@@ -5,7 +5,6 @@ export interface Post {
 	title: string;
 	body: string;
 	author: User;
-	isPublished: boolean;
 	createdAt: Date;
 	updatedAt: Date;
 }

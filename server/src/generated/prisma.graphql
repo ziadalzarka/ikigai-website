@@ -1,5 +1,5 @@
 # source: http://185.33.146.23:4466/ikigai/dev
-# timestamp: Tue Jul 17 2018 19:25:38 GMT+0200 (EET)
+# timestamp: Tue Jul 17 2018 21:12:18 GMT+0200 (EET)
 
 type AdditionalInfo {
   title: String!
@@ -1156,7 +1156,6 @@ type Post implements Node {
   title: String!
   body: String!
   author(where: UserWhereInput): User!
-  isPublished: Boolean!
   createdAt: DateTime!
   updatedAt: DateTime!
 }
@@ -1174,7 +1173,6 @@ type PostConnection {
 input PostCreateInput {
   title: String!
   body: String!
-  isPublished: Boolean
   author: UserCreateOneWithoutPostsInput!
 }
 
@@ -1186,7 +1184,6 @@ input PostCreateManyWithoutAuthorInput {
 input PostCreateWithoutAuthorInput {
   title: String!
   body: String!
-  isPublished: Boolean
 }
 
 """An edge in a connection."""
@@ -1205,8 +1202,6 @@ enum PostOrderByInput {
   title_DESC
   body_ASC
   body_DESC
-  isPublished_ASC
-  isPublished_DESC
   createdAt_ASC
   createdAt_DESC
   updatedAt_ASC
@@ -1217,7 +1212,6 @@ type PostPreviousValues {
   id: ID!
   title: String!
   body: String!
-  isPublished: Boolean!
   createdAt: DateTime!
   updatedAt: DateTime!
 }
@@ -1264,7 +1258,6 @@ input PostSubscriptionWhereInput {
 input PostUpdateInput {
   title: String
   body: String
-  isPublished: Boolean
   author: UserUpdateOneWithoutPostsInput
 }
 
@@ -1280,7 +1273,6 @@ input PostUpdateManyWithoutAuthorInput {
 input PostUpdateWithoutAuthorDataInput {
   title: String
   body: String
-  isPublished: Boolean
 }
 
 input PostUpdateWithWhereUniqueWithoutAuthorInput {
@@ -1423,10 +1415,6 @@ input PostWhereInput {
 
   """All values not ending with the given string."""
   body_not_ends_with: String
-  isPublished: Boolean
-
-  """All values that are not equal to given value."""
-  isPublished_not: Boolean
   createdAt: DateTime
 
   """All values that are not equal to given value."""

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { routerTransition } from '@app/router.animations';
 import { Router, RouteConfigLoadStart, RouteConfigLoadEnd } from '@angular/router';
+import { HttpRequest } from '@angular/common/http';
 
 @Component({
 	selector: 'app-root',
@@ -15,7 +16,6 @@ export class AppComponent implements OnInit {
 	constructor(private router: Router) { }
 
 	ngOnInit() {
-
 		/*
 		Uncomment if you want a loader to show up
 

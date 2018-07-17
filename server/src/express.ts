@@ -3,8 +3,10 @@ import * as cookieParser from 'cookie-parser';
 import * as bodyParser from 'body-parser';
 import * as cors from 'cors';
 import * as compression from 'compression';
+import * as fileUpload from 'express-fileupload';
 
 import webRoutes from './routes/website';
+import uploadRoutes from './routes/upload';
 
 const PORT = process.env.WEB_PORT;
 
@@ -13,7 +15,9 @@ const app = express();
 app.use(cors());
 app.use(cookieParser());
 app.use(bodyParser.json());
+app.use(fileUpload());
 app.use(compression());
+app.use(uploadRoutes);
 app.use(webRoutes);
 
 app.listen(PORT, () => {

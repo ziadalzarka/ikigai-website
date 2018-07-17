@@ -6,7 +6,7 @@ import { AuthPayload } from './AuthPayload';
 
 export default {
 	Query,
-	Subscription,
+	// Subscription,
 	AuthPayload,
 	Mutation: {
 		...auth,
