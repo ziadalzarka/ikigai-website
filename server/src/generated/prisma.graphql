@@ -1,5 +1,5 @@
 # source: http://185.33.146.23:4466/ikigai/dev
-# timestamp: Sat Jul 14 2018 15:45:26 GMT+0200 (EET)
+# timestamp: Tue Jul 17 2018 18:51:22 GMT+0200 (EET)
 
 type AggregateClientApplication {
   count: Int!
@@ -933,7 +933,7 @@ type PageInfo {
 }
 
 enum Permission {
-  Administration
+  Admin
   Posts
   JobApplications
   ClientApplications

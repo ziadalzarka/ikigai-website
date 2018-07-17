@@ -16,19 +16,19 @@ export const auth = {
 	},
 
 	async login(parent, { username, password }, ctx: Context, info) {
-		const user = await ctx.db.query.user({ where: { username } })
+		const user = await ctx.db.query.user({ where: { username } });
 		if (!user) {
-			throw new Error(`No such user found for username: ${username}`)
+			throw new Error(`No such user found for username: ${username}`);
 		}
 
-		const valid = await bcrypt.compare(password, user.password)
+		const valid = await bcrypt.compare(password, user.password);
 		if (!valid) {
-			throw new Error('Invalid password')
+			throw new Error('Invalid password');
 		}
 
 		return {
-			token: jwt.sign({ userId: user.id }, process.env.APP_SECRET),
 			user,
-		}
+			token: jwt.sign({ userId: user.id }, process.env.APP_SECRET),
+		};
 	},
-}
+};

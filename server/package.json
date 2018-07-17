@@ -2,8 +2,10 @@
 	"name": "ikigai",
 	"scripts": {
 		"start": "dotenv -- node dist/index.js",
-		"watch": "dotenv -- nodemon -e ts,graphql -x ts-node src/index.ts",
-		"dev": "npm-run-all --parallel watch playground",
+		"watch:all": "dotenv -- nodemon -e ts,graphql -x ts-node src/index.ts",
+		"watch:prisma": "dotenv -- nodemon -e ts,graphql -x ts-node src/prisma.ts",
+		"dev": "npm-run-all --parallel watch:prisma playground",
+		"dev:all": "npm-run-all --parallel watch:all playground",
 		"debug": "dotenv -- nodemon -e ts,graphql -x ts-node --inspect src/index.ts",
 		"playground": "graphql playground",
 		"build": "rimraf dist && tsc"

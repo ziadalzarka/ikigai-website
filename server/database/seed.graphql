@@ -1,0 +1,12 @@
+mutation {
+	createUser(data: {
+		name: "Administrator",
+		username: "admin",
+		password: "admin",
+		permissions: {
+			set: Admin
+		},
+	}) {
+		id
+	}
+}

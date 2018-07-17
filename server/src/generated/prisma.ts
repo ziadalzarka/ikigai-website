@@ -1024,7 +1024,7 @@ type PageInfo {
 }
 
 enum Permission {
-  Administration
+  Admin
   Posts
   JobApplications
   ClientApplications
@@ -1918,7 +1918,7 @@ export type ClientApplicationOrderByInput =   'postsPerMonth_ASC' |
   'createdAt_ASC' |
   'createdAt_DESC'
 
-export type Permission =   'Administration' |
+export type Permission =   'Admin' |
   'Posts' |
   'JobApplications' |
   'ClientApplications' |
