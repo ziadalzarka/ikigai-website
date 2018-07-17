@@ -1,13 +1,13 @@
-.wrapper.position-relative( [ngClass]='sidebarHidden ? "closed-sidebar" : ""' )
+.h-100.wrapper.position-relative( [ngClass]='sidebarHidden ? "closed-sidebar" : ""' )
 	nav#sidebar.bg-dark
 		.row.align-items-baseline
 			.col
-				.sidebar-header.px-4.pt-4.pb-2
+				.px-4.pt-4.pb-2
 					h3.truncate-text.text-light Ziad Alzarka
 					p.text-subtitle Admin
 			.col-auto.cursor-pointer( (click)='hideSidebar()' )
 				i.fa.fa-arrow-left.f-5.text-light.mr-4
-		ul.list-unstyled.components
+		ul.list-unstyled.components.mb-0
 			li.bg-coffee.lighten-1
 				h4.text-light.text-center.py-4.m-0 Content
 			li
@@ -26,10 +26,10 @@
 				button.w-100.btn.btn-lg.text-light.shadow-none.btn-dark(routerLink='settings/emails') Emails
 			li
 				button.w-100.btn.btn-lg.text-light.shadow-none.btn-dark(routerLink='settings/footer') Footer
+	#overlay
 	#miniSidebar.bg-dark
 		i.d-inline-block.fa.fa-bars.f-5.text-light.m-4.cursor-pointer( (click)='showSidebar()' )
 		h3.d-inline-block.truncate-text.text-light Ziad Alzarka
 	#content.w-100
-		#overlay
 		div([@routerTransition]='o.activatedRouteData.state')
 			router-outlet(#o='outlet')

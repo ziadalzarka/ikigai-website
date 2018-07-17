@@ -44,14 +44,20 @@ $lg-width: $lg-width - 1px;
   }
 }
 
-@mixin lt-sm {
+@mixin lt-xs {
   @media (max-width: #{$xs-width}) {
     @content;
   }
 }
 
-@mixin lt-md {
+@mixin lt-sm {
   @media (max-width: #{$sm-width}) {
+    @content;
+  }
+}
+
+@mixin lt-md {
+  @media (max-width: #{$md-width}) {
     @content;
   }
 }

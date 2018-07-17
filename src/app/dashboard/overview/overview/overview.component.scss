@@ -1,19 +1,28 @@
 @import '~utils/responsive';
-$lg-size: 22.5%;
-$md-size: 35%;
-$sm-size: 80%;
+$lg-size: 22.5vw;
+$md-size: 35vw;
+$sm-size: 80vw;
 .wrapper {
   display: flex;
   width: 100%;
-  align-items: stretch;
+	align-items: stretch;
+	& #content, & #overlay {
+    margin-left: $lg-size;
+    @include lt-md {
+      margin-left: $md-size;
+    }
+    @include lt-sm {
+      margin-left: $sm-size;
+    }
+  }
 }
 
 .closed-sidebar {
   & #content {
-		// margin-top: 5em;
 		transform: translateY(5em);
+		margin-left: 0;
   }
-  & #content #overlay {
+  & #overlay {
     display: none;
   }
   & #miniSidebar {
@@ -23,10 +32,10 @@ $sm-size: 80%;
   }
   & #sidebar {
     margin-left: -$lg-size;
-    @include lt-lg {
+    @include lt-md {
       margin-left: -$md-size;
     }
-    @include lt-md {
+    @include lt-sm {
       margin-left: -$sm-size;
     }
   }
@@ -34,34 +43,37 @@ $sm-size: 80%;
 
 #content {
 	position: relative;
-	// margin-top: 0;
+	height: 100%;
 	transform: translateY(0);
 	will-change: transform;
-	transition: transform 0.5s;
-  #overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    background: rgba(0, 0, 0, 0.5);
-    z-index: 1000;
-    min-height: 100vh;
-    @include lt-md {
-      width: 100%;
-    }
-  }
+	transition: 0.5s;
+}
+
+#overlay {
+	position: fixed;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	background: rgba(0, 0, 0, 0.5);
+	z-index: 1000;
+	min-height: 100%;
+	@include lt-md {
+		width: 100%;
+	}
 }
 
 #sidebar {
-  margin-left: 0;
+	margin-left: 0;
+	height: 100%;
+	position: fixed;
   min-width: $lg-size;
   max-width: $lg-size;
-  min-height: 100vh;
   transition: margin-left 0.5s;
-  @include lt-lg {
+  @include lt-md {
     min-width: $md-size;
     max-width: $md-size;
   }
-  @include lt-md {
+  @include lt-sm {
     max-width: $sm-size;
     min-width: $sm-size;
   }
@@ -69,13 +81,13 @@ $sm-size: 80%;
 
 #miniSidebar {
   opacity: 0;
-	// margin-top: -5em;
 	will-change: transform;
 	transform: translateY(-5em);
   position: fixed;
-  min-width: 100vw;
+	min-width: 100vw;
+	width: 100%;
   max-height: fit-content;
-  height: 5em;
+  height: 5rem;
 	transition: transform 0.5s, opacity 0.5s;
 	z-index: 1000;
 }
