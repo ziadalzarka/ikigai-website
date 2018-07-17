@@ -63,7 +63,7 @@ $lg-width: $lg-width - 1px;
 }
 
 @mixin lt-lg {
-  @media (max-width: #{$md-width}) {
+  @media (max-width: #{$lg-width}) {
     @content;
   }
 }
