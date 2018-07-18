@@ -10,14 +10,22 @@ COPY . .
 RUN npm install
 RUN npm run postinstall
 
+RUN ls
+
 # Build angular
 RUN npm run build
+
+RUN ls
 
 # Create server directory
 WORKDIR /usr/src/app/server
 
+RUN ls
+
 # Bundle server source
 COPY ./server .
+
+RUN ls
 
 # Install depenedencies
 RUN npm install
