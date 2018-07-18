@@ -4,75 +4,79 @@ import { Options } from 'graphql-binding'
 import { makePrismaBindingClass, BasePrismaOptions } from 'prisma-binding'
 
 export interface Query {
-    additionalInfoes: <T = AdditionalInfo[]>(args: { where?: AdditionalInfoWhereInput, orderBy?: AdditionalInfoOrderByInput, skip?: Int, after?: String, before?: String, first?: Int, last?: Int }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     settingses: <T = Settings[]>(args: { where?: SettingsWhereInput, orderBy?: SettingsOrderByInput, skip?: Int, after?: String, before?: String, first?: Int, last?: Int }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     users: <T = User[]>(args: { where?: UserWhereInput, orderBy?: UserOrderByInput, skip?: Int, after?: String, before?: String, first?: Int, last?: Int }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     posts: <T = Post[]>(args: { where?: PostWhereInput, orderBy?: PostOrderByInput, skip?: Int, after?: String, before?: String, first?: Int, last?: Int }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
-    jobApplicaions: <T = JobApplicaion[]>(args: { where?: JobApplicaionWhereInput, orderBy?: JobApplicaionOrderByInput, skip?: Int, after?: String, before?: String, first?: Int, last?: Int }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
+    files: <T = File[]>(args: { where?: FileWhereInput, orderBy?: FileOrderByInput, skip?: Int, after?: String, before?: String, first?: Int, last?: Int }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
+    jobApplications: <T = JobApplication[]>(args: { where?: JobApplicationWhereInput, orderBy?: JobApplicationOrderByInput, skip?: Int, after?: String, before?: String, first?: Int, last?: Int }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     clientApplications: <T = ClientApplication[]>(args: { where?: ClientApplicationWhereInput, orderBy?: ClientApplicationOrderByInput, skip?: Int, after?: String, before?: String, first?: Int, last?: Int }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     contactApplications: <T = ContactApplication[]>(args: { where?: ContactApplicationWhereInput, orderBy?: ContactApplicationOrderByInput, skip?: Int, after?: String, before?: String, first?: Int, last?: Int }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     settings: <T = Settings | null>(args: { where: SettingsWhereUniqueInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     user: <T = User | null>(args: { where: UserWhereUniqueInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     post: <T = Post | null>(args: { where: PostWhereUniqueInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
-    additionalInfoesConnection: <T = AdditionalInfoConnection>(args: { where?: AdditionalInfoWhereInput, orderBy?: AdditionalInfoOrderByInput, skip?: Int, after?: String, before?: String, first?: Int, last?: Int }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
+    file: <T = File | null>(args: { where: FileWhereUniqueInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     settingsesConnection: <T = SettingsConnection>(args: { where?: SettingsWhereInput, orderBy?: SettingsOrderByInput, skip?: Int, after?: String, before?: String, first?: Int, last?: Int }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     usersConnection: <T = UserConnection>(args: { where?: UserWhereInput, orderBy?: UserOrderByInput, skip?: Int, after?: String, before?: String, first?: Int, last?: Int }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     postsConnection: <T = PostConnection>(args: { where?: PostWhereInput, orderBy?: PostOrderByInput, skip?: Int, after?: String, before?: String, first?: Int, last?: Int }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
-    jobApplicaionsConnection: <T = JobApplicaionConnection>(args: { where?: JobApplicaionWhereInput, orderBy?: JobApplicaionOrderByInput, skip?: Int, after?: String, before?: String, first?: Int, last?: Int }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
+    filesConnection: <T = FileConnection>(args: { where?: FileWhereInput, orderBy?: FileOrderByInput, skip?: Int, after?: String, before?: String, first?: Int, last?: Int }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
+    jobApplicationsConnection: <T = JobApplicationConnection>(args: { where?: JobApplicationWhereInput, orderBy?: JobApplicationOrderByInput, skip?: Int, after?: String, before?: String, first?: Int, last?: Int }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     clientApplicationsConnection: <T = ClientApplicationConnection>(args: { where?: ClientApplicationWhereInput, orderBy?: ClientApplicationOrderByInput, skip?: Int, after?: String, before?: String, first?: Int, last?: Int }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     contactApplicationsConnection: <T = ContactApplicationConnection>(args: { where?: ContactApplicationWhereInput, orderBy?: ContactApplicationOrderByInput, skip?: Int, after?: String, before?: String, first?: Int, last?: Int }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     node: <T = Node | null>(args: { id: ID_Output }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> 
   }
 
 export interface Mutation {
-    createAdditionalInfo: <T = AdditionalInfo>(args: { data: AdditionalInfoCreateInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     createSettings: <T = Settings>(args: { data: SettingsCreateInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     createUser: <T = User>(args: { data: UserCreateInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     createPost: <T = Post>(args: { data: PostCreateInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
-    createJobApplicaion: <T = JobApplicaion>(args: { data: JobApplicaionCreateInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
+    createFile: <T = File>(args: { data: FileCreateInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
+    createJobApplication: <T = JobApplication>(args: { data: JobApplicationCreateInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     createClientApplication: <T = ClientApplication>(args: { data: ClientApplicationCreateInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     createContactApplication: <T = ContactApplication>(args: { data: ContactApplicationCreateInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     updateSettings: <T = Settings | null>(args: { data: SettingsUpdateInput, where: SettingsWhereUniqueInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     updateUser: <T = User | null>(args: { data: UserUpdateInput, where: UserWhereUniqueInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     updatePost: <T = Post | null>(args: { data: PostUpdateInput, where: PostWhereUniqueInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
+    updateFile: <T = File | null>(args: { data: FileUpdateInput, where: FileWhereUniqueInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     deleteSettings: <T = Settings | null>(args: { where: SettingsWhereUniqueInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     deleteUser: <T = User | null>(args: { where: UserWhereUniqueInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     deletePost: <T = Post | null>(args: { where: PostWhereUniqueInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
+    deleteFile: <T = File | null>(args: { where: FileWhereUniqueInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     upsertSettings: <T = Settings>(args: { where: SettingsWhereUniqueInput, create: SettingsCreateInput, update: SettingsUpdateInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     upsertUser: <T = User>(args: { where: UserWhereUniqueInput, create: UserCreateInput, update: UserUpdateInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     upsertPost: <T = Post>(args: { where: PostWhereUniqueInput, create: PostCreateInput, update: PostUpdateInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
-    updateManyAdditionalInfoes: <T = BatchPayload>(args: { data: AdditionalInfoUpdateInput, where?: AdditionalInfoWhereInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
+    upsertFile: <T = File>(args: { where: FileWhereUniqueInput, create: FileCreateInput, update: FileUpdateInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     updateManySettingses: <T = BatchPayload>(args: { data: SettingsUpdateInput, where?: SettingsWhereInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     updateManyUsers: <T = BatchPayload>(args: { data: UserUpdateInput, where?: UserWhereInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     updateManyPosts: <T = BatchPayload>(args: { data: PostUpdateInput, where?: PostWhereInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
-    updateManyJobApplicaions: <T = BatchPayload>(args: { data: JobApplicaionUpdateInput, where?: JobApplicaionWhereInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
+    updateManyFiles: <T = BatchPayload>(args: { data: FileUpdateInput, where?: FileWhereInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
+    updateManyJobApplications: <T = BatchPayload>(args: { data: JobApplicationUpdateInput, where?: JobApplicationWhereInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     updateManyClientApplications: <T = BatchPayload>(args: { data: ClientApplicationUpdateInput, where?: ClientApplicationWhereInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     updateManyContactApplications: <T = BatchPayload>(args: { data: ContactApplicationUpdateInput, where?: ContactApplicationWhereInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
-    deleteManyAdditionalInfoes: <T = BatchPayload>(args: { where?: AdditionalInfoWhereInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     deleteManySettingses: <T = BatchPayload>(args: { where?: SettingsWhereInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     deleteManyUsers: <T = BatchPayload>(args: { where?: UserWhereInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     deleteManyPosts: <T = BatchPayload>(args: { where?: PostWhereInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
-    deleteManyJobApplicaions: <T = BatchPayload>(args: { where?: JobApplicaionWhereInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
+    deleteManyFiles: <T = BatchPayload>(args: { where?: FileWhereInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
+    deleteManyJobApplications: <T = BatchPayload>(args: { where?: JobApplicationWhereInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     deleteManyClientApplications: <T = BatchPayload>(args: { where?: ClientApplicationWhereInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     deleteManyContactApplications: <T = BatchPayload>(args: { where?: ContactApplicationWhereInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> 
   }
 
 export interface Subscription {
-    additionalInfo: <T = AdditionalInfoSubscriptionPayload | null>(args: { where?: AdditionalInfoSubscriptionWhereInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<AsyncIterator<T>> ,
     settings: <T = SettingsSubscriptionPayload | null>(args: { where?: SettingsSubscriptionWhereInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<AsyncIterator<T>> ,
     user: <T = UserSubscriptionPayload | null>(args: { where?: UserSubscriptionWhereInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<AsyncIterator<T>> ,
     post: <T = PostSubscriptionPayload | null>(args: { where?: PostSubscriptionWhereInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<AsyncIterator<T>> ,
-    jobApplicaion: <T = JobApplicaionSubscriptionPayload | null>(args: { where?: JobApplicaionSubscriptionWhereInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<AsyncIterator<T>> ,
+    file: <T = FileSubscriptionPayload | null>(args: { where?: FileSubscriptionWhereInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<AsyncIterator<T>> ,
+    jobApplication: <T = JobApplicationSubscriptionPayload | null>(args: { where?: JobApplicationSubscriptionWhereInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<AsyncIterator<T>> ,
     clientApplication: <T = ClientApplicationSubscriptionPayload | null>(args: { where?: ClientApplicationSubscriptionWhereInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<AsyncIterator<T>> ,
     contactApplication: <T = ContactApplicationSubscriptionPayload | null>(args: { where?: ContactApplicationSubscriptionWhereInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<AsyncIterator<T>> 
   }
 
 export interface Exists {
-  AdditionalInfo: (where?: AdditionalInfoWhereInput) => Promise<boolean>
   Settings: (where?: SettingsWhereInput) => Promise<boolean>
   User: (where?: UserWhereInput) => Promise<boolean>
   Post: (where?: PostWhereInput) => Promise<boolean>
-  JobApplicaion: (where?: JobApplicaionWhereInput) => Promise<boolean>
+  File: (where?: FileWhereInput) => Promise<boolean>
+  JobApplication: (where?: JobApplicationWhereInput) => Promise<boolean>
   ClientApplication: (where?: ClientApplicationWhereInput) => Promise<boolean>
   ContactApplication: (where?: ContactApplicationWhereInput) => Promise<boolean>
 }
@@ -99,215 +103,7 @@ export interface BindingConstructor<T> {
  * Type Defs
 */
 
-const typeDefs = `type AdditionalInfo {
-  title: String!
-  body: String!
-}
-
-"""A connection to a list of items."""
-type AdditionalInfoConnection {
-  """Information to aid in pagination."""
-  pageInfo: PageInfo!
-
-  """A list of edges."""
-  edges: [AdditionalInfoEdge]!
-  aggregate: AggregateAdditionalInfo!
-}
-
-input AdditionalInfoCreateInput {
-  title: String!
-  body: String!
-}
-
-input AdditionalInfoCreateOneInput {
-  create: AdditionalInfoCreateInput
-}
-
-"""An edge in a connection."""
-type AdditionalInfoEdge {
-  """The item at the end of the edge."""
-  node: AdditionalInfo!
-
-  """A cursor for use in pagination."""
-  cursor: String!
-}
-
-enum AdditionalInfoOrderByInput {
-  title_ASC
-  title_DESC
-  body_ASC
-  body_DESC
-  id_ASC
-  id_DESC
-  updatedAt_ASC
-  updatedAt_DESC
-  createdAt_ASC
-  createdAt_DESC
-}
-
-type AdditionalInfoPreviousValues {
-  title: String!
-  body: String!
-}
-
-type AdditionalInfoSubscriptionPayload {
-  mutation: MutationType!
-  node: AdditionalInfo
-  updatedFields: [String!]
-  previousValues: AdditionalInfoPreviousValues
-}
-
-input AdditionalInfoSubscriptionWhereInput {
-  """Logical AND on all given filters."""
-  AND: [AdditionalInfoSubscriptionWhereInput!]
-
-  """Logical OR on all given filters."""
-  OR: [AdditionalInfoSubscriptionWhereInput!]
-
-  """Logical NOT on all given filters combined by AND."""
-  NOT: [AdditionalInfoSubscriptionWhereInput!]
-
-  """
-  The subscription event gets dispatched when it's listed in mutation_in
-  """
-  mutation_in: [MutationType!]
-
-  """
-  The subscription event gets only dispatched when one of the updated fields names is included in this list
-  """
-  updatedFields_contains: String
-
-  """
-  The subscription event gets only dispatched when all of the field names included in this list have been updated
-  """
-  updatedFields_contains_every: [String!]
-
-  """
-  The subscription event gets only dispatched when some of the field names included in this list have been updated
-  """
-  updatedFields_contains_some: [String!]
-  node: AdditionalInfoWhereInput
-}
-
-input AdditionalInfoUpdateDataInput {
-  title: String
-  body: String
-}
-
-input AdditionalInfoUpdateInput {
-  title: String
-  body: String
-}
-
-input AdditionalInfoUpdateOneInput {
-  create: AdditionalInfoCreateInput
-  disconnect: Boolean
-  delete: Boolean
-  update: AdditionalInfoUpdateDataInput
-  upsert: AdditionalInfoUpsertNestedInput
-}
-
-input AdditionalInfoUpsertNestedInput {
-  update: AdditionalInfoUpdateDataInput!
-  create: AdditionalInfoCreateInput!
-}
-
-input AdditionalInfoWhereInput {
-  """Logical AND on all given filters."""
-  AND: [AdditionalInfoWhereInput!]
-
-  """Logical OR on all given filters."""
-  OR: [AdditionalInfoWhereInput!]
-
-  """Logical NOT on all given filters combined by AND."""
-  NOT: [AdditionalInfoWhereInput!]
-  title: String
-
-  """All values that are not equal to given value."""
-  title_not: String
-
-  """All values that are contained in given list."""
-  title_in: [String!]
-
-  """All values that are not contained in given list."""
-  title_not_in: [String!]
-
-  """All values less than the given value."""
-  title_lt: String
-
-  """All values less than or equal the given value."""
-  title_lte: String
-
-  """All values greater than the given value."""
-  title_gt: String
-
-  """All values greater than or equal the given value."""
-  title_gte: String
-
-  """All values containing the given string."""
-  title_contains: String
-
-  """All values not containing the given string."""
-  title_not_contains: String
-
-  """All values starting with the given string."""
-  title_starts_with: String
-
-  """All values not starting with the given string."""
-  title_not_starts_with: String
-
-  """All values ending with the given string."""
-  title_ends_with: String
-
-  """All values not ending with the given string."""
-  title_not_ends_with: String
-  body: String
-
-  """All values that are not equal to given value."""
-  body_not: String
-
-  """All values that are contained in given list."""
-  body_in: [String!]
-
-  """All values that are not contained in given list."""
-  body_not_in: [String!]
-
-  """All values less than the given value."""
-  body_lt: String
-
-  """All values less than or equal the given value."""
-  body_lte: String
-
-  """All values greater than the given value."""
-  body_gt: String
-
-  """All values greater than or equal the given value."""
-  body_gte: String
-
-  """All values containing the given string."""
-  body_contains: String
-
-  """All values not containing the given string."""
-  body_not_contains: String
-
-  """All values starting with the given string."""
-  body_starts_with: String
-
-  """All values not starting with the given string."""
-  body_not_starts_with: String
-
-  """All values ending with the given string."""
-  body_ends_with: String
-
-  """All values not ending with the given string."""
-  body_not_ends_with: String
-}
-
-type AggregateAdditionalInfo {
-  count: Int!
-}
-
-type AggregateClientApplication {
+const typeDefs = `type AggregateClientApplication {
   count: Int!
 }
 
@@ -315,7 +111,11 @@ type AggregateContactApplication {
   count: Int!
 }
 
-type AggregateJobApplicaion {
+type AggregateFile {
+  count: Int!
+}
+
+type AggregateJobApplication {
   count: Int!
 }
 
@@ -337,6 +137,10 @@ type BatchPayload {
 }
 
 type ClientApplication {
+  name: String!
+  phoneNumber: String
+  email: String
+  address: String
   postsPerMonth: Int!
   photography: Boolean!
   gifs: Int!
@@ -346,7 +150,7 @@ type ClientApplication {
   hasHost: Boolean!
   hasDomain: Boolean!
   dealYears: Int!
-  package: [Package!]
+  package: Package!
   totalPrice: Int!
 }
 
@@ -361,6 +165,10 @@ type ClientApplicationConnection {
 }
 
 input ClientApplicationCreateInput {
+  name: String!
+  phoneNumber: String
+  email: String
+  address: String
   postsPerMonth: Int!
   photography: Boolean!
   gifs: Int!
@@ -370,12 +178,8 @@ input ClientApplicationCreateInput {
   hasHost: Boolean!
   hasDomain: Boolean!
   dealYears: Int!
+  package: Package!
   totalPrice: Int!
-  package: ClientApplicationCreatepackageInput
-}
-
-input ClientApplicationCreatepackageInput {
-  set: [Package!]
 }
 
 """An edge in a connection."""
@@ -388,6 +192,14 @@ type ClientApplicationEdge {
 }
 
 enum ClientApplicationOrderByInput {
+  name_ASC
+  name_DESC
+  phoneNumber_ASC
+  phoneNumber_DESC
+  email_ASC
+  email_DESC
+  address_ASC
+  address_DESC
   postsPerMonth_ASC
   postsPerMonth_DESC
   photography_ASC
@@ -406,6 +218,8 @@ enum ClientApplicationOrderByInput {
   hasDomain_DESC
   dealYears_ASC
   dealYears_DESC
+  package_ASC
+  package_DESC
   totalPrice_ASC
   totalPrice_DESC
   id_ASC
@@ -417,6 +231,10 @@ enum ClientApplicationOrderByInput {
 }
 
 type ClientApplicationPreviousValues {
+  name: String!
+  phoneNumber: String
+  email: String
+  address: String
   postsPerMonth: Int!
   photography: Boolean!
   gifs: Int!
@@ -426,7 +244,7 @@ type ClientApplicationPreviousValues {
   hasHost: Boolean!
   hasDomain: Boolean!
   dealYears: Int!
-  package: [Package!]
+  package: Package!
   totalPrice: Int!
 }
 
@@ -470,6 +288,10 @@ input ClientApplicationSubscriptionWhereInput {
 }
 
 input ClientApplicationUpdateInput {
+  name: String
+  phoneNumber: String
+  email: String
+  address: String
   postsPerMonth: Int
   photography: Boolean
   gifs: Int
@@ -479,12 +301,8 @@ input ClientApplicationUpdateInput {
   hasHost: Boolean
   hasDomain: Boolean
   dealYears: Int
+  package: Package
   totalPrice: Int
-  package: ClientApplicationUpdatepackageInput
-}
-
-input ClientApplicationUpdatepackageInput {
-  set: [Package!]
 }
 
 input ClientApplicationWhereInput {
@@ -496,6 +314,166 @@ input ClientApplicationWhereInput {
 
   """Logical NOT on all given filters combined by AND."""
   NOT: [ClientApplicationWhereInput!]
+  name: String
+
+  """All values that are not equal to given value."""
+  name_not: String
+
+  """All values that are contained in given list."""
+  name_in: [String!]
+
+  """All values that are not contained in given list."""
+  name_not_in: [String!]
+
+  """All values less than the given value."""
+  name_lt: String
+
+  """All values less than or equal the given value."""
+  name_lte: String
+
+  """All values greater than the given value."""
+  name_gt: String
+
+  """All values greater than or equal the given value."""
+  name_gte: String
+
+  """All values containing the given string."""
+  name_contains: String
+
+  """All values not containing the given string."""
+  name_not_contains: String
+
+  """All values starting with the given string."""
+  name_starts_with: String
+
+  """All values not starting with the given string."""
+  name_not_starts_with: String
+
+  """All values ending with the given string."""
+  name_ends_with: String
+
+  """All values not ending with the given string."""
+  name_not_ends_with: String
+  phoneNumber: String
+
+  """All values that are not equal to given value."""
+  phoneNumber_not: String
+
+  """All values that are contained in given list."""
+  phoneNumber_in: [String!]
+
+  """All values that are not contained in given list."""
+  phoneNumber_not_in: [String!]
+
+  """All values less than the given value."""
+  phoneNumber_lt: String
+
+  """All values less than or equal the given value."""
+  phoneNumber_lte: String
+
+  """All values greater than the given value."""
+  phoneNumber_gt: String
+
+  """All values greater than or equal the given value."""
+  phoneNumber_gte: String
+
+  """All values containing the given string."""
+  phoneNumber_contains: String
+
+  """All values not containing the given string."""
+  phoneNumber_not_contains: String
+
+  """All values starting with the given string."""
+  phoneNumber_starts_with: String
+
+  """All values not starting with the given string."""
+  phoneNumber_not_starts_with: String
+
+  """All values ending with the given string."""
+  phoneNumber_ends_with: String
+
+  """All values not ending with the given string."""
+  phoneNumber_not_ends_with: String
+  email: String
+
+  """All values that are not equal to given value."""
+  email_not: String
+
+  """All values that are contained in given list."""
+  email_in: [String!]
+
+  """All values that are not contained in given list."""
+  email_not_in: [String!]
+
+  """All values less than the given value."""
+  email_lt: String
+
+  """All values less than or equal the given value."""
+  email_lte: String
+
+  """All values greater than the given value."""
+  email_gt: String
+
+  """All values greater than or equal the given value."""
+  email_gte: String
+
+  """All values containing the given string."""
+  email_contains: String
+
+  """All values not containing the given string."""
+  email_not_contains: String
+
+  """All values starting with the given string."""
+  email_starts_with: String
+
+  """All values not starting with the given string."""
+  email_not_starts_with: String
+
+  """All values ending with the given string."""
+  email_ends_with: String
+
+  """All values not ending with the given string."""
+  email_not_ends_with: String
+  address: String
+
+  """All values that are not equal to given value."""
+  address_not: String
+
+  """All values that are contained in given list."""
+  address_in: [String!]
+
+  """All values that are not contained in given list."""
+  address_not_in: [String!]
+
+  """All values less than the given value."""
+  address_lt: String
+
+  """All values less than or equal the given value."""
+  address_lte: String
+
+  """All values greater than the given value."""
+  address_gt: String
+
+  """All values greater than or equal the given value."""
+  address_gte: String
+
+  """All values containing the given string."""
+  address_contains: String
+
+  """All values not containing the given string."""
+  address_not_contains: String
+
+  """All values starting with the given string."""
+  address_starts_with: String
+
+  """All values not starting with the given string."""
+  address_not_starts_with: String
+
+  """All values ending with the given string."""
+  address_ends_with: String
+
+  """All values not ending with the given string."""
+  address_not_ends_with: String
   postsPerMonth: Int
 
   """All values that are not equal to given value."""
@@ -622,6 +600,16 @@ input ClientApplicationWhereInput {
 
   """All values greater than or equal the given value."""
   dealYears_gte: Int
+  package: Package
+
+  """All values that are not equal to given value."""
+  package_not: Package
+
+  """All values that are contained in given list."""
+  package_in: [Package!]
+
+  """All values that are not contained in given list."""
+  package_not_in: [Package!]
   totalPrice: Int
 
   """All values that are not equal to given value."""
@@ -647,6 +635,10 @@ input ClientApplicationWhereInput {
 }
 
 type ContactApplication {
+  name: String!
+  phoneNumber: String
+  email: String
+  address: String
   question: String!
   body: String!
 }
@@ -662,6 +654,10 @@ type ContactApplicationConnection {
 }
 
 input ContactApplicationCreateInput {
+  name: String!
+  phoneNumber: String
+  email: String
+  address: String
   question: String!
   body: String!
 }
@@ -676,6 +672,14 @@ type ContactApplicationEdge {
 }
 
 enum ContactApplicationOrderByInput {
+  name_ASC
+  name_DESC
+  phoneNumber_ASC
+  phoneNumber_DESC
+  email_ASC
+  email_DESC
+  address_ASC
+  address_DESC
   question_ASC
   question_DESC
   body_ASC
@@ -689,6 +693,10 @@ enum ContactApplicationOrderByInput {
 }
 
 type ContactApplicationPreviousValues {
+  name: String!
+  phoneNumber: String
+  email: String
+  address: String
   question: String!
   body: String!
 }
@@ -733,6 +741,10 @@ input ContactApplicationSubscriptionWhereInput {
 }
 
 input ContactApplicationUpdateInput {
+  name: String
+  phoneNumber: String
+  email: String
+  address: String
   question: String
   body: String
 }
@@ -746,6 +758,166 @@ input ContactApplicationWhereInput {
 
   """Logical NOT on all given filters combined by AND."""
   NOT: [ContactApplicationWhereInput!]
+  name: String
+
+  """All values that are not equal to given value."""
+  name_not: String
+
+  """All values that are contained in given list."""
+  name_in: [String!]
+
+  """All values that are not contained in given list."""
+  name_not_in: [String!]
+
+  """All values less than the given value."""
+  name_lt: String
+
+  """All values less than or equal the given value."""
+  name_lte: String
+
+  """All values greater than the given value."""
+  name_gt: String
+
+  """All values greater than or equal the given value."""
+  name_gte: String
+
+  """All values containing the given string."""
+  name_contains: String
+
+  """All values not containing the given string."""
+  name_not_contains: String
+
+  """All values starting with the given string."""
+  name_starts_with: String
+
+  """All values not starting with the given string."""
+  name_not_starts_with: String
+
+  """All values ending with the given string."""
+  name_ends_with: String
+
+  """All values not ending with the given string."""
+  name_not_ends_with: String
+  phoneNumber: String
+
+  """All values that are not equal to given value."""
+  phoneNumber_not: String
+
+  """All values that are contained in given list."""
+  phoneNumber_in: [String!]
+
+  """All values that are not contained in given list."""
+  phoneNumber_not_in: [String!]
+
+  """All values less than the given value."""
+  phoneNumber_lt: String
+
+  """All values less than or equal the given value."""
+  phoneNumber_lte: String
+
+  """All values greater than the given value."""
+  phoneNumber_gt: String
+
+  """All values greater than or equal the given value."""
+  phoneNumber_gte: String
+
+  """All values containing the given string."""
+  phoneNumber_contains: String
+
+  """All values not containing the given string."""
+  phoneNumber_not_contains: String
+
+  """All values starting with the given string."""
+  phoneNumber_starts_with: String
+
+  """All values not starting with the given string."""
+  phoneNumber_not_starts_with: String
+
+  """All values ending with the given string."""
+  phoneNumber_ends_with: String
+
+  """All values not ending with the given string."""
+  phoneNumber_not_ends_with: String
+  email: String
+
+  """All values that are not equal to given value."""
+  email_not: String
+
+  """All values that are contained in given list."""
+  email_in: [String!]
+
+  """All values that are not contained in given list."""
+  email_not_in: [String!]
+
+  """All values less than the given value."""
+  email_lt: String
+
+  """All values less than or equal the given value."""
+  email_lte: String
+
+  """All values greater than the given value."""
+  email_gt: String
+
+  """All values greater than or equal the given value."""
+  email_gte: String
+
+  """All values containing the given string."""
+  email_contains: String
+
+  """All values not containing the given string."""
+  email_not_contains: String
+
+  """All values starting with the given string."""
+  email_starts_with: String
+
+  """All values not starting with the given string."""
+  email_not_starts_with: String
+
+  """All values ending with the given string."""
+  email_ends_with: String
+
+  """All values not ending with the given string."""
+  email_not_ends_with: String
+  address: String
+
+  """All values that are not equal to given value."""
+  address_not: String
+
+  """All values that are contained in given list."""
+  address_in: [String!]
+
+  """All values that are not contained in given list."""
+  address_not_in: [String!]
+
+  """All values less than the given value."""
+  address_lt: String
+
+  """All values less than or equal the given value."""
+  address_lte: String
+
+  """All values greater than the given value."""
+  address_gt: String
+
+  """All values greater than or equal the given value."""
+  address_gte: String
+
+  """All values containing the given string."""
+  address_contains: String
+
+  """All values not containing the given string."""
+  address_not_contains: String
+
+  """All values starting with the given string."""
+  address_starts_with: String
+
+  """All values not starting with the given string."""
+  address_not_starts_with: String
+
+  """All values ending with the given string."""
+  address_ends_with: String
+
+  """All values not ending with the given string."""
+  address_not_ends_with: String
   question: String
 
   """All values that are not equal to given value."""
@@ -830,91 +1002,71 @@ input ContactApplicationWhereInput {
 
 scalar DateTime
 
-type JobApplicaion {
-  firstName: String!
-  middleName: String!
-  lastName: String!
-  positions: [JobPosition!]
-  resume: String!
-  linkedIn: String
+type File implements Node {
+  id: ID!
+  name: String!
 }
 
 """A connection to a list of items."""
-type JobApplicaionConnection {
+type FileConnection {
   """Information to aid in pagination."""
   pageInfo: PageInfo!
 
   """A list of edges."""
-  edges: [JobApplicaionEdge]!
-  aggregate: AggregateJobApplicaion!
+  edges: [FileEdge]!
+  aggregate: AggregateFile!
 }
 
-input JobApplicaionCreateInput {
-  firstName: String!
-  middleName: String!
-  lastName: String!
-  resume: String!
-  linkedIn: String
-  positions: JobApplicaionCreatepositionsInput
+input FileCreateInput {
+  name: String!
 }
 
-input JobApplicaionCreatepositionsInput {
-  set: [JobPosition!]
+input FileCreateOneInput {
+  create: FileCreateInput
+  connect: FileWhereUniqueInput
 }
 
 """An edge in a connection."""
-type JobApplicaionEdge {
+type FileEdge {
   """The item at the end of the edge."""
-  node: JobApplicaion!
+  node: File!
 
   """A cursor for use in pagination."""
   cursor: String!
 }
 
-enum JobApplicaionOrderByInput {
-  firstName_ASC
-  firstName_DESC
-  middleName_ASC
-  middleName_DESC
-  lastName_ASC
-  lastName_DESC
-  resume_ASC
-  resume_DESC
-  linkedIn_ASC
-  linkedIn_DESC
+enum FileOrderByInput {
   id_ASC
   id_DESC
+  name_ASC
+  name_DESC
   updatedAt_ASC
   updatedAt_DESC
   createdAt_ASC
   createdAt_DESC
 }
 
-type JobApplicaionPreviousValues {
-  firstName: String!
-  middleName: String!
-  lastName: String!
-  positions: [JobPosition!]
-  resume: String!
-  linkedIn: String
+type FilePreviousValues {
+  id: ID!
+  name: String!
 }
 
-type JobApplicaionSubscriptionPayload {
+type FileSubscriptionPayload {
   mutation: MutationType!
-  node: JobApplicaion
+  node: File
   updatedFields: [String!]
-  previousValues: JobApplicaionPreviousValues
+  previousValues: FilePreviousValues
 }
 
-input JobApplicaionSubscriptionWhereInput {
+input FileSubscriptionWhereInput {
   """Logical AND on all given filters."""
-  AND: [JobApplicaionSubscriptionWhereInput!]
+  AND: [FileSubscriptionWhereInput!]
 
   """Logical OR on all given filters."""
-  OR: [JobApplicaionSubscriptionWhereInput!]
+  OR: [FileSubscriptionWhereInput!]
 
   """Logical NOT on all given filters combined by AND."""
-  NOT: [JobApplicaionSubscriptionWhereInput!]
+  NOT: [FileSubscriptionWhereInput!]
 
   """
   The subscription event gets dispatched when it's listed in mutation_in
@@ -935,31 +1087,436 @@ input JobApplicaionSubscriptionWhereInput {
   The subscription event gets only dispatched when some of the field names included in this list have been updated
   """
   updatedFields_contains_some: [String!]
-  node: JobApplicaionWhereInput
+  node: FileWhereInput
 }
 
-input JobApplicaionUpdateInput {
-  firstName: String
-  middleName: String
-  lastName: String
-  resume: String
+input FileUpdateDataInput {
+  name: String
+}
+
+input FileUpdateInput {
+  name: String
+}
+
+input FileUpdateOneInput {
+  create: FileCreateInput
+  connect: FileWhereUniqueInput
+  delete: Boolean
+  update: FileUpdateDataInput
+  upsert: FileUpsertNestedInput
+}
+
+input FileUpsertNestedInput {
+  update: FileUpdateDataInput!
+  create: FileCreateInput!
+}
+
+input FileWhereInput {
+  """Logical AND on all given filters."""
+  AND: [FileWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [FileWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [FileWhereInput!]
+  id: ID
+
+  """All values that are not equal to given value."""
+  id_not: ID
+
+  """All values that are contained in given list."""
+  id_in: [ID!]
+
+  """All values that are not contained in given list."""
+  id_not_in: [ID!]
+
+  """All values less than the given value."""
+  id_lt: ID
+
+  """All values less than or equal the given value."""
+  id_lte: ID
+
+  """All values greater than the given value."""
+  id_gt: ID
+
+  """All values greater than or equal the given value."""
+  id_gte: ID
+
+  """All values containing the given string."""
+  id_contains: ID
+
+  """All values not containing the given string."""
+  id_not_contains: ID
+
+  """All values starting with the given string."""
+  id_starts_with: ID
+
+  """All values not starting with the given string."""
+  id_not_starts_with: ID
+
+  """All values ending with the given string."""
+  id_ends_with: ID
+
+  """All values not ending with the given string."""
+  id_not_ends_with: ID
+  name: String
+
+  """All values that are not equal to given value."""
+  name_not: String
+
+  """All values that are contained in given list."""
+  name_in: [String!]
+
+  """All values that are not contained in given list."""
+  name_not_in: [String!]
+
+  """All values less than the given value."""
+  name_lt: String
+
+  """All values less than or equal the given value."""
+  name_lte: String
+
+  """All values greater than the given value."""
+  name_gt: String
+
+  """All values greater than or equal the given value."""
+  name_gte: String
+
+  """All values containing the given string."""
+  name_contains: String
+
+  """All values not containing the given string."""
+  name_not_contains: String
+
+  """All values starting with the given string."""
+  name_starts_with: String
+
+  """All values not starting with the given string."""
+  name_not_starts_with: String
+
+  """All values ending with the given string."""
+  name_ends_with: String
+
+  """All values not ending with the given string."""
+  name_not_ends_with: String
+}
+
+input FileWhereUniqueInput {
+  id: ID
+}
+
+type JobApplication {
+  name: String!
+  phoneNumber: String
+  email: String
+  address: String
+  firstName: String!
+  middleName: String!
+  lastName: String!
+  positions: [JobPosition!]
+  resume(where: FileWhereInput): File
   linkedIn: String
-  positions: JobApplicaionUpdatepositionsInput
 }
 
-input JobApplicaionUpdatepositionsInput {
+"""A connection to a list of items."""
+type JobApplicationConnection {
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """A list of edges."""
+  edges: [JobApplicationEdge]!
+  aggregate: AggregateJobApplication!
+}
+
+input JobApplicationCreateInput {
+  name: String!
+  phoneNumber: String
+  email: String
+  address: String
+  firstName: String!
+  middleName: String!
+  lastName: String!
+  linkedIn: String
+  positions: JobApplicationCreatepositionsInput
+  resume: FileCreateOneInput
+}
+
+input JobApplicationCreatepositionsInput {
   set: [JobPosition!]
 }
 
-input JobApplicaionWhereInput {
+"""An edge in a connection."""
+type JobApplicationEdge {
+  """The item at the end of the edge."""
+  node: JobApplication!
+
+  """A cursor for use in pagination."""
+  cursor: String!
+}
+
+enum JobApplicationOrderByInput {
+  name_ASC
+  name_DESC
+  phoneNumber_ASC
+  phoneNumber_DESC
+  email_ASC
+  email_DESC
+  address_ASC
+  address_DESC
+  firstName_ASC
+  firstName_DESC
+  middleName_ASC
+  middleName_DESC
+  lastName_ASC
+  lastName_DESC
+  linkedIn_ASC
+  linkedIn_DESC
+  id_ASC
+  id_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+  createdAt_ASC
+  createdAt_DESC
+}
+
+type JobApplicationPreviousValues {
+  name: String!
+  phoneNumber: String
+  email: String
+  address: String
+  firstName: String!
+  middleName: String!
+  lastName: String!
+  positions: [JobPosition!]
+  linkedIn: String
+}
+
+type JobApplicationSubscriptionPayload {
+  mutation: MutationType!
+  node: JobApplication
+  updatedFields: [String!]
+  previousValues: JobApplicationPreviousValues
+}
+
+input JobApplicationSubscriptionWhereInput {
   """Logical AND on all given filters."""
-  AND: [JobApplicaionWhereInput!]
+  AND: [JobApplicationSubscriptionWhereInput!]
 
   """Logical OR on all given filters."""
-  OR: [JobApplicaionWhereInput!]
+  OR: [JobApplicationSubscriptionWhereInput!]
 
   """Logical NOT on all given filters combined by AND."""
-  NOT: [JobApplicaionWhereInput!]
+  NOT: [JobApplicationSubscriptionWhereInput!]
+
+  """
+  The subscription event gets dispatched when it's listed in mutation_in
+  """
+  mutation_in: [MutationType!]
+
+  """
+  The subscription event gets only dispatched when one of the updated fields names is included in this list
+  """
+  updatedFields_contains: String
+
+  """
+  The subscription event gets only dispatched when all of the field names included in this list have been updated
+  """
+  updatedFields_contains_every: [String!]
+
+  """
+  The subscription event gets only dispatched when some of the field names included in this list have been updated
+  """
+  updatedFields_contains_some: [String!]
+  node: JobApplicationWhereInput
+}
+
+input JobApplicationUpdateInput {
+  name: String
+  phoneNumber: String
+  email: String
+  address: String
+  firstName: String
+  middleName: String
+  lastName: String
+  linkedIn: String
+  positions: JobApplicationUpdatepositionsInput
+  resume: FileUpdateOneInput
+}
+
+input JobApplicationUpdatepositionsInput {
+  set: [JobPosition!]
+}
+
+input JobApplicationWhereInput {
+  """Logical AND on all given filters."""
+  AND: [JobApplicationWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [JobApplicationWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [JobApplicationWhereInput!]
+  name: String
+
+  """All values that are not equal to given value."""
+  name_not: String
+
+  """All values that are contained in given list."""
+  name_in: [String!]
+
+  """All values that are not contained in given list."""
+  name_not_in: [String!]
+
+  """All values less than the given value."""
+  name_lt: String
+
+  """All values less than or equal the given value."""
+  name_lte: String
+
+  """All values greater than the given value."""
+  name_gt: String
+
+  """All values greater than or equal the given value."""
+  name_gte: String
+
+  """All values containing the given string."""
+  name_contains: String
+
+  """All values not containing the given string."""
+  name_not_contains: String
+
+  """All values starting with the given string."""
+  name_starts_with: String
+
+  """All values not starting with the given string."""
+  name_not_starts_with: String
+
+  """All values ending with the given string."""
+  name_ends_with: String
+
+  """All values not ending with the given string."""
+  name_not_ends_with: String
+  phoneNumber: String
+
+  """All values that are not equal to given value."""
+  phoneNumber_not: String
+
+  """All values that are contained in given list."""
+  phoneNumber_in: [String!]
+
+  """All values that are not contained in given list."""
+  phoneNumber_not_in: [String!]
+
+  """All values less than the given value."""
+  phoneNumber_lt: String
+
+  """All values less than or equal the given value."""
+  phoneNumber_lte: String
+
+  """All values greater than the given value."""
+  phoneNumber_gt: String
+
+  """All values greater than or equal the given value."""
+  phoneNumber_gte: String
+
+  """All values containing the given string."""
+  phoneNumber_contains: String
+
+  """All values not containing the given string."""
+  phoneNumber_not_contains: String
+
+  """All values starting with the given string."""
+  phoneNumber_starts_with: String
+
+  """All values not starting with the given string."""
+  phoneNumber_not_starts_with: String
+
+  """All values ending with the given string."""
+  phoneNumber_ends_with: String
+
+  """All values not ending with the given string."""
+  phoneNumber_not_ends_with: String
+  email: String
+
+  """All values that are not equal to given value."""
+  email_not: String
+
+  """All values that are contained in given list."""
+  email_in: [String!]
+
+  """All values that are not contained in given list."""
+  email_not_in: [String!]
+
+  """All values less than the given value."""
+  email_lt: String
+
+  """All values less than or equal the given value."""
+  email_lte: String
+
+  """All values greater than the given value."""
+  email_gt: String
+
+  """All values greater than or equal the given value."""
+  email_gte: String
+
+  """All values containing the given string."""
+  email_contains: String
+
+  """All values not containing the given string."""
+  email_not_contains: String
+
+  """All values starting with the given string."""
+  email_starts_with: String
+
+  """All values not starting with the given string."""
+  email_not_starts_with: String
+
+  """All values ending with the given string."""
+  email_ends_with: String
+
+  """All values not ending with the given string."""
+  email_not_ends_with: String
+  address: String
+
+  """All values that are not equal to given value."""
+  address_not: String
+
+  """All values that are contained in given list."""
+  address_in: [String!]
+
+  """All values that are not contained in given list."""
+  address_not_in: [String!]
+
+  """All values less than the given value."""
+  address_lt: String
+
+  """All values less than or equal the given value."""
+  address_lte: String
+
+  """All values greater than the given value."""
+  address_gt: String
+
+  """All values greater than or equal the given value."""
+  address_gte: String
+
+  """All values containing the given string."""
+  address_contains: String
+
+  """All values not containing the given string."""
+  address_not_contains: String
+
+  """All values starting with the given string."""
+  address_starts_with: String
+
+  """All values not starting with the given string."""
+  address_not_starts_with: String
+
+  """All values ending with the given string."""
+  address_ends_with: String
+
+  """All values not ending with the given string."""
+  address_not_ends_with: String
   firstName: String
 
   """All values that are not equal to given value."""
@@ -1080,46 +1637,6 @@ input JobApplicaionWhereInput {
 
   """All values not ending with the given string."""
   lastName_not_ends_with: String
-  resume: String
-
-  """All values that are not equal to given value."""
-  resume_not: String
-
-  """All values that are contained in given list."""
-  resume_in: [String!]
-
-  """All values that are not contained in given list."""
-  resume_not_in: [String!]
-
-  """All values less than the given value."""
-  resume_lt: String
-
-  """All values less than or equal the given value."""
-  resume_lte: String
-
-  """All values greater than the given value."""
-  resume_gt: String
-
-  """All values greater than or equal the given value."""
-  resume_gte: String
-
-  """All values containing the given string."""
-  resume_contains: String
-
-  """All values not containing the given string."""
-  resume_not_contains: String
-
-  """All values starting with the given string."""
-  resume_starts_with: String
-
-  """All values not starting with the given string."""
-  resume_not_starts_with: String
-
-  """All values ending with the given string."""
-  resume_ends_with: String
-
-  """All values not ending with the given string."""
-  resume_not_ends_with: String
   linkedIn: String
 
   """All values that are not equal to given value."""
@@ -1160,6 +1677,7 @@ input JobApplicaionWhereInput {
 
   """All values not ending with the given string."""
   linkedIn_not_ends_with: String
+  resume: FileWhereInput
 }
 
 enum JobPosition {
@@ -1176,34 +1694,37 @@ Long can represent values between -(2^63) and 2^63 - 1.
 scalar Long
 
 type Mutation {
-  createAdditionalInfo(data: AdditionalInfoCreateInput!): AdditionalInfo!
   createSettings(data: SettingsCreateInput!): Settings!
   createUser(data: UserCreateInput!): User!
   createPost(data: PostCreateInput!): Post!
-  createJobApplicaion(data: JobApplicaionCreateInput!): JobApplicaion!
+  createFile(data: FileCreateInput!): File!
+  createJobApplication(data: JobApplicationCreateInput!): JobApplication!
   createClientApplication(data: ClientApplicationCreateInput!): ClientApplication!
   createContactApplication(data: ContactApplicationCreateInput!): ContactApplication!
   updateSettings(data: SettingsUpdateInput!, where: SettingsWhereUniqueInput!): Settings
   updateUser(data: UserUpdateInput!, where: UserWhereUniqueInput!): User
   updatePost(data: PostUpdateInput!, where: PostWhereUniqueInput!): Post
+  updateFile(data: FileUpdateInput!, where: FileWhereUniqueInput!): File
   deleteSettings(where: SettingsWhereUniqueInput!): Settings
   deleteUser(where: UserWhereUniqueInput!): User
   deletePost(where: PostWhereUniqueInput!): Post
+  deleteFile(where: FileWhereUniqueInput!): File
   upsertSettings(where: SettingsWhereUniqueInput!, create: SettingsCreateInput!, update: SettingsUpdateInput!): Settings!
   upsertUser(where: UserWhereUniqueInput!, create: UserCreateInput!, update: UserUpdateInput!): User!
   upsertPost(where: PostWhereUniqueInput!, create: PostCreateInput!, update: PostUpdateInput!): Post!
-  updateManyAdditionalInfoes(data: AdditionalInfoUpdateInput!, where: AdditionalInfoWhereInput): BatchPayload!
+  upsertFile(where: FileWhereUniqueInput!, create: FileCreateInput!, update: FileUpdateInput!): File!
   updateManySettingses(data: SettingsUpdateInput!, where: SettingsWhereInput): BatchPayload!
   updateManyUsers(data: UserUpdateInput!, where: UserWhereInput): BatchPayload!
   updateManyPosts(data: PostUpdateInput!, where: PostWhereInput): BatchPayload!
-  updateManyJobApplicaions(data: JobApplicaionUpdateInput!, where: JobApplicaionWhereInput): BatchPayload!
+  updateManyFiles(data: FileUpdateInput!, where: FileWhereInput): BatchPayload!
+  updateManyJobApplications(data: JobApplicationUpdateInput!, where: JobApplicationWhereInput): BatchPayload!
   updateManyClientApplications(data: ClientApplicationUpdateInput!, where: ClientApplicationWhereInput): BatchPayload!
   updateManyContactApplications(data: ContactApplicationUpdateInput!, where: ContactApplicationWhereInput): BatchPayload!
-  deleteManyAdditionalInfoes(where: AdditionalInfoWhereInput): BatchPayload!
   deleteManySettingses(where: SettingsWhereInput): BatchPayload!
   deleteManyUsers(where: UserWhereInput): BatchPayload!
   deleteManyPosts(where: PostWhereInput): BatchPayload!
-  deleteManyJobApplicaions(where: JobApplicaionWhereInput): BatchPayload!
+  deleteManyFiles(where: FileWhereInput): BatchPayload!
+  deleteManyJobApplications(where: JobApplicationWhereInput): BatchPayload!
   deleteManyClientApplications(where: ClientApplicationWhereInput): BatchPayload!
   deleteManyContactApplications(where: ContactApplicationWhereInput): BatchPayload!
 }
@@ -1256,6 +1777,8 @@ type Post implements Node {
   author(where: UserWhereInput): User!
   createdAt: DateTime!
   updatedAt: DateTime!
+  thumbnailBody: String!
+  thumbnailImage(where: FileWhereInput): File!
 }
 
 """A connection to a list of items."""
@@ -1271,7 +1794,9 @@ type PostConnection {
 input PostCreateInput {
   title: String!
   body: String!
+  thumbnailBody: String!
   author: UserCreateOneWithoutPostsInput!
+  thumbnailImage: FileCreateOneInput!
 }
 
 input PostCreateManyWithoutAuthorInput {
@@ -1282,6 +1807,8 @@ input PostCreateManyWithoutAuthorInput {
 input PostCreateWithoutAuthorInput {
   title: String!
   body: String!
+  thumbnailBody: String!
+  thumbnailImage: FileCreateOneInput!
 }
 
 """An edge in a connection."""
@@ -1304,6 +1831,8 @@ enum PostOrderByInput {
   createdAt_DESC
   updatedAt_ASC
   updatedAt_DESC
+  thumbnailBody_ASC
+  thumbnailBody_DESC
 }
 
 type PostPreviousValues {
@@ -1312,6 +1841,7 @@ type PostPreviousValues {
   body: String!
   createdAt: DateTime!
   updatedAt: DateTime!
+  thumbnailBody: String!
 }
 
 type PostSubscriptionPayload {
@@ -1356,7 +1886,9 @@ input PostSubscriptionWhereInput {
 input PostUpdateInput {
   title: String
   body: String
+  thumbnailBody: String
   author: UserUpdateOneWithoutPostsInput
+  thumbnailImage: FileUpdateOneInput
 }
 
 input PostUpdateManyWithoutAuthorInput {
@@ -1371,6 +1903,8 @@ input PostUpdateManyWithoutAuthorInput {
 input PostUpdateWithoutAuthorDataInput {
   title: String
   body: String
+  thumbnailBody: String
+  thumbnailImage: FileUpdateOneInput
 }
 
 input PostUpdateWithWhereUniqueWithoutAuthorInput {
@@ -1557,7 +2091,48 @@ input PostWhereInput {
 
   """All values greater than or equal the given value."""
   updatedAt_gte: DateTime
+  thumbnailBody: String
+
+  """All values that are not equal to given value."""
+  thumbnailBody_not: String
+
+  """All values that are contained in given list."""
+  thumbnailBody_in: [String!]
+
+  """All values that are not contained in given list."""
+  thumbnailBody_not_in: [String!]
+
+  """All values less than the given value."""
+  thumbnailBody_lt: String
+
+  """All values less than or equal the given value."""
+  thumbnailBody_lte: String
+
+  """All values greater than the given value."""
+  thumbnailBody_gt: String
+
+  """All values greater than or equal the given value."""
+  thumbnailBody_gte: String
+
+  """All values containing the given string."""
+  thumbnailBody_contains: String
+
+  """All values not containing the given string."""
+  thumbnailBody_not_contains: String
+
+  """All values starting with the given string."""
+  thumbnailBody_starts_with: String
+
+  """All values not starting with the given string."""
+  thumbnailBody_not_starts_with: String
+
+  """All values ending with the given string."""
+  thumbnailBody_ends_with: String
+
+  """All values not ending with the given string."""
+  thumbnailBody_not_ends_with: String
   author: UserWhereInput
+  thumbnailImage: FileWhereInput
 }
 
 input PostWhereUniqueInput {
@@ -1565,21 +2140,22 @@ input PostWhereUniqueInput {
 }
 
 type Query {
-  additionalInfoes(where: AdditionalInfoWhereInput, orderBy: AdditionalInfoOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [AdditionalInfo]!
   settingses(where: SettingsWhereInput, orderBy: SettingsOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Settings]!
   users(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [User]!
   posts(where: PostWhereInput, orderBy: PostOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Post]!
-  jobApplicaions(where: JobApplicaionWhereInput, orderBy: JobApplicaionOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [JobApplicaion]!
+  files(where: FileWhereInput, orderBy: FileOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [File]!
+  jobApplications(where: JobApplicationWhereInput, orderBy: JobApplicationOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [JobApplication]!
   clientApplications(where: ClientApplicationWhereInput, orderBy: ClientApplicationOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [ClientApplication]!
   contactApplications(where: ContactApplicationWhereInput, orderBy: ContactApplicationOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [ContactApplication]!
   settings(where: SettingsWhereUniqueInput!): Settings
   user(where: UserWhereUniqueInput!): User
   post(where: PostWhereUniqueInput!): Post
-  additionalInfoesConnection(where: AdditionalInfoWhereInput, orderBy: AdditionalInfoOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): AdditionalInfoConnection!
+  file(where: FileWhereUniqueInput!): File
   settingsesConnection(where: SettingsWhereInput, orderBy: SettingsOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): SettingsConnection!
   usersConnection(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): UserConnection!
   postsConnection(where: PostWhereInput, orderBy: PostOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): PostConnection!
-  jobApplicaionsConnection(where: JobApplicaionWhereInput, orderBy: JobApplicaionOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): JobApplicaionConnection!
+  filesConnection(where: FileWhereInput, orderBy: FileOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): FileConnection!
+  jobApplicationsConnection(where: JobApplicationWhereInput, orderBy: JobApplicationOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): JobApplicationConnection!
   clientApplicationsConnection(where: ClientApplicationWhereInput, orderBy: ClientApplicationOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): ClientApplicationConnection!
   contactApplicationsConnection(where: ContactApplicationWhereInput, orderBy: ContactApplicationOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): ContactApplicationConnection!
 
@@ -1599,10 +2175,11 @@ type Settings {
   facebook: String
   instagram: String
   linkedIn: String
-  additionalInfo(where: AdditionalInfoWhereInput): AdditionalInfo
   contactEmail: String
   clientsEmail: String
   jobsEmail: String
+  additionalTitle: String!
+  additionalBody: String!
 }
 
 """A connection to a list of items."""
@@ -1627,7 +2204,8 @@ input SettingsCreateInput {
   contactEmail: String
   clientsEmail: String
   jobsEmail: String
-  additionalInfo: AdditionalInfoCreateOneInput
+  additionalTitle: String!
+  additionalBody: String!
 }
 
 """An edge in a connection."""
@@ -1662,6 +2240,10 @@ enum SettingsOrderByInput {
   clientsEmail_DESC
   jobsEmail_ASC
   jobsEmail_DESC
+  additionalTitle_ASC
+  additionalTitle_DESC
+  additionalBody_ASC
+  additionalBody_DESC
   id_ASC
   id_DESC
   updatedAt_ASC
@@ -1682,6 +2264,8 @@ type SettingsPreviousValues {
   contactEmail: String
   clientsEmail: String
   jobsEmail: String
+  additionalTitle: String!
+  additionalBody: String!
 }
 
 type SettingsSubscriptionPayload {
@@ -1735,7 +2319,8 @@ input SettingsUpdateInput {
   contactEmail: String
   clientsEmail: String
   jobsEmail: String
-  additionalInfo: AdditionalInfoUpdateOneInput
+  additionalTitle: String
+  additionalBody: String
 }
 
 input SettingsWhereInput {
@@ -2169,7 +2754,86 @@ input SettingsWhereInput {
 
   """All values not ending with the given string."""
   jobsEmail_not_ends_with: String
-  additionalInfo: AdditionalInfoWhereInput
+  additionalTitle: String
+
+  """All values that are not equal to given value."""
+  additionalTitle_not: String
+
+  """All values that are contained in given list."""
+  additionalTitle_in: [String!]
+
+  """All values that are not contained in given list."""
+  additionalTitle_not_in: [String!]
+
+  """All values less than the given value."""
+  additionalTitle_lt: String
+
+  """All values less than or equal the given value."""
+  additionalTitle_lte: String
+
+  """All values greater than the given value."""
+  additionalTitle_gt: String
+
+  """All values greater than or equal the given value."""
+  additionalTitle_gte: String
+
+  """All values containing the given string."""
+  additionalTitle_contains: String
+
+  """All values not containing the given string."""
+  additionalTitle_not_contains: String
+
+  """All values starting with the given string."""
+  additionalTitle_starts_with: String
+
+  """All values not starting with the given string."""
+  additionalTitle_not_starts_with: String
+
+  """All values ending with the given string."""
+  additionalTitle_ends_with: String
+
+  """All values not ending with the given string."""
+  additionalTitle_not_ends_with: String
+  additionalBody: String
+
+  """All values that are not equal to given value."""
+  additionalBody_not: String
+
+  """All values that are contained in given list."""
+  additionalBody_in: [String!]
+
+  """All values that are not contained in given list."""
+  additionalBody_not_in: [String!]
+
+  """All values less than the given value."""
+  additionalBody_lt: String
+
+  """All values less than or equal the given value."""
+  additionalBody_lte: String
+
+  """All values greater than the given value."""
+  additionalBody_gt: String
+
+  """All values greater than or equal the given value."""
+  additionalBody_gte: String
+
+  """All values containing the given string."""
+  additionalBody_contains: String
+
+  """All values not containing the given string."""
+  additionalBody_not_contains: String
+
+  """All values starting with the given string."""
+  additionalBody_starts_with: String
+
+  """All values not starting with the given string."""
+  additionalBody_not_starts_with: String
+
+  """All values ending with the given string."""
+  additionalBody_ends_with: String
+
+  """All values not ending with the given string."""
+  additionalBody_not_ends_with: String
 }
 
 input SettingsWhereUniqueInput {
@@ -2177,11 +2841,11 @@ input SettingsWhereUniqueInput {
 }
 
 type Subscription {
-  additionalInfo(where: AdditionalInfoSubscriptionWhereInput): AdditionalInfoSubscriptionPayload
   settings(where: SettingsSubscriptionWhereInput): SettingsSubscriptionPayload
   user(where: UserSubscriptionWhereInput): UserSubscriptionPayload
   post(where: PostSubscriptionWhereInput): PostSubscriptionPayload
-  jobApplicaion(where: JobApplicaionSubscriptionWhereInput): JobApplicaionSubscriptionPayload
+  file(where: FileSubscriptionWhereInput): FileSubscriptionPayload
+  jobApplication(where: JobApplicationSubscriptionWhereInput): JobApplicationSubscriptionPayload
   clientApplication(where: ClientApplicationSubscriptionWhereInput): ClientApplicationSubscriptionPayload
   contactApplication(where: ContactApplicationSubscriptionWhereInput): ContactApplicationSubscriptionPayload
 }
@@ -2518,7 +3182,92 @@ export const Prisma = makePrismaBindingClass<BindingConstructor<Prisma>>({typeDe
  * Types
 */
 
-export type ClientApplicationOrderByInput =   'postsPerMonth_ASC' |
+export type JobPosition =   'Media' |
+  'Graphics' |
+  'Photography' |
+  'PublicRelations'
+
+export type Permission =   'Admin' |
+  'Posts' |
+  'JobApplications' |
+  'ClientApplications' |
+  'ContactApplications'
+
+export type PostOrderByInput =   'id_ASC' |
+  'id_DESC' |
+  'title_ASC' |
+  'title_DESC' |
+  'body_ASC' |
+  'body_DESC' |
+  'createdAt_ASC' |
+  'createdAt_DESC' |
+  'updatedAt_ASC' |
+  'updatedAt_DESC' |
+  'thumbnailBody_ASC' |
+  'thumbnailBody_DESC'
+
+export type UserOrderByInput =   'id_ASC' |
+  'id_DESC' |
+  'name_ASC' |
+  'name_DESC' |
+  'username_ASC' |
+  'username_DESC' |
+  'password_ASC' |
+  'password_DESC' |
+  'updatedAt_ASC' |
+  'updatedAt_DESC' |
+  'createdAt_ASC' |
+  'createdAt_DESC'
+
+export type FileOrderByInput =   'id_ASC' |
+  'id_DESC' |
+  'name_ASC' |
+  'name_DESC' |
+  'updatedAt_ASC' |
+  'updatedAt_DESC' |
+  'createdAt_ASC' |
+  'createdAt_DESC'
+
+export type JobApplicationOrderByInput =   'name_ASC' |
+  'name_DESC' |
+  'phoneNumber_ASC' |
+  'phoneNumber_DESC' |
+  'email_ASC' |
+  'email_DESC' |
+  'address_ASC' |
+  'address_DESC' |
+  'firstName_ASC' |
+  'firstName_DESC' |
+  'middleName_ASC' |
+  'middleName_DESC' |
+  'lastName_ASC' |
+  'lastName_DESC' |
+  'linkedIn_ASC' |
+  'linkedIn_DESC' |
+  'id_ASC' |
+  'id_DESC' |
+  'updatedAt_ASC' |
+  'updatedAt_DESC' |
+  'createdAt_ASC' |
+  'createdAt_DESC'
+
+export type MutationType =   'CREATED' |
+  'UPDATED' |
+  'DELETED'
+
+export type Package =   'Light' |
+  'Pro' |
+  'Enterprise'
+
+export type ClientApplicationOrderByInput =   'name_ASC' |
+  'name_DESC' |
+  'phoneNumber_ASC' |
+  'phoneNumber_DESC' |
+  'email_ASC' |
+  'email_DESC' |
+  'address_ASC' |
+  'address_DESC' |
+  'postsPerMonth_ASC' |
   'postsPerMonth_DESC' |
   'photography_ASC' |
   'photography_DESC' |
@@ -2536,6 +3285,8 @@ export type ClientApplicationOrderByInput =   'postsPerMonth_ASC' |
   'hasDomain_DESC' |
   'dealYears_ASC' |
   'dealYears_DESC' |
+  'package_ASC' |
+  'package_DESC' |
   'totalPrice_ASC' |
   'totalPrice_DESC' |
   'id_ASC' |
@@ -2545,60 +3296,16 @@ export type ClientApplicationOrderByInput =   'postsPerMonth_ASC' |
   'createdAt_ASC' |
   'createdAt_DESC'
 
-export type UserOrderByInput =   'id_ASC' |
-  'id_DESC' |
-  'name_ASC' |
+export type ContactApplicationOrderByInput =   'name_ASC' |
   'name_DESC' |
-  'username_ASC' |
-  'username_DESC' |
-  'password_ASC' |
-  'password_DESC' |
-  'updatedAt_ASC' |
-  'updatedAt_DESC' |
-  'createdAt_ASC' |
-  'createdAt_DESC'
-
-export type Permission =   'Admin' |
-  'Posts' |
-  'JobApplications' |
-  'ClientApplications' |
-  'ContactApplications'
-
-export type PostOrderByInput =   'id_ASC' |
-  'id_DESC' |
-  'title_ASC' |
-  'title_DESC' |
-  'body_ASC' |
-  'body_DESC' |
-  'createdAt_ASC' |
-  'createdAt_DESC' |
-  'updatedAt_ASC' |
-  'updatedAt_DESC'
-
-export type JobApplicaionOrderByInput =   'firstName_ASC' |
-  'firstName_DESC' |
-  'middleName_ASC' |
-  'middleName_DESC' |
-  'lastName_ASC' |
-  'lastName_DESC' |
-  'resume_ASC' |
-  'resume_DESC' |
-  'linkedIn_ASC' |
-  'linkedIn_DESC' |
-  'id_ASC' |
-  'id_DESC' |
-  'updatedAt_ASC' |
-  'updatedAt_DESC' |
-  'createdAt_ASC' |
-  'createdAt_DESC'
-
-export type JobPosition =   'Media' |
-  'Graphics' |
-  'Photography' |
-  'PublicRelations'
-
-export type AdditionalInfoOrderByInput =   'title_ASC' |
-  'title_DESC' |
+  'phoneNumber_ASC' |
+  'phoneNumber_DESC' |
+  'email_ASC' |
+  'email_DESC' |
+  'address_ASC' |
+  'address_DESC' |
+  'question_ASC' |
+  'question_DESC' |
   'body_ASC' |
   'body_DESC' |
   'id_ASC' |
@@ -2630,6 +3337,10 @@ export type SettingsOrderByInput =   'index_ASC' |
   'clientsEmail_DESC' |
   'jobsEmail_ASC' |
   'jobsEmail_DESC' |
+  'additionalTitle_ASC' |
+  'additionalTitle_DESC' |
+  'additionalBody_ASC' |
+  'additionalBody_DESC' |
   'id_ASC' |
   'id_DESC' |
   'updatedAt_ASC' |
@@ -2637,349 +3348,20 @@ export type SettingsOrderByInput =   'index_ASC' |
   'createdAt_ASC' |
   'createdAt_DESC'
 
-export type Package =   'Light' |
-  'Pro' |
-  'Enterprise'
-
-export type ContactApplicationOrderByInput =   'question_ASC' |
-  'question_DESC' |
-  'body_ASC' |
-  'body_DESC' |
-  'id_ASC' |
-  'id_DESC' |
-  'updatedAt_ASC' |
-  'updatedAt_DESC' |
-  'createdAt_ASC' |
-  'createdAt_DESC'
-
-export type MutationType =   'CREATED' |
-  'UPDATED' |
-  'DELETED'
-
-export interface AdditionalInfoCreateOneInput {
-  create?: AdditionalInfoCreateInput
-}
-
-export interface AdditionalInfoWhereInput {
-  AND?: AdditionalInfoWhereInput[] | AdditionalInfoWhereInput
-  OR?: AdditionalInfoWhereInput[] | AdditionalInfoWhereInput
-  NOT?: AdditionalInfoWhereInput[] | AdditionalInfoWhereInput
-  title?: String
-  title_not?: String
-  title_in?: String[] | String
-  title_not_in?: String[] | String
-  title_lt?: String
-  title_lte?: String
-  title_gt?: String
-  title_gte?: String
-  title_contains?: String
-  title_not_contains?: String
-  title_starts_with?: String
-  title_not_starts_with?: String
-  title_ends_with?: String
-  title_not_ends_with?: String
-  body?: String
-  body_not?: String
-  body_in?: String[] | String
-  body_not_in?: String[] | String
-  body_lt?: String
-  body_lte?: String
-  body_gt?: String
-  body_gte?: String
-  body_contains?: String
-  body_not_contains?: String
-  body_starts_with?: String
-  body_not_starts_with?: String
-  body_ends_with?: String
-  body_not_ends_with?: String
-}
-
-export interface UserUpdateOneWithoutPostsInput {
-  create?: UserCreateWithoutPostsInput
-  connect?: UserWhereUniqueInput
-  delete?: Boolean
-  update?: UserUpdateWithoutPostsDataInput
-  upsert?: UserUpsertWithoutPostsInput
-}
-
-export interface UserCreateWithoutPostsInput {
-  name: String
-  username: String
-  password: String
-  permissions?: UserCreatepermissionsInput
-}
-
-export interface PostUpdateInput {
-  title?: String
-  body?: String
-  author?: UserUpdateOneWithoutPostsInput
-}
-
-export interface UserCreateOneWithoutPostsInput {
-  create?: UserCreateWithoutPostsInput
-  connect?: UserWhereUniqueInput
-}
-
-export interface PostUpsertWithWhereUniqueWithoutAuthorInput {
-  where: PostWhereUniqueInput
-  update: PostUpdateWithoutAuthorDataInput
-  create: PostCreateWithoutAuthorInput
-}
-
-export interface PostWhereInput {
-  AND?: PostWhereInput[] | PostWhereInput
-  OR?: PostWhereInput[] | PostWhereInput
-  NOT?: PostWhereInput[] | PostWhereInput
-  id?: ID_Input
-  id_not?: ID_Input
-  id_in?: ID_Input[] | ID_Input
-  id_not_in?: ID_Input[] | ID_Input
-  id_lt?: ID_Input
-  id_lte?: ID_Input
-  id_gt?: ID_Input
-  id_gte?: ID_Input
-  id_contains?: ID_Input
-  id_not_contains?: ID_Input
-  id_starts_with?: ID_Input
-  id_not_starts_with?: ID_Input
-  id_ends_with?: ID_Input
-  id_not_ends_with?: ID_Input
-  title?: String
-  title_not?: String
-  title_in?: String[] | String
-  title_not_in?: String[] | String
-  title_lt?: String
-  title_lte?: String
-  title_gt?: String
-  title_gte?: String
-  title_contains?: String
-  title_not_contains?: String
-  title_starts_with?: String
-  title_not_starts_with?: String
-  title_ends_with?: String
-  title_not_ends_with?: String
-  body?: String
-  body_not?: String
-  body_in?: String[] | String
-  body_not_in?: String[] | String
-  body_lt?: String
-  body_lte?: String
-  body_gt?: String
-  body_gte?: String
-  body_contains?: String
-  body_not_contains?: String
-  body_starts_with?: String
-  body_not_starts_with?: String
-  body_ends_with?: String
-  body_not_ends_with?: String
-  createdAt?: DateTime
-  createdAt_not?: DateTime
-  createdAt_in?: DateTime[] | DateTime
-  createdAt_not_in?: DateTime[] | DateTime
-  createdAt_lt?: DateTime
-  createdAt_lte?: DateTime
-  createdAt_gt?: DateTime
-  createdAt_gte?: DateTime
-  updatedAt?: DateTime
-  updatedAt_not?: DateTime
-  updatedAt_in?: DateTime[] | DateTime
-  updatedAt_not_in?: DateTime[] | DateTime
-  updatedAt_lt?: DateTime
-  updatedAt_lte?: DateTime
-  updatedAt_gt?: DateTime
-  updatedAt_gte?: DateTime
-  author?: UserWhereInput
-}
-
-export interface PostUpdateWithoutAuthorDataInput {
-  title?: String
-  body?: String
-}
-
-export interface JobApplicaionWhereInput {
-  AND?: JobApplicaionWhereInput[] | JobApplicaionWhereInput
-  OR?: JobApplicaionWhereInput[] | JobApplicaionWhereInput
-  NOT?: JobApplicaionWhereInput[] | JobApplicaionWhereInput
-  firstName?: String
-  firstName_not?: String
-  firstName_in?: String[] | String
-  firstName_not_in?: String[] | String
-  firstName_lt?: String
-  firstName_lte?: String
-  firstName_gt?: String
-  firstName_gte?: String
-  firstName_contains?: String
-  firstName_not_contains?: String
-  firstName_starts_with?: String
-  firstName_not_starts_with?: String
-  firstName_ends_with?: String
-  firstName_not_ends_with?: String
-  middleName?: String
-  middleName_not?: String
-  middleName_in?: String[] | String
-  middleName_not_in?: String[] | String
-  middleName_lt?: String
-  middleName_lte?: String
-  middleName_gt?: String
-  middleName_gte?: String
-  middleName_contains?: String
-  middleName_not_contains?: String
-  middleName_starts_with?: String
-  middleName_not_starts_with?: String
-  middleName_ends_with?: String
-  middleName_not_ends_with?: String
-  lastName?: String
-  lastName_not?: String
-  lastName_in?: String[] | String
-  lastName_not_in?: String[] | String
-  lastName_lt?: String
-  lastName_lte?: String
-  lastName_gt?: String
-  lastName_gte?: String
-  lastName_contains?: String
-  lastName_not_contains?: String
-  lastName_starts_with?: String
-  lastName_not_starts_with?: String
-  lastName_ends_with?: String
-  lastName_not_ends_with?: String
-  resume?: String
-  resume_not?: String
-  resume_in?: String[] | String
-  resume_not_in?: String[] | String
-  resume_lt?: String
-  resume_lte?: String
-  resume_gt?: String
-  resume_gte?: String
-  resume_contains?: String
-  resume_not_contains?: String
-  resume_starts_with?: String
-  resume_not_starts_with?: String
-  resume_ends_with?: String
-  resume_not_ends_with?: String
+export interface SettingsCreateInput {
+  index: Int
+  email?: String
+  phone1?: String
+  phone2?: String
+  address?: String
+  facebook?: String
+  instagram?: String
   linkedIn?: String
-  linkedIn_not?: String
-  linkedIn_in?: String[] | String
-  linkedIn_not_in?: String[] | String
-  linkedIn_lt?: String
-  linkedIn_lte?: String
-  linkedIn_gt?: String
-  linkedIn_gte?: String
-  linkedIn_contains?: String
-  linkedIn_not_contains?: String
-  linkedIn_starts_with?: String
-  linkedIn_not_starts_with?: String
-  linkedIn_ends_with?: String
-  linkedIn_not_ends_with?: String
-}
-
-export interface PostUpdateWithWhereUniqueWithoutAuthorInput {
-  where: PostWhereUniqueInput
-  data: PostUpdateWithoutAuthorDataInput
-}
-
-export interface PostSubscriptionWhereInput {
-  AND?: PostSubscriptionWhereInput[] | PostSubscriptionWhereInput
-  OR?: PostSubscriptionWhereInput[] | PostSubscriptionWhereInput
-  NOT?: PostSubscriptionWhereInput[] | PostSubscriptionWhereInput
-  mutation_in?: MutationType[] | MutationType
-  updatedFields_contains?: String
-  updatedFields_contains_every?: String[] | String
-  updatedFields_contains_some?: String[] | String
-  node?: PostWhereInput
-}
-
-export interface PostUpdateManyWithoutAuthorInput {
-  create?: PostCreateWithoutAuthorInput[] | PostCreateWithoutAuthorInput
-  connect?: PostWhereUniqueInput[] | PostWhereUniqueInput
-  disconnect?: PostWhereUniqueInput[] | PostWhereUniqueInput
-  delete?: PostWhereUniqueInput[] | PostWhereUniqueInput
-  update?: PostUpdateWithWhereUniqueWithoutAuthorInput[] | PostUpdateWithWhereUniqueWithoutAuthorInput
-  upsert?: PostUpsertWithWhereUniqueWithoutAuthorInput[] | PostUpsertWithWhereUniqueWithoutAuthorInput
-}
-
-export interface ClientApplicationWhereInput {
-  AND?: ClientApplicationWhereInput[] | ClientApplicationWhereInput
-  OR?: ClientApplicationWhereInput[] | ClientApplicationWhereInput
-  NOT?: ClientApplicationWhereInput[] | ClientApplicationWhereInput
-  postsPerMonth?: Int
-  postsPerMonth_not?: Int
-  postsPerMonth_in?: Int[] | Int
-  postsPerMonth_not_in?: Int[] | Int
-  postsPerMonth_lt?: Int
-  postsPerMonth_lte?: Int
-  postsPerMonth_gt?: Int
-  postsPerMonth_gte?: Int
-  photography?: Boolean
-  photography_not?: Boolean
-  gifs?: Int
-  gifs_not?: Int
-  gifs_in?: Int[] | Int
-  gifs_not_in?: Int[] | Int
-  gifs_lt?: Int
-  gifs_lte?: Int
-  gifs_gt?: Int
-  gifs_gte?: Int
-  videos?: Int
-  videos_not?: Int
-  videos_in?: Int[] | Int
-  videos_not_in?: Int[] | Int
-  videos_lt?: Int
-  videos_lte?: Int
-  videos_gt?: Int
-  videos_gte?: Int
-  videoMinutesCount?: Int
-  videoMinutesCount_not?: Int
-  videoMinutesCount_in?: Int[] | Int
-  videoMinutesCount_not_in?: Int[] | Int
-  videoMinutesCount_lt?: Int
-  videoMinutesCount_lte?: Int
-  videoMinutesCount_gt?: Int
-  videoMinutesCount_gte?: Int
-  website?: Boolean
-  website_not?: Boolean
-  hasHost?: Boolean
-  hasHost_not?: Boolean
-  hasDomain?: Boolean
-  hasDomain_not?: Boolean
-  dealYears?: Int
-  dealYears_not?: Int
-  dealYears_in?: Int[] | Int
-  dealYears_not_in?: Int[] | Int
-  dealYears_lt?: Int
-  dealYears_lte?: Int
-  dealYears_gt?: Int
-  dealYears_gte?: Int
-  totalPrice?: Int
-  totalPrice_not?: Int
-  totalPrice_in?: Int[] | Int
-  totalPrice_not_in?: Int[] | Int
-  totalPrice_lt?: Int
-  totalPrice_lte?: Int
-  totalPrice_gt?: Int
-  totalPrice_gte?: Int
-}
-
-export interface UserUpdatepermissionsInput {
-  set?: Permission[] | Permission
-}
-
-export interface SettingsSubscriptionWhereInput {
-  AND?: SettingsSubscriptionWhereInput[] | SettingsSubscriptionWhereInput
-  OR?: SettingsSubscriptionWhereInput[] | SettingsSubscriptionWhereInput
-  NOT?: SettingsSubscriptionWhereInput[] | SettingsSubscriptionWhereInput
-  mutation_in?: MutationType[] | MutationType
-  updatedFields_contains?: String
-  updatedFields_contains_every?: String[] | String
-  updatedFields_contains_some?: String[] | String
-  node?: SettingsWhereInput
-}
-
-export interface UserUpdateInput {
-  name?: String
-  username?: String
-  password?: String
-  permissions?: UserUpdatepermissionsInput
-  posts?: PostUpdateManyWithoutAuthorInput
+  contactEmail?: String
+  clientsEmail?: String
+  jobsEmail?: String
+  additionalTitle: String
+  additionalBody: String
 }
 
 export interface SettingsWhereInput {
@@ -3134,38 +3516,431 @@ export interface SettingsWhereInput {
   jobsEmail_not_starts_with?: String
   jobsEmail_ends_with?: String
   jobsEmail_not_ends_with?: String
-  additionalInfo?: AdditionalInfoWhereInput
+  additionalTitle?: String
+  additionalTitle_not?: String
+  additionalTitle_in?: String[] | String
+  additionalTitle_not_in?: String[] | String
+  additionalTitle_lt?: String
+  additionalTitle_lte?: String
+  additionalTitle_gt?: String
+  additionalTitle_gte?: String
+  additionalTitle_contains?: String
+  additionalTitle_not_contains?: String
+  additionalTitle_starts_with?: String
+  additionalTitle_not_starts_with?: String
+  additionalTitle_ends_with?: String
+  additionalTitle_not_ends_with?: String
+  additionalBody?: String
+  additionalBody_not?: String
+  additionalBody_in?: String[] | String
+  additionalBody_not_in?: String[] | String
+  additionalBody_lt?: String
+  additionalBody_lte?: String
+  additionalBody_gt?: String
+  additionalBody_gte?: String
+  additionalBody_contains?: String
+  additionalBody_not_contains?: String
+  additionalBody_starts_with?: String
+  additionalBody_not_starts_with?: String
+  additionalBody_ends_with?: String
+  additionalBody_not_ends_with?: String
 }
 
-export interface AdditionalInfoUpsertNestedInput {
-  update: AdditionalInfoUpdateDataInput
-  create: AdditionalInfoCreateInput
+export interface UserUpdateWithoutPostsDataInput {
+  name?: String
+  username?: String
+  password?: String
+  permissions?: UserUpdatepermissionsInput
+}
+
+export interface FileCreateInput {
+  name: String
+}
+
+export interface UserUpdateOneWithoutPostsInput {
+  create?: UserCreateWithoutPostsInput
+  connect?: UserWhereUniqueInput
+  delete?: Boolean
+  update?: UserUpdateWithoutPostsDataInput
+  upsert?: UserUpsertWithoutPostsInput
+}
+
+export interface PostCreateInput {
+  title: String
+  body: String
+  thumbnailBody: String
+  author: UserCreateOneWithoutPostsInput
+  thumbnailImage: FileCreateOneInput
+}
+
+export interface PostUpdateInput {
+  title?: String
+  body?: String
+  thumbnailBody?: String
+  author?: UserUpdateOneWithoutPostsInput
+  thumbnailImage?: FileUpdateOneInput
+}
+
+export interface ClientApplicationSubscriptionWhereInput {
+  AND?: ClientApplicationSubscriptionWhereInput[] | ClientApplicationSubscriptionWhereInput
+  OR?: ClientApplicationSubscriptionWhereInput[] | ClientApplicationSubscriptionWhereInput
+  NOT?: ClientApplicationSubscriptionWhereInput[] | ClientApplicationSubscriptionWhereInput
+  mutation_in?: MutationType[] | MutationType
+  updatedFields_contains?: String
+  updatedFields_contains_every?: String[] | String
+  updatedFields_contains_some?: String[] | String
+  node?: ClientApplicationWhereInput
+}
+
+export interface PostUpsertWithWhereUniqueWithoutAuthorInput {
+  where: PostWhereUniqueInput
+  update: PostUpdateWithoutAuthorDataInput
+  create: PostCreateWithoutAuthorInput
+}
+
+export interface JobApplicationWhereInput {
+  AND?: JobApplicationWhereInput[] | JobApplicationWhereInput
+  OR?: JobApplicationWhereInput[] | JobApplicationWhereInput
+  NOT?: JobApplicationWhereInput[] | JobApplicationWhereInput
+  name?: String
+  name_not?: String
+  name_in?: String[] | String
+  name_not_in?: String[] | String
+  name_lt?: String
+  name_lte?: String
+  name_gt?: String
+  name_gte?: String
+  name_contains?: String
+  name_not_contains?: String
+  name_starts_with?: String
+  name_not_starts_with?: String
+  name_ends_with?: String
+  name_not_ends_with?: String
+  phoneNumber?: String
+  phoneNumber_not?: String
+  phoneNumber_in?: String[] | String
+  phoneNumber_not_in?: String[] | String
+  phoneNumber_lt?: String
+  phoneNumber_lte?: String
+  phoneNumber_gt?: String
+  phoneNumber_gte?: String
+  phoneNumber_contains?: String
+  phoneNumber_not_contains?: String
+  phoneNumber_starts_with?: String
+  phoneNumber_not_starts_with?: String
+  phoneNumber_ends_with?: String
+  phoneNumber_not_ends_with?: String
+  email?: String
+  email_not?: String
+  email_in?: String[] | String
+  email_not_in?: String[] | String
+  email_lt?: String
+  email_lte?: String
+  email_gt?: String
+  email_gte?: String
+  email_contains?: String
+  email_not_contains?: String
+  email_starts_with?: String
+  email_not_starts_with?: String
+  email_ends_with?: String
+  email_not_ends_with?: String
+  address?: String
+  address_not?: String
+  address_in?: String[] | String
+  address_not_in?: String[] | String
+  address_lt?: String
+  address_lte?: String
+  address_gt?: String
+  address_gte?: String
+  address_contains?: String
+  address_not_contains?: String
+  address_starts_with?: String
+  address_not_starts_with?: String
+  address_ends_with?: String
+  address_not_ends_with?: String
+  firstName?: String
+  firstName_not?: String
+  firstName_in?: String[] | String
+  firstName_not_in?: String[] | String
+  firstName_lt?: String
+  firstName_lte?: String
+  firstName_gt?: String
+  firstName_gte?: String
+  firstName_contains?: String
+  firstName_not_contains?: String
+  firstName_starts_with?: String
+  firstName_not_starts_with?: String
+  firstName_ends_with?: String
+  firstName_not_ends_with?: String
+  middleName?: String
+  middleName_not?: String
+  middleName_in?: String[] | String
+  middleName_not_in?: String[] | String
+  middleName_lt?: String
+  middleName_lte?: String
+  middleName_gt?: String
+  middleName_gte?: String
+  middleName_contains?: String
+  middleName_not_contains?: String
+  middleName_starts_with?: String
+  middleName_not_starts_with?: String
+  middleName_ends_with?: String
+  middleName_not_ends_with?: String
+  lastName?: String
+  lastName_not?: String
+  lastName_in?: String[] | String
+  lastName_not_in?: String[] | String
+  lastName_lt?: String
+  lastName_lte?: String
+  lastName_gt?: String
+  lastName_gte?: String
+  lastName_contains?: String
+  lastName_not_contains?: String
+  lastName_starts_with?: String
+  lastName_not_starts_with?: String
+  lastName_ends_with?: String
+  lastName_not_ends_with?: String
+  linkedIn?: String
+  linkedIn_not?: String
+  linkedIn_in?: String[] | String
+  linkedIn_not_in?: String[] | String
+  linkedIn_lt?: String
+  linkedIn_lte?: String
+  linkedIn_gt?: String
+  linkedIn_gte?: String
+  linkedIn_contains?: String
+  linkedIn_not_contains?: String
+  linkedIn_starts_with?: String
+  linkedIn_not_starts_with?: String
+  linkedIn_ends_with?: String
+  linkedIn_not_ends_with?: String
+  resume?: FileWhereInput
+}
+
+export interface FileUpsertNestedInput {
+  update: FileUpdateDataInput
+  create: FileCreateInput
+}
+
+export interface FileSubscriptionWhereInput {
+  AND?: FileSubscriptionWhereInput[] | FileSubscriptionWhereInput
+  OR?: FileSubscriptionWhereInput[] | FileSubscriptionWhereInput
+  NOT?: FileSubscriptionWhereInput[] | FileSubscriptionWhereInput
+  mutation_in?: MutationType[] | MutationType
+  updatedFields_contains?: String
+  updatedFields_contains_every?: String[] | String
+  updatedFields_contains_some?: String[] | String
+  node?: FileWhereInput
+}
+
+export interface FileUpdateDataInput {
+  name?: String
+}
+
+export interface ClientApplicationWhereInput {
+  AND?: ClientApplicationWhereInput[] | ClientApplicationWhereInput
+  OR?: ClientApplicationWhereInput[] | ClientApplicationWhereInput
+  NOT?: ClientApplicationWhereInput[] | ClientApplicationWhereInput
+  name?: String
+  name_not?: String
+  name_in?: String[] | String
+  name_not_in?: String[] | String
+  name_lt?: String
+  name_lte?: String
+  name_gt?: String
+  name_gte?: String
+  name_contains?: String
+  name_not_contains?: String
+  name_starts_with?: String
+  name_not_starts_with?: String
+  name_ends_with?: String
+  name_not_ends_with?: String
+  phoneNumber?: String
+  phoneNumber_not?: String
+  phoneNumber_in?: String[] | String
+  phoneNumber_not_in?: String[] | String
+  phoneNumber_lt?: String
+  phoneNumber_lte?: String
+  phoneNumber_gt?: String
+  phoneNumber_gte?: String
+  phoneNumber_contains?: String
+  phoneNumber_not_contains?: String
+  phoneNumber_starts_with?: String
+  phoneNumber_not_starts_with?: String
+  phoneNumber_ends_with?: String
+  phoneNumber_not_ends_with?: String
+  email?: String
+  email_not?: String
+  email_in?: String[] | String
+  email_not_in?: String[] | String
+  email_lt?: String
+  email_lte?: String
+  email_gt?: String
+  email_gte?: String
+  email_contains?: String
+  email_not_contains?: String
+  email_starts_with?: String
+  email_not_starts_with?: String
+  email_ends_with?: String
+  email_not_ends_with?: String
+  address?: String
+  address_not?: String
+  address_in?: String[] | String
+  address_not_in?: String[] | String
+  address_lt?: String
+  address_lte?: String
+  address_gt?: String
+  address_gte?: String
+  address_contains?: String
+  address_not_contains?: String
+  address_starts_with?: String
+  address_not_starts_with?: String
+  address_ends_with?: String
+  address_not_ends_with?: String
+  postsPerMonth?: Int
+  postsPerMonth_not?: Int
+  postsPerMonth_in?: Int[] | Int
+  postsPerMonth_not_in?: Int[] | Int
+  postsPerMonth_lt?: Int
+  postsPerMonth_lte?: Int
+  postsPerMonth_gt?: Int
+  postsPerMonth_gte?: Int
+  photography?: Boolean
+  photography_not?: Boolean
+  gifs?: Int
+  gifs_not?: Int
+  gifs_in?: Int[] | Int
+  gifs_not_in?: Int[] | Int
+  gifs_lt?: Int
+  gifs_lte?: Int
+  gifs_gt?: Int
+  gifs_gte?: Int
+  videos?: Int
+  videos_not?: Int
+  videos_in?: Int[] | Int
+  videos_not_in?: Int[] | Int
+  videos_lt?: Int
+  videos_lte?: Int
+  videos_gt?: Int
+  videos_gte?: Int
+  videoMinutesCount?: Int
+  videoMinutesCount_not?: Int
+  videoMinutesCount_in?: Int[] | Int
+  videoMinutesCount_not_in?: Int[] | Int
+  videoMinutesCount_lt?: Int
+  videoMinutesCount_lte?: Int
+  videoMinutesCount_gt?: Int
+  videoMinutesCount_gte?: Int
+  website?: Boolean
+  website_not?: Boolean
+  hasHost?: Boolean
+  hasHost_not?: Boolean
+  hasDomain?: Boolean
+  hasDomain_not?: Boolean
+  dealYears?: Int
+  dealYears_not?: Int
+  dealYears_in?: Int[] | Int
+  dealYears_not_in?: Int[] | Int
+  dealYears_lt?: Int
+  dealYears_lte?: Int
+  dealYears_gt?: Int
+  dealYears_gte?: Int
+  package?: Package
+  package_not?: Package
+  package_in?: Package[] | Package
+  package_not_in?: Package[] | Package
+  totalPrice?: Int
+  totalPrice_not?: Int
+  totalPrice_in?: Int[] | Int
+  totalPrice_not_in?: Int[] | Int
+  totalPrice_lt?: Int
+  totalPrice_lte?: Int
+  totalPrice_gt?: Int
+  totalPrice_gte?: Int
+}
+
+export interface FileUpdateOneInput {
+  create?: FileCreateInput
+  connect?: FileWhereUniqueInput
+  delete?: Boolean
+  update?: FileUpdateDataInput
+  upsert?: FileUpsertNestedInput
+}
+
+export interface UserSubscriptionWhereInput {
+  AND?: UserSubscriptionWhereInput[] | UserSubscriptionWhereInput
+  OR?: UserSubscriptionWhereInput[] | UserSubscriptionWhereInput
+  NOT?: UserSubscriptionWhereInput[] | UserSubscriptionWhereInput
+  mutation_in?: MutationType[] | MutationType
+  updatedFields_contains?: String
+  updatedFields_contains_every?: String[] | String
+  updatedFields_contains_some?: String[] | String
+  node?: UserWhereInput
+}
+
+export interface PostUpdateWithoutAuthorDataInput {
+  title?: String
+  body?: String
+  thumbnailBody?: String
+  thumbnailImage?: FileUpdateOneInput
+}
+
+export interface SettingsSubscriptionWhereInput {
+  AND?: SettingsSubscriptionWhereInput[] | SettingsSubscriptionWhereInput
+  OR?: SettingsSubscriptionWhereInput[] | SettingsSubscriptionWhereInput
+  NOT?: SettingsSubscriptionWhereInput[] | SettingsSubscriptionWhereInput
+  mutation_in?: MutationType[] | MutationType
+  updatedFields_contains?: String
+  updatedFields_contains_every?: String[] | String
+  updatedFields_contains_some?: String[] | String
+  node?: SettingsWhereInput
+}
+
+export interface PostUpdateWithWhereUniqueWithoutAuthorInput {
+  where: PostWhereUniqueInput
+  data: PostUpdateWithoutAuthorDataInput
 }
 
 export interface ContactApplicationUpdateInput {
+  name?: String
+  phoneNumber?: String
+  email?: String
+  address?: String
   question?: String
   body?: String
 }
 
-export interface AdditionalInfoUpdateDataInput {
-  title?: String
-  body?: String
+export interface PostUpdateManyWithoutAuthorInput {
+  create?: PostCreateWithoutAuthorInput[] | PostCreateWithoutAuthorInput
+  connect?: PostWhereUniqueInput[] | PostWhereUniqueInput
+  disconnect?: PostWhereUniqueInput[] | PostWhereUniqueInput
+  delete?: PostWhereUniqueInput[] | PostWhereUniqueInput
+  update?: PostUpdateWithWhereUniqueWithoutAuthorInput[] | PostUpdateWithWhereUniqueWithoutAuthorInput
+  upsert?: PostUpsertWithWhereUniqueWithoutAuthorInput[] | PostUpsertWithWhereUniqueWithoutAuthorInput
 }
 
 export interface SettingsWhereUniqueInput {
   index?: Int
 }
 
-export interface AdditionalInfoUpdateOneInput {
-  create?: AdditionalInfoCreateInput
-  disconnect?: Boolean
-  delete?: Boolean
-  update?: AdditionalInfoUpdateDataInput
-  upsert?: AdditionalInfoUpsertNestedInput
+export interface UserUpdatepermissionsInput {
+  set?: Permission[] | Permission
 }
 
 export interface PostWhereUniqueInput {
   id?: ID_Input
+}
+
+export interface UserUpdateInput {
+  name?: String
+  username?: String
+  password?: String
+  permissions?: UserUpdatepermissionsInput
+  posts?: PostUpdateManyWithoutAuthorInput
+}
+
+export interface JobApplicationUpdatepositionsInput {
+  set?: JobPosition[] | JobPosition
 }
 
 export interface SettingsUpdateInput {
@@ -3180,35 +3955,39 @@ export interface SettingsUpdateInput {
   contactEmail?: String
   clientsEmail?: String
   jobsEmail?: String
-  additionalInfo?: AdditionalInfoUpdateOneInput
+  additionalTitle?: String
+  additionalBody?: String
 }
 
-export interface JobApplicaionUpdatepositionsInput {
-  set?: JobPosition[] | JobPosition
+export interface FileUpdateInput {
+  name?: String
 }
 
 export interface ContactApplicationCreateInput {
+  name: String
+  phoneNumber?: String
+  email?: String
+  address?: String
   question: String
   body: String
 }
 
-export interface AdditionalInfoUpdateInput {
-  title?: String
-  body?: String
-}
-
-export interface ClientApplicationCreatepackageInput {
-  set?: Package[] | Package
-}
-
-export interface UserUpdateWithoutPostsDataInput {
-  name?: String
-  username?: String
-  password?: String
-  permissions?: UserUpdatepermissionsInput
+export interface ContactApplicationSubscriptionWhereInput {
+  AND?: ContactApplicationSubscriptionWhereInput[] | ContactApplicationSubscriptionWhereInput
+  OR?: ContactApplicationSubscriptionWhereInput[] | ContactApplicationSubscriptionWhereInput
+  NOT?: ContactApplicationSubscriptionWhereInput[] | ContactApplicationSubscriptionWhereInput
+  mutation_in?: MutationType[] | MutationType
+  updatedFields_contains?: String
+  updatedFields_contains_every?: String[] | String
+  updatedFields_contains_some?: String[] | String
+  node?: ContactApplicationWhereInput
 }
 
 export interface ClientApplicationCreateInput {
+  name: String
+  phoneNumber?: String
+  email?: String
+  address?: String
   postsPerMonth: Int
   photography: Boolean
   gifs: Int
@@ -3218,23 +3997,209 @@ export interface ClientApplicationCreateInput {
   hasHost: Boolean
   hasDomain: Boolean
   dealYears: Int
+  package: Package
   totalPrice: Int
-  package?: ClientApplicationCreatepackageInput
 }
 
-export interface ClientApplicationSubscriptionWhereInput {
-  AND?: ClientApplicationSubscriptionWhereInput[] | ClientApplicationSubscriptionWhereInput
-  OR?: ClientApplicationSubscriptionWhereInput[] | ClientApplicationSubscriptionWhereInput
-  NOT?: ClientApplicationSubscriptionWhereInput[] | ClientApplicationSubscriptionWhereInput
+export interface JobApplicationSubscriptionWhereInput {
+  AND?: JobApplicationSubscriptionWhereInput[] | JobApplicationSubscriptionWhereInput
+  OR?: JobApplicationSubscriptionWhereInput[] | JobApplicationSubscriptionWhereInput
+  NOT?: JobApplicationSubscriptionWhereInput[] | JobApplicationSubscriptionWhereInput
   mutation_in?: MutationType[] | MutationType
   updatedFields_contains?: String
   updatedFields_contains_every?: String[] | String
   updatedFields_contains_some?: String[] | String
-  node?: ClientApplicationWhereInput
+  node?: JobApplicationWhereInput
 }
 
-export interface JobApplicaionCreatepositionsInput {
+export interface JobApplicationCreatepositionsInput {
   set?: JobPosition[] | JobPosition
+}
+
+export interface PostSubscriptionWhereInput {
+  AND?: PostSubscriptionWhereInput[] | PostSubscriptionWhereInput
+  OR?: PostSubscriptionWhereInput[] | PostSubscriptionWhereInput
+  NOT?: PostSubscriptionWhereInput[] | PostSubscriptionWhereInput
+  mutation_in?: MutationType[] | MutationType
+  updatedFields_contains?: String
+  updatedFields_contains_every?: String[] | String
+  updatedFields_contains_some?: String[] | String
+  node?: PostWhereInput
+}
+
+export interface JobApplicationCreateInput {
+  name: String
+  phoneNumber?: String
+  email?: String
+  address?: String
+  firstName: String
+  middleName: String
+  lastName: String
+  linkedIn?: String
+  positions?: JobApplicationCreatepositionsInput
+  resume?: FileCreateOneInput
+}
+
+export interface ContactApplicationWhereInput {
+  AND?: ContactApplicationWhereInput[] | ContactApplicationWhereInput
+  OR?: ContactApplicationWhereInput[] | ContactApplicationWhereInput
+  NOT?: ContactApplicationWhereInput[] | ContactApplicationWhereInput
+  name?: String
+  name_not?: String
+  name_in?: String[] | String
+  name_not_in?: String[] | String
+  name_lt?: String
+  name_lte?: String
+  name_gt?: String
+  name_gte?: String
+  name_contains?: String
+  name_not_contains?: String
+  name_starts_with?: String
+  name_not_starts_with?: String
+  name_ends_with?: String
+  name_not_ends_with?: String
+  phoneNumber?: String
+  phoneNumber_not?: String
+  phoneNumber_in?: String[] | String
+  phoneNumber_not_in?: String[] | String
+  phoneNumber_lt?: String
+  phoneNumber_lte?: String
+  phoneNumber_gt?: String
+  phoneNumber_gte?: String
+  phoneNumber_contains?: String
+  phoneNumber_not_contains?: String
+  phoneNumber_starts_with?: String
+  phoneNumber_not_starts_with?: String
+  phoneNumber_ends_with?: String
+  phoneNumber_not_ends_with?: String
+  email?: String
+  email_not?: String
+  email_in?: String[] | String
+  email_not_in?: String[] | String
+  email_lt?: String
+  email_lte?: String
+  email_gt?: String
+  email_gte?: String
+  email_contains?: String
+  email_not_contains?: String
+  email_starts_with?: String
+  email_not_starts_with?: String
+  email_ends_with?: String
+  email_not_ends_with?: String
+  address?: String
+  address_not?: String
+  address_in?: String[] | String
+  address_not_in?: String[] | String
+  address_lt?: String
+  address_lte?: String
+  address_gt?: String
+  address_gte?: String
+  address_contains?: String
+  address_not_contains?: String
+  address_starts_with?: String
+  address_not_starts_with?: String
+  address_ends_with?: String
+  address_not_ends_with?: String
+  question?: String
+  question_not?: String
+  question_in?: String[] | String
+  question_not_in?: String[] | String
+  question_lt?: String
+  question_lte?: String
+  question_gt?: String
+  question_gte?: String
+  question_contains?: String
+  question_not_contains?: String
+  question_starts_with?: String
+  question_not_starts_with?: String
+  question_ends_with?: String
+  question_not_ends_with?: String
+  body?: String
+  body_not?: String
+  body_in?: String[] | String
+  body_not_in?: String[] | String
+  body_lt?: String
+  body_lte?: String
+  body_gt?: String
+  body_gte?: String
+  body_contains?: String
+  body_not_contains?: String
+  body_starts_with?: String
+  body_not_starts_with?: String
+  body_ends_with?: String
+  body_not_ends_with?: String
+}
+
+export interface UserCreateWithoutPostsInput {
+  name: String
+  username: String
+  password: String
+  permissions?: UserCreatepermissionsInput
+}
+
+export interface UserWhereUniqueInput {
+  id?: ID_Input
+  username?: String
+}
+
+export interface UserCreateOneWithoutPostsInput {
+  create?: UserCreateWithoutPostsInput
+  connect?: UserWhereUniqueInput
+}
+
+export interface JobApplicationUpdateInput {
+  name?: String
+  phoneNumber?: String
+  email?: String
+  address?: String
+  firstName?: String
+  middleName?: String
+  lastName?: String
+  linkedIn?: String
+  positions?: JobApplicationUpdatepositionsInput
+  resume?: FileUpdateOneInput
+}
+
+export interface UserCreateInput {
+  name: String
+  username: String
+  password: String
+  permissions?: UserCreatepermissionsInput
+  posts?: PostCreateManyWithoutAuthorInput
+}
+
+export interface FileWhereInput {
+  AND?: FileWhereInput[] | FileWhereInput
+  OR?: FileWhereInput[] | FileWhereInput
+  NOT?: FileWhereInput[] | FileWhereInput
+  id?: ID_Input
+  id_not?: ID_Input
+  id_in?: ID_Input[] | ID_Input
+  id_not_in?: ID_Input[] | ID_Input
+  id_lt?: ID_Input
+  id_lte?: ID_Input
+  id_gt?: ID_Input
+  id_gte?: ID_Input
+  id_contains?: ID_Input
+  id_not_contains?: ID_Input
+  id_starts_with?: ID_Input
+  id_not_starts_with?: ID_Input
+  id_ends_with?: ID_Input
+  id_not_ends_with?: ID_Input
+  name?: String
+  name_not?: String
+  name_in?: String[] | String
+  name_not_in?: String[] | String
+  name_lt?: String
+  name_lte?: String
+  name_gt?: String
+  name_gte?: String
+  name_contains?: String
+  name_not_contains?: String
+  name_starts_with?: String
+  name_not_starts_with?: String
+  name_ends_with?: String
+  name_not_ends_with?: String
 }
 
 export interface UserWhereInput {
@@ -3302,51 +4267,32 @@ export interface UserWhereInput {
   posts_none?: PostWhereInput
 }
 
-export interface AdditionalInfoCreateInput {
+export interface FileCreateOneInput {
+  create?: FileCreateInput
+  connect?: FileWhereUniqueInput
+}
+
+export interface PostCreateWithoutAuthorInput {
   title: String
   body: String
+  thumbnailBody: String
+  thumbnailImage: FileCreateOneInput
 }
 
-export interface AdditionalInfoSubscriptionWhereInput {
-  AND?: AdditionalInfoSubscriptionWhereInput[] | AdditionalInfoSubscriptionWhereInput
-  OR?: AdditionalInfoSubscriptionWhereInput[] | AdditionalInfoSubscriptionWhereInput
-  NOT?: AdditionalInfoSubscriptionWhereInput[] | AdditionalInfoSubscriptionWhereInput
-  mutation_in?: MutationType[] | MutationType
-  updatedFields_contains?: String
-  updatedFields_contains_every?: String[] | String
-  updatedFields_contains_some?: String[] | String
-  node?: AdditionalInfoWhereInput
+export interface PostCreateManyWithoutAuthorInput {
+  create?: PostCreateWithoutAuthorInput[] | PostCreateWithoutAuthorInput
+  connect?: PostWhereUniqueInput[] | PostWhereUniqueInput
 }
 
-export interface SettingsCreateInput {
-  index: Int
-  email?: String
-  phone1?: String
-  phone2?: String
-  address?: String
-  facebook?: String
-  instagram?: String
-  linkedIn?: String
-  contactEmail?: String
-  clientsEmail?: String
-  jobsEmail?: String
-  additionalInfo?: AdditionalInfoCreateOneInput
-}
-
-export interface ClientApplicationUpdatepackageInput {
-  set?: Package[] | Package
-}
-
-export interface JobApplicaionCreateInput {
-  firstName: String
-  middleName: String
-  lastName: String
-  resume: String
-  linkedIn?: String
-  positions?: JobApplicaionCreatepositionsInput
+export interface UserCreatepermissionsInput {
+  set?: Permission[] | Permission
 }
 
 export interface ClientApplicationUpdateInput {
+  name?: String
+  phoneNumber?: String
+  email?: String
+  address?: String
   postsPerMonth?: Int
   photography?: Boolean
   gifs?: Int
@@ -3356,56 +4302,42 @@ export interface ClientApplicationUpdateInput {
   hasHost?: Boolean
   hasDomain?: Boolean
   dealYears?: Int
+  package?: Package
   totalPrice?: Int
-  package?: ClientApplicationUpdatepackageInput
 }
 
-export interface UserCreateInput {
-  name: String
-  username: String
-  password: String
-  permissions?: UserCreatepermissionsInput
-  posts?: PostCreateManyWithoutAuthorInput
-}
-
-export interface UserUpsertWithoutPostsInput {
-  update: UserUpdateWithoutPostsDataInput
-  create: UserCreateWithoutPostsInput
-}
-
-export interface UserCreatepermissionsInput {
-  set?: Permission[] | Permission
-}
-
-export interface JobApplicaionSubscriptionWhereInput {
-  AND?: JobApplicaionSubscriptionWhereInput[] | JobApplicaionSubscriptionWhereInput
-  OR?: JobApplicaionSubscriptionWhereInput[] | JobApplicaionSubscriptionWhereInput
-  NOT?: JobApplicaionSubscriptionWhereInput[] | JobApplicaionSubscriptionWhereInput
-  mutation_in?: MutationType[] | MutationType
-  updatedFields_contains?: String
-  updatedFields_contains_every?: String[] | String
-  updatedFields_contains_some?: String[] | String
-  node?: JobApplicaionWhereInput
-}
-
-export interface ContactApplicationWhereInput {
-  AND?: ContactApplicationWhereInput[] | ContactApplicationWhereInput
-  OR?: ContactApplicationWhereInput[] | ContactApplicationWhereInput
-  NOT?: ContactApplicationWhereInput[] | ContactApplicationWhereInput
-  question?: String
-  question_not?: String
-  question_in?: String[] | String
-  question_not_in?: String[] | String
-  question_lt?: String
-  question_lte?: String
-  question_gt?: String
-  question_gte?: String
-  question_contains?: String
-  question_not_contains?: String
-  question_starts_with?: String
-  question_not_starts_with?: String
-  question_ends_with?: String
-  question_not_ends_with?: String
+export interface PostWhereInput {
+  AND?: PostWhereInput[] | PostWhereInput
+  OR?: PostWhereInput[] | PostWhereInput
+  NOT?: PostWhereInput[] | PostWhereInput
+  id?: ID_Input
+  id_not?: ID_Input
+  id_in?: ID_Input[] | ID_Input
+  id_not_in?: ID_Input[] | ID_Input
+  id_lt?: ID_Input
+  id_lte?: ID_Input
+  id_gt?: ID_Input
+  id_gte?: ID_Input
+  id_contains?: ID_Input
+  id_not_contains?: ID_Input
+  id_starts_with?: ID_Input
+  id_not_starts_with?: ID_Input
+  id_ends_with?: ID_Input
+  id_not_ends_with?: ID_Input
+  title?: String
+  title_not?: String
+  title_in?: String[] | String
+  title_not_in?: String[] | String
+  title_lt?: String
+  title_lte?: String
+  title_gt?: String
+  title_gte?: String
+  title_contains?: String
+  title_not_contains?: String
+  title_starts_with?: String
+  title_not_starts_with?: String
+  title_ends_with?: String
+  title_not_ends_with?: String
   body?: String
   body_not?: String
   body_in?: String[] | String
@@ -3420,58 +4352,47 @@ export interface ContactApplicationWhereInput {
   body_not_starts_with?: String
   body_ends_with?: String
   body_not_ends_with?: String
+  createdAt?: DateTime
+  createdAt_not?: DateTime
+  createdAt_in?: DateTime[] | DateTime
+  createdAt_not_in?: DateTime[] | DateTime
+  createdAt_lt?: DateTime
+  createdAt_lte?: DateTime
+  createdAt_gt?: DateTime
+  createdAt_gte?: DateTime
+  updatedAt?: DateTime
+  updatedAt_not?: DateTime
+  updatedAt_in?: DateTime[] | DateTime
+  updatedAt_not_in?: DateTime[] | DateTime
+  updatedAt_lt?: DateTime
+  updatedAt_lte?: DateTime
+  updatedAt_gt?: DateTime
+  updatedAt_gte?: DateTime
+  thumbnailBody?: String
+  thumbnailBody_not?: String
+  thumbnailBody_in?: String[] | String
+  thumbnailBody_not_in?: String[] | String
+  thumbnailBody_lt?: String
+  thumbnailBody_lte?: String
+  thumbnailBody_gt?: String
+  thumbnailBody_gte?: String
+  thumbnailBody_contains?: String
+  thumbnailBody_not_contains?: String
+  thumbnailBody_starts_with?: String
+  thumbnailBody_not_starts_with?: String
+  thumbnailBody_ends_with?: String
+  thumbnailBody_not_ends_with?: String
+  author?: UserWhereInput
+  thumbnailImage?: FileWhereInput
 }
 
-export interface PostCreateInput {
-  title: String
-  body: String
-  author: UserCreateOneWithoutPostsInput
+export interface UserUpsertWithoutPostsInput {
+  update: UserUpdateWithoutPostsDataInput
+  create: UserCreateWithoutPostsInput
 }
 
-export interface PostCreateWithoutAuthorInput {
-  title: String
-  body: String
-}
-
-export interface PostCreateManyWithoutAuthorInput {
-  create?: PostCreateWithoutAuthorInput[] | PostCreateWithoutAuthorInput
-  connect?: PostWhereUniqueInput[] | PostWhereUniqueInput
-}
-
-export interface UserWhereUniqueInput {
+export interface FileWhereUniqueInput {
   id?: ID_Input
-  username?: String
-}
-
-export interface UserSubscriptionWhereInput {
-  AND?: UserSubscriptionWhereInput[] | UserSubscriptionWhereInput
-  OR?: UserSubscriptionWhereInput[] | UserSubscriptionWhereInput
-  NOT?: UserSubscriptionWhereInput[] | UserSubscriptionWhereInput
-  mutation_in?: MutationType[] | MutationType
-  updatedFields_contains?: String
-  updatedFields_contains_every?: String[] | String
-  updatedFields_contains_some?: String[] | String
-  node?: UserWhereInput
-}
-
-export interface ContactApplicationSubscriptionWhereInput {
-  AND?: ContactApplicationSubscriptionWhereInput[] | ContactApplicationSubscriptionWhereInput
-  OR?: ContactApplicationSubscriptionWhereInput[] | ContactApplicationSubscriptionWhereInput
-  NOT?: ContactApplicationSubscriptionWhereInput[] | ContactApplicationSubscriptionWhereInput
-  mutation_in?: MutationType[] | MutationType
-  updatedFields_contains?: String
-  updatedFields_contains_every?: String[] | String
-  updatedFields_contains_some?: String[] | String
-  node?: ContactApplicationWhereInput
-}
-
-export interface JobApplicaionUpdateInput {
-  firstName?: String
-  middleName?: String
-  lastName?: String
-  resume?: String
-  linkedIn?: String
-  positions?: JobApplicaionUpdatepositionsInput
 }
 
 /*
@@ -3482,19 +4403,32 @@ export interface Node {
   id: ID_Output
 }
 
-export interface ContactApplicationPreviousValues {
-  question: String
-  body: String
-}
-
 /*
  * A connection to a list of items.
 
  */
-export interface AdditionalInfoConnection {
+export interface SettingsConnection {
   pageInfo: PageInfo
-  edges: AdditionalInfoEdge[]
-  aggregate: AggregateAdditionalInfo
+  edges: SettingsEdge[]
+  aggregate: AggregateSettings
+}
+
+export interface ContactApplicationPreviousValues {
+  name: String
+  phoneNumber?: String
+  email?: String
+  address?: String
+  question: String
+  body: String
+}
+
+export interface ContactApplication {
+  name: String
+  phoneNumber?: String
+  email?: String
+  address?: String
+  question: String
+  body: String
 }
 
 export interface User extends Node {
@@ -3506,30 +4440,31 @@ export interface User extends Node {
   posts?: Post[]
 }
 
-export interface ContactApplication {
-  question: String
-  body: String
+export interface Settings {
+  index: Int
+  email?: String
+  phone1?: String
+  phone2?: String
+  address?: String
+  facebook?: String
+  instagram?: String
+  linkedIn?: String
+  contactEmail?: String
+  clientsEmail?: String
+  jobsEmail?: String
+  additionalTitle: String
+  additionalBody: String
 }
 
-/*
- * An edge in a connection.
-
- */
-export interface ContactApplicationEdge {
-  node: ContactApplication
-  cursor: String
-}
-
-export interface AdditionalInfo {
-  title: String
-  body: String
-}
-
-export interface AggregateClientApplication {
+export interface AggregateContactApplication {
   count: Int
 }
 
 export interface ClientApplication {
+  name: String
+  phoneNumber?: String
+  email?: String
+  address?: String
   postsPerMonth: Int
   photography: Boolean
   gifs: Int
@@ -3539,8 +4474,297 @@ export interface ClientApplication {
   hasHost: Boolean
   hasDomain: Boolean
   dealYears: Int
-  package?: Package[]
+  package: Package
   totalPrice: Int
+}
+
+/*
+ * A connection to a list of items.
+
+ */
+export interface ContactApplicationConnection {
+  pageInfo: PageInfo
+  edges: ContactApplicationEdge[]
+  aggregate: AggregateContactApplication
+}
+
+/*
+ * An edge in a connection.
+
+ */
+export interface ClientApplicationEdge {
+  node: ClientApplication
+  cursor: String
+}
+
+export interface AggregateJobApplication {
+  count: Int
+}
+
+export interface SettingsSubscriptionPayload {
+  mutation: MutationType
+  node?: Settings
+  updatedFields?: String[]
+  previousValues?: SettingsPreviousValues
+}
+
+/*
+ * A connection to a list of items.
+
+ */
+export interface JobApplicationConnection {
+  pageInfo: PageInfo
+  edges: JobApplicationEdge[]
+  aggregate: AggregateJobApplication
+}
+
+export interface SettingsPreviousValues {
+  index: Int
+  email?: String
+  phone1?: String
+  phone2?: String
+  address?: String
+  facebook?: String
+  instagram?: String
+  linkedIn?: String
+  contactEmail?: String
+  clientsEmail?: String
+  jobsEmail?: String
+  additionalTitle: String
+  additionalBody: String
+}
+
+/*
+ * An edge in a connection.
+
+ */
+export interface FileEdge {
+  node: File
+  cursor: String
+}
+
+export interface AggregateFile {
+  count: Int
+}
+
+export interface File extends Node {
+  id: ID_Output
+  name: String
+}
+
+/*
+ * A connection to a list of items.
+
+ */
+export interface FileConnection {
+  pageInfo: PageInfo
+  edges: FileEdge[]
+  aggregate: AggregateFile
+}
+
+export interface AggregatePost {
+  count: Int
+}
+
+/*
+ * An edge in a connection.
+
+ */
+export interface PostEdge {
+  node: Post
+  cursor: String
+}
+
+export interface AggregateUser {
+  count: Int
+}
+
+export interface UserSubscriptionPayload {
+  mutation: MutationType
+  node?: User
+  updatedFields?: String[]
+  previousValues?: UserPreviousValues
+}
+
+/*
+ * A connection to a list of items.
+
+ */
+export interface UserConnection {
+  pageInfo: PageInfo
+  edges: UserEdge[]
+  aggregate: AggregateUser
+}
+
+export interface UserPreviousValues {
+  id: ID_Output
+  name: String
+  username: String
+  password: String
+  permissions?: Permission[]
+}
+
+/*
+ * An edge in a connection.
+
+ */
+export interface SettingsEdge {
+  node: Settings
+  cursor: String
+}
+
+export interface ClientApplicationPreviousValues {
+  name: String
+  phoneNumber?: String
+  email?: String
+  address?: String
+  postsPerMonth: Int
+  photography: Boolean
+  gifs: Int
+  videos: Int
+  videoMinutesCount: Int
+  website: Boolean
+  hasHost: Boolean
+  hasDomain: Boolean
+  dealYears: Int
+  package: Package
+  totalPrice: Int
+}
+
+export interface ContactApplicationSubscriptionPayload {
+  mutation: MutationType
+  node?: ContactApplication
+  updatedFields?: String[]
+  previousValues?: ContactApplicationPreviousValues
+}
+
+export interface PostSubscriptionPayload {
+  mutation: MutationType
+  node?: Post
+  updatedFields?: String[]
+  previousValues?: PostPreviousValues
+}
+
+export interface Post extends Node {
+  id: ID_Output
+  title: String
+  body: String
+  author: User
+  createdAt: DateTime
+  updatedAt: DateTime
+  thumbnailBody: String
+  thumbnailImage: File
+}
+
+export interface PostPreviousValues {
+  id: ID_Output
+  title: String
+  body: String
+  createdAt: DateTime
+  updatedAt: DateTime
+  thumbnailBody: String
+}
+
+export interface AggregateClientApplication {
+  count: Int
+}
+
+export interface JobApplication {
+  name: String
+  phoneNumber?: String
+  email?: String
+  address?: String
+  firstName: String
+  middleName: String
+  lastName: String
+  positions?: JobPosition[]
+  resume?: File
+  linkedIn?: String
+}
+
+/*
+ * An edge in a connection.
+
+ */
+export interface JobApplicationEdge {
+  node: JobApplication
+  cursor: String
+}
+
+export interface FileSubscriptionPayload {
+  mutation: MutationType
+  node?: File
+  updatedFields?: String[]
+  previousValues?: FilePreviousValues
+}
+
+/*
+ * An edge in a connection.
+
+ */
+export interface UserEdge {
+  node: User
+  cursor: String
+}
+
+export interface BatchPayload {
+  count: Long
+}
+
+export interface JobApplicationPreviousValues {
+  name: String
+  phoneNumber?: String
+  email?: String
+  address?: String
+  firstName: String
+  middleName: String
+  lastName: String
+  positions?: JobPosition[]
+  linkedIn?: String
+}
+
+export interface JobApplicationSubscriptionPayload {
+  mutation: MutationType
+  node?: JobApplication
+  updatedFields?: String[]
+  previousValues?: JobApplicationPreviousValues
+}
+
+export interface ClientApplicationSubscriptionPayload {
+  mutation: MutationType
+  node?: ClientApplication
+  updatedFields?: String[]
+  previousValues?: ClientApplicationPreviousValues
+}
+
+export interface FilePreviousValues {
+  id: ID_Output
+  name: String
+}
+
+/*
+ * Information about pagination in a connection.
+
+ */
+export interface PageInfo {
+  hasNextPage: Boolean
+  hasPreviousPage: Boolean
+  startCursor?: String
+  endCursor?: String
+}
+
+export interface AggregateSettings {
+  count: Int
+}
+
+/*
+ * A connection to a list of items.
+
+ */
+export interface PostConnection {
+  pageInfo: PageInfo
+  edges: PostEdge[]
+  aggregate: AggregatePost
 }
 
 /*
@@ -3557,289 +4781,16 @@ export interface ClientApplicationConnection {
  * An edge in a connection.
 
  */
-export interface ClientApplicationEdge {
-  node: ClientApplication
-  cursor: String
-}
-
-export interface Post extends Node {
-  id: ID_Output
-  title: String
-  body: String
-  author: User
-  createdAt: DateTime
-  updatedAt: DateTime
-}
-
-export interface AggregateJobApplicaion {
-  count: Int
-}
-
-/*
- * An edge in a connection.
-
- */
-export interface JobApplicaionEdge {
-  node: JobApplicaion
+export interface ContactApplicationEdge {
+  node: ContactApplication
   cursor: String
 }
 
 /*
- * A connection to a list of items.
-
- */
-export interface JobApplicaionConnection {
-  pageInfo: PageInfo
-  edges: JobApplicaionEdge[]
-  aggregate: AggregateJobApplicaion
-}
-
-/*
- * An edge in a connection.
-
- */
-export interface PostEdge {
-  node: Post
-  cursor: String
-}
-
-export interface AdditionalInfoSubscriptionPayload {
-  mutation: MutationType
-  node?: AdditionalInfo
-  updatedFields?: String[]
-  previousValues?: AdditionalInfoPreviousValues
-}
-
-export interface AggregateUser {
-  count: Int
-}
-
-export interface AdditionalInfoPreviousValues {
-  title: String
-  body: String
-}
-
-/*
- * A connection to a list of items.
-
- */
-export interface UserConnection {
-  pageInfo: PageInfo
-  edges: UserEdge[]
-  aggregate: AggregateUser
-}
-
-export interface Settings {
-  index: Int
-  email?: String
-  phone1?: String
-  phone2?: String
-  address?: String
-  facebook?: String
-  instagram?: String
-  linkedIn?: String
-  additionalInfo?: AdditionalInfo
-  contactEmail?: String
-  clientsEmail?: String
-  jobsEmail?: String
-}
-
-/*
- * An edge in a connection.
-
- */
-export interface SettingsEdge {
-  node: Settings
-  cursor: String
-}
-
-export interface SettingsSubscriptionPayload {
-  mutation: MutationType
-  node?: Settings
-  updatedFields?: String[]
-  previousValues?: SettingsPreviousValues
-}
-
-export interface AggregateAdditionalInfo {
-  count: Int
-}
-
-export interface SettingsPreviousValues {
-  index: Int
-  email?: String
-  phone1?: String
-  phone2?: String
-  address?: String
-  facebook?: String
-  instagram?: String
-  linkedIn?: String
-  contactEmail?: String
-  clientsEmail?: String
-  jobsEmail?: String
-}
-
-export interface ContactApplicationSubscriptionPayload {
-  mutation: MutationType
-  node?: ContactApplication
-  updatedFields?: String[]
-  previousValues?: ContactApplicationPreviousValues
-}
-
-export interface ClientApplicationPreviousValues {
-  postsPerMonth: Int
-  photography: Boolean
-  gifs: Int
-  videos: Int
-  videoMinutesCount: Int
-  website: Boolean
-  hasHost: Boolean
-  hasDomain: Boolean
-  dealYears: Int
-  package?: Package[]
-  totalPrice: Int
-}
-
-/*
- * Information about pagination in a connection.
-
- */
-export interface PageInfo {
-  hasNextPage: Boolean
-  hasPreviousPage: Boolean
-  startCursor?: String
-  endCursor?: String
-}
-
-export interface UserSubscriptionPayload {
-  mutation: MutationType
-  node?: User
-  updatedFields?: String[]
-  previousValues?: UserPreviousValues
-}
-
-/*
- * A connection to a list of items.
-
- */
-export interface ContactApplicationConnection {
-  pageInfo: PageInfo
-  edges: ContactApplicationEdge[]
-  aggregate: AggregateContactApplication
-}
-
-export interface UserPreviousValues {
-  id: ID_Output
-  name: String
-  username: String
-  password: String
-  permissions?: Permission[]
-}
-
-/*
- * A connection to a list of items.
-
- */
-export interface PostConnection {
-  pageInfo: PageInfo
-  edges: PostEdge[]
-  aggregate: AggregatePost
-}
-
-export interface JobApplicaion {
-  firstName: String
-  middleName: String
-  lastName: String
-  positions?: JobPosition[]
-  resume: String
-  linkedIn?: String
-}
-
-export interface AggregateSettings {
-  count: Int
-}
-
-export interface PostSubscriptionPayload {
-  mutation: MutationType
-  node?: Post
-  updatedFields?: String[]
-  previousValues?: PostPreviousValues
-}
-
-export interface BatchPayload {
-  count: Long
-}
-
-export interface AggregateContactApplication {
-  count: Int
-}
-
-export interface JobApplicaionPreviousValues {
-  firstName: String
-  middleName: String
-  lastName: String
-  positions?: JobPosition[]
-  resume: String
-  linkedIn?: String
-}
-
-export interface JobApplicaionSubscriptionPayload {
-  mutation: MutationType
-  node?: JobApplicaion
-  updatedFields?: String[]
-  previousValues?: JobApplicaionPreviousValues
-}
-
-export interface ClientApplicationSubscriptionPayload {
-  mutation: MutationType
-  node?: ClientApplication
-  updatedFields?: String[]
-  previousValues?: ClientApplicationPreviousValues
-}
-
-export interface PostPreviousValues {
-  id: ID_Output
-  title: String
-  body: String
-  createdAt: DateTime
-  updatedAt: DateTime
-}
-
-export interface AggregatePost {
-  count: Int
-}
-
-/*
- * An edge in a connection.
-
- */
-export interface AdditionalInfoEdge {
-  node: AdditionalInfo
-  cursor: String
-}
-
-/*
- * A connection to a list of items.
-
- */
-export interface SettingsConnection {
-  pageInfo: PageInfo
-  edges: SettingsEdge[]
-  aggregate: AggregateSettings
-}
-
-/*
- * An edge in a connection.
-
- */
-export interface UserEdge {
-  node: User
-  cursor: String
-}
-
-/*
-The `Int` scalar type represents non-fractional signed whole numeric values. Int can represent values between -(2^31) and 2^31 - 1. 
+The `ID` scalar type represents a unique identifier, often used to refetch an object or as key for a cache. The ID type appears in a JSON response as a String; however, it is not intended to be human-readable. When expected as an input type, any string (such as `"4"`) or integer (such as `4`) input value will be accepted as an ID.
 */
-export type Int = number
+export type ID_Input = string | number
+export type ID_Output = string
 
 /*
 The `String` scalar type represents textual data, represented as UTF-8 character sequences. The String type is most often used by GraphQL to represent free-form human-readable text.
@@ -3852,15 +4803,14 @@ Long can represent values between -(2^63) and 2^63 - 1.
 */
 export type Long = string
 
-export type DateTime = Date | string
+/*
+The `Int` scalar type represents non-fractional signed whole numeric values. Int can represent values between -(2^31) and 2^31 - 1. 
+*/
+export type Int = number
 
 /*
 The `Boolean` scalar type represents `true` or `false`.
 */
 export type Boolean = boolean
 
-/*
-The `ID` scalar type represents a unique identifier, often used to refetch an object or as key for a cache. The ID type appears in a JSON response as a String; however, it is not intended to be human-readable. When expected as an input type, any string (such as `"4"`) or integer (such as `4`) input value will be accepted as an ID.
-*/
-export type ID_Input = string | number
-export type ID_Output = string
+export type DateTime = Date | string

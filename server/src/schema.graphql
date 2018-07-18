@@ -1,32 +1,68 @@
 # import Post from "./generated/prisma.graphql"
 
 type Query {
-  feed: [Post!]!
-  drafts: [Post!]!
-  post(id: ID!): Post
-  me: User
+	feed: [Post!]!
+	post(id: ID!): Post
+	me: User
+}
+
+enum Package {
+	Light,
+	Pro,
+	Enterprise
+}
+
+enum JobPosition {
+	Media,
+	Graphics,
+	Photography,
+	PublicRelations
 }
 
 type Mutation {
-  signup(username: String!, password: String!, name: String!): AuthPayload!
-  login(username: String!, password: String!): AuthPayload!
-  createDraft(title: String!, text: String!): Post!
-  deletePost(id: ID!): Post!
-}
-
-type Subscription {
-  feedSubscription: PostSubscriptionPayload!
+	signup(username: String!, password: String!, name: String!): AuthPayload!
+	login(username: String!, password: String!): AuthPayload!
+	publish(title: String!, body: String!, thumbnailBody: String!, thumbnailImageId: String ): Post!
+	deletePost(id: ID!): Post!
+	applyClient(
+		name: String!
+		email: String!,
+		address: String,
+		phoneNumber: String,
+		postsPerMonth: Int!
+		photography: Boolean!
+		gifs: Int!
+		videos: Int!
+		videoMinutesCount: Int!
+		website: Boolean!
+		hasHost: Boolean!
+		hasDomain: Boolean!	
+		dealYears: Int!
+		# preserved even if prices change
+		dealPackage: Package!
+		totalPrice: Int!
+		): ClientApplication!
+	applyForWork(
+		email: String!,
+		address: String,
+		phoneNumber: String,
+		firstName: String,
+		middleName: String,
+		lastName: String,
+		positions: [JobPosition!]!,
+		resumeFileId: String,
+		linkedIn: String): JobApplication!
 }
 
 type AuthPayload {
-  token: String!
-  user: User!
+	token: String!
+	user: User!
 }
 
 type User {
-  id: ID!
-  username: String!
+	id: ID!
+	username: String!
 	permissions: [Permission!]!
-  name: String!
-  posts: [Post!]!
+	name: String!
+	posts: [Post!]!
 }

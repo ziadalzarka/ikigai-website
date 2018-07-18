@@ -3,6 +3,8 @@ import { Query } from './Query';
 import { auth } from './Mutation/auth';
 import { post } from './Mutation/post';
 import { AuthPayload } from './AuthPayload';
+import { jobApplication } from './Mutation/job-application';
+import { clientApplication } from './Mutation/client-application';
 
 export default {
 	Query,
@@ -11,5 +13,7 @@ export default {
 	Mutation: {
 		...auth,
 		...post,
+		...jobApplication,
+		...clientApplication
 	},
 };

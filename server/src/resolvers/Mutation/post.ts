@@ -1,13 +1,17 @@
 import { getUserId, Context } from '../../utils';
 
 export const post = {
-	async createDraft(parent, { title, body }, ctx: Context, info) {
+	async publish(parent, { title, body, thumbnailBody, thumbnailImageId }, ctx: Context, info) {
 		const userId = getUserId(ctx);
 		return ctx.db.mutation.createPost(
 			{
 				data: {
 					title,
 					body,
+					thumbnailBody,
+					thumbnailImage: {
+						connect: { id: thumbnailImageId }
+					},
 					author: {
 						connect: { id: userId },
 					},

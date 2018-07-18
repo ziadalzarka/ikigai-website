@@ -4,7 +4,7 @@
 		"start": "dotenv -- node dist/index.js",
 		"watch:all": "dotenv -- nodemon -e ts,graphql -x ts-node src/index.ts",
 		"watch:prisma": "dotenv -- nodemon -e ts,graphql -x ts-node src/prisma.ts",
-		"dev": "npm-run-all --parallel watch:prisma playground",
+		"dev": "npm-run-all watch:prisma",
 		"dev:all": "npm-run-all --parallel watch:all playground",
 		"debug": "dotenv -- nodemon -e ts,graphql -x ts-node --inspect src/index.ts",
 		"playground": "graphql playground",

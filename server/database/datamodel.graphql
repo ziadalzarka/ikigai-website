@@ -19,18 +19,6 @@ enum Permission {
 	ContactApplications
 }
 
-interface Contact {
-	name: String!
-	phoneNumber: String
-	email: String
-	address: String
-}
-
-type AdditionalInfo {
-	title: String!
-	body: String!
-}
-
 type Settings {
 	index: Int! @unique
 	email: String
@@ -40,10 +28,11 @@ type Settings {
 	facebook: String
 	instagram: String
 	linkedIn: String
-	additionalInfo: AdditionalInfo
 	contactEmail: String
 	clientsEmail: String
 	jobsEmail: String
+	additionalTitle: String!
+	additionalBody: String!
 }
 
 type User {
@@ -62,18 +51,35 @@ type Post {
   author: User!
   createdAt: DateTime!
   updatedAt: DateTime!
+	thumbnailBody: String!
+	thumbnailImage: File!
 }
 
-type JobApplicaion implements Contact {
+type File {
+	id: ID! @unique
+	name: String!
+}
+
+type JobApplication {
+	name: String!
+	phoneNumber: String
+	email: String
+	address: String
+	# ------------------
 	firstName:  String!
 	middleName: String!
 	lastName: String!
 	positions: [JobPosition!]!
-	resume: String!
+	resume: File
 	linkedIn: String
 }
 
-type ClientApplication implements Contact {
+type ClientApplication {
+	name: String!
+	phoneNumber: String
+	email: String
+	address: String
+	# ------------------
 	postsPerMonth: Int!
 	photography: Boolean!
 	gifs: Int!
@@ -84,11 +90,16 @@ type ClientApplication implements Contact {
 	hasDomain: Boolean!	
 	dealYears: Int!
 	# updated on add & edit
-	package: [Package!]!
+	package: Package!
 	totalPrice: Int!
 }
 
-type ContactApplication implements Contact {
+type ContactApplication {
+	name: String!
+	phoneNumber: String
+	email: String
+	address: String
+	# ------------------
 	question: String!
 	body: String!
 }
