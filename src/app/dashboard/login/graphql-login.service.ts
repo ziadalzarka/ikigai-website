@@ -3,6 +3,7 @@ import gql from 'graphql-tag';
 import { Apollo } from 'apollo-angular';
 import { map } from 'rxjs/operators';
 import { of } from 'rxjs';
+import { User } from '@app/redux/models/user.model';
 
 const userFragment = gql`
 	fragment user on User {
