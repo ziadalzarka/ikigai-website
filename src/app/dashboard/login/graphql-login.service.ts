@@ -1,4 +1,3 @@
-import { User } from './../../../../server/src/generated/prisma';
 import { Injectable } from '@angular/core';
 import gql from 'graphql-tag';
 import { Apollo } from 'apollo-angular';
