@@ -85,7 +85,8 @@ $facebook: #3B5998;
 $instagram: #fb3958;
 $linkedin: #0077B5;
 // dashboard
-$natural: #d8d8d8;
+$pale: #d8d8d8;
+$natural: #f1f4fb;
 $dashboard: #323443;
 // customs
 $headings-color: $ocean;
@@ -98,6 +99,7 @@ $theme-colors: (
 	"linkedin": $linkedin,
 	"instagram": $instagram,
 	"dashboard": $dashboard,
+	"pale": $pale,
 	"natural": $natural
 );
 // table

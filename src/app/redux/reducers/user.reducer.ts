@@ -24,6 +24,9 @@ export function userReducer(state = initialState, action: UserActions.All) {
 		case UserActions.LOGIN_USER_FAIL:
 			return { ...state, ...failed };
 
+		case UserActions.GET_USER_SUCCESS:
+			return { user: { ...action.payload }, ...idle };
+
 		default:
 			return state;
 	}

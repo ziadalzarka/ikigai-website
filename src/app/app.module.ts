@@ -10,15 +10,29 @@ import { EffectsModule } from '@ngrx/effects';
 import { UserEffects } from '@app/redux/effects/user.effects';
 import { APOLLO_OPTIONS, ApolloModule } from 'apollo-angular';
 import { InMemoryCache } from 'apollo-cache-inmemory';
+import { ApolloLink, concat } from 'apollo-link';
 import { HttpLinkModule, HttpLink } from 'apollo-angular-link-http';
 import { environment } from 'environments/environment';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HttpHeaders } from '@angular/common/http';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-import { CookieService } from 'ngx-cookie-service';
 
 export function createApollo(httpLink: HttpLink) {
+	const http = httpLink.create({ uri: environment.graphql.url });
+
+	const authMiddleware = new ApolloLink((operation, forward) => {
+		// add the authorization to the headers
+		const token = localStorage.getItem('token');
+		if (token) {
+			operation.setContext({
+				headers: new HttpHeaders().set('Authorization', token)
+			});
+		}
+
+		return forward(operation);
+	});
+
 	return {
-		link: httpLink.create({ uri: environment.graphql.url }),
+		link: concat(authMiddleware, http),
 		cache: new InMemoryCache(),
 	};
 }
@@ -47,7 +61,7 @@ export function createApollo(httpLink: HttpLink) {
 		provide: APOLLO_OPTIONS,
 		useFactory: createApollo,
 		deps: [HttpLink],
-	}, CookieService],
+	}],
 	bootstrap: [AppComponent]
 })
 export class AppModule { }

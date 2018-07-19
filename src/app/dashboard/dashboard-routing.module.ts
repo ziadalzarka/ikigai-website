@@ -1,11 +1,13 @@
-import { DashboardGuard } from './dashboard.guard';
+import { OverviewGuard } from '@app/dashboard/overview.guard';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { LoginGuard } from '@app/dashboard/login.guard';
 
 const routes: Routes = [
 	{
 		path: 'login',
 		loadChildren: 'app/dashboard/login/login.module#LoginModule',
+		canActivate: [LoginGuard],
 		data: {
 			state: 'dashboard-login'
 		}
@@ -13,7 +15,7 @@ const routes: Routes = [
 	{
 		path: '',
 		loadChildren: 'app/dashboard/overview/overview.module#OverviewModule',
-		canActivate: [DashboardGuard],
+		canActivate: [OverviewGuard],
 		data: {
 			state: 'dashboard-overview'
 		}

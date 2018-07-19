@@ -1,15 +1,15 @@
 import { TestBed, inject } from '@angular/core/testing';
 
-import { GraphqlLoginService } from './graphql-login.service';
+import { GraphqlUserService } from './graphql-user.service';
 
 describe('GraphqlLoginService', () => {
 	beforeEach(() => {
 		TestBed.configureTestingModule({
-			providers: [GraphqlLoginService]
+			providers: [GraphqlUserService]
 		});
 	});
 
-	it('should be created', inject([GraphqlLoginService], (service: GraphqlLoginService) => {
+	it('should be created', inject([GraphqlUserService], (service: GraphqlUserService) => {
 		expect(service).toBeTruthy();
 	}));
 });

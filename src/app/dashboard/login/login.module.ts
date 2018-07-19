@@ -1,4 +1,4 @@
-import { GraphqlLoginService } from '@app/dashboard/login/graphql-login.service';
+import { GraphqlUserService } from '@app/dashboard/login/graphql-user.service';
 import { StoreModule } from '@ngrx/store';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -20,7 +20,7 @@ import { userReducer } from '@app/redux/reducers/user.reducer';
 		// ]),
 		StoreModule.forFeature('user', userReducer)
 	],
-	providers: [GraphqlLoginService],
+	providers: [GraphqlUserService],
 	declarations: [LoginComponent]
 })
 export class LoginModule { }

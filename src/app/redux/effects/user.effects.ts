@@ -4,8 +4,8 @@ import { map, mergeMap, catchError, tap } from 'rxjs/operators';
 import { Observable, of } from 'rxjs';
 import { Effect, Actions } from '@ngrx/effects';
 import * as UserActions from '../actions/user.actions';
-import { GraphqlLoginService, LoginResponse } from '@app/dashboard/login/graphql-login.service';
-import { CookieService } from 'ngx-cookie-service';
+import { GraphqlUserService, LoginResponse } from '@app/dashboard/login/graphql-user.service';
+import { User } from '@app/redux/models/user.model';
 
 export type Action = UserActions.All;
 
@@ -13,8 +13,7 @@ export type Action = UserActions.All;
 export class UserEffects {
 	constructor(
 		private actions: Actions,
-		private login: GraphqlLoginService,
-		private cookieService: CookieService,
+		private userService: GraphqlUserService,
 		private router: Router
 	) { }
 
@@ -25,7 +24,7 @@ export class UserEffects {
 			map((action: UserActions.LoginUser) => action.payload),
 			mergeMap(payload =>
 				/* move catchError in here because it can't be in the effect stream */
-				this.login.login(payload.username, payload.password).pipe(
+				this.userService.login(payload.username, payload.password).pipe(
 					map((res: LoginResponse) => new UserActions.LoginUserSuccess(res)),
 					catchError(() => of(new UserActions.LoginUserFail()))
 				)
@@ -38,8 +37,16 @@ export class UserEffects {
 		.pipe(
 			map((action: UserActions.LoginUserSuccess) => action.payload),
 			map((res: LoginResponse) => {
-				this.cookieService.set('token', res.token, 60 * 60 * 24 * 30);
+				localStorage.setItem('token', res.token);
 				this.router.navigate(['dashboard', 'content', 'posts']);
 			})
+		);
+
+	@Effect()
+	getUser: Observable<Action> = this.actions
+		.ofType<Action>(UserActions.GET_USER)
+		.pipe(
+			mergeMap(() => this.userService.me()),
+			map(user => new UserActions.GetUserSuccess(user))
 		);
 }

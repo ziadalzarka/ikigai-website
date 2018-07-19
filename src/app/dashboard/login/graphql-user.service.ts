@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
 import gql from 'graphql-tag';
 import { Apollo } from 'apollo-angular';
-import { map } from 'rxjs/operators';
-import { of } from 'rxjs';
+import { map, tap } from 'rxjs/operators';
 import { User } from '@app/redux/models/user.model';
 
 const userFragment = gql`
@@ -25,6 +24,15 @@ const loginMutation = gql`
 	${userFragment}
 `;
 
+const meQuery = gql`
+	{
+		me {
+			...user
+		}
+	}
+	${userFragment}
+`;
+
 export interface LoginResponse {
 	token: string;
 	user: User;
@@ -33,9 +41,18 @@ export interface LoginResponse {
 @Injectable({
 	providedIn: 'root'
 })
-export class GraphqlLoginService {
+export class GraphqlUserService {
 
 	constructor(private apollo: Apollo) { }
+
+	me() {
+		return this.apollo
+			.watchQuery({ query: meQuery })
+			.valueChanges.pipe(
+				map((res: any) => (res.data.me as User)),
+				tap(console.log)
+			);
+	}
 
 	login(username, password) {
 		return this.apollo.mutate({

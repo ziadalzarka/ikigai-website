@@ -4,13 +4,13 @@
 		.row.align-items-baseline(style='padding-right: 1.75rem;')
 			.col-10
 				.px-4.pt-4.pb-2
-					h3.truncate-text.text-light Ziad Alzarka
-					p.text-natural Admin
+					h3.truncate-text.text-light {{ (user | async).name }}
+					p.text-pale {{ (user | async).permissions }}
 			.col-2.cursor-pointer.text-center( (click)='hideSidebar()' )
 				i.fa.fa-angle-left.f-5.text-light
 		.row
 			.col
-				button.btn.bg-dashboard.text-natural.w-100(type='button' data-toggle='collapse' data-target='#contentCollapse' aria-expanded='true' aria-controls='contentCollapse')
+				button.btn.bg-dashboard.text-pale.w-100(type='button' data-toggle='collapse' data-target='#contentCollapse' aria-expanded='true' aria-controls='contentCollapse')
 					.row
 						.col-2.text-right
 							.fa.fa-calendar.f-3
@@ -19,11 +19,11 @@
 						.col-2
 							.fa.fa-angle-down.f-3
 				#contentCollapse.collapse.show
-					button.w-100.btn.btn.text-natural.shadow-none.bg-info(routerLink='content/posts') Posts
-					button.w-100.btn.btn.text-natural.shadow-none.bg-dashboard(routerLink='content/edit') New Post
+					button.w-100.btn.btn.text-pale.shadow-none.bg-info(routerLink='content/posts') Posts
+					button.w-100.btn.btn.text-pale.shadow-none.bg-dashboard(routerLink='content/edit') New Post
 		.row
 			.col
-				button.btn.bg-dashboard.text-natural.w-100(type='button' data-toggle='collapse' data-target='#applicationsCollapse' aria-expanded='true' aria-controls='applicationsCollapse')
+				button.btn.bg-dashboard.text-pale.w-100(type='button' data-toggle='collapse' data-target='#applicationsCollapse' aria-expanded='true' aria-controls='applicationsCollapse')
 					.row
 						.col-2.text-right
 							.fa.fa-user.f-3
@@ -32,11 +32,11 @@
 						.col-2
 							.fa.fa-angle-down.f-3
 				#applicationsCollapse.collapse.show
-					button.w-100.btn.btn.text-natural.shadow-none.bg-dashboard(routerLink='applications/clients') Clients
-					button.w-100.btn.btn.text-natural.shadow-none.bg-dashboard(routerLink='applications/jobs') Jobs
+					button.w-100.btn.btn.text-pale.shadow-none.bg-dashboard(routerLink='applications/clients') Clients
+					button.w-100.btn.btn.text-pale.shadow-none.bg-dashboard(routerLink='applications/jobs') Jobs
 		.row
 			.col
-				button.btn.bg-dashboard.text-natural.w-100(type='button' data-toggle='collapse' data-target='#settingsCollapse' aria-expanded='true' aria-controls='settingsCollapse')
+				button.btn.bg-dashboard.text-pale.w-100(type='button' data-toggle='collapse' data-target='#settingsCollapse' aria-expanded='true' aria-controls='settingsCollapse')
 					.row
 						.col-2.text-right
 							.fa.fa-cog.f-3
@@ -45,13 +45,13 @@
 						.col-2
 							.fa.fa-angle-down.f-3
 				#settingsCollapse.collapse.show
-					button.w-100.btn.btn.text-natural.shadow-none.bg-dashboard(routerLink='settings/users') Users
-					button.w-100.btn.btn.text-natural.shadow-none.bg-dashboard(routerLink='settings/emails') Emails
-					button.w-100.btn.btn.text-natural.shadow-none.bg-dashboard(routerLink='settings/footer') Footer
+					button.w-100.btn.btn.text-pale.shadow-none.bg-dashboard(routerLink='settings/users') Users
+					button.w-100.btn.btn.text-pale.shadow-none.bg-dashboard(routerLink='settings/emails') Emails
+					button.w-100.btn.btn.text-pale.shadow-none.bg-dashboard(routerLink='settings/footer') Footer
 	#overlay
-	#miniSidebar.bg-dark
+	#miniSidebar.bg-dashboard
 		i.d-inline-block.fa.fa-bars.f-5.text-light.m-4.cursor-pointer( (click)='showSidebar()' )
-		h3.d-inline-block.truncate-text.text-light Ziad Alzarka
+		h3.d-inline-block.truncate-text.text-light {{ (user | async).name }}
 	#content.w-100
 		div([@routerTransition]='o.activatedRouteData.state')
 			router-outlet(#o='outlet')
