@@ -2,6 +2,14 @@ import { LoginResponse } from './../../dashboard/login/graphql-user.service';
 import { Action } from '@ngrx/store';
 import { User } from '@app/redux/models/user.model';
 
+export const LOGOUT_USER = '[LOGOUT] User';
+
+export class LogoutUser implements Action {
+	readonly type = LOGOUT_USER;
+
+	constructor() { }
+}
+
 export const GET_USER = '[GET] User';
 export const GET_USER_SUCCESS = '[GET] User !SUCCESS';
 export const GET_USER_FAIL = '[GET] User !FAIL';
@@ -48,4 +56,5 @@ export class LoginUserFail implements Action {
 
 export type All =
 	LoginUser | LoginUserSuccess | LoginUserFail |
-	GetUser | GetUserSuccess | GetUserFail;
+	GetUser | GetUserSuccess | GetUserFail |
+	LogoutUser;

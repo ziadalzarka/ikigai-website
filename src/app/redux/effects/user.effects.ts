@@ -55,4 +55,14 @@ export class UserEffects {
 				)
 			)
 		);
+
+	@Effect({ dispatch: false })
+	logoutUser: Observable<Action> = this.actions
+		.ofType<Action>(UserActions.LOGOUT_USER)
+		.pipe(
+			tap(() => {
+				localStorage.removeItem('token');
+				window.location.href = '/dashboard/login';
+			})
+		);
 }

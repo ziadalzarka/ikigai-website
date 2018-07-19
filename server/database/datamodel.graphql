@@ -42,6 +42,7 @@ type User {
   password: String!
 	permissions: [Permission!]!
 	posts: [Post!]!
+	lastLogin: DateTime
 }
 
 type Post {

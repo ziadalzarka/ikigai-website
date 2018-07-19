@@ -12,6 +12,11 @@ export const authMutation = {
 		if (!valid) {
 			throw new Error('Invalid password');
 		}
+		ctx.db.mutation.updateUser({
+			where: { id: user.id }, data: {
+				lastLogin: new Date()
+			}
+		});
 		return {
 			user,
 			token: jwt.sign({ userId: user.id }, process.env.APP_SECRET),

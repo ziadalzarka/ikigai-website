@@ -6,8 +6,6 @@ import { CommonModule } from '@angular/common';
 import { LoginRoutingModule } from './login-routing.module';
 import { LoginComponent } from './login/login.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { EffectsModule } from '@ngrx/effects';
-import { UserEffects } from '@app/redux/effects/user.effects';
 import { userReducer } from '@app/redux/reducers/user.reducer';
 
 @NgModule({
@@ -15,9 +13,6 @@ import { userReducer } from '@app/redux/reducers/user.reducer';
 		CommonModule,
 		LoginRoutingModule,
 		ReactiveFormsModule,
-		// EffectsModule.forFeature([
-		// 	UserEffects
-		// ]),
 		StoreModule.forFeature('user', userReducer)
 	],
 	providers: [GraphqlUserService],

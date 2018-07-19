@@ -15,6 +15,10 @@
 							th Last Login
 							th Action
 					tbody.f-1.text-calm
+						tr(*ngFor="let user of users | async")
+							td.align-middle {{user.name}}
+							td.align-middle {{user.permissions | permissions}}
+							td.align-middle {{user.lastLogin | date:'mediumDate'}}
 						tr
 							td.align-middle Ziad Alzarka
 							td.align-middle Admin

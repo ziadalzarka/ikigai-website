@@ -5,7 +5,7 @@
 			.col-10
 				.px-4.pt-4.pb-2
 					h3.truncate-text.text-light {{ (user | async).name }}
-					p.text-pale {{ (user | async).permissions }}
+					p.text-pale {{ (user | async).username }}
 			.col-2.cursor-pointer.text-center( (click)='hideSidebar()' )
 				i.fa.fa-angle-left.f-5.text-light
 		.row([hidden]="!permissions['Posts']")
@@ -49,6 +49,14 @@
 					button(navitem, routerLink='settings/users') Users
 					button(navitem, routerLink='settings/emails', [ngClass]="selectedTab == 'settings/emails' ? 'bg-info' : 'bg-dashboard'") Emails
 					button(navitem, routerLink='settings/footer', [ngClass]="selectedTab == 'settings/footer' ? 'bg-info' : 'bg-dashboard'") Footer
+		.row
+			.col
+				button.btn.btn-danger.text-light.w-100(type='button', (click)="logout()")
+					.row
+						.col-2.text-right
+							.fa.fa-sign-out.f-3
+						.col-8
+							| Log Out
 	#overlay
 	#miniSidebar.bg-dashboard
 		i.d-inline-block.fa.fa-bars.f-5.text-light.m-4.cursor-pointer( (click)='showSidebar()' )

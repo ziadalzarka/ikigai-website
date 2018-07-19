@@ -3019,6 +3019,7 @@ type User implements Node {
   password: String!
   permissions: [Permission!]
   posts(where: PostWhereInput, orderBy: PostOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Post!]
+  lastLogin: DateTime
 }
 
 """A connection to a list of items."""
@@ -3035,6 +3036,7 @@ input UserCreateInput {
   name: String!
   username: String!
   password: String!
+  lastLogin: DateTime
   permissions: UserCreatepermissionsInput
   posts: PostCreateManyWithoutAuthorInput
 }
@@ -3052,6 +3054,7 @@ input UserCreateWithoutPostsInput {
   name: String!
   username: String!
   password: String!
+  lastLogin: DateTime
   permissions: UserCreatepermissionsInput
 }
 
@@ -3073,6 +3076,8 @@ enum UserOrderByInput {
   username_DESC
   password_ASC
   password_DESC
+  lastLogin_ASC
+  lastLogin_DESC
   updatedAt_ASC
   updatedAt_DESC
   createdAt_ASC
@@ -3085,6 +3090,7 @@ type UserPreviousValues {
   username: String!
   password: String!
   permissions: [Permission!]
+  lastLogin: DateTime
 }
 
 type UserSubscriptionPayload {
@@ -3130,6 +3136,7 @@ input UserUpdateInput {
   name: String
   username: String
   password: String
+  lastLogin: DateTime
   permissions: UserUpdatepermissionsInput
   posts: PostUpdateManyWithoutAuthorInput
 }
@@ -3150,6 +3157,7 @@ input UserUpdateWithoutPostsDataInput {
   name: String
   username: String
   password: String
+  lastLogin: DateTime
   permissions: UserUpdatepermissionsInput
 }
 
@@ -3327,6 +3335,28 @@ input UserWhereInput {
 
   """All values not ending with the given string."""
   password_not_ends_with: String
+  lastLogin: DateTime
+
+  """All values that are not equal to given value."""
+  lastLogin_not: DateTime
+
+  """All values that are contained in given list."""
+  lastLogin_in: [DateTime!]
+
+  """All values that are not contained in given list."""
+  lastLogin_not_in: [DateTime!]
+
+  """All values less than the given value."""
+  lastLogin_lt: DateTime
+
+  """All values less than or equal the given value."""
+  lastLogin_lte: DateTime
+
+  """All values greater than the given value."""
+  lastLogin_gt: DateTime
+
+  """All values greater than or equal the given value."""
+  lastLogin_gte: DateTime
   posts_every: PostWhereInput
   posts_some: PostWhereInput
   posts_none: PostWhereInput
@@ -3398,6 +3428,8 @@ export type UserOrderByInput =   'id_ASC' |
   'username_DESC' |
   'password_ASC' |
   'password_DESC' |
+  'lastLogin_ASC' |
+  'lastLogin_DESC' |
   'updatedAt_ASC' |
   'updatedAt_DESC' |
   'createdAt_ASC' |
@@ -3526,6 +3558,7 @@ export interface UserUpdateWithoutPostsDataInput {
   name?: String
   username?: String
   password?: String
+  lastLogin?: DateTime
   permissions?: UserUpdatepermissionsInput
 }
 
@@ -4129,6 +4162,7 @@ export interface UserUpdateInput {
   name?: String
   username?: String
   password?: String
+  lastLogin?: DateTime
   permissions?: UserUpdatepermissionsInput
   posts?: PostUpdateManyWithoutAuthorInput
 }
@@ -4195,15 +4229,84 @@ export interface ClientApplicationCreateInput {
   totalPrice: Int
 }
 
-export interface FileSubscriptionWhereInput {
-  AND?: FileSubscriptionWhereInput[] | FileSubscriptionWhereInput
-  OR?: FileSubscriptionWhereInput[] | FileSubscriptionWhereInput
-  NOT?: FileSubscriptionWhereInput[] | FileSubscriptionWhereInput
-  mutation_in?: MutationType[] | MutationType
-  updatedFields_contains?: String
-  updatedFields_contains_every?: String[] | String
-  updatedFields_contains_some?: String[] | String
-  node?: FileWhereInput
+export interface PostWhereInput {
+  AND?: PostWhereInput[] | PostWhereInput
+  OR?: PostWhereInput[] | PostWhereInput
+  NOT?: PostWhereInput[] | PostWhereInput
+  id?: ID_Input
+  id_not?: ID_Input
+  id_in?: ID_Input[] | ID_Input
+  id_not_in?: ID_Input[] | ID_Input
+  id_lt?: ID_Input
+  id_lte?: ID_Input
+  id_gt?: ID_Input
+  id_gte?: ID_Input
+  id_contains?: ID_Input
+  id_not_contains?: ID_Input
+  id_starts_with?: ID_Input
+  id_not_starts_with?: ID_Input
+  id_ends_with?: ID_Input
+  id_not_ends_with?: ID_Input
+  title?: String
+  title_not?: String
+  title_in?: String[] | String
+  title_not_in?: String[] | String
+  title_lt?: String
+  title_lte?: String
+  title_gt?: String
+  title_gte?: String
+  title_contains?: String
+  title_not_contains?: String
+  title_starts_with?: String
+  title_not_starts_with?: String
+  title_ends_with?: String
+  title_not_ends_with?: String
+  body?: String
+  body_not?: String
+  body_in?: String[] | String
+  body_not_in?: String[] | String
+  body_lt?: String
+  body_lte?: String
+  body_gt?: String
+  body_gte?: String
+  body_contains?: String
+  body_not_contains?: String
+  body_starts_with?: String
+  body_not_starts_with?: String
+  body_ends_with?: String
+  body_not_ends_with?: String
+  createdAt?: DateTime
+  createdAt_not?: DateTime
+  createdAt_in?: DateTime[] | DateTime
+  createdAt_not_in?: DateTime[] | DateTime
+  createdAt_lt?: DateTime
+  createdAt_lte?: DateTime
+  createdAt_gt?: DateTime
+  createdAt_gte?: DateTime
+  updatedAt?: DateTime
+  updatedAt_not?: DateTime
+  updatedAt_in?: DateTime[] | DateTime
+  updatedAt_not_in?: DateTime[] | DateTime
+  updatedAt_lt?: DateTime
+  updatedAt_lte?: DateTime
+  updatedAt_gt?: DateTime
+  updatedAt_gte?: DateTime
+  thumbnailBody?: String
+  thumbnailBody_not?: String
+  thumbnailBody_in?: String[] | String
+  thumbnailBody_not_in?: String[] | String
+  thumbnailBody_lt?: String
+  thumbnailBody_lte?: String
+  thumbnailBody_gt?: String
+  thumbnailBody_gte?: String
+  thumbnailBody_contains?: String
+  thumbnailBody_not_contains?: String
+  thumbnailBody_starts_with?: String
+  thumbnailBody_not_starts_with?: String
+  thumbnailBody_ends_with?: String
+  thumbnailBody_not_ends_with?: String
+  author?: UserWhereInput
+  thumbnailImage?: FileWhereInput
 }
 
 export interface JobApplicationCreatepositionsInput {
@@ -4340,6 +4443,7 @@ export interface UserCreateWithoutPostsInput {
   name: String
   username: String
   password: String
+  lastLogin?: DateTime
   permissions?: UserCreatepermissionsInput
 }
 
@@ -4382,88 +4486,20 @@ export interface UserCreateInput {
   name: String
   username: String
   password: String
+  lastLogin?: DateTime
   permissions?: UserCreatepermissionsInput
   posts?: PostCreateManyWithoutAuthorInput
 }
 
-export interface PostWhereInput {
-  AND?: PostWhereInput[] | PostWhereInput
-  OR?: PostWhereInput[] | PostWhereInput
-  NOT?: PostWhereInput[] | PostWhereInput
-  id?: ID_Input
-  id_not?: ID_Input
-  id_in?: ID_Input[] | ID_Input
-  id_not_in?: ID_Input[] | ID_Input
-  id_lt?: ID_Input
-  id_lte?: ID_Input
-  id_gt?: ID_Input
-  id_gte?: ID_Input
-  id_contains?: ID_Input
-  id_not_contains?: ID_Input
-  id_starts_with?: ID_Input
-  id_not_starts_with?: ID_Input
-  id_ends_with?: ID_Input
-  id_not_ends_with?: ID_Input
-  title?: String
-  title_not?: String
-  title_in?: String[] | String
-  title_not_in?: String[] | String
-  title_lt?: String
-  title_lte?: String
-  title_gt?: String
-  title_gte?: String
-  title_contains?: String
-  title_not_contains?: String
-  title_starts_with?: String
-  title_not_starts_with?: String
-  title_ends_with?: String
-  title_not_ends_with?: String
-  body?: String
-  body_not?: String
-  body_in?: String[] | String
-  body_not_in?: String[] | String
-  body_lt?: String
-  body_lte?: String
-  body_gt?: String
-  body_gte?: String
-  body_contains?: String
-  body_not_contains?: String
-  body_starts_with?: String
-  body_not_starts_with?: String
-  body_ends_with?: String
-  body_not_ends_with?: String
-  createdAt?: DateTime
-  createdAt_not?: DateTime
-  createdAt_in?: DateTime[] | DateTime
-  createdAt_not_in?: DateTime[] | DateTime
-  createdAt_lt?: DateTime
-  createdAt_lte?: DateTime
-  createdAt_gt?: DateTime
-  createdAt_gte?: DateTime
-  updatedAt?: DateTime
-  updatedAt_not?: DateTime
-  updatedAt_in?: DateTime[] | DateTime
-  updatedAt_not_in?: DateTime[] | DateTime
-  updatedAt_lt?: DateTime
-  updatedAt_lte?: DateTime
-  updatedAt_gt?: DateTime
-  updatedAt_gte?: DateTime
-  thumbnailBody?: String
-  thumbnailBody_not?: String
-  thumbnailBody_in?: String[] | String
-  thumbnailBody_not_in?: String[] | String
-  thumbnailBody_lt?: String
-  thumbnailBody_lte?: String
-  thumbnailBody_gt?: String
-  thumbnailBody_gte?: String
-  thumbnailBody_contains?: String
-  thumbnailBody_not_contains?: String
-  thumbnailBody_starts_with?: String
-  thumbnailBody_not_starts_with?: String
-  thumbnailBody_ends_with?: String
-  thumbnailBody_not_ends_with?: String
-  author?: UserWhereInput
-  thumbnailImage?: FileWhereInput
+export interface FileSubscriptionWhereInput {
+  AND?: FileSubscriptionWhereInput[] | FileSubscriptionWhereInput
+  OR?: FileSubscriptionWhereInput[] | FileSubscriptionWhereInput
+  NOT?: FileSubscriptionWhereInput[] | FileSubscriptionWhereInput
+  mutation_in?: MutationType[] | MutationType
+  updatedFields_contains?: String
+  updatedFields_contains_every?: String[] | String
+  updatedFields_contains_some?: String[] | String
+  node?: FileWhereInput
 }
 
 export interface UserCreatepermissionsInput {
@@ -4559,6 +4595,14 @@ export interface UserWhereInput {
   password_not_starts_with?: String
   password_ends_with?: String
   password_not_ends_with?: String
+  lastLogin?: DateTime
+  lastLogin_not?: DateTime
+  lastLogin_in?: DateTime[] | DateTime
+  lastLogin_not_in?: DateTime[] | DateTime
+  lastLogin_lt?: DateTime
+  lastLogin_lte?: DateTime
+  lastLogin_gt?: DateTime
+  lastLogin_gte?: DateTime
   posts_every?: PostWhereInput
   posts_some?: PostWhereInput
   posts_none?: PostWhereInput
@@ -4833,6 +4877,7 @@ export interface UserPreviousValues {
   username: String
   password: String
   permissions?: Permission[]
+  lastLogin?: DateTime
 }
 
 /*
@@ -4852,6 +4897,7 @@ export interface User extends Node {
   password: String
   permissions?: Permission[]
   posts?: Post[]
+  lastLogin?: DateTime
 }
 
 /*

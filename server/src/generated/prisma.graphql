@@ -1,5 +1,5 @@
-# source: http://185.33.146.23:4466/ikigai/dev
-# timestamp: Thu Jul 19 2018 13:49:40 GMT+0200 (EET)
+# source: http://194.182.77.249:4466/ikigai/dev
+# timestamp: Fri Jul 20 2018 00:07:52 GMT+0200 (EET)
 
 type AggregateClientApplication {
   count: Int!
@@ -2905,6 +2905,7 @@ type User implements Node {
   password: String!
   permissions: [Permission!]
   posts(where: PostWhereInput, orderBy: PostOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Post!]
+  lastLogin: DateTime
 }
 
 """A connection to a list of items."""
@@ -2921,6 +2922,7 @@ input UserCreateInput {
   name: String!
   username: String!
   password: String!
+  lastLogin: DateTime
   permissions: UserCreatepermissionsInput
   posts: PostCreateManyWithoutAuthorInput
 }
@@ -2938,6 +2940,7 @@ input UserCreateWithoutPostsInput {
   name: String!
   username: String!
   password: String!
+  lastLogin: DateTime
   permissions: UserCreatepermissionsInput
 }
 
@@ -2959,6 +2962,8 @@ enum UserOrderByInput {
   username_DESC
   password_ASC
   password_DESC
+  lastLogin_ASC
+  lastLogin_DESC
   updatedAt_ASC
   updatedAt_DESC
   createdAt_ASC
@@ -2971,6 +2976,7 @@ type UserPreviousValues {
   username: String!
   password: String!
   permissions: [Permission!]
+  lastLogin: DateTime
 }
 
 type UserSubscriptionPayload {
@@ -3016,6 +3022,7 @@ input UserUpdateInput {
   name: String
   username: String
   password: String
+  lastLogin: DateTime
   permissions: UserUpdatepermissionsInput
   posts: PostUpdateManyWithoutAuthorInput
 }
@@ -3036,6 +3043,7 @@ input UserUpdateWithoutPostsDataInput {
   name: String
   username: String
   password: String
+  lastLogin: DateTime
   permissions: UserUpdatepermissionsInput
 }
 
@@ -3213,6 +3221,28 @@ input UserWhereInput {
 
   """All values not ending with the given string."""
   password_not_ends_with: String
+  lastLogin: DateTime
+
+  """All values that are not equal to given value."""
+  lastLogin_not: DateTime
+
+  """All values that are contained in given list."""
+  lastLogin_in: [DateTime!]
+
+  """All values that are not contained in given list."""
+  lastLogin_not_in: [DateTime!]
+
+  """All values less than the given value."""
+  lastLogin_lt: DateTime
+
+  """All values less than or equal the given value."""
+  lastLogin_lte: DateTime
+
+  """All values greater than the given value."""
+  lastLogin_gt: DateTime
+
+  """All values greater than or equal the given value."""
+  lastLogin_gte: DateTime
   posts_every: PostWhereInput
   posts_some: PostWhereInput
   posts_none: PostWhereInput

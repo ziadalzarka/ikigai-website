@@ -34,7 +34,7 @@ export async function verifyPermission(ctx: Context, permit) {
 	const id = getUserId(ctx);
 
 	await ctx.db.query.user({ where: { id } }, '{ permissions }').then(user => {
-		if (!hasPermission(user.permissions, permit)) {
+		if (!user || !hasPermission(user.permissions, permit)) {
 			throw new PermissionError();
 		}
 	}).catch(err => { throw err; });

@@ -12,8 +12,8 @@ interface State {
 
 const initialState = {
 	user: {}, /* empty object so it doesn't cause errors while loading */
-	loading: null, /* null to differentiate between initial state and reduced states */
-	failed: null,
+	loading: false,
+	failed: false,
 	action: null
 };
 
@@ -21,7 +21,7 @@ export function userReducer(state = initialState, action: UserActions.All) {
 
 	const resolve = (state) => {
 		return { ...state, action };
-	}
+	};
 
 	switch (action.type) {
 

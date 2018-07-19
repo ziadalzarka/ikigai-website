@@ -8,6 +8,7 @@ import { Observable, of } from 'rxjs';
 import * as fromUser from '@app/redux/reducers/user.reducer';
 import { first } from 'rxjs/operators';
 import { Permissions } from 'utils/utils';
+import { LogoutUser } from '@app/redux/actions/user.actions';
 
 @Component({
 	selector: 'app-overview',
@@ -53,6 +54,10 @@ export class OverviewComponent implements OnInit {
 				}
 			});
 		});
+	}
+
+	logout() {
+		this.store.dispatch(new LogoutUser());
 	}
 
 	hideSidebar() {

@@ -8,11 +8,11 @@ export function constructQuery(from, middle, to, dir = 'X') {
 		query(':enter', [
 			style({ transform: `translate${dir}(${from}%)`, opacity: 0 }),
 			animate('0.5s ease-in-out', style({ transform: `translate${dir}(${middle}%)`, opacity: 1 }))
-		]),
+		], { optional: true }),
 		query(':leave', [
 			style({ transform: `translate${dir}(${middle}%)`, opacity: 1 }),
 			animate('0.5s ease-in-out', style({ transform: `translate${dir}(${to}%)`, opacity: 0 }))
-		])
+		], { optional: true })
 	]);
 }
 

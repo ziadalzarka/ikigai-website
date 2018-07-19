@@ -39,11 +39,7 @@ const routes: Routes = [
 			state: 'dashboard'
 		}
 	},
-	{
-		path: '**',
-		component: NotfoundComponent
-	},
-	// { path: '**', redirectTo: '404', pathMatch: 'full' },
+	{ path: 'login', redirectTo: 'dashboard', pathMatch: 'full' },
 ];
 
 @NgModule({
