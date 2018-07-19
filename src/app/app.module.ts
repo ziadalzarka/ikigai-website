@@ -39,7 +39,7 @@ export function createApollo(httpLink: HttpLink) {
 
 @NgModule({
 	declarations: [
-		AppComponent
+		AppComponent,
 	],
 	imports: [
 		BrowserModule,

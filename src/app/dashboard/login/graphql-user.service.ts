@@ -50,7 +50,6 @@ export class GraphqlUserService {
 			.watchQuery({ query: meQuery })
 			.valueChanges.pipe(
 				map((res: any) => (res.data.me as User)),
-				tap(console.log)
 			);
 	}
 

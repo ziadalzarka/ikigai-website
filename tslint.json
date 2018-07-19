@@ -12,7 +12,8 @@
     "triple-equals": false,
     "align": false,
     "ter-arrow-parens": false,
-		"import-name": false,
-		"variable-name": false
+    "import-name": false,
+    "variable-name": false,
+    "no-else-after-return": false
   }
 }

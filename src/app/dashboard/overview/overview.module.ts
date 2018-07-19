@@ -1,3 +1,4 @@
+import { NavitemDirective } from './navitem.directive';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
@@ -9,6 +10,6 @@ import { OverviewComponent } from './overview/overview.component';
 		CommonModule,
 		OverviewRoutingModule
 	],
-	declarations: [OverviewComponent]
+	declarations: [OverviewComponent, NavitemDirective]
 })
 export class OverviewModule { }

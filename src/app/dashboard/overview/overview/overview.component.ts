@@ -4,7 +4,10 @@ import { Store } from '@ngrx/store';
 import { routerTransition } from '@app/router.animations';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
+import * as fromUser from '@app/redux/reducers/user.reducer';
+import { first } from 'rxjs/operators';
+import { Permissions } from 'utils/utils';
 
 @Component({
 	selector: 'app-overview',
@@ -16,11 +19,40 @@ export class OverviewComponent implements OnInit {
 
 	user: Observable<User>;
 	sidebarHidden = false;
+	permissions = {
+		[Permissions.Admin]: false,
+		[Permissions.Posts]: false,
+		[Permissions.JobApplications]: false,
+		[Permissions.ClientApplications]: false,
+		[Permissions.ContactApplications]: false,
+	};
 
 	constructor(private router: Router, private store: Store<AppState>) { }
 
 	ngOnInit() {
-		this.user = this.store.select('user', 'user');
+		this.user = this.store.select(fromUser.selectUser);
+		this.setupPermissions();
+	}
+
+	setupPermissions() {
+
+		const grantAll = () => {
+			for (const key in this.permissions) {
+				if (this.permissions.hasOwnProperty(key)) {
+					this.permissions[key] = true;
+				}
+			}
+		};
+
+		this.user.pipe(first()).subscribe(({ permissions }) => {
+			permissions.forEach(permit => {
+				if (permit.toString() == Permissions.Admin) {
+					grantAll();
+				} else {
+					this.permissions[permit] = true;
+				}
+			});
+		});
 	}
 
 	hideSidebar() {

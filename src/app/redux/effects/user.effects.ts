@@ -6,6 +6,7 @@ import { Effect, Actions } from '@ngrx/effects';
 import * as UserActions from '../actions/user.actions';
 import { GraphqlUserService, LoginResponse } from '@app/dashboard/login/graphql-user.service';
 import { User } from '@app/redux/models/user.model';
+import { NavigationService } from '@app/navigation.service';
 
 export type Action = UserActions.All;
 
@@ -14,7 +15,8 @@ export class UserEffects {
 	constructor(
 		private actions: Actions,
 		private userService: GraphqlUserService,
-		private router: Router
+		private router: Router,
+		private navigation: NavigationService
 	) { }
 
 	@Effect()
@@ -38,7 +40,7 @@ export class UserEffects {
 			map((action: UserActions.LoginUserSuccess) => action.payload),
 			map((res: LoginResponse) => {
 				localStorage.setItem('token', res.token);
-				this.router.navigate(['dashboard', 'content', 'posts']);
+				this.navigation.posts();
 			})
 		);
 
@@ -46,7 +48,11 @@ export class UserEffects {
 	getUser: Observable<Action> = this.actions
 		.ofType<Action>(UserActions.GET_USER)
 		.pipe(
-			mergeMap(() => this.userService.me()),
-			map(user => new UserActions.GetUserSuccess(user))
+			mergeMap(() =>
+				this.userService.me().pipe(
+					map(user => new UserActions.GetUserSuccess(user)),
+					catchError(() => of(new UserActions.GetUserFail()))
+				)
+			)
 		);
 }

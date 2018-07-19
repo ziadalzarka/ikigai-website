@@ -2,7 +2,7 @@ mutation {
 	createUser(data: {
 		name: "Administrator",
 		username: "admin",
-		password: "admin",
+		password: "$2a$10$ZC.GMtBVV/MZutzQT4a8ReETGe.ry29zQIw5iJ60oKUYa3iglkJ3e",
 		permissions: {
 			set: Admin
 		},
