@@ -61,6 +61,7 @@ type File {
 }
 
 type JobApplication {
+	id: ID! @unique
 	name: String!
 	phoneNumber: String
 	email: String
@@ -75,6 +76,7 @@ type JobApplication {
 }
 
 type ClientApplication {
+	id: ID! @unique
 	name: String!
 	phoneNumber: String
 	email: String
@@ -95,6 +97,7 @@ type ClientApplication {
 }
 
 type ContactApplication {
+	id: ID! @unique
 	name: String!
 	phoneNumber: String
 	email: String

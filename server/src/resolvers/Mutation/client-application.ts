@@ -1,6 +1,6 @@
 import { Context } from '../../utils';
 
-export const clientApplication = {
+export const clientApplicationMutation = {
 	async applyClient(parent, {
 		name,
 		email,

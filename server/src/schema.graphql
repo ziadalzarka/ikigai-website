@@ -1,9 +1,12 @@
 # import Post from "./generated/prisma.graphql"
 
 type Query {
-	feed: [Post!]!
+	feed(after: String, first: Int): PostConnection!
 	post(id: ID!): Post
 	me: User
+	usersConnection(after: String, first: Int): UserConnection!
+	jobApplicationsConnection(after: String, first: Int): JobApplicationConnection!
+	clientApplicationsConnection(after: String, first: Int): ClientApplicationConnection!
 }
 
 enum Package {
@@ -20,10 +23,18 @@ enum JobPosition {
 }
 
 type Mutation {
-	signup(username: String!, password: String!, name: String!): AuthPayload!
+	# DASHBOARD
+	# -----------
+	# authorization
 	login(username: String!, password: String!): AuthPayload!
+	# posts
 	publish(title: String!, body: String!, thumbnailBody: String!, thumbnailImageId: String ): Post!
 	deletePost(id: ID!): Post!
+	# admin
+	addUser(username: String!, password: String!, name: String!, permissions: [Permission!]!): AuthPayload!
+	# PUBLIC
+	# -----------
+	# applications
 	applyClient(
 		name: String!
 		email: String!,

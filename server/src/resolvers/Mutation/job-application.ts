@@ -1,6 +1,6 @@
 import { Context } from '../../utils';
 
-export const jobApplication = {
+export const jobApplicationMutation = {
 	async applyForWork(parent, {
 		email,
 		address,
