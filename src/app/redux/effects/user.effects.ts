@@ -23,10 +23,14 @@ export class UserEffects {
 		.ofType<Action>(UserActions.LOGIN_USER)
 		.pipe(
 			map((action: UserActions.LoginUser) => action.payload),
-			mergeMap(payload => this.login.login(payload.username, payload.password)),
-			map((res: LoginResponse) => new UserActions.LoginUserSuccess(res)),
-			catchError(() => of(new UserActions.LoginUserFail()))
-		);
+			mergeMap(payload =>
+				/* move catchError in here because it can't be in the effect stream */
+				this.login.login(payload.username, payload.password).pipe(
+					map((res: LoginResponse) => new UserActions.LoginUserSuccess(res)),
+					catchError(() => of(new UserActions.LoginUserFail()))
+				)
+			),
+	);
 
 	@Effect({ dispatch: false })
 	loginUserSuccess: Observable<any> = this.actions

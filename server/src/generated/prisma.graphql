@@ -1,5 +1,5 @@
 # source: http://185.33.146.23:4466/ikigai/dev
-# timestamp: Wed Jul 18 2018 17:45:03 GMT+0200 (EET)
+# timestamp: Thu Jul 19 2018 13:49:40 GMT+0200 (EET)
 
 type AggregateClientApplication {
   count: Int!
@@ -34,7 +34,8 @@ type BatchPayload {
   count: Long!
 }
 
-type ClientApplication {
+type ClientApplication implements Node {
+  id: ID!
   name: String!
   phoneNumber: String
   email: String
@@ -90,6 +91,8 @@ type ClientApplicationEdge {
 }
 
 enum ClientApplicationOrderByInput {
+  id_ASC
+  id_DESC
   name_ASC
   name_DESC
   phoneNumber_ASC
@@ -120,8 +123,6 @@ enum ClientApplicationOrderByInput {
   package_DESC
   totalPrice_ASC
   totalPrice_DESC
-  id_ASC
-  id_DESC
   updatedAt_ASC
   updatedAt_DESC
   createdAt_ASC
@@ -129,6 +130,7 @@ enum ClientApplicationOrderByInput {
 }
 
 type ClientApplicationPreviousValues {
+  id: ID!
   name: String!
   phoneNumber: String
   email: String
@@ -212,6 +214,46 @@ input ClientApplicationWhereInput {
 
   """Logical NOT on all given filters combined by AND."""
   NOT: [ClientApplicationWhereInput!]
+  id: ID
+
+  """All values that are not equal to given value."""
+  id_not: ID
+
+  """All values that are contained in given list."""
+  id_in: [ID!]
+
+  """All values that are not contained in given list."""
+  id_not_in: [ID!]
+
+  """All values less than the given value."""
+  id_lt: ID
+
+  """All values less than or equal the given value."""
+  id_lte: ID
+
+  """All values greater than the given value."""
+  id_gt: ID
+
+  """All values greater than or equal the given value."""
+  id_gte: ID
+
+  """All values containing the given string."""
+  id_contains: ID
+
+  """All values not containing the given string."""
+  id_not_contains: ID
+
+  """All values starting with the given string."""
+  id_starts_with: ID
+
+  """All values not starting with the given string."""
+  id_not_starts_with: ID
+
+  """All values ending with the given string."""
+  id_ends_with: ID
+
+  """All values not ending with the given string."""
+  id_not_ends_with: ID
   name: String
 
   """All values that are not equal to given value."""
@@ -532,7 +574,12 @@ input ClientApplicationWhereInput {
   totalPrice_gte: Int
 }
 
-type ContactApplication {
+input ClientApplicationWhereUniqueInput {
+  id: ID
+}
+
+type ContactApplication implements Node {
+  id: ID!
   name: String!
   phoneNumber: String
   email: String
@@ -570,6 +617,8 @@ type ContactApplicationEdge {
 }
 
 enum ContactApplicationOrderByInput {
+  id_ASC
+  id_DESC
   name_ASC
   name_DESC
   phoneNumber_ASC
@@ -582,8 +631,6 @@ enum ContactApplicationOrderByInput {
   question_DESC
   body_ASC
   body_DESC
-  id_ASC
-  id_DESC
   updatedAt_ASC
   updatedAt_DESC
   createdAt_ASC
@@ -591,6 +638,7 @@ enum ContactApplicationOrderByInput {
 }
 
 type ContactApplicationPreviousValues {
+  id: ID!
   name: String!
   phoneNumber: String
   email: String
@@ -656,6 +704,46 @@ input ContactApplicationWhereInput {
 
   """Logical NOT on all given filters combined by AND."""
   NOT: [ContactApplicationWhereInput!]
+  id: ID
+
+  """All values that are not equal to given value."""
+  id_not: ID
+
+  """All values that are contained in given list."""
+  id_in: [ID!]
+
+  """All values that are not contained in given list."""
+  id_not_in: [ID!]
+
+  """All values less than the given value."""
+  id_lt: ID
+
+  """All values less than or equal the given value."""
+  id_lte: ID
+
+  """All values greater than the given value."""
+  id_gt: ID
+
+  """All values greater than or equal the given value."""
+  id_gte: ID
+
+  """All values containing the given string."""
+  id_contains: ID
+
+  """All values not containing the given string."""
+  id_not_contains: ID
+
+  """All values starting with the given string."""
+  id_starts_with: ID
+
+  """All values not starting with the given string."""
+  id_not_starts_with: ID
+
+  """All values ending with the given string."""
+  id_ends_with: ID
+
+  """All values not ending with the given string."""
+  id_not_ends_with: ID
   name: String
 
   """All values that are not equal to given value."""
@@ -898,6 +986,10 @@ input ContactApplicationWhereInput {
   body_not_ends_with: String
 }
 
+input ContactApplicationWhereUniqueInput {
+  id: ID
+}
+
 scalar DateTime
 
 type File implements Node {
@@ -1104,7 +1196,8 @@ input FileWhereUniqueInput {
   id: ID
 }
 
-type JobApplication {
+type JobApplication implements Node {
+  id: ID!
   name: String!
   phoneNumber: String
   email: String
@@ -1154,6 +1247,8 @@ type JobApplicationEdge {
 }
 
 enum JobApplicationOrderByInput {
+  id_ASC
+  id_DESC
   name_ASC
   name_DESC
   phoneNumber_ASC
@@ -1170,8 +1265,6 @@ enum JobApplicationOrderByInput {
   lastName_DESC
   linkedIn_ASC
   linkedIn_DESC
-  id_ASC
-  id_DESC
   updatedAt_ASC
   updatedAt_DESC
   createdAt_ASC
@@ -1179,6 +1272,7 @@ enum JobApplicationOrderByInput {
 }
 
 type JobApplicationPreviousValues {
+  id: ID!
   name: String!
   phoneNumber: String
   email: String
@@ -1255,6 +1349,46 @@ input JobApplicationWhereInput {
 
   """Logical NOT on all given filters combined by AND."""
   NOT: [JobApplicationWhereInput!]
+  id: ID
+
+  """All values that are not equal to given value."""
+  id_not: ID
+
+  """All values that are contained in given list."""
+  id_in: [ID!]
+
+  """All values that are not contained in given list."""
+  id_not_in: [ID!]
+
+  """All values less than the given value."""
+  id_lt: ID
+
+  """All values less than or equal the given value."""
+  id_lte: ID
+
+  """All values greater than the given value."""
+  id_gt: ID
+
+  """All values greater than or equal the given value."""
+  id_gte: ID
+
+  """All values containing the given string."""
+  id_contains: ID
+
+  """All values not containing the given string."""
+  id_not_contains: ID
+
+  """All values starting with the given string."""
+  id_starts_with: ID
+
+  """All values not starting with the given string."""
+  id_not_starts_with: ID
+
+  """All values ending with the given string."""
+  id_ends_with: ID
+
+  """All values not ending with the given string."""
+  id_not_ends_with: ID
   name: String
 
   """All values that are not equal to given value."""
@@ -1578,6 +1712,10 @@ input JobApplicationWhereInput {
   resume: FileWhereInput
 }
 
+input JobApplicationWhereUniqueInput {
+  id: ID
+}
+
 enum JobPosition {
   Media
   Graphics
@@ -1603,14 +1741,23 @@ type Mutation {
   updateUser(data: UserUpdateInput!, where: UserWhereUniqueInput!): User
   updatePost(data: PostUpdateInput!, where: PostWhereUniqueInput!): Post
   updateFile(data: FileUpdateInput!, where: FileWhereUniqueInput!): File
+  updateJobApplication(data: JobApplicationUpdateInput!, where: JobApplicationWhereUniqueInput!): JobApplication
+  updateClientApplication(data: ClientApplicationUpdateInput!, where: ClientApplicationWhereUniqueInput!): ClientApplication
+  updateContactApplication(data: ContactApplicationUpdateInput!, where: ContactApplicationWhereUniqueInput!): ContactApplication
   deleteSettings(where: SettingsWhereUniqueInput!): Settings
   deleteUser(where: UserWhereUniqueInput!): User
   deletePost(where: PostWhereUniqueInput!): Post
   deleteFile(where: FileWhereUniqueInput!): File
+  deleteJobApplication(where: JobApplicationWhereUniqueInput!): JobApplication
+  deleteClientApplication(where: ClientApplicationWhereUniqueInput!): ClientApplication
+  deleteContactApplication(where: ContactApplicationWhereUniqueInput!): ContactApplication
   upsertSettings(where: SettingsWhereUniqueInput!, create: SettingsCreateInput!, update: SettingsUpdateInput!): Settings!
   upsertUser(where: UserWhereUniqueInput!, create: UserCreateInput!, update: UserUpdateInput!): User!
   upsertPost(where: PostWhereUniqueInput!, create: PostCreateInput!, update: PostUpdateInput!): Post!
   upsertFile(where: FileWhereUniqueInput!, create: FileCreateInput!, update: FileUpdateInput!): File!
+  upsertJobApplication(where: JobApplicationWhereUniqueInput!, create: JobApplicationCreateInput!, update: JobApplicationUpdateInput!): JobApplication!
+  upsertClientApplication(where: ClientApplicationWhereUniqueInput!, create: ClientApplicationCreateInput!, update: ClientApplicationUpdateInput!): ClientApplication!
+  upsertContactApplication(where: ContactApplicationWhereUniqueInput!, create: ContactApplicationCreateInput!, update: ContactApplicationUpdateInput!): ContactApplication!
   updateManySettingses(data: SettingsUpdateInput!, where: SettingsWhereInput): BatchPayload!
   updateManyUsers(data: UserUpdateInput!, where: UserWhereInput): BatchPayload!
   updateManyPosts(data: PostUpdateInput!, where: PostWhereInput): BatchPayload!
@@ -2049,6 +2196,9 @@ type Query {
   user(where: UserWhereUniqueInput!): User
   post(where: PostWhereUniqueInput!): Post
   file(where: FileWhereUniqueInput!): File
+  jobApplication(where: JobApplicationWhereUniqueInput!): JobApplication
+  clientApplication(where: ClientApplicationWhereUniqueInput!): ClientApplication
+  contactApplication(where: ContactApplicationWhereUniqueInput!): ContactApplication
   settingsesConnection(where: SettingsWhereInput, orderBy: SettingsOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): SettingsConnection!
   usersConnection(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): UserConnection!
   postsConnection(where: PostWhereInput, orderBy: PostOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): PostConnection!

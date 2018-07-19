@@ -1,33 +1,53 @@
 .h-100.wrapper.position-relative( [ngClass]='sidebarHidden ? "closed-sidebar" : ""' )
-	nav#sidebar.bg-dark
-		.row.align-items-baseline
-			.col
+	nav#sidebar.bg-dashboard
+		//- the padding makes the icon align with collapse icons
+		.row.align-items-baseline(style='padding-right: 1.75rem;')
+			.col-10
 				.px-4.pt-4.pb-2
 					h3.truncate-text.text-light Ziad Alzarka
-					p.text-subtitle Admin
-			.col-auto.cursor-pointer( (click)='hideSidebar()' )
-				i.fa.fa-arrow-left.f-5.text-light.mr-4
-		ul.list-unstyled.components.mb-0
-			li.bg-coffee.lighten-1
-				h4.text-light.text-center.py-4.m-0 Content
-			li
-				button.w-100.btn.btn-lg.text-light.shadow-none.btn-dark(routerLink='content/posts') Posts
-			li
-				button.w-100.btn.btn-lg.text-light.shadow-none.btn-dark(routerLink='content/edit') New Post
-			li.bg-coffee.lighten-1
-				h4.text-light.text-center.py-4.m-0 Applications
-			li
-				button.w-100.btn.btn-lg.text-light.shadow-none.btn-dark(routerLink='applications/clients') Clients
-			li
-				button.w-100.btn.btn-lg.text-light.shadow-none.btn-dark(routerLink='applications/jobs') Jobs
-			li.bg-coffee.lighten-1
-				h4.text-light.text-center.py-4.m-0 Settings
-			li
-				button.w-100.btn.btn-lg.text-light.shadow-none.btn-dark(routerLink='settings/users') Users
-			li
-				button.w-100.btn.btn-lg.text-light.shadow-none.btn-dark(routerLink='settings/emails') Emails
-			li
-				button.w-100.btn.btn-lg.text-light.shadow-none.btn-dark(routerLink='settings/footer') Footer
+					p.text-natural Admin
+			.col-2.cursor-pointer.text-center( (click)='hideSidebar()' )
+				i.fa.fa-angle-left.f-5.text-light
+		.row
+			.col
+				button.btn.bg-dashboard.text-natural.w-100(type='button' data-toggle='collapse' data-target='#contentCollapse' aria-expanded='true' aria-controls='contentCollapse')
+					.row
+						.col-2.text-right
+							.fa.fa-calendar.f-3
+						.col-8
+							| Content
+						.col-2
+							.fa.fa-angle-down.f-3
+				#contentCollapse.collapse.show
+					button.w-100.btn.btn.text-natural.shadow-none.bg-info(routerLink='content/posts') Posts
+					button.w-100.btn.btn.text-natural.shadow-none.bg-dashboard(routerLink='content/edit') New Post
+		.row
+			.col
+				button.btn.bg-dashboard.text-natural.w-100(type='button' data-toggle='collapse' data-target='#applicationsCollapse' aria-expanded='true' aria-controls='applicationsCollapse')
+					.row
+						.col-2.text-right
+							.fa.fa-user.f-3
+						.col-8
+							| Applications
+						.col-2
+							.fa.fa-angle-down.f-3
+				#applicationsCollapse.collapse.show
+					button.w-100.btn.btn.text-natural.shadow-none.bg-dashboard(routerLink='applications/clients') Clients
+					button.w-100.btn.btn.text-natural.shadow-none.bg-dashboard(routerLink='applications/jobs') Jobs
+		.row
+			.col
+				button.btn.bg-dashboard.text-natural.w-100(type='button' data-toggle='collapse' data-target='#settingsCollapse' aria-expanded='true' aria-controls='settingsCollapse')
+					.row
+						.col-2.text-right
+							.fa.fa-cog.f-3
+						.col-8
+							| Settings
+						.col-2
+							.fa.fa-angle-down.f-3
+				#settingsCollapse.collapse.show
+					button.w-100.btn.btn.text-natural.shadow-none.bg-dashboard(routerLink='settings/users') Users
+					button.w-100.btn.btn.text-natural.shadow-none.bg-dashboard(routerLink='settings/emails') Emails
+					button.w-100.btn.btn.text-natural.shadow-none.bg-dashboard(routerLink='settings/footer') Footer
 	#overlay
 	#miniSidebar.bg-dark
 		i.d-inline-block.fa.fa-bars.f-5.text-light.m-4.cursor-pointer( (click)='showSidebar()' )

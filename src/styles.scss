@@ -84,9 +84,22 @@ $ocean:#2c3e50;
 $facebook: #3B5998;
 $instagram: #fb3958;
 $linkedin: #0077B5;
+// dashboard
+$natural: #d8d8d8;
+$dashboard: #323443;
 // customs
 $headings-color: $ocean;
-$theme-colors: ( "darkcalm": $darkcalm, "calm": $calm, "coffee": $coffee, "ocean": $ocean, "facebook": $facebook, "linkedin": $linkedin, "instagram": $instagram);
+$theme-colors: ( 
+	"darkcalm": $darkcalm,
+	"calm": $calm,
+	"coffee": $coffee,
+	"ocean": $ocean,
+	"facebook": $facebook,
+	"linkedin": $linkedin,
+	"instagram": $instagram,
+	"dashboard": $dashboard,
+	"natural": $natural
+);
 // table
 $table-hover-bg: rgba($black, .025);
 // dropdown
