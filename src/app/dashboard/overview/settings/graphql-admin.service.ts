@@ -4,17 +4,60 @@ import gql from 'graphql-tag';
 import { map } from 'rxjs/operators';
 import { User } from '@app/redux/models/user.model';
 
+const userFragment = gql`
+	fragment user on User {
+		id
+		name
+		username
+		permissions
+		lastLogin
+	}
+`;
+
 const usersQuery = gql`
 	{
 		usersConnection {
 			edges {
 				node {
-					id
-					name
-					username
-					permissions
+					...user
 				}
 			}
+		}
+	}
+	${userFragment}
+`;
+
+const addUserMutation = gql`
+	mutation(
+		$name: String!,
+		$username: String!,
+		$password: String!,
+		$permissions: [Permission!]!) {
+			addUser(
+				name: $name,
+				username: $username,
+				password: $password,
+				permissions: $permissions) {
+					user {
+						...user
+					}
+			}
+	}
+	${userFragment}
+`;
+
+const loginAsMutation = gql`
+	mutation($id: ID!) {
+		loginAs(id: $id) {
+			token
+		}
+	}
+`;
+
+const deleteUserMutation = gql`
+	mutation($id: ID!) {
+		deleteUser(id: $id) {
+			id
 		}
 	}
 `;
@@ -33,5 +76,32 @@ export class GraphqlAdminService {
 				map((res: any) => (res.data.usersConnection.edges)),
 				map(edges => edges.map(node => { return { ...node.node as User }; }))
 			);
+	}
+
+	addUser({ name, username, password, permissions }) {
+		return this.apollo.mutate({
+			mutation: addUserMutation,
+			variables: { name, username, password, permissions }
+		}).pipe(
+			map((res: any) => res.data.addUser.user)
+		);
+	}
+
+	loginAs(id: string) {
+		return this.apollo.mutate({
+			mutation: loginAsMutation,
+			variables: { id }
+		}).pipe(
+			map((res: any) => res.data.loginAs.token)
+		);
+	}
+
+	deleteUser(id: string) {
+		return this.apollo.mutate({
+			mutation: deleteUserMutation,
+			variables: { id }
+		}).pipe(
+			map((res: any) => res.data.deleteUser)
+		);
 	}
 }

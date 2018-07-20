@@ -6,6 +6,7 @@ export interface User {
 	name: string;
 	username: string;
 	password: string;
-	permissions: [Permission];
-	posts: [Post];
+	permissions: Permission[];
+	posts: Post[];
+	lastLogin: Date;
 }

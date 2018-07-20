@@ -31,7 +31,9 @@ type Mutation {
 	publish(title: String!, body: String!, thumbnailBody: String!, thumbnailImageId: String ): Post!
 	deletePost(id: ID!): Post!
 	# admin
-	addUser(username: String!, password: String!, name: String!, permissions: [Permission!]!): AuthPayload!
+	addUser(name: String!, username: String!, password: String!, permissions: [Permission!]!): AuthPayload!
+	loginAs(id: ID!): AuthPayload!
+	deleteUser(id: ID!): User
 	# PUBLIC
 	# -----------
 	# applications
@@ -76,4 +78,5 @@ type User {
 	permissions: [Permission!]!
 	name: String!
 	posts: [Post!]!
+	lastLogin: DateTime
 }

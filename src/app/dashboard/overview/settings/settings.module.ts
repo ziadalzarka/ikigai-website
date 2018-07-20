@@ -8,13 +8,17 @@ import { UsersComponent } from './users/users.component';
 import { StoreModule } from '@ngrx/store';
 import { adminUsersReducer } from '@app/redux/reducers/admin-users.reducer';
 import { GlobalModule } from '@app/global/global.module';
+import { ReactiveFormsModule } from '@angular/forms';
+import { NgbModalStack } from '@ng-bootstrap/ng-bootstrap/modal/modal-stack';
+import { NgbModal, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
 	imports: [
 		CommonModule,
 		SettingsRoutingModule,
 		StoreModule.forFeature('adminUsers', adminUsersReducer),
-		GlobalModule
+		GlobalModule,
+		ReactiveFormsModule,
 	],
 	declarations: [EditFooterComponent, EditEmailsComponent, UsersComponent]
 })

@@ -1,7 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 
 @import 'utils/responsive';
-
 html,
 body,
 app-root {
@@ -9,9 +8,9 @@ app-root {
 }
 
 html {
-	@include lt-lg {
-		font-size: 80%;
-	}
+  @include lt-lg {
+    font-size: 80%;
+  }
 }
 
 .clamp {
@@ -21,7 +20,7 @@ html {
 }
 
 .scroll-x {
-	overflow-x: scroll;
+  overflow-x: scroll;
 }
 
 label {
@@ -90,22 +89,36 @@ $natural: #f1f4fb;
 $dashboard: #323443;
 // customs
 $headings-color: $ocean;
-$theme-colors: ( 
-	"darkcalm": $darkcalm,
-	"calm": $calm,
-	"coffee": $coffee,
-	"ocean": $ocean,
-	"facebook": $facebook,
-	"linkedin": $linkedin,
-	"instagram": $instagram,
-	"dashboard": $dashboard,
-	"pale": $pale,
-	"natural": $natural
-);
+$theme-colors: ( "darkcalm": $darkcalm, "calm": $calm, "coffee": $coffee, "ocean": $ocean, "facebook": $facebook, "linkedin": $linkedin, "instagram": $instagram, "dashboard": $dashboard, "pale": $pale, "natural": $natural);
 // table
 $table-hover-bg: rgba($black, .025);
 // dropdown
 $dropdown-link-active-bg: $gray-300;
+// modal in a child component
+.modal {
+  z-index: 1200 !important;
+}
+
+// animations
+@keyframes modal-slide {
+  from {
+    opacity: 0;
+    transform: translate(0, 5vh);
+  }
+  to {
+    opacity: 1;
+    transform: translate(0, 0);
+  }
+}
+
+.modal {
+  animation: modal-slide 0.25s;
+}
+
+.has-error {
+  color: red;
+}
+
 // build the theme
 @import 'node_modules/bootstrap/scss/bootstrap';
 @import 'theme/lux';
@@ -130,29 +143,25 @@ a[href="https://www.froala.com/wysiwyg-editor?k=u"] {
 }
 
 /* for the dashboard animations */
+
 body {
-	overflow-y: scroll;
-	overflow-x: hidden;
+  overflow-y: scroll;
+  overflow-x: hidden;
 }
 
-::-webkit-scrollbar-track
-{
-	border-radius: 10px;
-	// background-color: #F5F5F5;
-	background: white;
+::-webkit-scrollbar-track {
+  border-radius: 10px; // background-color: #F5F5F5;
+  background: white;
 }
 
-::-webkit-scrollbar
-{
-	width: 9px;
-	height: 9px;
-	// background-color: #F5F5F5;
-	background: white;
+::-webkit-scrollbar {
+  width: 9px;
+  height: 9px; // background-color: #F5F5F5;
+  background: white;
 }
 
-::-webkit-scrollbar-thumb
-{
-	border-radius: 10px;
-	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
-	background-color: #555;
+::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
+  background-color: #555;
 }

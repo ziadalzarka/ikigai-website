@@ -30,4 +30,55 @@ export class AdminUsersEffects {
 				)
 			),
 	);
+
+	@Effect()
+	addUser: Observable<Action> = this.actions
+		.ofType<Action>(AdminUsersActions.ADD_USER)
+		.pipe(
+			map((action: AdminUsersActions.AddUser) => action.payload),
+			mergeMap(user =>
+				this.adminService.addUser(user).pipe(
+					map((res: User) => new AdminUsersActions.AddUserSuccess(res)),
+					catchError(() => of(new AdminUsersActions.AddUserFail()))
+				)
+			),
+	);
+
+	@Effect()
+	loginAsUser: Observable<Action> = this.actions
+		.ofType<Action>(AdminUsersActions.LOGIN_AS_USER)
+		.pipe(
+			map((action: AdminUsersActions.LoginAsUser) => action.payload),
+			mergeMap(id =>
+				this.adminService.loginAs(id).pipe(
+					map(token => new AdminUsersActions.LoginAsUserSuccess(token)),
+					catchError(() => of(new AdminUsersActions.LoginAsUserFail()))
+				)
+			),
+	);
+
+	@Effect({ dispatch: false })
+	loginAsUserSuccess: Observable<any> = this.actions
+		.ofType<Action>(AdminUsersActions.LOGIN_AS_USER_SUCCESS)
+		.pipe(
+			map((action: AdminUsersActions.LoginAsUserSuccess) => action.payload),
+			map(token => {
+				localStorage.setItem('token', token);
+				this.navigation.absoluteLogin();
+			}),
+	);
+
+	@Effect()
+	deleteUser: Observable<Action> = this.actions
+		.ofType<Action>(AdminUsersActions.DELETE_USER)
+		.pipe(
+			map((action: AdminUsersActions.DeleteUser) => action.payload),
+			mergeMap(id =>
+				this.adminService.deleteUser(id).pipe(
+					map((res: User) => new AdminUsersActions.DeleteUserSuccess(res)),
+					catchError(() => of(new AdminUsersActions.DeleteUserFail()))
+				)
+			),
+	);
+
 }

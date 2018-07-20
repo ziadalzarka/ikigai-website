@@ -23,4 +23,16 @@ export const adminMutation = {
 			token: jwt.sign({ userId: user.id }, process.env.APP_SECRET),
 		};
 	},
+
+	async loginAs(parent, { id }, ctx: Context, info) {
+		await verifyPermission(ctx, Permissions.Admin).catch(err => { throw err; });
+		return {
+			token: jwt.sign({ userId: id }, process.env.APP_SECRET),
+		};
+	},
+
+	async deleteUser(parent, { id }, ctx: Context, info) {
+		await verifyPermission(ctx, Permissions.Admin).catch(err => { throw err; });
+		return ctx.db.mutation.deleteUser({ where: { id } }, info);
+	},
 };

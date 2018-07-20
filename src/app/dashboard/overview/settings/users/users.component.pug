@@ -18,36 +18,63 @@
 						tr(*ngFor="let user of users | async")
 							td.align-middle {{user.name}}
 							td.align-middle {{user.permissions | permissions}}
-							td.align-middle {{user.lastLogin | date:'mediumDate'}}
-						tr
-							td.align-middle Ziad Alzarka
-							td.align-middle Admin
-							td.align-middle Jul 15, 2018
+							td.align-middle {{(user.lastLogin | date:'mediumDate') || '---'}}
 							td.align-middle
 								.btn-group.w-100
-									button.btn.btn-info.w-100(type='button') Log In
+									button.btn.btn-info.w-100(type='button', (click)='loginAs(user)') Log In
 									button.btn.btn-info.dropdown-toggle.dropdown-toggle-split(type='button' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false')
 										span.sr-only Toggle Actions
 									.dropdown-menu
-										a.dropdown-item Edit
 										a.dropdown-item Change Permissions
-										a.dropdown-item Statistics
 										.dropdown-divider
-										a.dropdown-item.text-danger Delete
-						tr
-							td.align-middle Mohap Akram
-							td.align-middle Posts, Job Applications
-							td.align-middle Jun 21, 2018
-							td.align-middle
-								.btn-group.w-100
-									button.btn.btn-info.w-100(type='button') Log In
-									button.btn.btn-info.dropdown-toggle.dropdown-toggle-split(type='button' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false')
-										span.sr-only Toggle Actions
-									.dropdown-menu
-										a.dropdown-item Edit
-										a.dropdown-item Change Permissions
-										a.dropdown-item Statistics
-										.dropdown-divider
-										a.dropdown-item.text-danger Delete
-button.btn.btn-info.fab(" [@fabTransition]='getFabState()' ")
+										a.dropdown-item.text-danger((click)='deleteUserOpen(deleteUserModal, user.id)') Delete
+button.btn.btn-info.fab([@fabTransition]='getFabState()', (click)="addUserOpen(addUserModal)")
 	i.fa.fa-plus.f-5.text-white
+
+ng-template(#addUserModal, let-close='close', let-dismiss='dismiss')
+	.modal-header
+		h3.modal-title Create a new user
+	.modal-body
+		form([formGroup]="addUserForm")
+			.form-group
+				label Name
+				input.form-control(type='text', placeholder='Floppy tomatoes', formControlName='name')
+				.has-error.mt-1(*ngIf='addUserForm.controls.name.invalid && !addUserForm.controls.name.pristine') This field is required.
+			.form-group
+				label Username
+				input.form-control(type='text' placeholder='floppytomatoes', , formControlName='username')
+				.has-error.mt-1(*ngIf='addUserForm.controls.username.invalid && !addUserForm.controls.username.pristine') This field is required.
+			.form-group
+				label Password
+				input.form-control(type='password' placeholder='********', formControlName='password')
+				.has-error.mt-1(*ngIf='addUserForm.controls.password.invalid && !addUserForm.controls.password.pristine') Password must be at least 8 characters long.
+			br
+			label Permissions
+			.form-check
+				input.form-check-input#admin-chk(type='checkbox', formControlName='admin', [(ngModel)]='isAdmin')
+				label.form-check-label(for='admin-chk') Admin
+			div(*ngIf='!isAdmin')
+				.form-check.my-1
+					input.form-check-input#posts-chk(type='checkbox', formControlName='posts')
+					label.form-check-label(for='posts-chk') Posts
+				.form-check.my-1
+					input.form-check-input#clientapplications-chk(type='checkbox', formControlName='clientApplications')
+					label.form-check-label(for='clientapplications-chk') Client Applications
+				.form-check.my-1
+					input.form-check-input#jobapplications-chk(type='checkbox', formControlName='jobApplications')
+					label.form-check-label(for='jobapplications-chk') Job Applications
+				.form-check.my-1
+					input.form-check-input#contactapplications-chk(type='checkbox', formControlName='contactApplications')
+					label.form-check-label(for='contactapplications-chk') Contact Applications
+	.modal-footer
+		button.btn.btn-secondary(type='button', (click)="dismiss()") Cancel
+		button.btn.btn-info(type='button', (click)="addUserCheck(close)") Add
+
+ng-template(#deleteUserModal, let-close='close', let-dismiss='dismiss')
+	.modal-header
+		h3.modal-title Are you sure?
+	.modal-body
+		p.lead Deleted data can never be recovered.
+	.modal-footer
+		button.btn.btn-secondary(type='button', (click)="dismiss()") Cancel
+		button.btn.btn-danger(type='button', (click)="close()") Delete

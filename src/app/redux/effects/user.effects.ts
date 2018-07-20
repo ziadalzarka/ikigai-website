@@ -62,7 +62,7 @@ export class UserEffects {
 		.pipe(
 			tap(() => {
 				localStorage.removeItem('token');
-				window.location.href = '/dashboard/login';
+				this.navigation.absoluteLogin();
 			})
 		);
 }

@@ -27,6 +27,22 @@ export function adminUsersReducer(state: State = initialState, action: AdminActi
 		case AdminActions.LIST_USERS_FAIL:
 			return { ...state, ...failed };
 
+		case AdminActions.ADD_USER:
+			return { ...state, ...loading };
+		case AdminActions.ADD_USER_SUCCESS:
+			console.log(action.payload);
+			return { ...usersAdapter.addOne(action.payload, state), ...idle };
+		case AdminActions.ADD_USER_FAIL:
+			return { ...state, ...failed };
+
+		case AdminActions.DELETE_USER:
+			return { ...state, ...loading };
+		case AdminActions.DELETE_USER_SUCCESS:
+			console.log(action.payload);
+			return { ...usersAdapter.removeOne(action.payload.id, state), ...idle };
+		case AdminActions.DELETE_USER_FAIL:
+			return { ...state, ...failed };
+
 		default:
 			return state;
 	}

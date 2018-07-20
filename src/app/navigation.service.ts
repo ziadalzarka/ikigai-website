@@ -12,6 +12,10 @@ export class NavigationService {
 		this.router.navigate(['dashboard', 'login']);
 	}
 
+	absoluteLogin() {
+		window.location.href = '/dashboard/login';
+	}
+
 	dashboard() {
 		this.router.navigate(['dashboard']);
 	}

@@ -9,7 +9,16 @@ import { PermissionsPipe } from '@app/global/permissions.pipe';
 	imports: [
 		CommonModule
 	],
-	declarations: [FooterComponent, LoaderComponent, NotfoundComponent, PermissionsPipe],
-	exports: [FooterComponent, LoaderComponent, PermissionsPipe]
+	declarations: [
+		FooterComponent,
+		LoaderComponent,
+		NotfoundComponent,
+		PermissionsPipe,
+	],
+	exports: [
+		FooterComponent,
+		LoaderComponent,
+		PermissionsPipe,
+	]
 })
 export class GlobalModule { }
