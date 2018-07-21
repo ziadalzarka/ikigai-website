@@ -23,34 +23,9 @@ export class UploadService {
 			reportProgress: true
 		});
 
-		// The `HttpClient.request` API produces a raw event stream
-		// which includes start (sent), progress, and response events.
-		this.http.request(req).pipe(
-			map(ev => this.getEventMessage(ev, file)),
-			tap(message => console.log(message)),
-			last(), // return last (completed) message to caller
-		).subscribe(thing => {
-			console.log('thing');
-			console.log(thing);
-		});
-	}
-
-	private getEventMessage(event: HttpEvent<any>, file: File) {
-		console.log('got event');
-		switch (event.type) {
-			case HttpEventType.Sent:
-				return `Uploading file "${file.name}" of size ${file.size}.`;
-
-			case HttpEventType.UploadProgress:
-				// Compute and show the % done:
-				const percentDone = Math.round(100 * event.loaded / event.total);
-				return `File "${file.name}" is ${percentDone}% uploaded.`;
-
-			case HttpEventType.Response:
-				return `File "${file.name}" was completely uploaded!`;
-
-			default:
-				return `File "${file.name}" surprising upload event: ${event.type}.`;
-		}
+		return this.http.request(req).pipe(
+			last(),
+			map((res: any) => res.body.id),
+		).toPromise();
 	}
 }

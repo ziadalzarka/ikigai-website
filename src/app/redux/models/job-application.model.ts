@@ -2,14 +2,13 @@ import { JobPosition } from '@app/redux/enums/job-position.enum';
 
 export interface JobApplication {
 	id: string;
-	name: string;
-	phoneNumber: string;
 	email: string;
 	address: string;
+	phoneNumber: string;
 	firstName: string;
 	middleName: string;
 	lastName: string;
 	positions: JobPosition[];
-	resume: File;
+	resumeFileId: string;
 	linkedIn: string;
 }

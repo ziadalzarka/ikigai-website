@@ -1,5 +1,5 @@
 # source: http://194.182.77.249:4466/ikigai/dev
-# timestamp: Sat Jul 21 2018 16:06:51 GMT+0200 (EET)
+# timestamp: Sat Jul 21 2018 17:17:46 GMT+0200 (EET)
 
 type AggregateClientApplication {
   count: Int!
@@ -1253,7 +1253,7 @@ type JobApplication implements Node {
   middleName: String!
   lastName: String!
   positions: [JobPosition!]
-  resume(where: FileWhereInput): File!
+  resume(where: FileWhereInput): File
   linkedIn: String
 }
 
@@ -1277,7 +1277,7 @@ input JobApplicationCreateInput {
   lastName: String!
   linkedIn: String
   positions: JobApplicationCreatepositionsInput
-  resume: FileCreateOneInput!
+  resume: FileCreateOneInput
 }
 
 input JobApplicationCreatepositionsInput {

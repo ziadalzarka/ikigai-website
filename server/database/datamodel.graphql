@@ -67,7 +67,7 @@ type JobApplication {
 	middleName: String!
 	lastName: String!
 	positions: [JobPosition!]!
-	resume: File!
+	resume: File
 	linkedIn: String
 }
 

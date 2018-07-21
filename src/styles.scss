@@ -8,6 +8,7 @@ app-root {
 }
 
 html {
+	font-size: 90%;
   @include lt-lg {
     font-size: 80%;
   }

@@ -1367,7 +1367,7 @@ type JobApplication implements Node {
   middleName: String!
   lastName: String!
   positions: [JobPosition!]
-  resume(where: FileWhereInput): File!
+  resume(where: FileWhereInput): File
   linkedIn: String
 }
 
@@ -1391,7 +1391,7 @@ input JobApplicationCreateInput {
   lastName: String!
   linkedIn: String
   positions: JobApplicationCreatepositionsInput
-  resume: FileCreateOneInput!
+  resume: FileCreateOneInput
 }
 
 input JobApplicationCreatepositionsInput {
@@ -4270,7 +4270,7 @@ export interface JobApplicationCreateInput {
   lastName: String
   linkedIn?: String
   positions?: JobApplicationCreatepositionsInput
-  resume: FileCreateOneInput
+  resume?: FileCreateOneInput
 }
 
 export interface UserWhereInput {
@@ -4837,7 +4837,7 @@ export interface JobApplication extends Node {
   middleName: String
   lastName: String
   positions?: JobPosition[]
-  resume: File
+  resume?: File
   linkedIn?: String
 }
 

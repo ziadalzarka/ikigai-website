@@ -11,6 +11,26 @@ export const jobApplicationMutation = {
 		positions,
 		resumeFileId,
 		linkedIn }, ctx: Context, info) {
+			console.log(resumeFileId);
+		console.log({
+			email,
+			address,
+			phoneNumber,
+			// ------------
+			firstName,
+			middleName,
+			lastName,
+			linkedIn,
+			positions: {
+				set: positions
+			},
+			...resumeFileId && {
+				resume: {
+					connect: { id: resumeFileId }
+				}
+			},
+			name: `${firstName} ${middleName} ${lastName}`,
+		});
 		return ctx.db.mutation.createJobApplication(
 			{
 				data: {

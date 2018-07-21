@@ -1,8 +1,11 @@
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { JobApplication } from '@app/redux/models/job-application.model';
 import { JobPosition } from '@app/redux/enums/job-position.enum';
 import { UploadService } from '@app/global/upload.service';
+import { GraphqlJobService } from '@app/job/graphql-job.service';
+import { tap, catchError } from 'rxjs/operators';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 enum Position {
 	Media,
@@ -17,6 +20,8 @@ enum Position {
 	styleUrls: ['./job-application.component.css']
 })
 export class JobApplicationComponent implements OnInit {
+
+	loading;
 
 	positionsValidator = (form) => {
 		if (!form.controls.media.value &&
@@ -63,24 +68,53 @@ export class JobApplicationComponent implements OnInit {
 		};
 	}
 
-	get jobApplication() {
+	get jobApplication(): JobApplication {
 		return {
 			...this.jobApplicationForm.value,
 			...this.getPositionsFromForm(this.jobApplicationForm.controls.positions as FormGroup)
 		};
 	}
 
-	constructor(private fb: FormBuilder, private uploadService: UploadService) { }
+	@ViewChild('successful') submissionSuccessful;
+	@ViewChild('failed') submissionFailed;
+
+	constructor(
+		private fb: FormBuilder,
+		private uploadService: UploadService,
+		private jobService: GraphqlJobService,
+		private modalService: NgbModal) { }
 
 	ngOnInit() {
 	}
 
+	markDirty() {
+		this.jobApplicationForm.controls.firstName.markAsDirty();
+		this.jobApplicationForm.controls.middleName.markAsDirty();
+		this.jobApplicationForm.controls.lastName.markAsDirty();
+		this.jobApplicationForm.controls.email.markAsDirty();
+	}
+
 	async send(resumeFile) {
+
+		this.jobApplicationForm.updateValueAndValidity();
+		this.markDirty();
+
+		if (this.jobApplicationForm.invalid) return;
+
 		let resumeFileId = null;
+		this.loading = true;
 
 		if (resumeFile) {
 			resumeFileId = await this.uploadService.upload(resumeFile);
 		}
+
+		this.jobService.applyForJob(
+			{ ...this.jobApplication, resumeFileId }
+		).subscribe(() => {
+			this.modalService.open(this.submissionSuccessful, { size: 'lg' });
+		}, () => {
+			this.modalService.open(this.submissionFailed, { size: 'lg' });
+		});
 	}
 
 }

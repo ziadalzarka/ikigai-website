@@ -11,20 +11,20 @@
 					.form-group
 						label First name
 						input.form-control(type='text', placeholder='Lilly', formControlName="firstName", required)
-						.has-error.mt-1(*ngIf='jobApplicationForm.controls.firstName.invalid && !jobApplicationForm.controls.firstName.pristine') This field is required.
+						.has-error.mt-1(*ngIf='jobApplicationForm.controls.firstName.invalid && jobApplicationForm.controls.firstName.dirty') This field is required.
 					.form-group
 						label Middle name
 						input.form-control(type='text', placeholder='Robert', formControlName="middleName", required)
-						.has-error.mt-1(*ngIf='jobApplicationForm.controls.middleName.invalid && !jobApplicationForm.controls.middleName.pristine') This field is required.
+						.has-error.mt-1(*ngIf='jobApplicationForm.controls.middleName.invalid && jobApplicationForm.controls.middleName.dirty') This field is required.
 					.form-group
 						label Last name
 						input.form-control(type='text', placeholder='Collins', formControlName="lastName", required)
-						.has-error.mt-1(*ngIf='jobApplicationForm.controls.lastName.invalid && !jobApplicationForm.controls.lastName.pristine') This field is required.
+						.has-error.mt-1(*ngIf='jobApplicationForm.controls.lastName.invalid && jobApplicationForm.controls.lastName.dirty') This field is required.
 				.col-12.col-lg-6
 					.form-group
 						label Email address
 						input.form-control(type='email', placeholder='example@example.com', formControlName="email", required)
-						.has-error.mt-1(*ngIf='jobApplicationForm.controls.email.invalid && !jobApplicationForm.controls.email.pristine') This field is required.
+						.has-error.mt-1(*ngIf='jobApplicationForm.controls.email.invalid && jobApplicationForm.controls.email.dirty') This field is required.
 					.form-group
 						label Address (optional)
 						input.form-control(type='text', placeholder='445 Mount Eden Road, Auckland', formControlName="address")
@@ -63,3 +63,19 @@
 				.col-12.col-lg-4.offset-lg-8
 					button.w-100.btn.btn-primary.btn.ml-auto(type='button', (click)="send(resume.files[0])") Send
 app-footer
+
+ng-template(#failed, let-close='close', let-dismiss='dismiss')
+	.modal-header
+		h3.modal-title Submission Failed
+	.modal-body
+		p.lead An error ocurred prevented application from being submit.
+	.modal-footer
+		button.btn.btn-danger(type='button', (click)="dismiss()") OK
+
+ng-template(#successful, let-close='close', let-dismiss='dismiss')
+	.modal-header
+		h3.modal-title Submission Successful
+	.modal-body
+		p.lead Successfully submitted application.
+	.modal-footer
+		button.btn.btn-info(type='button', (click)="dismiss()") OK
