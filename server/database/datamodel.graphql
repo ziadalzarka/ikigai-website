@@ -19,7 +19,7 @@ enum Permission {
 	ContactApplications
 }
 
-type Settings {
+type Variable {
 	index: Int! @unique
 	email: String
 	phone1: String
@@ -31,8 +31,8 @@ type Settings {
 	contactEmail: String
 	clientsEmail: String
 	jobsEmail: String
-	additionalTitle: String!
-	additionalBody: String!
+	additionalTitle: String
+	additionalBody: String
 }
 
 type User {

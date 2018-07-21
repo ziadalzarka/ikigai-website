@@ -4,6 +4,7 @@ type Query {
 	feed(after: String, first: Int): PostConnection!
 	post(id: ID!): Post
 	me: User
+	variables: PublicVariables
 	usersConnection(after: String, first: Int): UserConnection!
 	jobApplicationsConnection(after: String, first: Int): JobApplicationConnection!
 	clientApplicationsConnection(after: String, first: Int): ClientApplicationConnection!
@@ -37,6 +38,8 @@ type Mutation {
 	deleteUser(id: ID!): User
 	# files
 	createFileEntry(name: String!, checksum: String!): File!
+	# variables
+	
 	# PUBLIC
 	# -----------
 	# applications
@@ -88,4 +91,16 @@ type File {
 	id: String!
 	name: String!
 	checksum: String!
+}
+
+type PublicVariables {
+	email: String
+	phone1: String
+	phone2: String
+	address: String
+	facebook: String
+	instagram: String
+	linkedIn: String
+	additionalTitle: String
+	additionalBody: String
 }

@@ -1,5 +1,5 @@
 # source: http://194.182.77.249:4466/ikigai/dev
-# timestamp: Sat Jul 21 2018 17:17:46 GMT+0200 (EET)
+# timestamp: Sat Jul 21 2018 18:42:11 GMT+0200 (EET)
 
 type AggregateClientApplication {
   count: Int!
@@ -21,11 +21,11 @@ type AggregatePost {
   count: Int!
 }
 
-type AggregateSettings {
+type AggregateUser {
   count: Int!
 }
 
-type AggregateUser {
+type AggregateVariable {
   count: Int!
 }
 
@@ -1777,42 +1777,42 @@ Long can represent values between -(2^63) and 2^63 - 1.
 scalar Long
 
 type Mutation {
-  createSettings(data: SettingsCreateInput!): Settings!
+  createVariable(data: VariableCreateInput!): Variable!
   createUser(data: UserCreateInput!): User!
   createPost(data: PostCreateInput!): Post!
   createJobApplication(data: JobApplicationCreateInput!): JobApplication!
   createClientApplication(data: ClientApplicationCreateInput!): ClientApplication!
   createContactApplication(data: ContactApplicationCreateInput!): ContactApplication!
   createFile(data: FileCreateInput!): File!
-  updateSettings(data: SettingsUpdateInput!, where: SettingsWhereUniqueInput!): Settings
+  updateVariable(data: VariableUpdateInput!, where: VariableWhereUniqueInput!): Variable
   updateUser(data: UserUpdateInput!, where: UserWhereUniqueInput!): User
   updatePost(data: PostUpdateInput!, where: PostWhereUniqueInput!): Post
   updateJobApplication(data: JobApplicationUpdateInput!, where: JobApplicationWhereUniqueInput!): JobApplication
   updateClientApplication(data: ClientApplicationUpdateInput!, where: ClientApplicationWhereUniqueInput!): ClientApplication
   updateContactApplication(data: ContactApplicationUpdateInput!, where: ContactApplicationWhereUniqueInput!): ContactApplication
   updateFile(data: FileUpdateInput!, where: FileWhereUniqueInput!): File
-  deleteSettings(where: SettingsWhereUniqueInput!): Settings
+  deleteVariable(where: VariableWhereUniqueInput!): Variable
   deleteUser(where: UserWhereUniqueInput!): User
   deletePost(where: PostWhereUniqueInput!): Post
   deleteJobApplication(where: JobApplicationWhereUniqueInput!): JobApplication
   deleteClientApplication(where: ClientApplicationWhereUniqueInput!): ClientApplication
   deleteContactApplication(where: ContactApplicationWhereUniqueInput!): ContactApplication
   deleteFile(where: FileWhereUniqueInput!): File
-  upsertSettings(where: SettingsWhereUniqueInput!, create: SettingsCreateInput!, update: SettingsUpdateInput!): Settings!
+  upsertVariable(where: VariableWhereUniqueInput!, create: VariableCreateInput!, update: VariableUpdateInput!): Variable!
   upsertUser(where: UserWhereUniqueInput!, create: UserCreateInput!, update: UserUpdateInput!): User!
   upsertPost(where: PostWhereUniqueInput!, create: PostCreateInput!, update: PostUpdateInput!): Post!
   upsertJobApplication(where: JobApplicationWhereUniqueInput!, create: JobApplicationCreateInput!, update: JobApplicationUpdateInput!): JobApplication!
   upsertClientApplication(where: ClientApplicationWhereUniqueInput!, create: ClientApplicationCreateInput!, update: ClientApplicationUpdateInput!): ClientApplication!
   upsertContactApplication(where: ContactApplicationWhereUniqueInput!, create: ContactApplicationCreateInput!, update: ContactApplicationUpdateInput!): ContactApplication!
   upsertFile(where: FileWhereUniqueInput!, create: FileCreateInput!, update: FileUpdateInput!): File!
-  updateManySettingses(data: SettingsUpdateInput!, where: SettingsWhereInput): BatchPayload!
+  updateManyVariables(data: VariableUpdateInput!, where: VariableWhereInput): BatchPayload!
   updateManyUsers(data: UserUpdateInput!, where: UserWhereInput): BatchPayload!
   updateManyPosts(data: PostUpdateInput!, where: PostWhereInput): BatchPayload!
   updateManyJobApplications(data: JobApplicationUpdateInput!, where: JobApplicationWhereInput): BatchPayload!
   updateManyClientApplications(data: ClientApplicationUpdateInput!, where: ClientApplicationWhereInput): BatchPayload!
   updateManyContactApplications(data: ContactApplicationUpdateInput!, where: ContactApplicationWhereInput): BatchPayload!
   updateManyFiles(data: FileUpdateInput!, where: FileWhereInput): BatchPayload!
-  deleteManySettingses(where: SettingsWhereInput): BatchPayload!
+  deleteManyVariables(where: VariableWhereInput): BatchPayload!
   deleteManyUsers(where: UserWhereInput): BatchPayload!
   deleteManyPosts(where: PostWhereInput): BatchPayload!
   deleteManyJobApplications(where: JobApplicationWhereInput): BatchPayload!
@@ -2232,21 +2232,21 @@ input PostWhereUniqueInput {
 }
 
 type Query {
-  settingses(where: SettingsWhereInput, orderBy: SettingsOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Settings]!
+  variables(where: VariableWhereInput, orderBy: VariableOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Variable]!
   users(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [User]!
   posts(where: PostWhereInput, orderBy: PostOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Post]!
   jobApplications(where: JobApplicationWhereInput, orderBy: JobApplicationOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [JobApplication]!
   clientApplications(where: ClientApplicationWhereInput, orderBy: ClientApplicationOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [ClientApplication]!
   contactApplications(where: ContactApplicationWhereInput, orderBy: ContactApplicationOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [ContactApplication]!
   files(where: FileWhereInput, orderBy: FileOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [File]!
-  settings(where: SettingsWhereUniqueInput!): Settings
+  variable(where: VariableWhereUniqueInput!): Variable
   user(where: UserWhereUniqueInput!): User
   post(where: PostWhereUniqueInput!): Post
   jobApplication(where: JobApplicationWhereUniqueInput!): JobApplication
   clientApplication(where: ClientApplicationWhereUniqueInput!): ClientApplication
   contactApplication(where: ContactApplicationWhereUniqueInput!): ContactApplication
   file(where: FileWhereUniqueInput!): File
-  settingsesConnection(where: SettingsWhereInput, orderBy: SettingsOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): SettingsConnection!
+  variablesConnection(where: VariableWhereInput, orderBy: VariableOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): VariableConnection!
   usersConnection(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): UserConnection!
   postsConnection(where: PostWhereInput, orderBy: PostOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): PostConnection!
   jobApplicationsConnection(where: JobApplicationWhereInput, orderBy: JobApplicationOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): JobApplicationConnection!
@@ -2261,58 +2261,423 @@ type Query {
   ): Node
 }
 
-type Settings {
-  index: Int!
-  email: String
-  phone1: String
-  phone2: String
-  address: String
-  facebook: String
-  instagram: String
-  linkedIn: String
-  contactEmail: String
-  clientsEmail: String
-  jobsEmail: String
-  additionalTitle: String!
-  additionalBody: String!
+type Subscription {
+  variable(where: VariableSubscriptionWhereInput): VariableSubscriptionPayload
+  user(where: UserSubscriptionWhereInput): UserSubscriptionPayload
+  post(where: PostSubscriptionWhereInput): PostSubscriptionPayload
+  jobApplication(where: JobApplicationSubscriptionWhereInput): JobApplicationSubscriptionPayload
+  clientApplication(where: ClientApplicationSubscriptionWhereInput): ClientApplicationSubscriptionPayload
+  contactApplication(where: ContactApplicationSubscriptionWhereInput): ContactApplicationSubscriptionPayload
+  file(where: FileSubscriptionWhereInput): FileSubscriptionPayload
+}
+
+type User implements Node {
+  id: ID!
+  name: String!
+  username: String!
+  password: String!
+  permissions: [Permission!]
+  posts(where: PostWhereInput, orderBy: PostOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Post!]
+  lastLogin: DateTime
 }
 
 """A connection to a list of items."""
-type SettingsConnection {
+type UserConnection {
   """Information to aid in pagination."""
   pageInfo: PageInfo!
 
   """A list of edges."""
-  edges: [SettingsEdge]!
-  aggregate: AggregateSettings!
+  edges: [UserEdge]!
+  aggregate: AggregateUser!
 }
 
-input SettingsCreateInput {
-  index: Int!
-  email: String
-  phone1: String
-  phone2: String
-  address: String
-  facebook: String
-  instagram: String
-  linkedIn: String
-  contactEmail: String
-  clientsEmail: String
-  jobsEmail: String
-  additionalTitle: String!
-  additionalBody: String!
+input UserCreateInput {
+  name: String!
+  username: String!
+  password: String!
+  lastLogin: DateTime
+  permissions: UserCreatepermissionsInput
+  posts: PostCreateManyWithoutAuthorInput
+}
+
+input UserCreateOneWithoutPostsInput {
+  create: UserCreateWithoutPostsInput
+  connect: UserWhereUniqueInput
+}
+
+input UserCreatepermissionsInput {
+  set: [Permission!]
+}
+
+input UserCreateWithoutPostsInput {
+  name: String!
+  username: String!
+  password: String!
+  lastLogin: DateTime
+  permissions: UserCreatepermissionsInput
 }
 
 """An edge in a connection."""
-type SettingsEdge {
+type UserEdge {
   """The item at the end of the edge."""
-  node: Settings!
+  node: User!
 
   """A cursor for use in pagination."""
   cursor: String!
 }
 
-enum SettingsOrderByInput {
+enum UserOrderByInput {
+  id_ASC
+  id_DESC
+  name_ASC
+  name_DESC
+  username_ASC
+  username_DESC
+  password_ASC
+  password_DESC
+  lastLogin_ASC
+  lastLogin_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+  createdAt_ASC
+  createdAt_DESC
+}
+
+type UserPreviousValues {
+  id: ID!
+  name: String!
+  username: String!
+  password: String!
+  permissions: [Permission!]
+  lastLogin: DateTime
+}
+
+type UserSubscriptionPayload {
+  mutation: MutationType!
+  node: User
+  updatedFields: [String!]
+  previousValues: UserPreviousValues
+}
+
+input UserSubscriptionWhereInput {
+  """Logical AND on all given filters."""
+  AND: [UserSubscriptionWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [UserSubscriptionWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [UserSubscriptionWhereInput!]
+
+  """
+  The subscription event gets dispatched when it's listed in mutation_in
+  """
+  mutation_in: [MutationType!]
+
+  """
+  The subscription event gets only dispatched when one of the updated fields names is included in this list
+  """
+  updatedFields_contains: String
+
+  """
+  The subscription event gets only dispatched when all of the field names included in this list have been updated
+  """
+  updatedFields_contains_every: [String!]
+
+  """
+  The subscription event gets only dispatched when some of the field names included in this list have been updated
+  """
+  updatedFields_contains_some: [String!]
+  node: UserWhereInput
+}
+
+input UserUpdateInput {
+  name: String
+  username: String
+  password: String
+  lastLogin: DateTime
+  permissions: UserUpdatepermissionsInput
+  posts: PostUpdateManyWithoutAuthorInput
+}
+
+input UserUpdateOneWithoutPostsInput {
+  create: UserCreateWithoutPostsInput
+  connect: UserWhereUniqueInput
+  delete: Boolean
+  update: UserUpdateWithoutPostsDataInput
+  upsert: UserUpsertWithoutPostsInput
+}
+
+input UserUpdatepermissionsInput {
+  set: [Permission!]
+}
+
+input UserUpdateWithoutPostsDataInput {
+  name: String
+  username: String
+  password: String
+  lastLogin: DateTime
+  permissions: UserUpdatepermissionsInput
+}
+
+input UserUpsertWithoutPostsInput {
+  update: UserUpdateWithoutPostsDataInput!
+  create: UserCreateWithoutPostsInput!
+}
+
+input UserWhereInput {
+  """Logical AND on all given filters."""
+  AND: [UserWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [UserWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [UserWhereInput!]
+  id: ID
+
+  """All values that are not equal to given value."""
+  id_not: ID
+
+  """All values that are contained in given list."""
+  id_in: [ID!]
+
+  """All values that are not contained in given list."""
+  id_not_in: [ID!]
+
+  """All values less than the given value."""
+  id_lt: ID
+
+  """All values less than or equal the given value."""
+  id_lte: ID
+
+  """All values greater than the given value."""
+  id_gt: ID
+
+  """All values greater than or equal the given value."""
+  id_gte: ID
+
+  """All values containing the given string."""
+  id_contains: ID
+
+  """All values not containing the given string."""
+  id_not_contains: ID
+
+  """All values starting with the given string."""
+  id_starts_with: ID
+
+  """All values not starting with the given string."""
+  id_not_starts_with: ID
+
+  """All values ending with the given string."""
+  id_ends_with: ID
+
+  """All values not ending with the given string."""
+  id_not_ends_with: ID
+  name: String
+
+  """All values that are not equal to given value."""
+  name_not: String
+
+  """All values that are contained in given list."""
+  name_in: [String!]
+
+  """All values that are not contained in given list."""
+  name_not_in: [String!]
+
+  """All values less than the given value."""
+  name_lt: String
+
+  """All values less than or equal the given value."""
+  name_lte: String
+
+  """All values greater than the given value."""
+  name_gt: String
+
+  """All values greater than or equal the given value."""
+  name_gte: String
+
+  """All values containing the given string."""
+  name_contains: String
+
+  """All values not containing the given string."""
+  name_not_contains: String
+
+  """All values starting with the given string."""
+  name_starts_with: String
+
+  """All values not starting with the given string."""
+  name_not_starts_with: String
+
+  """All values ending with the given string."""
+  name_ends_with: String
+
+  """All values not ending with the given string."""
+  name_not_ends_with: String
+  username: String
+
+  """All values that are not equal to given value."""
+  username_not: String
+
+  """All values that are contained in given list."""
+  username_in: [String!]
+
+  """All values that are not contained in given list."""
+  username_not_in: [String!]
+
+  """All values less than the given value."""
+  username_lt: String
+
+  """All values less than or equal the given value."""
+  username_lte: String
+
+  """All values greater than the given value."""
+  username_gt: String
+
+  """All values greater than or equal the given value."""
+  username_gte: String
+
+  """All values containing the given string."""
+  username_contains: String
+
+  """All values not containing the given string."""
+  username_not_contains: String
+
+  """All values starting with the given string."""
+  username_starts_with: String
+
+  """All values not starting with the given string."""
+  username_not_starts_with: String
+
+  """All values ending with the given string."""
+  username_ends_with: String
+
+  """All values not ending with the given string."""
+  username_not_ends_with: String
+  password: String
+
+  """All values that are not equal to given value."""
+  password_not: String
+
+  """All values that are contained in given list."""
+  password_in: [String!]
+
+  """All values that are not contained in given list."""
+  password_not_in: [String!]
+
+  """All values less than the given value."""
+  password_lt: String
+
+  """All values less than or equal the given value."""
+  password_lte: String
+
+  """All values greater than the given value."""
+  password_gt: String
+
+  """All values greater than or equal the given value."""
+  password_gte: String
+
+  """All values containing the given string."""
+  password_contains: String
+
+  """All values not containing the given string."""
+  password_not_contains: String
+
+  """All values starting with the given string."""
+  password_starts_with: String
+
+  """All values not starting with the given string."""
+  password_not_starts_with: String
+
+  """All values ending with the given string."""
+  password_ends_with: String
+
+  """All values not ending with the given string."""
+  password_not_ends_with: String
+  lastLogin: DateTime
+
+  """All values that are not equal to given value."""
+  lastLogin_not: DateTime
+
+  """All values that are contained in given list."""
+  lastLogin_in: [DateTime!]
+
+  """All values that are not contained in given list."""
+  lastLogin_not_in: [DateTime!]
+
+  """All values less than the given value."""
+  lastLogin_lt: DateTime
+
+  """All values less than or equal the given value."""
+  lastLogin_lte: DateTime
+
+  """All values greater than the given value."""
+  lastLogin_gt: DateTime
+
+  """All values greater than or equal the given value."""
+  lastLogin_gte: DateTime
+  posts_every: PostWhereInput
+  posts_some: PostWhereInput
+  posts_none: PostWhereInput
+}
+
+input UserWhereUniqueInput {
+  id: ID
+  username: String
+}
+
+type Variable {
+  index: Int!
+  email: String
+  phone1: String
+  phone2: String
+  address: String
+  facebook: String
+  instagram: String
+  linkedIn: String
+  contactEmail: String
+  clientsEmail: String
+  jobsEmail: String
+  additionalTitle: String
+  additionalBody: String
+}
+
+"""A connection to a list of items."""
+type VariableConnection {
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """A list of edges."""
+  edges: [VariableEdge]!
+  aggregate: AggregateVariable!
+}
+
+input VariableCreateInput {
+  index: Int!
+  email: String
+  phone1: String
+  phone2: String
+  address: String
+  facebook: String
+  instagram: String
+  linkedIn: String
+  contactEmail: String
+  clientsEmail: String
+  jobsEmail: String
+  additionalTitle: String
+  additionalBody: String
+}
+
+"""An edge in a connection."""
+type VariableEdge {
+  """The item at the end of the edge."""
+  node: Variable!
+
+  """A cursor for use in pagination."""
+  cursor: String!
+}
+
+enum VariableOrderByInput {
   index_ASC
   index_DESC
   email_ASC
@@ -2347,7 +2712,7 @@ enum SettingsOrderByInput {
   createdAt_DESC
 }
 
-type SettingsPreviousValues {
+type VariablePreviousValues {
   index: Int!
   email: String
   phone1: String
@@ -2359,26 +2724,26 @@ type SettingsPreviousValues {
   contactEmail: String
   clientsEmail: String
   jobsEmail: String
-  additionalTitle: String!
-  additionalBody: String!
+  additionalTitle: String
+  additionalBody: String
 }
 
-type SettingsSubscriptionPayload {
+type VariableSubscriptionPayload {
   mutation: MutationType!
-  node: Settings
+  node: Variable
   updatedFields: [String!]
-  previousValues: SettingsPreviousValues
+  previousValues: VariablePreviousValues
 }
 
-input SettingsSubscriptionWhereInput {
+input VariableSubscriptionWhereInput {
   """Logical AND on all given filters."""
-  AND: [SettingsSubscriptionWhereInput!]
+  AND: [VariableSubscriptionWhereInput!]
 
   """Logical OR on all given filters."""
-  OR: [SettingsSubscriptionWhereInput!]
+  OR: [VariableSubscriptionWhereInput!]
 
   """Logical NOT on all given filters combined by AND."""
-  NOT: [SettingsSubscriptionWhereInput!]
+  NOT: [VariableSubscriptionWhereInput!]
 
   """
   The subscription event gets dispatched when it's listed in mutation_in
@@ -2399,10 +2764,10 @@ input SettingsSubscriptionWhereInput {
   The subscription event gets only dispatched when some of the field names included in this list have been updated
   """
   updatedFields_contains_some: [String!]
-  node: SettingsWhereInput
+  node: VariableWhereInput
 }
 
-input SettingsUpdateInput {
+input VariableUpdateInput {
   index: Int
   email: String
   phone1: String
@@ -2418,15 +2783,15 @@ input SettingsUpdateInput {
   additionalBody: String
 }
 
-input SettingsWhereInput {
+input VariableWhereInput {
   """Logical AND on all given filters."""
-  AND: [SettingsWhereInput!]
+  AND: [VariableWhereInput!]
 
   """Logical OR on all given filters."""
-  OR: [SettingsWhereInput!]
+  OR: [VariableWhereInput!]
 
   """Logical NOT on all given filters combined by AND."""
-  NOT: [SettingsWhereInput!]
+  NOT: [VariableWhereInput!]
   index: Int
 
   """All values that are not equal to given value."""
@@ -2931,371 +3296,6 @@ input SettingsWhereInput {
   additionalBody_not_ends_with: String
 }
 
-input SettingsWhereUniqueInput {
+input VariableWhereUniqueInput {
   index: Int
-}
-
-type Subscription {
-  settings(where: SettingsSubscriptionWhereInput): SettingsSubscriptionPayload
-  user(where: UserSubscriptionWhereInput): UserSubscriptionPayload
-  post(where: PostSubscriptionWhereInput): PostSubscriptionPayload
-  jobApplication(where: JobApplicationSubscriptionWhereInput): JobApplicationSubscriptionPayload
-  clientApplication(where: ClientApplicationSubscriptionWhereInput): ClientApplicationSubscriptionPayload
-  contactApplication(where: ContactApplicationSubscriptionWhereInput): ContactApplicationSubscriptionPayload
-  file(where: FileSubscriptionWhereInput): FileSubscriptionPayload
-}
-
-type User implements Node {
-  id: ID!
-  name: String!
-  username: String!
-  password: String!
-  permissions: [Permission!]
-  posts(where: PostWhereInput, orderBy: PostOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Post!]
-  lastLogin: DateTime
-}
-
-"""A connection to a list of items."""
-type UserConnection {
-  """Information to aid in pagination."""
-  pageInfo: PageInfo!
-
-  """A list of edges."""
-  edges: [UserEdge]!
-  aggregate: AggregateUser!
-}
-
-input UserCreateInput {
-  name: String!
-  username: String!
-  password: String!
-  lastLogin: DateTime
-  permissions: UserCreatepermissionsInput
-  posts: PostCreateManyWithoutAuthorInput
-}
-
-input UserCreateOneWithoutPostsInput {
-  create: UserCreateWithoutPostsInput
-  connect: UserWhereUniqueInput
-}
-
-input UserCreatepermissionsInput {
-  set: [Permission!]
-}
-
-input UserCreateWithoutPostsInput {
-  name: String!
-  username: String!
-  password: String!
-  lastLogin: DateTime
-  permissions: UserCreatepermissionsInput
-}
-
-"""An edge in a connection."""
-type UserEdge {
-  """The item at the end of the edge."""
-  node: User!
-
-  """A cursor for use in pagination."""
-  cursor: String!
-}
-
-enum UserOrderByInput {
-  id_ASC
-  id_DESC
-  name_ASC
-  name_DESC
-  username_ASC
-  username_DESC
-  password_ASC
-  password_DESC
-  lastLogin_ASC
-  lastLogin_DESC
-  updatedAt_ASC
-  updatedAt_DESC
-  createdAt_ASC
-  createdAt_DESC
-}
-
-type UserPreviousValues {
-  id: ID!
-  name: String!
-  username: String!
-  password: String!
-  permissions: [Permission!]
-  lastLogin: DateTime
-}
-
-type UserSubscriptionPayload {
-  mutation: MutationType!
-  node: User
-  updatedFields: [String!]
-  previousValues: UserPreviousValues
-}
-
-input UserSubscriptionWhereInput {
-  """Logical AND on all given filters."""
-  AND: [UserSubscriptionWhereInput!]
-
-  """Logical OR on all given filters."""
-  OR: [UserSubscriptionWhereInput!]
-
-  """Logical NOT on all given filters combined by AND."""
-  NOT: [UserSubscriptionWhereInput!]
-
-  """
-  The subscription event gets dispatched when it's listed in mutation_in
-  """
-  mutation_in: [MutationType!]
-
-  """
-  The subscription event gets only dispatched when one of the updated fields names is included in this list
-  """
-  updatedFields_contains: String
-
-  """
-  The subscription event gets only dispatched when all of the field names included in this list have been updated
-  """
-  updatedFields_contains_every: [String!]
-
-  """
-  The subscription event gets only dispatched when some of the field names included in this list have been updated
-  """
-  updatedFields_contains_some: [String!]
-  node: UserWhereInput
-}
-
-input UserUpdateInput {
-  name: String
-  username: String
-  password: String
-  lastLogin: DateTime
-  permissions: UserUpdatepermissionsInput
-  posts: PostUpdateManyWithoutAuthorInput
-}
-
-input UserUpdateOneWithoutPostsInput {
-  create: UserCreateWithoutPostsInput
-  connect: UserWhereUniqueInput
-  delete: Boolean
-  update: UserUpdateWithoutPostsDataInput
-  upsert: UserUpsertWithoutPostsInput
-}
-
-input UserUpdatepermissionsInput {
-  set: [Permission!]
-}
-
-input UserUpdateWithoutPostsDataInput {
-  name: String
-  username: String
-  password: String
-  lastLogin: DateTime
-  permissions: UserUpdatepermissionsInput
-}
-
-input UserUpsertWithoutPostsInput {
-  update: UserUpdateWithoutPostsDataInput!
-  create: UserCreateWithoutPostsInput!
-}
-
-input UserWhereInput {
-  """Logical AND on all given filters."""
-  AND: [UserWhereInput!]
-
-  """Logical OR on all given filters."""
-  OR: [UserWhereInput!]
-
-  """Logical NOT on all given filters combined by AND."""
-  NOT: [UserWhereInput!]
-  id: ID
-
-  """All values that are not equal to given value."""
-  id_not: ID
-
-  """All values that are contained in given list."""
-  id_in: [ID!]
-
-  """All values that are not contained in given list."""
-  id_not_in: [ID!]
-
-  """All values less than the given value."""
-  id_lt: ID
-
-  """All values less than or equal the given value."""
-  id_lte: ID
-
-  """All values greater than the given value."""
-  id_gt: ID
-
-  """All values greater than or equal the given value."""
-  id_gte: ID
-
-  """All values containing the given string."""
-  id_contains: ID
-
-  """All values not containing the given string."""
-  id_not_contains: ID
-
-  """All values starting with the given string."""
-  id_starts_with: ID
-
-  """All values not starting with the given string."""
-  id_not_starts_with: ID
-
-  """All values ending with the given string."""
-  id_ends_with: ID
-
-  """All values not ending with the given string."""
-  id_not_ends_with: ID
-  name: String
-
-  """All values that are not equal to given value."""
-  name_not: String
-
-  """All values that are contained in given list."""
-  name_in: [String!]
-
-  """All values that are not contained in given list."""
-  name_not_in: [String!]
-
-  """All values less than the given value."""
-  name_lt: String
-
-  """All values less than or equal the given value."""
-  name_lte: String
-
-  """All values greater than the given value."""
-  name_gt: String
-
-  """All values greater than or equal the given value."""
-  name_gte: String
-
-  """All values containing the given string."""
-  name_contains: String
-
-  """All values not containing the given string."""
-  name_not_contains: String
-
-  """All values starting with the given string."""
-  name_starts_with: String
-
-  """All values not starting with the given string."""
-  name_not_starts_with: String
-
-  """All values ending with the given string."""
-  name_ends_with: String
-
-  """All values not ending with the given string."""
-  name_not_ends_with: String
-  username: String
-
-  """All values that are not equal to given value."""
-  username_not: String
-
-  """All values that are contained in given list."""
-  username_in: [String!]
-
-  """All values that are not contained in given list."""
-  username_not_in: [String!]
-
-  """All values less than the given value."""
-  username_lt: String
-
-  """All values less than or equal the given value."""
-  username_lte: String
-
-  """All values greater than the given value."""
-  username_gt: String
-
-  """All values greater than or equal the given value."""
-  username_gte: String
-
-  """All values containing the given string."""
-  username_contains: String
-
-  """All values not containing the given string."""
-  username_not_contains: String
-
-  """All values starting with the given string."""
-  username_starts_with: String
-
-  """All values not starting with the given string."""
-  username_not_starts_with: String
-
-  """All values ending with the given string."""
-  username_ends_with: String
-
-  """All values not ending with the given string."""
-  username_not_ends_with: String
-  password: String
-
-  """All values that are not equal to given value."""
-  password_not: String
-
-  """All values that are contained in given list."""
-  password_in: [String!]
-
-  """All values that are not contained in given list."""
-  password_not_in: [String!]
-
-  """All values less than the given value."""
-  password_lt: String
-
-  """All values less than or equal the given value."""
-  password_lte: String
-
-  """All values greater than the given value."""
-  password_gt: String
-
-  """All values greater than or equal the given value."""
-  password_gte: String
-
-  """All values containing the given string."""
-  password_contains: String
-
-  """All values not containing the given string."""
-  password_not_contains: String
-
-  """All values starting with the given string."""
-  password_starts_with: String
-
-  """All values not starting with the given string."""
-  password_not_starts_with: String
-
-  """All values ending with the given string."""
-  password_ends_with: String
-
-  """All values not ending with the given string."""
-  password_not_ends_with: String
-  lastLogin: DateTime
-
-  """All values that are not equal to given value."""
-  lastLogin_not: DateTime
-
-  """All values that are contained in given list."""
-  lastLogin_in: [DateTime!]
-
-  """All values that are not contained in given list."""
-  lastLogin_not_in: [DateTime!]
-
-  """All values less than the given value."""
-  lastLogin_lt: DateTime
-
-  """All values less than or equal the given value."""
-  lastLogin_lte: DateTime
-
-  """All values greater than the given value."""
-  lastLogin_gt: DateTime
-
-  """All values greater than or equal the given value."""
-  lastLogin_gte: DateTime
-  posts_every: PostWhereInput
-  posts_some: PostWhereInput
-  posts_none: PostWhereInput
-}
-
-input UserWhereUniqueInput {
-  id: ID
-  username: String
 }

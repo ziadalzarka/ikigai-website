@@ -12,4 +12,8 @@ export const publicContent = {
 	post(parent, { id }, ctx: Context, info) {
 		return ctx.db.query.post({ where: { id } }, info);
 	},
+
+	variables(parent, { }, ctx: Context, info) {
+		return ctx.db.query.variable({ where: { index: 0 } }, info);
+	}
 };

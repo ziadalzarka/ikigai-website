@@ -9,4 +9,21 @@ mutation {
 	}) {
 		id
 	}
+  createVariable(data:{
+    index: 0,
+    email: "example@example.com",
+    phone1: "+1 (0) 000 0000 001",
+    phone2: "+1 (0) 000 0000 002",
+    address: "1234 Street Name\nCity, AA 99999",
+    facebook: "",
+    instagram:"",
+    linkedIn:"",
+    additionalTitle:"Feedback",
+    additionalBody:"Please send us your ideas, bug reports, suggestions! Any feedback would be appreciated.",
+    clientsEmail: "example@example.com",
+    contactEmail: "example@example.com",
+    jobsEmail: "example@example.com"
+  }) {
+    index
+  }
 }
