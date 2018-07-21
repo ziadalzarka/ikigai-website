@@ -57,6 +57,19 @@ export class AdminUsersEffects {
 			),
 	);
 
+	@Effect()
+	changeUserPermissions: Observable<Action> = this.actions
+		.ofType<Action>(AdminUsersActions.CHANGE_USER_PERMISSIONS)
+		.pipe(
+			map((action: AdminUsersActions.ChangeUserPermissions) => action.payload),
+			mergeMap(({ id, permissions }) =>
+				this.adminService.changeUserPermissions(id, permissions).pipe(
+					map((res: Partial<User>) => new AdminUsersActions.ChangeUserPermissionsSuccess(res)),
+					catchError(() => of(new AdminUsersActions.ChangeUserPermissionsFail()))
+				)
+			),
+	);
+
 	@Effect({ dispatch: false })
 	loginAsUserSuccess: Observable<any> = this.actions
 		.ofType<Action>(AdminUsersActions.LOGIN_AS_USER_SUCCESS)

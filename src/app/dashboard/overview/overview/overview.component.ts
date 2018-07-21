@@ -1,3 +1,4 @@
+import { Permissions } from '@app/redux/enums/permission.enum';
 import { User } from '@app/redux/models/user.model';
 import { AppState } from '@app/redux/app.state';
 import { Store } from '@ngrx/store';
@@ -7,7 +8,6 @@ import { Router } from '@angular/router';
 import { Observable, of } from 'rxjs';
 import * as fromUser from '@app/redux/reducers/user.reducer';
 import { first } from 'rxjs/operators';
-import { Permissions } from 'utils/utils';
 import { LogoutUser } from '@app/redux/actions/user.actions';
 
 @Component({
@@ -50,7 +50,7 @@ export class OverviewComponent implements OnInit {
 				if (permit.toString() == Permissions.Admin) {
 					grantAll();
 				} else {
-					this.permissions[permit] = true;
+					this.permissions[permit.toString()] = true;
 				}
 			});
 		});

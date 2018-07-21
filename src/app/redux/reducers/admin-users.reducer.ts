@@ -30,15 +30,27 @@ export function adminUsersReducer(state: State = initialState, action: AdminActi
 		case AdminActions.ADD_USER:
 			return { ...state, ...loading };
 		case AdminActions.ADD_USER_SUCCESS:
-			console.log(action.payload);
 			return { ...usersAdapter.addOne(action.payload, state), ...idle };
 		case AdminActions.ADD_USER_FAIL:
+			return { ...state, ...failed };
+
+		case AdminActions.CHANGE_USER_PERMISSIONS:
+			return { ...state, ...loading };
+		case AdminActions.CHANGE_USER_PERMISSIONS_SUCCESS:
+			return {
+				...usersAdapter.updateOne({
+					id: action.payload.id,
+					changes: {
+						permissions: action.payload.permissions
+					}
+				}, state), ...idle
+			};
+		case AdminActions.CHANGE_USER_PERMISSIONS_FAIL:
 			return { ...state, ...failed };
 
 		case AdminActions.DELETE_USER:
 			return { ...state, ...loading };
 		case AdminActions.DELETE_USER_SUCCESS:
-			console.log(action.payload);
 			return { ...usersAdapter.removeOne(action.payload.id, state), ...idle };
 		case AdminActions.DELETE_USER_FAIL:
 			return { ...state, ...failed };

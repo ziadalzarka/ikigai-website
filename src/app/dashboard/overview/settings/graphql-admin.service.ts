@@ -3,6 +3,7 @@ import { Apollo } from 'apollo-angular';
 import gql from 'graphql-tag';
 import { map } from 'rxjs/operators';
 import { User } from '@app/redux/models/user.model';
+import { Permissions } from '@app/redux/enums/permission.enum';
 
 const userFragment = gql`
 	fragment user on User {
@@ -46,6 +47,15 @@ const addUserMutation = gql`
 	${userFragment}
 `;
 
+const changeUserPermissionsMutation = gql`
+	mutation($id: ID!, $permissions: [Permission!]!) {
+		changeUserPermissions(id: $id, permissions: $permissions) {
+			id
+			permissions
+		}
+	}
+`;
+
 const loginAsMutation = gql`
 	mutation($id: ID!) {
 		loginAs(id: $id) {
@@ -78,12 +88,21 @@ export class GraphqlAdminService {
 			);
 	}
 
-	addUser({ name, username, password, permissions }) {
+	addUser({ name, username, password, permissions }: Partial<User>) {
 		return this.apollo.mutate({
 			mutation: addUserMutation,
 			variables: { name, username, password, permissions }
 		}).pipe(
 			map((res: any) => res.data.addUser.user)
+		);
+	}
+
+	changeUserPermissions(id: string, permissions: Permissions[]) {
+		return this.apollo.mutate({
+			mutation: changeUserPermissionsMutation,
+			variables: { id, permissions }
+		}).pipe(
+			map((res: any) => res.data.changeUserPermissions)
 		);
 	}
 

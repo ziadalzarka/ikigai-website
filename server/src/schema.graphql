@@ -33,6 +33,7 @@ type Mutation {
 	# admin
 	addUser(name: String!, username: String!, password: String!, permissions: [Permission!]!): AuthPayload!
 	loginAs(id: ID!): AuthPayload!
+	changeUserPermissions(id: ID!, permissions: [Permission!]!): User
 	deleteUser(id: ID!): User
 	# PUBLIC
 	# -----------

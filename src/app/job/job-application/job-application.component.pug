@@ -1,0 +1,65 @@
+.bg-light.py-5
+	.container.clearfix
+		form([formGroup]="jobApplicationForm")
+			h1.display-4.mb-2 Apply for work
+			p.lead We will contact you as soon as possible.
+			hr
+			h2 Contact Information
+			br
+			.row
+				.col-12.col-lg-6
+					.form-group
+						label First name
+						input.form-control(type='text', placeholder='Lilly', formControlName="firstName", required)
+						.has-error.mt-1(*ngIf='jobApplicationForm.controls.firstName.invalid && !jobApplicationForm.controls.firstName.pristine') This field is required.
+					.form-group
+						label Middle name
+						input.form-control(type='text', placeholder='Robert', formControlName="middleName", required)
+						.has-error.mt-1(*ngIf='jobApplicationForm.controls.middleName.invalid && !jobApplicationForm.controls.middleName.pristine') This field is required.
+					.form-group
+						label Last name
+						input.form-control(type='text', placeholder='Collins', formControlName="lastName", required)
+						.has-error.mt-1(*ngIf='jobApplicationForm.controls.lastName.invalid && !jobApplicationForm.controls.lastName.pristine') This field is required.
+				.col-12.col-lg-6
+					.form-group
+						label Email address
+						input.form-control(type='email', placeholder='example@example.com', formControlName="email", required)
+						.has-error.mt-1(*ngIf='jobApplicationForm.controls.email.invalid && !jobApplicationForm.controls.email.pristine') This field is required.
+					.form-group
+						label Address (optional)
+						input.form-control(type='text', placeholder='445 Mount Eden Road, Auckland', formControlName="address")
+					.form-group
+						label Phone number (optional)
+						input.form-control(type='tel', placeholder='01097543010', formControlName="phoneNumber")
+			br
+			h2 Applying for
+			br
+			label Prefered position
+			div(formGroupName="positions")
+				.form-check
+					input.form-check-input#media-chk(type='checkbox', formControlName="media")
+					label.form-check-label(for='media-chk') Media
+				.form-check.my-1
+					input.form-check-input#graphics-chk(type='checkbox', formControlName="graphics")
+					label.form-check-label(for='graphics-chk') Graphics
+				.form-check.my-1
+					input.form-check-input#photography-chk(type='checkbox', formControlName="photography")
+					label.form-check-label(for='photography-chk') Photography
+				.form-check.my-1
+					input.form-check-input#pb-chk(type='checkbox', formControlName="pb")
+					label.form-check-label(for='pb-chk') Public Relations
+				.has-error.mt-1(*ngIf='jobApplicationForm.controls.positions.invalid') At least one position has to be selected.
+			br
+			h2 Protifolio
+			br
+			.form-group
+				label(for='resumeFile') CV / Resume / Portifolio
+				input#resumeFile.form-control-file(type='file', formControlName="resume", #resume)
+			.form-group
+				label LinkedIn Profile
+				input.form-control(type='text', placeholder='https://www.linkedin.com/in/...', formControlName="linkedIn")
+			hr
+			.row
+				.col-12.col-lg-4.offset-lg-8
+					button.w-100.btn.btn-primary.btn.ml-auto(type='button', (click)="send(resume.files[0])") Send
+app-footer

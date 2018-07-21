@@ -21,7 +21,9 @@
 		"express-fileupload": "^0.4.0",
 		"graphql-yoga": "1.14.12",
 		"jsonwebtoken": "8.3.0",
-		"prisma-binding": "2.1.0"
+		"node-fetch": "^2.1.2",
+		"prisma-binding": "2.1.0",
+		"shortid": "^2.2.12"
 	},
 	"devDependencies": {
 		"@types/body-parser": "^1.16.3",

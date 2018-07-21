@@ -25,7 +25,7 @@
 									button.btn.btn-info.dropdown-toggle.dropdown-toggle-split(type='button' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false')
 										span.sr-only Toggle Actions
 									.dropdown-menu
-										a.dropdown-item Change Permissions
+										a.dropdown-item((click)='changeUserPermissionsOpen(changeUserPermissionsModal, user)') Change Permissions
 										.dropdown-divider
 										a.dropdown-item.text-danger((click)='deleteUserOpen(deleteUserModal, user.id)') Delete
 button.btn.btn-info.fab([@fabTransition]='getFabState()', (click)="addUserOpen(addUserModal)")
@@ -50,25 +50,54 @@ ng-template(#addUserModal, let-close='close', let-dismiss='dismiss')
 				.has-error.mt-1(*ngIf='addUserForm.controls.password.invalid && !addUserForm.controls.password.pristine') Password must be at least 8 characters long.
 			br
 			label Permissions
-			.form-check
-				input.form-check-input#admin-chk(type='checkbox', formControlName='admin', [(ngModel)]='isAdmin')
-				label.form-check-label(for='admin-chk') Admin
-			div(*ngIf='!isAdmin')
-				.form-check.my-1
-					input.form-check-input#posts-chk(type='checkbox', formControlName='posts')
-					label.form-check-label(for='posts-chk') Posts
-				.form-check.my-1
-					input.form-check-input#clientapplications-chk(type='checkbox', formControlName='clientApplications')
-					label.form-check-label(for='clientapplications-chk') Client Applications
-				.form-check.my-1
-					input.form-check-input#jobapplications-chk(type='checkbox', formControlName='jobApplications')
-					label.form-check-label(for='jobapplications-chk') Job Applications
-				.form-check.my-1
-					input.form-check-input#contactapplications-chk(type='checkbox', formControlName='contactApplications')
-					label.form-check-label(for='contactapplications-chk') Contact Applications
+			.row
+				.col
+					.form-check.form-check-inline
+						input.form-check-input#admin-chk(type='checkbox', formControlName='admin', [(ngModel)]='isAdmin')
+						label.form-check-label(for='admin-chk') Admin
+					div(*ngIf='!isAdmin')
+						.form-check.form-check-inline
+							input.form-check-input#posts-chk(type='checkbox', formControlName='posts')
+							label.form-check-label(for='posts-chk') Posts
+						.form-check.form-check-inline
+							input.form-check-input#clientapplications-chk(type='checkbox', formControlName='clientApplications')
+							label.form-check-label(for='clientapplications-chk') Client Applications
+						.form-check.form-check-inline
+							input.form-check-input#jobapplications-chk(type='checkbox', formControlName='jobApplications')
+							label.form-check-label(for='jobapplications-chk') Job Applications
+						.form-check.form-check-inline
+							input.form-check-input#contactapplications-chk(type='checkbox', formControlName='contactApplications')
+							label.form-check-label(for='contactapplications-chk') Contact Applications
 	.modal-footer
 		button.btn.btn-secondary(type='button', (click)="dismiss()") Cancel
 		button.btn.btn-info(type='button', (click)="addUserCheck(close)") Add
+
+ng-template(#changeUserPermissionsModal, let-close='close', let-dismiss='dismiss')
+	.modal-header
+		h3.modal-title Change permissions for {{selectedUser}}
+	.modal-body
+		form([formGroup]="changeUserPermissionsForm")
+			.row
+				.col
+					.form-check.form-check-inline
+						input.form-check-input#admin-chk(type='checkbox', formControlName='admin', [(ngModel)]='isAdmin')
+						label.form-check-label(for='admin-chk') Admin
+					div(*ngIf='!isAdmin')
+						.form-check.form-check-inline
+							input.form-check-input#posts-chk(type='checkbox', formControlName='posts')
+							label.form-check-label(for='posts-chk') Posts
+						.form-check.form-check-inline
+							input.form-check-input#clientapplications-chk(type='checkbox', formControlName='clientApplications')
+							label.form-check-label(for='clientapplications-chk') Client Applications
+						.form-check.form-check-inline
+							input.form-check-input#jobapplications-chk(type='checkbox', formControlName='jobApplications')
+							label.form-check-label(for='jobapplications-chk') Job Applications
+						.form-check.form-check-inline
+							input.form-check-input#contactapplications-chk(type='checkbox', formControlName='contactApplications')
+							label.form-check-label(for='contactapplications-chk') Contact Applications
+	.modal-footer
+		button.btn.btn-secondary(type='button', (click)="dismiss()") Cancel
+		button.btn.btn-info(type='button', (click)="close()") Save
 
 ng-template(#deleteUserModal, let-close='close', let-dismiss='dismiss')
 	.modal-header

@@ -1,7 +1,7 @@
 import { getUserId, Context } from '../../utils';
 
 export const postMutation = {
-	async publish(parent, { title, body, thumbnailBody, thumbnailImageId }, ctx: Context, info) {
+	async publish(parent, { title, body, thumbnailBody, thumbnailImageFileId }, ctx: Context, info) {
 		const userId = getUserId(ctx);
 		return ctx.db.mutation.createPost(
 			{
@@ -9,9 +9,7 @@ export const postMutation = {
 					title,
 					body,
 					thumbnailBody,
-					thumbnailImage: {
-						connect: { id: thumbnailImageId }
-					},
+					thumbnailImageFileId,
 					author: {
 						connect: { id: userId },
 					},

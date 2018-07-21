@@ -19,10 +19,10 @@ const routes: Routes = [
 		}
 	},
 	{
-		path: 'work',
-		loadChildren: 'app/work/work.module#WorkModule',
+		path: 'job',
+		loadChildren: 'app/job/job.module#JobModule',
 		data: {
-			state: 'work'
+			state: 'job'
 		}
 	},
 	{

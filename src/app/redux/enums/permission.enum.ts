@@ -1,7 +1,7 @@
-export enum Permission {
-	Admin,
-	Posts,
-	JobApplications,
-	ClientApplications,
-	ContactApplications
+export class Permissions {
+	static Admin = 'Admin';
+	static Posts = 'Posts';
+	static JobApplications = 'JobApplications';
+	static ClientApplications = 'ClientApplications';
+	static ContactApplications = 'ContactApplications';
 }

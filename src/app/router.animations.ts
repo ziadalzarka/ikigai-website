@@ -34,11 +34,11 @@ export const scale = group([
 ]);
 
 export const routerTransition = trigger('routerTransition', [
-	/* home, client, work */
+	/* home, client, job */
 	transition('home => client', [swipeRight]),
 	transition('client => home', [swipeLeft]),
-	transition('home => work', [swipeLeft]),
-	transition('work => home', [swipeRight]),
+	transition('home => job', [swipeLeft]),
+	transition('job => home', [swipeRight]),
 	transition('home => contact', [swipeDown]),
 	transition('contact => home', [swipeUp]),
 

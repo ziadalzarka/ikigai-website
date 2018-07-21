@@ -1,4 +1,4 @@
-import { Permission } from '@app/redux/enums/permission.enum';
+import { Permissions } from '@app/redux/enums/permission.enum';
 import { Post } from '@app/redux/models/post.model';
 
 export interface User {
@@ -6,7 +6,7 @@ export interface User {
 	name: string;
 	username: string;
 	password: string;
-	permissions: Permission[];
+	permissions: Permissions[];
 	posts: Post[];
 	lastLogin: Date;
 }

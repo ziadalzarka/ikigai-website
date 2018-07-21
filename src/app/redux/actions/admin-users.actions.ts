@@ -8,7 +8,7 @@ export const ADD_USER_FAIL = '[ADD] User !FAIL';
 export class AddUser implements Action {
 	readonly type = ADD_USER;
 
-	constructor(public payload: User) { }
+	constructor(public payload: Partial<User>) { }
 }
 
 export class AddUserSuccess implements Action {
@@ -45,9 +45,31 @@ export class DeleteUserFail implements Action {
 	constructor() { }
 }
 
-export const LOGIN_AS_USER = '[LGIN_AS] User';
-export const LOGIN_AS_USER_SUCCESS = '[LGIN_AS] User !SUCCESS';
-export const LOGIN_AS_USER_FAIL = '[LGIN_AS] User !FAIL';
+export const CHANGE_USER_PERMISSIONS = '[CHANGE_USER] Permissions';
+export const CHANGE_USER_PERMISSIONS_SUCCESS = '[CHANGE_USER] Permissions !SUCCESS';
+export const CHANGE_USER_PERMISSIONS_FAIL = '[CHANGE_USER] Permissions !FAIL';
+
+export class ChangeUserPermissions implements Action {
+	readonly type = CHANGE_USER_PERMISSIONS;
+
+	constructor(public payload: Partial<User>) { }
+}
+
+export class ChangeUserPermissionsSuccess implements Action {
+	readonly type = CHANGE_USER_PERMISSIONS_SUCCESS;
+
+	constructor(public payload: Partial<User>) { }
+}
+
+	export class ChangeUserPermissionsFail implements Action {
+	readonly type = CHANGE_USER_PERMISSIONS_FAIL;
+
+	constructor() { }
+}
+
+export const LOGIN_AS_USER = '[LOGIN_AS] User';
+export const LOGIN_AS_USER_SUCCESS = '[LOGIN_AS] User !SUCCESS';
+export const LOGIN_AS_USER_FAIL = '[LOGIN_AS] User !FAIL';
 
 export class LoginAsUser implements Action {
 	readonly type = LOGIN_AS_USER;
@@ -93,4 +115,5 @@ export type All =
 	ListUsers | ListUsersSuccess | ListUsersFail |
 	DeleteUser | DeleteUserSuccess | DeleteUserFail |
 	AddUser | AddUserSuccess | AddUserFail |
-	LoginAsUser | LoginAsUserSuccess | LoginAsUserFail;
+	LoginAsUser | LoginAsUserSuccess | LoginAsUserFail |
+	ChangeUserPermissions | ChangeUserPermissionsSuccess | ChangeUserPermissionsFail;

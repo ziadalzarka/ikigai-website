@@ -1,5 +1,6 @@
-import { AppState } from './../../../../redux/app.state';
-import { fabTransition } from './../../../../fab.animations';
+import { Permissions } from '@app/redux/enums/permission.enum';
+import { AppState } from '@app/redux/app.state';
+import { fabTransition } from '@app/fab.animations';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { interval, Observable, timer } from 'rxjs';
@@ -7,11 +8,15 @@ import { map } from 'rxjs/operators';
 import { Store } from '@ngrx/store';
 import * as fromAdminUsers from '@app/redux/reducers/admin-users.reducer';
 import { User } from '@app/redux/models/user.model';
-import { ListUsers, DeleteUser, AddUser, LoginAsUser } from '@app/redux/actions/admin-users.actions';
+import {
+	ListUsers,
+	DeleteUser,
+	AddUser,
+	LoginAsUser,
+	ChangeUserPermissions
+} from '@app/redux/actions/admin-users.actions';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
-import { Permissions } from 'utils/utils';
-
 @Component({
 	selector: 'app-users',
 	animations: [fabTransition],
@@ -22,6 +27,16 @@ export class UsersComponent {
 
 	showFab = false;
 	users: Observable<User[]>;
+
+	selectedUser: string = null;
+
+	changeUserPermissionsForm = this.fb.group({
+		admin: false,
+		posts: false,
+		clientApplications: false,
+		jobApplications: false,
+		contactApplications: false
+	});
 
 	addUserForm = this.fb.group({
 		name: ['', Validators.required],
@@ -34,20 +49,14 @@ export class UsersComponent {
 		contactApplications: true
 	});
 
-	get userForm() {
+	getPermissionsFromForm(form: FormGroup) {
 		const {
-			name,
-			username,
-			password,
 			admin,
 			posts,
 			clientApplications,
 			jobApplications,
-			contactApplications } = this.addUserForm.value;
+			contactApplications } = form.value;
 		return {
-			name,
-			username,
-			password,
 			permissions: [
 				...(admin ? [Permissions.Admin] : [
 					...(posts ? [Permissions.Posts] : []),
@@ -56,6 +65,19 @@ export class UsersComponent {
 					...(contactApplications ? [Permissions.ContactApplications] : [])
 				])
 			]
+		};
+	}
+
+	get userForm() {
+		const {
+			name,
+			username,
+			password } = this.addUserForm.value;
+		return {
+			name,
+			username,
+			password,
+			...this.getPermissionsFromForm(this.addUserForm)
 		};
 	}
 
@@ -99,9 +121,26 @@ export class UsersComponent {
 	addUserCheck(close) {
 		this.addUserForm.updateValueAndValidity();
 		if (!this.addUserForm.invalid) {
-			this.store.dispatch(new AddUser(this.userForm as User));
+			this.store.dispatch(new AddUser(this.userForm as Partial<User>));
 			close();
 		}
+	}
+
+	changeUserPermissionsOpen(content, user) {
+		this.selectedUser = user.name;
+		this.changeUserPermissionsForm = this.fb.group({
+			admin: user.permissions.includes(Permissions.Admin),
+			posts: user.permissions.includes(Permissions.Posts),
+			clientApplications: user.permissions.includes(Permissions.ClientApplications),
+			jobApplications: user.permissions.includes(Permissions.JobApplications),
+			contactApplications: user.permissions.includes(Permissions.ContactApplications)
+		});
+		this.open(content).then(() => {
+			this.store.dispatch(new ChangeUserPermissions({
+				id: user.id,
+				...this.getPermissionsFromForm(this.changeUserPermissionsForm)
+			}));
+		}, () => { });
 	}
 
 	loginAs(user) {

@@ -24,8 +24,25 @@ export const adminMutation = {
 		};
 	},
 
+	async changeUserPermissions(parent, { id, permissions }, ctx: Context, info) {
+		await verifyPermission(ctx, Permissions.Admin).catch(err => { throw err; });
+		return ctx.db.mutation.updateUser({
+			where: { id },
+			data: {
+				permissions: {
+					set: permissions
+				}
+			}
+		}, info);
+	},
+
 	async loginAs(parent, { id }, ctx: Context, info) {
 		await verifyPermission(ctx, Permissions.Admin).catch(err => { throw err; });
+		ctx.db.mutation.updateUser({
+			where: { id }, data: {
+				lastLogin: new Date()
+			}
+		});
 		return {
 			token: jwt.sign({ userId: id }, process.env.APP_SECRET),
 		};

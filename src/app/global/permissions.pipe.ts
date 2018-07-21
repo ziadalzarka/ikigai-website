@@ -1,6 +1,5 @@
-import { Permissions } from 'utils/utils';
 import { Pipe, PipeTransform } from '@angular/core';
-import { Permission } from '@app/redux/enums/permission.enum';
+import { Permissions } from '@app/redux/enums/permission.enum';
 
 @Pipe({
 	name: 'permissions'
