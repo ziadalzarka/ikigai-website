@@ -37,6 +37,7 @@ export class LoginComponent implements OnInit {
 	}
 
 	login() {
+		console.log('dispatching');
 		this.store.dispatch(new LoginUser(this.user));
 	}
 }

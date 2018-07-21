@@ -34,7 +34,6 @@ export class FooterEffects {
 		.ofType<Action>(FooterActions.UPDATE_FOOTER_VARIABLES)
 		.pipe(
 			map((action: FooterActions.UpdateFooterVariables) => action.payload),
-			tap(console.log),
 			mergeMap(payload =>
 				this.adminService.updateVariables(payload).pipe(
 					map(_ => new FooterActions.UpdateFooterVariablesSuccess()),
