@@ -1,56 +1,74 @@
 .p-5
 	.container-fluid
-		.row
-			.col
-				h2 Contact Information
-				hr
-		.row
-			.col-12
-				.form-group
-					label Email
-					input.form-control(type='email' placeholder='example@example.com')
-		.row
-			.col-12.col-md-6
-				.form-group
-					label Phone #1
-					input.form-control(type='text' placeholder='+1 (0) 000 0000 001')
-			.col-12.col-md-6
-				.form-group
-					label Phone #2
-					input.form-control(type='text' placeholder='+1 (0) 000 0000 002')
-		.row
-			.col-12
-				.form-group
-					label Address
-					textarea.form-control(type='textarea' placeholder='1234 Street Name \n City, AA 99999' row='3')
-		.row
-			.col-12.col-lg-6
-				.form-group
-					label Facebook
-						i.ml-2.fa.fa-facebook
-					input.form-control(type='text' placeholder='https://www.facebook.com/...')
-				.form-group
-					label LinkedIn
-						i.ml-2.fa.fa-linkedin
-					input.form-control(type='text' placeholder='https://www.linkedin.com/in/...')
-			.col-12.col-lg-6
-				.form-group
-					label Instagram
-						i.ml-2.fa.fa-instagram
-					input.form-control(type='text' placeholder='https://www.instagram.com/...')
-		.row
-			.col
-				h2 Additional Info
-				hr
-		.row
-			.col
-				.form-group
-					label Title
-					input.form-control(type='text' placeholder='Feedback')
-				.form-group
-					label Body
-					textarea.form-control(type='textarea' placeholder='Please send us your ideas, bug reports, suggestions! Any feedback would be appreciated.' row='3')
-		hr
-		.row
-			.col-12.col-lg-4.offset-lg-8
-				button.w-100.btn.btn-info.btn.ml-auto.mt-1(type='button') Save
+		form([formGroup]="footerVariablesForm")
+			.row
+				.col
+					h2 Contact Information
+						i.fa.fa-spin.fa-cog.ml-2(*ngIf="loading$|async")
+					hr
+			.row
+				.col-12
+					.form-group
+						label Email
+						input.form-control(type='email', placeholder='example@example.com', formControlName="email")
+			.row
+				.col-12.col-md-6
+					.form-group
+						label Phone #1
+						input.form-control(type='text', placeholder='+1 (0) 000 0000 001', formControlName="phone1")
+				.col-12.col-md-6
+					.form-group
+						label Phone #2
+						input.form-control(type='text', placeholder='+1 (0) 000 0000 002', formControlName="phone2")
+			.row
+				.col-12
+					.form-group
+						label Address
+						textarea.form-control(type='textarea', placeholder='1234 Street Name \nCity, AA 99999' row='3', formControlName="address")
+			.row
+				.col-12.col-lg-6
+					.form-group
+						label Facebook
+							i.ml-2.fa.fa-facebook
+						input.form-control(type='text', placeholder='https://www.facebook.com/...', formControlName="facebook")
+					.form-group
+						label LinkedIn
+							i.ml-2.fa.fa-linkedin
+						input.form-control(type='text', placeholder='https://www.linkedin.com/in/...', formControlName="linkedIn")
+				.col-12.col-lg-6
+					.form-group
+						label Instagram
+							i.ml-2.fa.fa-instagram
+						input.form-control(type='text', placeholder='https://www.instagram.com/...', formControlName="instagram")
+			.row
+				.col
+					h2 Additional Info
+					hr
+			.row
+				.col
+					.form-group
+						label Title
+						input.form-control(type='text', placeholder='Feedback', formControlName="additionalTitle")
+					.form-group
+						label Body
+						textarea.form-control(type='textarea', placeholder='Please send us your ideas, bug reports, suggestions! Any feedback would be appreciated.' row='3', formControlName="additionalBody")
+			hr
+			.row
+				.col-12.col-lg-4.offset-lg-8
+					button.w-100.btn.btn-info.btn.ml-auto.mt-1(type='button', (click)="save()") Save
+
+ng-template(#updateSuccess, let-close='close', let-dismiss='dismiss')
+	.modal-header
+		h3.modal-title Successfully saved
+	.modal-body
+		p.lead Successfully saved new footer data.
+	.modal-footer
+		button.btn.btn-info(type='button', (click)="close()") OK
+
+ng-template(#updateFailed, let-close='close', let-dismiss='dismiss')
+	.modal-header
+		h3.modal-title Operation failed
+	.modal-body
+		p.lead Failed to update footer data.
+	.modal-footer
+		button.btn.btn-danger(type='button', (click)="close()") OK

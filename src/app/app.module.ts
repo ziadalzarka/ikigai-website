@@ -17,6 +17,8 @@ import { HttpClientModule, HttpHeaders } from '@angular/common/http';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { adminUsersReducer } from '@app/redux/reducers/admin-users.reducer';
 import { AdminUsersEffects } from '@app/redux/effects/admin-users.effects';
+import { footerReducer } from '@app/redux/reducers/admin-footer.reducer';
+import { FooterEffects } from '@app/redux/effects/footer.effects';
 
 export function createApollo(httpLink: HttpLink) {
 	const http = httpLink.create({ uri: environment.graphql.url });
@@ -53,11 +55,13 @@ export function createApollo(httpLink: HttpLink) {
 		GlobalModule,
 		EffectsModule.forRoot([
 			UserEffects,
-			AdminUsersEffects
+			AdminUsersEffects,
+			FooterEffects
 		]),
 		StoreModule.forRoot({
 			user: userReducer,
-			adminUsers: adminUsersReducer
+			adminUsers: adminUsersReducer,
+			footer: footerReducer
 		}),
 		StoreDevtoolsModule.instrument({ maxAge: 5 }),
 	],

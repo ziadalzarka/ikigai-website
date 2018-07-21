@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Apollo } from 'apollo-angular';
 import gql from 'graphql-tag';
-import { map } from 'rxjs/operators';
+import { map, tap, catchError } from 'rxjs/operators';
 import { User } from '@app/redux/models/user.model';
 import { Permissions } from '@app/redux/enums/permission.enum';
 
@@ -72,6 +72,66 @@ const deleteUserMutation = gql`
 	}
 `;
 
+const footerVariablesQuery = gql`
+	{
+		variables {
+			email
+			phone1
+			phone2
+			address
+			facebook
+			instagram
+			linkedIn
+			additionalTitle
+			additionalBody
+		}
+	}
+`;
+
+const emailsVariablesQuery = gql`
+	{
+		variables {
+			contactEmail
+			clientsEmail
+			jobsEmail
+		}
+	}
+`;
+
+const updateVariablesMutation = gql`
+	mutation (
+		$email: String
+		$phone1: String
+		$phone2: String
+		$address: String
+		$facebook: String
+		$instagram: String
+		$linkedIn: String
+		$contactEmail: String
+		$clientsEmail: String
+		$jobsEmail: String
+		$additionalTitle: String
+		$additionalBody: String
+	) {
+		updateVariables(
+			email: $email
+			phone1: $phone1
+			phone2: $phone2
+			address: $address
+			facebook: $facebook
+			instagram: $instagram
+			linkedIn: $linkedIn
+			contactEmail: $contactEmail
+			clientsEmail: $clientsEmail
+			jobsEmail: $jobsEmail
+			additionalTitle: $additionalTitle
+			additionalBody: $additionalBody
+		) {
+			index
+		}
+	}
+`;
+
 @Injectable({
 	providedIn: 'root'
 })
@@ -121,6 +181,23 @@ export class GraphqlAdminService {
 			variables: { id }
 		}).pipe(
 			map((res: any) => res.data.deleteUser)
+		);
+	}
+
+	getFooterVariables() {
+		return this.apollo.query({
+			query: footerVariablesQuery
+		}).pipe(
+			map((res: any) => res.data.variables),
+		);
+	}
+
+	updateVariables(data) {
+		return this.apollo.mutate({
+			mutation: updateVariablesMutation,
+			variables: data
+		}).pipe(
+			map((res: any) => res.data.updateVariables)
 		);
 	}
 }

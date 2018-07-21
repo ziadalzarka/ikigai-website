@@ -52,4 +52,12 @@ export const adminMutation = {
 		await verifyPermission(ctx, Permissions.Admin).catch(err => { throw err; });
 		return ctx.db.mutation.deleteUser({ where: { id } }, info);
 	},
+
+	async updateVariables(parent, data, ctx: Context, info) {
+		await verifyPermission(ctx, Permissions.Admin).catch(err => { throw err; });
+		return ctx.db.mutation.updateVariable({
+			data,
+			where: { index: 0 },
+		}, info);
+	},
 };

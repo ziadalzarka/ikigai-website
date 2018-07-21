@@ -39,7 +39,19 @@ type Mutation {
 	# files
 	createFileEntry(name: String!, checksum: String!): File!
 	# variables
-	
+	updateVariables(
+		email: String
+		phone1: String
+		phone2: String
+		address: String
+		facebook: String
+		instagram: String
+		linkedIn: String
+		contactEmail: String
+		clientsEmail: String
+		jobsEmail: String
+		additionalTitle: String
+		additionalBody: String): Variable
 	# PUBLIC
 	# -----------
 	# applications
