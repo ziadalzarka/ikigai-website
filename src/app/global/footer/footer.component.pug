@@ -24,15 +24,15 @@
 						ul#social
 							li(*ngIf="(content$|async)?.facebook")
 								.facebook
-									a(href='{{(content$|async)?.facebook}}')
+									a(href='{{(content$|async)?.facebook}}', target="_blank")
 										i.fa.fa-facebook(aria-hidden='true')
 							li(*ngIf="(content$|async)?.linkedIn")
 								.linkedin
-									a(href='{{(content$|async)?.linkedIn}}')
+									a(href='{{(content$|async)?.linkedIn}}', target="_blank")
 										i.fa.fa-linkedin(aria-hidden='true')
 							li(*ngIf="(content$|async)?.instagram")
 								.instagram
-									a(href='{{(content$|async)?.instagram}}')
+									a(href='{{(content$|async)?.instagram}}', target="_blank")
 										i.fa.fa-instagram(aria-hidden='true')
 		.row
 			.col-sm-6

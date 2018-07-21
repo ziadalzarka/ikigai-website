@@ -55,7 +55,7 @@
 			hr
 			.row
 				.col-12.col-lg-4.offset-lg-8
-					button.w-100.btn.btn-info.btn.ml-auto.mt-1(type='button', (click)="save()") Save
+					button.w-100.btn.btn-dashboard.btn.ml-auto.mt-1(type='button', (click)="save()") Save
 
 ng-template(#updateSuccess, let-close='close', let-dismiss='dismiss')
 	.modal-header
@@ -63,7 +63,7 @@ ng-template(#updateSuccess, let-close='close', let-dismiss='dismiss')
 	.modal-body
 		p.lead Successfully saved new footer data.
 	.modal-footer
-		button.btn.btn-info(type='button', (click)="close()") OK
+		button.btn.btn-dashboard(type='button', (click)="close()") OK
 
 ng-template(#updateFailed, let-close='close', let-dismiss='dismiss')
 	.modal-header

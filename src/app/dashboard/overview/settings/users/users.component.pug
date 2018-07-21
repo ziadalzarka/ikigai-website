@@ -21,14 +21,14 @@
 							td.align-middle {{(user.lastLogin | date:'mediumDate') || '---'}}
 							td.align-middle
 								.btn-group.w-100
-									button.btn.btn-info.w-100(type='button', (click)='loginAs(user)') Log In
-									button.btn.btn-info.dropdown-toggle.dropdown-toggle-split(type='button' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false')
+									button.btn.btn-dashboard.w-100(type='button', (click)='loginAs(user)') Log In
+									button.btn.btn-dashboard.dropdown-toggle.dropdown-toggle-split(type='button' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false')
 										span.sr-only Toggle Actions
 									.dropdown-menu
 										a.dropdown-item((click)='changeUserPermissionsOpen(changeUserPermissionsModal, user)') Change Permissions
 										.dropdown-divider
 										a.dropdown-item.text-danger((click)='deleteUserOpen(deleteUserModal, user.id)') Delete
-button.btn.btn-info.fab([@fabTransition]='getFabState()', (click)="addUserOpen(addUserModal)")
+button.btn.btn-dashboard.fab([@fabTransition]='getFabState()', (click)="addUserOpen(addUserModal)")
 	i.fa.fa-plus.f-5.text-white
 
 ng-template(#addUserModal, let-close='close', let-dismiss='dismiss')
@@ -70,7 +70,7 @@ ng-template(#addUserModal, let-close='close', let-dismiss='dismiss')
 							label.form-check-label(for='contactapplications-chk') Contact Applications
 	.modal-footer
 		button.btn.btn-secondary(type='button', (click)="dismiss()") Cancel
-		button.btn.btn-info(type='button', (click)="addUserCheck(close)") Add
+		button.btn.btn-dashboard(type='button', (click)="addUserCheck(close)") Add
 
 ng-template(#changeUserPermissionsModal, let-close='close', let-dismiss='dismiss')
 	.modal-header
@@ -97,7 +97,7 @@ ng-template(#changeUserPermissionsModal, let-close='close', let-dismiss='dismiss
 							label.form-check-label(for='contactapplications-chk') Contact Applications
 	.modal-footer
 		button.btn.btn-secondary(type='button', (click)="dismiss()") Cancel
-		button.btn.btn-info(type='button', (click)="close()") Save
+		button.btn.btn-dashboard(type='button', (click)="close()") Save
 
 ng-template(#deleteUserModal, let-close='close', let-dismiss='dismiss')
 	.modal-header
