@@ -2,6 +2,6 @@ export const environment = {
 	production: true,
 	uploadUrl: '/upload',
 	graphql: {
-		url: 'http://185.33.146.23:4090'
+		url: 'http://194.182.77.249:4090'
 	}
 };
