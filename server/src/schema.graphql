@@ -35,6 +35,8 @@ type Mutation {
 	loginAs(id: ID!): AuthPayload!
 	changeUserPermissions(id: ID!, permissions: [Permission!]!): User
 	deleteUser(id: ID!): User
+	# files
+	createFileEntry(name: String!, checksum: String!): File!
 	# PUBLIC
 	# -----------
 	# applications
@@ -80,4 +82,10 @@ type User {
 	name: String!
 	posts: [Post!]!
 	lastLogin: DateTime
+}
+
+type File {
+	id: String!
+	name: String!
+	checksum: String!
 }

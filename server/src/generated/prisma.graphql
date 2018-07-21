@@ -1,11 +1,15 @@
 # source: http://194.182.77.249:4466/ikigai/dev
-# timestamp: Sat Jul 21 2018 14:43:49 GMT+0200 (EET)
+# timestamp: Sat Jul 21 2018 16:06:51 GMT+0200 (EET)
 
 type AggregateClientApplication {
   count: Int!
 }
 
 type AggregateContactApplication {
+  count: Int!
+}
+
+type AggregateFile {
   count: Int!
 }
 
@@ -988,6 +992,257 @@ input ContactApplicationWhereUniqueInput {
 
 scalar DateTime
 
+type File implements Node {
+  id: ID!
+  name: String!
+  checksum: String!
+}
+
+"""A connection to a list of items."""
+type FileConnection {
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """A list of edges."""
+  edges: [FileEdge]!
+  aggregate: AggregateFile!
+}
+
+input FileCreateInput {
+  name: String!
+  checksum: String!
+}
+
+input FileCreateOneInput {
+  create: FileCreateInput
+  connect: FileWhereUniqueInput
+}
+
+"""An edge in a connection."""
+type FileEdge {
+  """The item at the end of the edge."""
+  node: File!
+
+  """A cursor for use in pagination."""
+  cursor: String!
+}
+
+enum FileOrderByInput {
+  id_ASC
+  id_DESC
+  name_ASC
+  name_DESC
+  checksum_ASC
+  checksum_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+  createdAt_ASC
+  createdAt_DESC
+}
+
+type FilePreviousValues {
+  id: ID!
+  name: String!
+  checksum: String!
+}
+
+type FileSubscriptionPayload {
+  mutation: MutationType!
+  node: File
+  updatedFields: [String!]
+  previousValues: FilePreviousValues
+}
+
+input FileSubscriptionWhereInput {
+  """Logical AND on all given filters."""
+  AND: [FileSubscriptionWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [FileSubscriptionWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [FileSubscriptionWhereInput!]
+
+  """
+  The subscription event gets dispatched when it's listed in mutation_in
+  """
+  mutation_in: [MutationType!]
+
+  """
+  The subscription event gets only dispatched when one of the updated fields names is included in this list
+  """
+  updatedFields_contains: String
+
+  """
+  The subscription event gets only dispatched when all of the field names included in this list have been updated
+  """
+  updatedFields_contains_every: [String!]
+
+  """
+  The subscription event gets only dispatched when some of the field names included in this list have been updated
+  """
+  updatedFields_contains_some: [String!]
+  node: FileWhereInput
+}
+
+input FileUpdateDataInput {
+  name: String
+  checksum: String
+}
+
+input FileUpdateInput {
+  name: String
+  checksum: String
+}
+
+input FileUpdateOneInput {
+  create: FileCreateInput
+  connect: FileWhereUniqueInput
+  delete: Boolean
+  update: FileUpdateDataInput
+  upsert: FileUpsertNestedInput
+}
+
+input FileUpsertNestedInput {
+  update: FileUpdateDataInput!
+  create: FileCreateInput!
+}
+
+input FileWhereInput {
+  """Logical AND on all given filters."""
+  AND: [FileWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [FileWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [FileWhereInput!]
+  id: ID
+
+  """All values that are not equal to given value."""
+  id_not: ID
+
+  """All values that are contained in given list."""
+  id_in: [ID!]
+
+  """All values that are not contained in given list."""
+  id_not_in: [ID!]
+
+  """All values less than the given value."""
+  id_lt: ID
+
+  """All values less than or equal the given value."""
+  id_lte: ID
+
+  """All values greater than the given value."""
+  id_gt: ID
+
+  """All values greater than or equal the given value."""
+  id_gte: ID
+
+  """All values containing the given string."""
+  id_contains: ID
+
+  """All values not containing the given string."""
+  id_not_contains: ID
+
+  """All values starting with the given string."""
+  id_starts_with: ID
+
+  """All values not starting with the given string."""
+  id_not_starts_with: ID
+
+  """All values ending with the given string."""
+  id_ends_with: ID
+
+  """All values not ending with the given string."""
+  id_not_ends_with: ID
+  name: String
+
+  """All values that are not equal to given value."""
+  name_not: String
+
+  """All values that are contained in given list."""
+  name_in: [String!]
+
+  """All values that are not contained in given list."""
+  name_not_in: [String!]
+
+  """All values less than the given value."""
+  name_lt: String
+
+  """All values less than or equal the given value."""
+  name_lte: String
+
+  """All values greater than the given value."""
+  name_gt: String
+
+  """All values greater than or equal the given value."""
+  name_gte: String
+
+  """All values containing the given string."""
+  name_contains: String
+
+  """All values not containing the given string."""
+  name_not_contains: String
+
+  """All values starting with the given string."""
+  name_starts_with: String
+
+  """All values not starting with the given string."""
+  name_not_starts_with: String
+
+  """All values ending with the given string."""
+  name_ends_with: String
+
+  """All values not ending with the given string."""
+  name_not_ends_with: String
+  checksum: String
+
+  """All values that are not equal to given value."""
+  checksum_not: String
+
+  """All values that are contained in given list."""
+  checksum_in: [String!]
+
+  """All values that are not contained in given list."""
+  checksum_not_in: [String!]
+
+  """All values less than the given value."""
+  checksum_lt: String
+
+  """All values less than or equal the given value."""
+  checksum_lte: String
+
+  """All values greater than the given value."""
+  checksum_gt: String
+
+  """All values greater than or equal the given value."""
+  checksum_gte: String
+
+  """All values containing the given string."""
+  checksum_contains: String
+
+  """All values not containing the given string."""
+  checksum_not_contains: String
+
+  """All values starting with the given string."""
+  checksum_starts_with: String
+
+  """All values not starting with the given string."""
+  checksum_not_starts_with: String
+
+  """All values ending with the given string."""
+  checksum_ends_with: String
+
+  """All values not ending with the given string."""
+  checksum_not_ends_with: String
+}
+
+input FileWhereUniqueInput {
+  id: ID
+}
+
 type JobApplication implements Node {
   id: ID!
   name: String!
@@ -998,7 +1253,7 @@ type JobApplication implements Node {
   middleName: String!
   lastName: String!
   positions: [JobPosition!]
-  resumeFileId: String!
+  resume(where: FileWhereInput): File!
   linkedIn: String
 }
 
@@ -1020,9 +1275,9 @@ input JobApplicationCreateInput {
   firstName: String!
   middleName: String!
   lastName: String!
-  resumeFileId: String!
   linkedIn: String
   positions: JobApplicationCreatepositionsInput
+  resume: FileCreateOneInput!
 }
 
 input JobApplicationCreatepositionsInput {
@@ -1055,8 +1310,6 @@ enum JobApplicationOrderByInput {
   middleName_DESC
   lastName_ASC
   lastName_DESC
-  resumeFileId_ASC
-  resumeFileId_DESC
   linkedIn_ASC
   linkedIn_DESC
   updatedAt_ASC
@@ -1075,7 +1328,6 @@ type JobApplicationPreviousValues {
   middleName: String!
   lastName: String!
   positions: [JobPosition!]
-  resumeFileId: String!
   linkedIn: String
 }
 
@@ -1126,9 +1378,9 @@ input JobApplicationUpdateInput {
   firstName: String
   middleName: String
   lastName: String
-  resumeFileId: String
   linkedIn: String
   positions: JobApplicationUpdatepositionsInput
+  resume: FileUpdateOneInput
 }
 
 input JobApplicationUpdatepositionsInput {
@@ -1464,46 +1716,6 @@ input JobApplicationWhereInput {
 
   """All values not ending with the given string."""
   lastName_not_ends_with: String
-  resumeFileId: String
-
-  """All values that are not equal to given value."""
-  resumeFileId_not: String
-
-  """All values that are contained in given list."""
-  resumeFileId_in: [String!]
-
-  """All values that are not contained in given list."""
-  resumeFileId_not_in: [String!]
-
-  """All values less than the given value."""
-  resumeFileId_lt: String
-
-  """All values less than or equal the given value."""
-  resumeFileId_lte: String
-
-  """All values greater than the given value."""
-  resumeFileId_gt: String
-
-  """All values greater than or equal the given value."""
-  resumeFileId_gte: String
-
-  """All values containing the given string."""
-  resumeFileId_contains: String
-
-  """All values not containing the given string."""
-  resumeFileId_not_contains: String
-
-  """All values starting with the given string."""
-  resumeFileId_starts_with: String
-
-  """All values not starting with the given string."""
-  resumeFileId_not_starts_with: String
-
-  """All values ending with the given string."""
-  resumeFileId_ends_with: String
-
-  """All values not ending with the given string."""
-  resumeFileId_not_ends_with: String
   linkedIn: String
 
   """All values that are not equal to given value."""
@@ -1544,6 +1756,7 @@ input JobApplicationWhereInput {
 
   """All values not ending with the given string."""
   linkedIn_not_ends_with: String
+  resume: FileWhereInput
 }
 
 input JobApplicationWhereUniqueInput {
@@ -1570,36 +1783,42 @@ type Mutation {
   createJobApplication(data: JobApplicationCreateInput!): JobApplication!
   createClientApplication(data: ClientApplicationCreateInput!): ClientApplication!
   createContactApplication(data: ContactApplicationCreateInput!): ContactApplication!
+  createFile(data: FileCreateInput!): File!
   updateSettings(data: SettingsUpdateInput!, where: SettingsWhereUniqueInput!): Settings
   updateUser(data: UserUpdateInput!, where: UserWhereUniqueInput!): User
   updatePost(data: PostUpdateInput!, where: PostWhereUniqueInput!): Post
   updateJobApplication(data: JobApplicationUpdateInput!, where: JobApplicationWhereUniqueInput!): JobApplication
   updateClientApplication(data: ClientApplicationUpdateInput!, where: ClientApplicationWhereUniqueInput!): ClientApplication
   updateContactApplication(data: ContactApplicationUpdateInput!, where: ContactApplicationWhereUniqueInput!): ContactApplication
+  updateFile(data: FileUpdateInput!, where: FileWhereUniqueInput!): File
   deleteSettings(where: SettingsWhereUniqueInput!): Settings
   deleteUser(where: UserWhereUniqueInput!): User
   deletePost(where: PostWhereUniqueInput!): Post
   deleteJobApplication(where: JobApplicationWhereUniqueInput!): JobApplication
   deleteClientApplication(where: ClientApplicationWhereUniqueInput!): ClientApplication
   deleteContactApplication(where: ContactApplicationWhereUniqueInput!): ContactApplication
+  deleteFile(where: FileWhereUniqueInput!): File
   upsertSettings(where: SettingsWhereUniqueInput!, create: SettingsCreateInput!, update: SettingsUpdateInput!): Settings!
   upsertUser(where: UserWhereUniqueInput!, create: UserCreateInput!, update: UserUpdateInput!): User!
   upsertPost(where: PostWhereUniqueInput!, create: PostCreateInput!, update: PostUpdateInput!): Post!
   upsertJobApplication(where: JobApplicationWhereUniqueInput!, create: JobApplicationCreateInput!, update: JobApplicationUpdateInput!): JobApplication!
   upsertClientApplication(where: ClientApplicationWhereUniqueInput!, create: ClientApplicationCreateInput!, update: ClientApplicationUpdateInput!): ClientApplication!
   upsertContactApplication(where: ContactApplicationWhereUniqueInput!, create: ContactApplicationCreateInput!, update: ContactApplicationUpdateInput!): ContactApplication!
+  upsertFile(where: FileWhereUniqueInput!, create: FileCreateInput!, update: FileUpdateInput!): File!
   updateManySettingses(data: SettingsUpdateInput!, where: SettingsWhereInput): BatchPayload!
   updateManyUsers(data: UserUpdateInput!, where: UserWhereInput): BatchPayload!
   updateManyPosts(data: PostUpdateInput!, where: PostWhereInput): BatchPayload!
   updateManyJobApplications(data: JobApplicationUpdateInput!, where: JobApplicationWhereInput): BatchPayload!
   updateManyClientApplications(data: ClientApplicationUpdateInput!, where: ClientApplicationWhereInput): BatchPayload!
   updateManyContactApplications(data: ContactApplicationUpdateInput!, where: ContactApplicationWhereInput): BatchPayload!
+  updateManyFiles(data: FileUpdateInput!, where: FileWhereInput): BatchPayload!
   deleteManySettingses(where: SettingsWhereInput): BatchPayload!
   deleteManyUsers(where: UserWhereInput): BatchPayload!
   deleteManyPosts(where: PostWhereInput): BatchPayload!
   deleteManyJobApplications(where: JobApplicationWhereInput): BatchPayload!
   deleteManyClientApplications(where: ClientApplicationWhereInput): BatchPayload!
   deleteManyContactApplications(where: ContactApplicationWhereInput): BatchPayload!
+  deleteManyFiles(where: FileWhereInput): BatchPayload!
 }
 
 enum MutationType {
@@ -1651,7 +1870,7 @@ type Post implements Node {
   createdAt: DateTime!
   updatedAt: DateTime!
   thumbnailBody: String!
-  thumbnailImageFileId: String!
+  thumbnailImage(where: FileWhereInput): File!
 }
 
 """A connection to a list of items."""
@@ -1668,8 +1887,8 @@ input PostCreateInput {
   title: String!
   body: String!
   thumbnailBody: String!
-  thumbnailImageFileId: String!
   author: UserCreateOneWithoutPostsInput!
+  thumbnailImage: FileCreateOneInput!
 }
 
 input PostCreateManyWithoutAuthorInput {
@@ -1681,7 +1900,7 @@ input PostCreateWithoutAuthorInput {
   title: String!
   body: String!
   thumbnailBody: String!
-  thumbnailImageFileId: String!
+  thumbnailImage: FileCreateOneInput!
 }
 
 """An edge in a connection."""
@@ -1706,8 +1925,6 @@ enum PostOrderByInput {
   updatedAt_DESC
   thumbnailBody_ASC
   thumbnailBody_DESC
-  thumbnailImageFileId_ASC
-  thumbnailImageFileId_DESC
 }
 
 type PostPreviousValues {
@@ -1717,7 +1934,6 @@ type PostPreviousValues {
   createdAt: DateTime!
   updatedAt: DateTime!
   thumbnailBody: String!
-  thumbnailImageFileId: String!
 }
 
 type PostSubscriptionPayload {
@@ -1763,8 +1979,8 @@ input PostUpdateInput {
   title: String
   body: String
   thumbnailBody: String
-  thumbnailImageFileId: String
   author: UserUpdateOneWithoutPostsInput
+  thumbnailImage: FileUpdateOneInput
 }
 
 input PostUpdateManyWithoutAuthorInput {
@@ -1780,7 +1996,7 @@ input PostUpdateWithoutAuthorDataInput {
   title: String
   body: String
   thumbnailBody: String
-  thumbnailImageFileId: String
+  thumbnailImage: FileUpdateOneInput
 }
 
 input PostUpdateWithWhereUniqueWithoutAuthorInput {
@@ -2007,47 +2223,8 @@ input PostWhereInput {
 
   """All values not ending with the given string."""
   thumbnailBody_not_ends_with: String
-  thumbnailImageFileId: String
-
-  """All values that are not equal to given value."""
-  thumbnailImageFileId_not: String
-
-  """All values that are contained in given list."""
-  thumbnailImageFileId_in: [String!]
-
-  """All values that are not contained in given list."""
-  thumbnailImageFileId_not_in: [String!]
-
-  """All values less than the given value."""
-  thumbnailImageFileId_lt: String
-
-  """All values less than or equal the given value."""
-  thumbnailImageFileId_lte: String
-
-  """All values greater than the given value."""
-  thumbnailImageFileId_gt: String
-
-  """All values greater than or equal the given value."""
-  thumbnailImageFileId_gte: String
-
-  """All values containing the given string."""
-  thumbnailImageFileId_contains: String
-
-  """All values not containing the given string."""
-  thumbnailImageFileId_not_contains: String
-
-  """All values starting with the given string."""
-  thumbnailImageFileId_starts_with: String
-
-  """All values not starting with the given string."""
-  thumbnailImageFileId_not_starts_with: String
-
-  """All values ending with the given string."""
-  thumbnailImageFileId_ends_with: String
-
-  """All values not ending with the given string."""
-  thumbnailImageFileId_not_ends_with: String
   author: UserWhereInput
+  thumbnailImage: FileWhereInput
 }
 
 input PostWhereUniqueInput {
@@ -2061,18 +2238,21 @@ type Query {
   jobApplications(where: JobApplicationWhereInput, orderBy: JobApplicationOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [JobApplication]!
   clientApplications(where: ClientApplicationWhereInput, orderBy: ClientApplicationOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [ClientApplication]!
   contactApplications(where: ContactApplicationWhereInput, orderBy: ContactApplicationOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [ContactApplication]!
+  files(where: FileWhereInput, orderBy: FileOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [File]!
   settings(where: SettingsWhereUniqueInput!): Settings
   user(where: UserWhereUniqueInput!): User
   post(where: PostWhereUniqueInput!): Post
   jobApplication(where: JobApplicationWhereUniqueInput!): JobApplication
   clientApplication(where: ClientApplicationWhereUniqueInput!): ClientApplication
   contactApplication(where: ContactApplicationWhereUniqueInput!): ContactApplication
+  file(where: FileWhereUniqueInput!): File
   settingsesConnection(where: SettingsWhereInput, orderBy: SettingsOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): SettingsConnection!
   usersConnection(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): UserConnection!
   postsConnection(where: PostWhereInput, orderBy: PostOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): PostConnection!
   jobApplicationsConnection(where: JobApplicationWhereInput, orderBy: JobApplicationOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): JobApplicationConnection!
   clientApplicationsConnection(where: ClientApplicationWhereInput, orderBy: ClientApplicationOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): ClientApplicationConnection!
   contactApplicationsConnection(where: ContactApplicationWhereInput, orderBy: ContactApplicationOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): ContactApplicationConnection!
+  filesConnection(where: FileWhereInput, orderBy: FileOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): FileConnection!
 
   """Fetches an object given its ID"""
   node(
@@ -2762,6 +2942,7 @@ type Subscription {
   jobApplication(where: JobApplicationSubscriptionWhereInput): JobApplicationSubscriptionPayload
   clientApplication(where: ClientApplicationSubscriptionWhereInput): ClientApplicationSubscriptionPayload
   contactApplication(where: ContactApplicationSubscriptionWhereInput): ContactApplicationSubscriptionPayload
+  file(where: FileSubscriptionWhereInput): FileSubscriptionPayload
 }
 
 type User implements Node {

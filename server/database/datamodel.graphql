@@ -53,7 +53,7 @@ type Post {
   createdAt: DateTime!
   updatedAt: DateTime!
 	thumbnailBody: String!
-	thumbnailImageFileId: String!
+	thumbnailImage: File!
 }
 
 type JobApplication {
@@ -67,7 +67,7 @@ type JobApplication {
 	middleName: String!
 	lastName: String!
 	positions: [JobPosition!]!
-	resumeFileId: String!
+	resume: File!
 	linkedIn: String
 }
 
@@ -101,4 +101,10 @@ type ContactApplication {
 	# ------------------
 	question: String!
 	body: String!
+}
+
+type File {
+	id: ID! @unique
+	name: String!
+	checksum: String!
 }

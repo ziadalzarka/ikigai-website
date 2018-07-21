@@ -1,62 +1,51 @@
 import * as express from 'express';
 import * as path from 'path';
-import * as shortid from 'shortid';
-import fetch from 'node-fetch';
+import ApolloClient from 'apollo-boost';
+import gql from 'graphql-tag';
 
 const drive = process.env.VOLUME || 'storage';
-const endpoint = 'http://localhost:4090';
+
+const client = new ApolloClient({
+	uri: 'http://localhost:4090'
+});
+
+const createEntryMutation = gql`
+	mutation ($name: String!, $checksum: String!) {
+		createFileEntry(name: $name, checksum: $checksum) {
+			id
+		}
+	}
+`;
+
 const failed = { ok: false };
 const success = { ok: true };
 
-const meQuery = `
-{
-	me {
-		id
-	}
-}
-`;
-
-function sendAuthRequest(req) {
-	return fetch(endpoint, {
-		method: 'POST',
-		headers: {
-			Authorization: req.headers.authorization,
-			'Content-Type': 'application/json'
-		},
-		body: JSON.stringify({
-			operationName: null,
-			query: meQuery,
-			variables: {}
-		})
-	})
-		.then(res => res.json())
-		.then(json => json.data.me)
-		.then(me => {
-			if (!me) throw new Error('Not Authorized');
-			return me;
-		});
-}
-
 export default express.Router()
 	.use('/upload', (req, res) => {
-		sendAuthRequest(req)
-			.then(me => {
 
-				if (!req['files']) {
-					return res.status(400).send(JSON.stringify(failed));
+		if (!req['files']) {
+			return res.status(400).send(JSON.stringify(failed));
+		}
+
+		const file = req['files'].file;
+
+		const saveFile = (id) => {
+			file.mv(path.join(drive, 'files', id), (err) => {
+				if (err) {
+					return res.status(500).send(err);
 				}
+				res.send(JSON.stringify({ ...success, id }));
+			});
+		};
 
-				const file = req['files'].file;
-
-				const id = shortid.generate();
-
-				file.mv(path.join(drive, 'files', id), (err) => {
-					if (err) {
-						return res.status(500).send(err);
-					}
-					res.send(JSON.stringify({ ...success, id }));
-				});
-
-			})
-			.catch(err => res.status(500).send());
+		createEntry(file).then(id => {
+			saveFile(id);
+		}).catch(err => res.status(500).send());
 	});
+
+function createEntry({ name, md5 }): Promise<string> {
+	return client.mutate({
+		mutation: createEntryMutation,
+		variables: { name, checksum: md5 }
+	}).then(res => res.data.createFileEntry.id);
+}

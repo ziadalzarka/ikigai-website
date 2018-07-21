@@ -5,12 +5,13 @@
 		"watch:all": "dotenv -- nodemon -e ts,graphql -x ts-node src/index.ts",
 		"watch:prisma": "dotenv -- nodemon -e ts,graphql -x ts-node src/prisma.ts",
 		"dev": "npm-run-all watch:prisma",
-		"dev:all": "npm-run-all --parallel watch:all playground",
+		"dev:all": "npm-run-all --parallel watch:all",
 		"debug": "dotenv -- nodemon -e ts,graphql -x ts-node --inspect src/index.ts",
 		"playground": "graphql playground",
 		"build": "rimraf dist && tsc"
 	},
 	"dependencies": {
+		"apollo-boost": "^0.1.10",
 		"apollo-errors": "^1.9.0",
 		"bcryptjs": "2.4.3",
 		"body-parser": "^1.16.0",
@@ -19,11 +20,11 @@
 		"cors": "^2.8.1",
 		"express": "^4.14.1",
 		"express-fileupload": "^0.4.0",
+		"graphql": "^0.13.2",
+		"graphql-tag": "^2.9.2",
 		"graphql-yoga": "1.14.12",
 		"jsonwebtoken": "8.3.0",
-		"node-fetch": "^2.1.2",
-		"prisma-binding": "2.1.0",
-		"shortid": "^2.2.12"
+		"prisma-binding": "2.1.0"
 	},
 	"devDependencies": {
 		"@types/body-parser": "^1.16.3",

@@ -9,7 +9,9 @@ export const postMutation = {
 					title,
 					body,
 					thumbnailBody,
-					thumbnailImageFileId,
+					thumbnailImage: {
+						connect: { id: thumbnailImageFileId }
+					},
 					author: {
 						connect: { id: userId },
 					},
