@@ -8,7 +8,7 @@ app-root {
 }
 
 html {
-	font-size: 90%;
+  font-size: 90%;
   @include lt-lg {
     font-size: 80%;
   }
@@ -21,7 +21,7 @@ html {
 }
 
 .pre {
-	white-space: pre;
+  white-space: pre;
 }
 
 .scroll-x {
@@ -184,6 +184,34 @@ body {
 }
 
 .container-loading {
-	height: 100vh;
-	overflow: hidden;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.bx-0 {
+  border-right: none !important;
+  border-left: none !important;
+}
+
+.range-field {
+	margin-top: 1rem;
+}
+.thumb {
+	z-index: 10;
+}
+label {
+  &.range-min {
+		@extend .text-muted;
+		position: absolute;
+		float: left;
+		left: 0;
+		top: -0.8rem;
+	}
+	&.range-max {
+		@extend .text-muted;
+		position: absolute;
+		float: right;
+		right: 0;
+		top: -0.8rem;
+	}
 }

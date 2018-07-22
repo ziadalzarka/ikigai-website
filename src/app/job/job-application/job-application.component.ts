@@ -4,7 +4,6 @@ import { JobApplication } from '@app/redux/models/job-application.model';
 import { JobPosition } from '@app/redux/enums/job-position.enum';
 import { UploadService } from '@app/global/upload.service';
 import { GraphqlJobService } from '@app/job/graphql-job.service';
-import { tap, catchError } from 'rxjs/operators';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 enum Position {

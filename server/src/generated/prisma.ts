@@ -153,9 +153,10 @@ type ClientApplication implements Node {
   name: String!
   phoneNumber: String
   email: String
+  facebook: String
   address: String
   postsPerMonth: Int!
-  photography: Boolean!
+  photography: Int!
   gifs: Int!
   videos: Int!
   videoMinutesCount: Int!
@@ -181,9 +182,10 @@ input ClientApplicationCreateInput {
   name: String!
   phoneNumber: String
   email: String
+  facebook: String
   address: String
   postsPerMonth: Int!
-  photography: Boolean!
+  photography: Int!
   gifs: Int!
   videos: Int!
   videoMinutesCount: Int!
@@ -213,6 +215,8 @@ enum ClientApplicationOrderByInput {
   phoneNumber_DESC
   email_ASC
   email_DESC
+  facebook_ASC
+  facebook_DESC
   address_ASC
   address_DESC
   postsPerMonth_ASC
@@ -248,9 +252,10 @@ type ClientApplicationPreviousValues {
   name: String!
   phoneNumber: String
   email: String
+  facebook: String
   address: String
   postsPerMonth: Int!
-  photography: Boolean!
+  photography: Int!
   gifs: Int!
   videos: Int!
   videoMinutesCount: Int!
@@ -305,9 +310,10 @@ input ClientApplicationUpdateInput {
   name: String
   phoneNumber: String
   email: String
+  facebook: String
   address: String
   postsPerMonth: Int
-  photography: Boolean
+  photography: Int
   gifs: Int
   videos: Int
   videoMinutesCount: Int
@@ -488,6 +494,46 @@ input ClientApplicationWhereInput {
 
   """All values not ending with the given string."""
   email_not_ends_with: String
+  facebook: String
+
+  """All values that are not equal to given value."""
+  facebook_not: String
+
+  """All values that are contained in given list."""
+  facebook_in: [String!]
+
+  """All values that are not contained in given list."""
+  facebook_not_in: [String!]
+
+  """All values less than the given value."""
+  facebook_lt: String
+
+  """All values less than or equal the given value."""
+  facebook_lte: String
+
+  """All values greater than the given value."""
+  facebook_gt: String
+
+  """All values greater than or equal the given value."""
+  facebook_gte: String
+
+  """All values containing the given string."""
+  facebook_contains: String
+
+  """All values not containing the given string."""
+  facebook_not_contains: String
+
+  """All values starting with the given string."""
+  facebook_starts_with: String
+
+  """All values not starting with the given string."""
+  facebook_not_starts_with: String
+
+  """All values ending with the given string."""
+  facebook_ends_with: String
+
+  """All values not ending with the given string."""
+  facebook_not_ends_with: String
   address: String
 
   """All values that are not equal to given value."""
@@ -550,10 +596,28 @@ input ClientApplicationWhereInput {
 
   """All values greater than or equal the given value."""
   postsPerMonth_gte: Int
-  photography: Boolean
+  photography: Int
 
   """All values that are not equal to given value."""
-  photography_not: Boolean
+  photography_not: Int
+
+  """All values that are contained in given list."""
+  photography_in: [Int!]
+
+  """All values that are not contained in given list."""
+  photography_not_in: [Int!]
+
+  """All values less than the given value."""
+  photography_lt: Int
+
+  """All values less than or equal the given value."""
+  photography_lte: Int
+
+  """All values greater than the given value."""
+  photography_gt: Int
+
+  """All values greater than or equal the given value."""
+  photography_gte: Int
   gifs: Int
 
   """All values that are not equal to given value."""
@@ -3532,6 +3596,8 @@ export type ClientApplicationOrderByInput =   'id_ASC' |
   'phoneNumber_DESC' |
   'email_ASC' |
   'email_DESC' |
+  'facebook_ASC' |
+  'facebook_DESC' |
   'address_ASC' |
   'address_DESC' |
   'postsPerMonth_ASC' |
@@ -4103,9 +4169,10 @@ export interface ClientApplicationUpdateInput {
   name?: String
   phoneNumber?: String
   email?: String
+  facebook?: String
   address?: String
   postsPerMonth?: Int
-  photography?: Boolean
+  photography?: Int
   gifs?: Int
   videos?: Int
   videoMinutesCount?: Int
@@ -4220,9 +4287,10 @@ export interface ClientApplicationCreateInput {
   name: String
   phoneNumber?: String
   email?: String
+  facebook?: String
   address?: String
   postsPerMonth: Int
-  photography: Boolean
+  photography: Int
   gifs: Int
   videos: Int
   videoMinutesCount: Int
@@ -4458,6 +4526,20 @@ export interface ClientApplicationWhereInput {
   email_not_starts_with?: String
   email_ends_with?: String
   email_not_ends_with?: String
+  facebook?: String
+  facebook_not?: String
+  facebook_in?: String[] | String
+  facebook_not_in?: String[] | String
+  facebook_lt?: String
+  facebook_lte?: String
+  facebook_gt?: String
+  facebook_gte?: String
+  facebook_contains?: String
+  facebook_not_contains?: String
+  facebook_starts_with?: String
+  facebook_not_starts_with?: String
+  facebook_ends_with?: String
+  facebook_not_ends_with?: String
   address?: String
   address_not?: String
   address_in?: String[] | String
@@ -4480,8 +4562,14 @@ export interface ClientApplicationWhereInput {
   postsPerMonth_lte?: Int
   postsPerMonth_gt?: Int
   postsPerMonth_gte?: Int
-  photography?: Boolean
-  photography_not?: Boolean
+  photography?: Int
+  photography_not?: Int
+  photography_in?: Int[] | Int
+  photography_not_in?: Int[] | Int
+  photography_lt?: Int
+  photography_lte?: Int
+  photography_gt?: Int
+  photography_gte?: Int
   gifs?: Int
   gifs_not?: Int
   gifs_in?: Int[] | Int
@@ -4764,9 +4852,10 @@ export interface ClientApplication extends Node {
   name: String
   phoneNumber?: String
   email?: String
+  facebook?: String
   address?: String
   postsPerMonth: Int
-  photography: Boolean
+  photography: Int
   gifs: Int
   videos: Int
   videoMinutesCount: Int
@@ -5048,9 +5137,10 @@ export interface ClientApplicationPreviousValues {
   name: String
   phoneNumber?: String
   email?: String
+  facebook?: String
   address?: String
   postsPerMonth: Int
-  photography: Boolean
+  photography: Int
   gifs: Int
   videos: Int
   videoMinutesCount: Int

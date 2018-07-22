@@ -1,92 +1,147 @@
 .bg-light.py-5
 	.container.clearfix
-		h1.display-4.mb-2 Send us your proposal
-		p.lead We will contact you as soon as possible.
-		hr
-		h2 Your company
-		br
-		.row
-			.col
-				.form-group
-					label Name
-					input.form-control(type='text' placeholder='Company Name')
-				.form-group
-					label Facebook Page
-					input.form-control(type='text' placeholder='https://www.facebok.com/...')
-		hr
-		br
-		h2 Contact Information
-		br
-		.row
-			.col
-				.form-group
-					label Email address
-					input.form-control(type='email' placeholder='example@example.com')
-				.form-group
-					label Address (optional)
-					input.form-control(type='text' placeholder='445 Mount Eden Road, Auckland')
-				.form-group
-					label Phone number (optional)
-					input.form-control(type='tel' placeholder='01097543010')
-		br
-		h2 Media
-		br
-		.row
-			.col-12.col-lg-6
-				label Posts per month
-				.form-group.range-field
-					input#slider(type='range' min='30' max='120' step='10')
-				label Photography
-				.form-group.range-field
-					input(type="range" min="20" max="100" step="5")
-			.col-12.col-lg-6
-				label Videos
-				.form-group.range-field
-					input(type="range" min="0" max="3")
-				label Minutes per video
-				.form-group.range-field
-					input(type="range" min="1" max="5")
-		br
-		h2 Website
-		br
-		.row
-			.col-12.col-lg-6
-				label Do you want a website?
-				br
-				.d-block
-					.form-check.d-inline-block
-						input.form-check-input#website-rd-yes(type='radio' name='website' checked)
-						label.form-check-label(for='website-rd-yes') Yes
-					.form-check.d-inline-block.mx-3
-						input.form-check-input#website-rd-no(type='radio' name='website')
-						label.form-check-label(for='website-rd-no') No
-				br
-			.col-12.col-lg-6
-				label Do you want have a host?
-				br
-				.d-block
-					.form-check.d-inline-block
-						input.form-check-input#host-rd-yes(type='radio' name='host' checked)
-						label.form-check-label(for='host-rd-yes') Yes
-					.form-check.d-inline-block.mx-3
-						input.form-check-input#host-rd-no(type='radio' name='host')
-						label.form-check-label(for='host-rd-no') No
-				br
-				label Do you want have a domain?
-				br
-				.d-block
-					.form-check.d-inline-block
-						input.form-check-input#domain-rd-yes(type='radio' name='host' checked)
-						label.form-check-label(for='domain-rd-yes') Yes
-					.form-check.d-inline-block.mx-3
-						input.form-check-input#domain-rd-no(type='radio' name='host')
-						label.form-check-label(for='domain-rd-no') No
-		br
-		hr
-		.clearfix
-			h3.float-right Total Price: 645$
-		hr
-		.row
-			.col-12.col-lg-4.offset-lg-8
-				button.w-100.btn.btn-primary.btn.ml-auto.mt-1(type='button') Send
+		form([formGroup]="clientApplicationForm")
+			h1.display-4.mb-2 Send us your proposal
+			p.lead We will contact you as soon as possible.
+			hr
+			h2 Your company
+			br
+			.row
+				.col
+					.form-group
+						label Name
+						input.form-control(type='text', placeholder='Company Name', formControlName="name", required)
+						.has-error.mt-1(*ngIf='clientApplicationForm.controls.name.invalid && !clientApplicationForm.controls.name.pristine') This field is required.
+					.form-group
+						label Facebook Page
+						input.form-control(type='text', placeholder='https://www.facebok.com/...', formControlName="facebook")
+			hr
+			br
+			h2 Contact Information
+			br
+			.row
+				.col
+					.form-group
+						label Email address
+						input.form-control(type='email', placeholder='example@example.com', formControlName="email", required)
+						.has-error.mt-1(*ngIf='clientApplicationForm.controls.email.invalid && !clientApplicationForm.controls.email.pristine') This field is required.
+					.form-group
+						label Address (optional)
+						input.form-control(type='text', placeholder='445 Mount Eden Road, Auckland', formControlName="address")
+					.form-group
+						label Phone number (optional)
+						input.form-control(type='tel', placeholder='01097543010', formControlName="phoneNumber")
+			hr
+			br
+			h2 Package
+			br
+			.w-100.btn-group.btn-group-toggle
+				label.col-4.btn.btn-outline-primary.shadow-none([ngClass]="{'active': clientApplication.package == Package.Light }") Light
+					input(type='radio', formControlName="package", [value]="Package.Light", (change)='setPackage()')
+				label.col-4.btn.btn-outline-primary.shadow-none.bx-0([ngClass]="{'active': clientApplication.package == Package.Pro }") Pro
+					input(type='radio', formControlName="package", [value]="Package.Pro", (change)='setPackage()')
+				label.col-4.btn.btn-outline-primary.shadow-none([ngClass]="{'active': clientApplication.package == Package.Enterprise }") Enterprise
+					input(type='radio', formControlName="package", [value]="Package.Enterprise", (change)='setPackage()')
+			br
+			br
+			br
+			h2 Media
+			br
+			.row
+				.col-12.col-lg-6
+					label Posts per month ({{clientApplication.postsPerMonth}})
+					.form-group.range-field
+						label.range-min {{packagesMins[clientApplication.package].postsPerMonth}}
+						input(type='range', min='{{packagesMins[clientApplication.package].postsPerMonth}}' max='120', formControlName="postsPerMonth", (change)="updatePriceAndPackages()")
+						label.range-max 120
+					label Photography ({{clientApplication.photography}})
+					.form-group.range-field
+						label.range-min 0
+						input(type="range", min="0" max="100" step="5", formControlName="photography", (change)="updatePriceAndPackages()")
+						label.range-max 100
+					label Gifs ({{clientApplication.gifs}})
+					.form-group.range-field
+						label.range-min {{packagesMins[clientApplication.package].gifs}}
+						input(type="range", min="{{packagesMins[clientApplication.package].gifs}}", max="10", formControlName="gifs", (change)="updatePriceAndPackages()")
+						label.range-max 10
+				.col-12.col-lg-6
+					label Videos ({{clientApplication.videos}})
+					.form-group.range-field
+						label.range-min {{packagesMins[clientApplication.package].videos}}
+						input(type="range", min="{{packagesMins[clientApplication.package].videos}}" max="3", formControlName="videos", (change)="updatePriceAndPackages()")
+						label.range-max 3
+					label Minutes per video ({{clientApplication.videoMinutesCount}})
+					.form-group.range-field
+						label.range-min 1
+						input(type="range", min="1" max="5", formControlName="videoMinutesCount", (change)="updatePriceAndPackages()")
+						label.range-max 5
+			br
+			h2 Deal Years ({{clientApplication.dealYears}})
+			br
+			.form-group.range-field
+				label.range-min 1
+				input(type='range', min='1', max='5', formControlName="dealYears", (change)="updatePriceAndPackages()")
+				label.range-max 5
+			br
+			hr
+			h2 Website
+			p.lead Website prices are discussed privately.
+			br
+			.row
+				.col-12.col-lg-6
+					label Do you want a website?
+					br
+					.d-block
+						.form-check.d-inline-block
+							input.form-check-input#website-rd-yes(type='radio', [value]="true", formControlName="website")
+							label.form-check-label(for='website-rd-yes') Yes
+						.form-check.d-inline-block.mx-3
+							input.form-check-input#website-rd-no(type='radio', [value]="false", formControlName="website")
+							label.form-check-label(for='website-rd-no') No
+
+				.col-12.col-lg-6([hidden]="!clientApplication.website")
+					label Do you want have a host?
+					br
+					.d-block
+						.form-check.d-inline-block
+							input.form-check-input#host-rd-yes(type='radio', [value]="true", formControlName="hasHost")
+							label.form-check-label(for='host-rd-yes') Yes
+						.form-check.d-inline-block.mx-3
+							input.form-check-input#host-rd-no(type='radio', [value]="false", formControlName="hasHost")
+							label.form-check-label(for='host-rd-no') No
+					br
+					label Do you want have a domain?
+					br
+					.d-block
+						.form-check.d-inline-block
+							input.form-check-input#domain-rd-yes(type='radio', [value]="true", formControlName="hasDomain")
+							label.form-check-label(for='domain-rd-yes') Yes
+						.form-check.d-inline-block.mx-3
+							input.form-check-input#domain-rd-no(type='radio', [value]="false", formControlName="hasDomain")
+							label.form-check-label(for='domain-rd-no') No
+			br
+			hr
+			h3.text-right Price per month: {{pricePerMonth}}$				
+			h3.text-right Discount: {{-discount}}$
+			h3.text-right Total price: {{clientApplication.totalPrice}}$
+			hr
+			.row
+				.col-12.col-lg-4.offset-lg-8
+					button.w-100.btn.btn-primary.btn.ml-auto.mt-1(type='button', (click)="send()") Send
 app-footer
+
+ng-template(#failed, let-close='close', let-dismiss='dismiss')
+	.modal-header
+		h3.modal-title Submission Failed
+	.modal-body
+		p.lead An error ocurred prevented application from being submit.
+	.modal-footer
+		button.btn.btn-danger(type='button', (click)="dismiss()") OK
+
+ng-template(#successful, let-close='close', let-dismiss='dismiss')
+	.modal-header
+		h3.modal-title Submission Successful
+	.modal-body
+		p.lead Successfully submitted application.
+	.modal-footer
+		button.btn.btn-info(type='button',, (click)="dismiss()") OK

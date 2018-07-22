@@ -5,9 +5,10 @@ export interface ClientApplication {
 	name: string;
 	phoneNumber: string;
 	email: string;
+	facebook: string;
 	address: string;
 	postsPerMonth: number;
-	photography: boolean;
+	photography: number;
 	gifs: number;
 	videos: number;
 	videoMinutesCount: number;

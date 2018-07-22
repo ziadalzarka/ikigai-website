@@ -60,8 +60,9 @@ type Mutation {
 		email: String!,
 		address: String,
 		phoneNumber: String,
+		facebook: String
 		postsPerMonth: Int!
-		photography: Boolean!
+		photography: Int!
 		gifs: Int!
 		videos: Int!
 		videoMinutesCount: Int!

@@ -76,10 +76,11 @@ type ClientApplication {
 	name: String!
 	phoneNumber: String
 	email: String
+	facebook: String
 	address: String
 	# ------------------
 	postsPerMonth: Int!
-	photography: Boolean!
+	photography: Int!
 	gifs: Int!
 	videos: Int!
 	videoMinutesCount: Int!
