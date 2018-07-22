@@ -51,8 +51,8 @@
 				.col-12.col-lg-6
 					label Posts per month ({{clientApplication.postsPerMonth}})
 					.form-group.range-field
-						label.range-min {{packagesMins[clientApplication.package].postsPerMonth}}
-						input(type='range', min='{{packagesMins[clientApplication.package].postsPerMonth}}' max='120', formControlName="postsPerMonth", (change)="updatePriceAndPackages()")
+						label.range-min {{packagesMins[clientApplication.package.toString()].postsPerMonth}}
+						input(type='range', min='{{packagesMins[clientApplication.package.toString()].postsPerMonth}}' max='120', formControlName="postsPerMonth", (change)="updatePriceAndPackages()")
 						label.range-max 120
 					label Photography ({{clientApplication.photography}})
 					.form-group.range-field
@@ -61,14 +61,14 @@
 						label.range-max 100
 					label Gifs ({{clientApplication.gifs}})
 					.form-group.range-field
-						label.range-min {{packagesMins[clientApplication.package].gifs}}
-						input(type="range", min="{{packagesMins[clientApplication.package].gifs}}", max="10", formControlName="gifs", (change)="updatePriceAndPackages()")
+						label.range-min {{packagesMins[clientApplication.package.toString()].gifs}}
+						input(type="range", min="{{packagesMins[clientApplication.package.toString()].gifs}}", max="10", formControlName="gifs", (change)="updatePriceAndPackages()")
 						label.range-max 10
 				.col-12.col-lg-6
 					label Videos ({{clientApplication.videos}})
 					.form-group.range-field
-						label.range-min {{packagesMins[clientApplication.package].videos}}
-						input(type="range", min="{{packagesMins[clientApplication.package].videos}}" max="3", formControlName="videos", (change)="updatePriceAndPackages()")
+						label.range-min {{packagesMins[clientApplication.package.toString()].videos}}
+						input(type="range", min="{{packagesMins[clientApplication.package.toString()].videos}}" max="3", formControlName="videos", (change)="updatePriceAndPackages()")
 						label.range-max 3
 					label Minutes per video ({{clientApplication.videoMinutesCount}})
 					.form-group.range-field
