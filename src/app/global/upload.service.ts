@@ -27,7 +27,7 @@ export class UploadService {
 	}
 
 	getUploadId(file) {
-		this.upload(file).pipe(
+		return this.upload(file).pipe(
 			last(),
 			map((res: any) => res.body.id),
 		);

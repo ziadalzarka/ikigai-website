@@ -64,18 +64,14 @@
 					button.w-100.btn.btn-primary.btn.ml-auto(type='button', (click)="send(resume.files[0])") Send
 app-footer
 
-ng-template(#failed, let-close='close', let-dismiss='dismiss')
+ng-template(#loading, let-close='close', let-dismiss='dismiss')
 	.modal-header
-		h3.modal-title Submission Failed
+		h3.modal-title Submitting application
 	.modal-body
-		p.lead An error ocurred prevented application from being submit.
-	.modal-footer
-		button.btn.btn-danger(type='button', (click)="dismiss()") OK
-
-ng-template(#successful, let-close='close', let-dismiss='dismiss')
-	.modal-header
-		h3.modal-title Submission Successful
-	.modal-body
-		p.lead Successfully submitted application.
-	.modal-footer
-		button.btn.btn-dashboard(type='button', (click)="dismiss()") OK
+		.progress.mb-4(*ngIf="uploadPercentage")
+			.progress-bar(role='progressbar', [style.width]="uploadPercentage + '%'")
+		div(*ngIf="!uploadPercentage", [ngSwitch]="successful")
+			p.lead(*ngSwitchCase="true") Successfully submitted application.
+			p.lead(*ngSwitchCase="false") An error ocurred prevented application from being submit.
+	.modal-footer(*ngIf="!uploadPercentage")
+		button.btn(type='button', (click)="dismiss()", [ngClass]="successful ? 'btn-primary' : 'btn-danger'") OK

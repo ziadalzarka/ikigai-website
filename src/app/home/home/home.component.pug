@@ -1,29 +1,29 @@
-header.background-img.center-align.text-center.justify-content-center.py-5
-	.container-fluid
-		.row
-			.col
-				img.mb-5#header(src="assets/images/header.png")
-		.container.mb-4
-			.row.d-none.d-md-inline-block
+div.no-overflow
+	header.background-img.center-align.text-center.justify-content-center.py-5
+		.container-fluid
+			.row
 				.col
-					button.btn.btn-lg.btn-light(routerLink="/job")
-						h5.my-0 I&apos;m looking for work
-					button.btn.btn-lg.btn-ocean(routerLink="/client")
-						h5.my-0.text-light I&apos;m a client
-			.row.d-md-none
-				.col-12
-					button.w-100.btn.btn-lg.btn-ocean(routerLink="/job")
-						h5.text-light.my-0.white-space-normal I&apos;m looking for work
-				.col-12
-					button.w-100.btn.btn-lg.btn-light(routerLink="/client")
-						h5.my-0 I&apos;m a client
-		//- button#contact.btn.btn-lg.btn-danger(routerLink="/contact")
-		//- 	h5.text-light.my-0 Contact us
+					img.mb-5#header(src="assets/images/header.png")
+			.container.mb-4
+				.row.d-none.d-md-inline-block
+					.col
+						button.btn.btn-lg.btn-light(routerLink="/job")
+							h5.my-0 I&apos;m looking for work
+						button.btn.btn-lg.btn-ocean(routerLink="/client")
+							h5.my-0.text-light I&apos;m a client
+				.row.d-md-none
+					.col-12
+						button.w-100.btn.btn-lg.btn-ocean(routerLink="/job")
+							h5.text-light.my-0.white-space-normal I&apos;m looking for work
+					.col-12
+						button.w-100.btn.btn-lg.btn-light(routerLink="/client")
+							h5.my-0 I&apos;m a client
+			//- button#contact.btn.btn-lg.btn-danger(routerLink="/contact")
+			//- 	h5.text-light.my-0 Contact us
 
-section#posts.py-5.bg-light
-	.container.pt-4
-		.row
-			.col-12.my-4(*ngFor="let post of feed$|async")
-				app-post-thumbnail([post]="post", (open)="showPost()")
-app-post([ngClass]="showing ? 'show' : ''")
+	section#posts.py-5.bg-light
+		.container.pt-4
+			.row
+				.col-12.my-4(*ngFor="let post of feed$|async")
+					app-post-thumbnail([post]="post", (open)="showPost(post)")
 app-footer

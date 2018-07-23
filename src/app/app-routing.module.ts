@@ -39,7 +39,15 @@ const routes: Routes = [
 			state: 'dashboard'
 		}
 	},
+	{
+		path: 'post/:id',
+		loadChildren: 'app/post/post.module#PostModule',
+		data: {
+			state: 'post'
+		}
+	},
 	{ path: 'login', redirectTo: 'dashboard', pathMatch: 'full' },
+	{ path: 'post', redirectTo: 'home', pathMatch: 'full' },
 ];
 
 @NgModule({

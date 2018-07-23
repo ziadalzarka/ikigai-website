@@ -5,6 +5,8 @@ import { JobPosition } from '@app/redux/enums/job-position.enum';
 import { UploadService } from '@app/global/upload.service';
 import { GraphqlJobService } from '@app/job/graphql-job.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { getUploadPercentage } from 'utils/utils';
+import { tap, last, map } from 'rxjs/operators';
 
 enum Position {
 	Media,
@@ -19,8 +21,6 @@ enum Position {
 	styleUrls: ['./job-application.component.css']
 })
 export class JobApplicationComponent implements OnInit {
-
-	loading;
 
 	positionsValidator = (form) => {
 		if (!form.controls.media.value &&
@@ -74,8 +74,8 @@ export class JobApplicationComponent implements OnInit {
 		};
 	}
 
-	@ViewChild('successful') submissionSuccessful;
-	@ViewChild('failed') submissionFailed;
+	@ViewChild('loading') loading;
+	uploadPercentage = null;
 
 	constructor(
 		private fb: FormBuilder,
@@ -93,6 +93,8 @@ export class JobApplicationComponent implements OnInit {
 		this.jobApplicationForm.controls.email.markAsDirty();
 	}
 
+	successful = true;
+
 	async send(resumeFile) {
 
 		this.jobApplicationForm.updateValueAndValidity();
@@ -101,18 +103,25 @@ export class JobApplicationComponent implements OnInit {
 		if (this.jobApplicationForm.invalid) return;
 
 		let resumeFileId = null;
-		this.loading = true;
+
+		this.modalService.open(this.loading, { size: 'lg' });
 
 		if (resumeFile) {
-			resumeFileId = await this.uploadService.getUploadId(resumeFile);
+			resumeFileId = await this.uploadService.upload(resumeFile).pipe(
+				tap(ev => { this.uploadPercentage = getUploadPercentage(ev); }),
+				last(),
+				map((res: any) => res.body.id),
+			).toPromise();
 		}
 
 		this.jobService.applyForJob(
 			{ ...this.jobApplication, resumeFileId }
 		).subscribe(() => {
-			this.modalService.open(this.submissionSuccessful, { size: 'lg' });
+			this.successful = true;
+			this.uploadPercentage = null;
 		}, () => {
-			this.modalService.open(this.submissionFailed, { size: 'lg' });
+			this.successful = false;
+			this.uploadPercentage = null;
 		});
 	}
 

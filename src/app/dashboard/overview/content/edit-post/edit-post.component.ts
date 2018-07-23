@@ -3,7 +3,7 @@ import { AppState } from '@app/redux/app.state';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { froalaPlugins, clearHeaders } from 'utils/utils';
+import { froalaPlugins, clearHeaders, getUploadPercentage } from 'utils/utils';
 import { HttpRequest, HttpClient, HttpEventType, HttpEvent } from '@angular/common/http';
 import { map, tap, last } from 'rxjs/operators';
 import { PublishPost } from '@app/redux/actions/posts.actions';
@@ -71,14 +71,6 @@ export class EditPostComponent implements OnInit {
 		}
 	}
 
-	getPercentage(event: HttpEvent<any>) {
-		switch (event.type) {
-			case HttpEventType.UploadProgress:
-				const percentDone = Math.round(100 * event.loaded / event.total);
-				return percentDone;
-		}
-	}
-
 	@ViewChild('loading') loading;
 
 	async publish(thumbnailFile) {
@@ -87,7 +79,7 @@ export class EditPostComponent implements OnInit {
 		if (thumbnailFile) {
 			this.modalService.open(this.loading, { size: 'lg' });
 			thumbnailImageId = await this.uploadService.upload(thumbnailFile).pipe(
-				tap(ev => { this.uploadPercentage = this.getPercentage(ev); }),
+				tap(ev => { this.uploadPercentage = getUploadPercentage(ev); }),
 				last(),
 				map((res: any) => res.body.id),
 			).toPromise();

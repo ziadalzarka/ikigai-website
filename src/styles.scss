@@ -112,16 +112,21 @@ $dropdown-link-active-bg: $gray-300;
 }
 
 // animations
-@keyframes modal-slide {
-	from {
-		opacity: 0;
-    transform: translate(0, 5vh);
-  }
-  to {
-		opacity: 1;
-    transform: translate(0, 0);
-  }
+@mixin slide($name, $offset) {
+	@keyframes #{$name} {
+		from {
+			opacity: 0;
+			transform: translate(0, $offset);
+		}
+		to {
+			opacity: 1;
+			transform: translate(0, 0);
+		}
+	}
 }
+
+@include slide(modal-slide, 5vh);
+@include slide(full-slide, 100vh);
 
 .modal {
 	animation: modal-slide 0.25s;
