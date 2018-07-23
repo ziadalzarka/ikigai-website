@@ -33,7 +33,7 @@
 				#applicationsCollapse.collapse.show
 					button(navitem, [hidden]="!permissions['ClientApplications']" ,routerLink='applications/clients') Clients
 					button(navitem, [hidden]="!permissions['JobApplications']", routerLink='applications/jobs') Jobs
-					button(navitem, [hidden]="!permissions['ContactApplications']", routerLink='applications/contact') Contact
+					//- button(navitem, [hidden]="!permissions['ContactApplications']", routerLink='applications/contact') Contact
 		.row([hidden]="!permissions['Admin']")
 			.col
 				button.btn.bg-dashboard.shadow-none.text-pale.w-100(type='button' data-toggle='collapse' data-target='#settingsCollapse' aria-expanded='true' aria-controls='settingsCollapse')
@@ -56,7 +56,7 @@
 							.fa.fa-sign-out.f-3
 						.col-8
 							| Log Out
-	#overlay
+	#overlay((click)="hideSidebar()")
 	#miniSidebar.bg-dashboard
 		i.d-inline-block.fa.fa-bars.f-5.text-light.m-4.cursor-pointer( (click)='showSidebar()' )
 		h3.d-inline-block.truncate-text.text-light {{ (user | async).name }}

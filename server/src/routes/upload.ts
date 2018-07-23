@@ -21,11 +21,15 @@ const failed = { ok: false };
 const success = { ok: true };
 
 export default express.Router()
+	.use('/storage', express.static(path.join(drive, 'files')))
 	.use('/upload', (req, res) => {
 
 		if (!req['files']) {
 			return res.status(400).send(JSON.stringify(failed));
 		}
+
+		console.log('request:--');
+		console.log(req.body);
 
 		const file = req['files'].file;
 
@@ -34,7 +38,7 @@ export default express.Router()
 				if (err) {
 					return res.status(500).send(err);
 				}
-				res.send(JSON.stringify({ ...success, id }));
+				res.send(JSON.stringify({ ...success, id, link: '/storage/' + id }));
 			});
 		};
 

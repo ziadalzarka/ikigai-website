@@ -53,7 +53,7 @@ type Post {
   createdAt: DateTime!
   updatedAt: DateTime!
 	thumbnailBody: String!
-	thumbnailImage: File!
+	thumbnailImage: File
 }
 
 type JobApplication {

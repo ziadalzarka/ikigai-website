@@ -1,3 +1,4 @@
+import { PostsEffects } from './redux/effects/posts.effects';
 import { userReducer } from '@app/redux/reducers/user.reducer';
 import { StoreModule } from '@ngrx/store';
 import { GlobalModule } from './global/global.module';
@@ -21,6 +22,7 @@ import { footerReducer } from '@app/redux/reducers/admin-footer.reducer';
 import { FooterEffects } from '@app/redux/effects/footer.effects';
 import { clientApplicationsReducer } from '@app/redux/reducers/client-applications.reducer';
 import { ClientApplicationsEffects } from '@app/redux/effects/client-applications.effects';
+import { postsReducer } from '@app/redux/reducers/posts.reducer';
 
 export function createApollo(httpLink: HttpLink) {
 	const http = httpLink.create({ uri: environment.graphql.url });
@@ -59,13 +61,15 @@ export function createApollo(httpLink: HttpLink) {
 			UserEffects,
 			AdminUsersEffects,
 			FooterEffects,
-			ClientApplicationsEffects
+			ClientApplicationsEffects,
+			PostsEffects
 		]),
 		StoreModule.forRoot({
 			user: userReducer,
 			adminUsers: adminUsersReducer,
 			footer: footerReducer,
-			clientApplications: clientApplicationsReducer
+			clientApplications: clientApplicationsReducer,
+			posts: postsReducer
 		}),
 		StoreDevtoolsModule.instrument({ maxAge: 5 }),
 	],

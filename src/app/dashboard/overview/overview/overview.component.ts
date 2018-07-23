@@ -18,6 +18,8 @@ import { LogoutUser } from '@app/redux/actions/user.actions';
 })
 export class OverviewComponent implements OnInit {
 
+	selectedTab = 'posts';
+
 	user: Observable<User>;
 	sidebarHidden = false;
 	permissions = {

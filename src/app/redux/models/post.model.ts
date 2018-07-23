@@ -1,10 +1,7 @@
-import { User } from '@app/redux/models/user.model';
-
 export interface Post {
-	id: string;
+	id?: string;
 	title: string;
 	body: string;
-	author: User;
-	createdAt: Date;
-	updatedAt: Date;
+	thumbnailBody: string;
+	thumbnailImageId?: string;
 }
