@@ -8,6 +8,6 @@ services:
       - ./server/.env
     environment:
       - VOLUME=/var/storage
-    volume:
+    volumes:
       - storage:/var/storage
     build: .
