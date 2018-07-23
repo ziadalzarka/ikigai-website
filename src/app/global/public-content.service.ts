@@ -9,13 +9,22 @@ const feedPostFragment = gql`
 	fragment feedPost on Post {
 		id
 		title
-		body
 		updatedAt
 		thumbnailBody
 		thumbnailImage {
 			id
 		}
 	}
+`;
+
+const postQuery = gql`
+	query($id: String!) {
+		post(id: $id) {
+			...feedPost
+			body
+		}
+	}
+	${feedPostFragment}
 `;
 
 const feedQuery = gql`
@@ -73,6 +82,15 @@ export class PublicContentService {
 			query: footerQuery
 		}).pipe(
 			map((res: any) => res.data.variables)
+		);
+	}
+
+	post(id: string) {
+		return this.apollo.query({
+			query: postQuery,
+			variables: { id }
+		}).pipe(
+			map((res: any) => res.data.post)
 		);
 	}
 }

@@ -1,0 +1,10 @@
+.post-header
+	h2.d-inline-block.text-truncate {{post.title}}
+	i.float-right.fa.fa-angle-up.text-dashboard.f-5.cursor-pointer
+hr
+br
+.row
+	.col
+		p {{post.thumbnailBody}}
+	.col-4(*ngIf="post.thumbnailImageId")
+		img.img-fluid(style="border-radius: 2%;", src="http://194.182.77.249:8090/storage/{{post.thumbnailImageId}}", alt="", srcset="")

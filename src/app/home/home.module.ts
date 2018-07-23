@@ -1,3 +1,4 @@
+import { PostModule } from './../post/post.module';
 import { GlobalModule } from './../global/global.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -12,7 +13,8 @@ import { HomeComponent } from './home/home.component';
 	imports: [
 		CommonModule,
 		HomeRoutingModule,
-		GlobalModule
+		GlobalModule,
+		PostModule
 	]
 })
 export class HomeModule { }
