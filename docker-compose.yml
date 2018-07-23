@@ -6,4 +6,8 @@ services:
       - "4090:4090"
     env_file:
       - ./server/.env
+    environment:
+      - VOLUME=/var/storage
+    volume:
+      - storage:/var/storage
     build: .

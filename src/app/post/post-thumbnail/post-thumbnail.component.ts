@@ -1,4 +1,5 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { environment } from 'environments/environment';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
 	selector: 'app-post-thumbnail',
@@ -7,11 +8,18 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class PostThumbnailComponent implements OnInit {
 
-	@Input('post') post;
+	@Input() post;
+	@Output() open: EventEmitter<any> = new EventEmitter();
+
+	storage = environment.storage;
 
 	constructor() { }
 
 	ngOnInit() {
+	}
+
+	emit() {
+		this.open.emit(null);
 	}
 
 }

@@ -24,5 +24,6 @@ section#posts.py-5.bg-light
 	.container.pt-4
 		.row
 			.col-12.my-4(*ngFor="let post of feed$|async")
-				app-post-thumbnail([post]="post")
+				app-post-thumbnail([post]="post", (open)="showPost()")
+app-post([ngClass]="showing ? 'show' : ''")
 app-footer
