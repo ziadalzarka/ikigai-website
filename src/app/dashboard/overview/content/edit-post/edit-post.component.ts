@@ -28,22 +28,15 @@ export class EditPostComponent implements OnInit {
 		wordDeniedTags: ['p'],
 		placeholderText: null,
 		toolbarContainer: '#empty',
-		imageUploadURL: environment.uploadUrl,
-		imageUploadMethod: 'POST',
-		imageMaxSize: 1024 * 1024 * 2,
-		imageUploadParams: {
-			thing: 'fewafe'
-		},
-		events: {
-			'froalaEditor.image.beforeUpload': (e, editor, images) => {
-				console.log('hi before shit happens');
-			}
-		}
 	};
 
 	public editorOptions = {
+		pluginsEnabled: froalaPlugins,
 		videoInsertButtons: ['videoBack', '|', 'videoByURL', 'videoEmbed'],
-		inlineStyles: []
+		inlineStyles: [],
+		imageUploadURL: environment.uploadUrl,
+		imageUploadMethod: 'POST',
+		imageMaxSize: 1024 * 1024 * 2,
 	};
 
 	constructor(
