@@ -11,3 +11,6 @@ services:
     volumes:
       - storage:/var/storage
     build: .
+
+volumes:
+  storage:
