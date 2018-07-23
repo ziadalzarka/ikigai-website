@@ -1,5 +1,6 @@
 import * as express from 'express';
 import * as path from 'path';
+import { sync } from 'mkdirp';
 import ApolloClient from 'apollo-boost';
 import gql from 'graphql-tag';
 
@@ -16,6 +17,8 @@ const createEntryMutation = gql`
 		}
 	}
 `;
+
+sync(path.join(drive, 'files'));
 
 const failed = { ok: false };
 const success = { ok: true };
