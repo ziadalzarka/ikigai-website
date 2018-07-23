@@ -2,30 +2,17 @@ import { getUserId, Context } from '../../utils';
 
 export const postMutation = {
 	async publish(parent, { title, body, thumbnailBody, thumbnailImageId }, ctx: Context, info) {
-		console.log('we are here 2');
 		const userId = getUserId(ctx);
-		console.log('we are here');
-		console.log({
-			data: {
-				title,
-				body,
-				thumbnailBody,
-				thumbnailImage: {
-					connect: { id: thumbnailImageId }
-				},
-				author: {
-					connect: { id: userId },
-				},
-			},
-		});
 		return ctx.db.mutation.createPost(
 			{
 				data: {
 					title,
 					body,
 					thumbnailBody,
-					thumbnailImage: {
-						connect: { id: thumbnailImageId }
+					...thumbnailImageId && {
+						thumbnailImage: {
+							connect: { id: thumbnailImageId }
+						}
 					},
 					author: {
 						connect: { id: userId },

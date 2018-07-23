@@ -1,5 +1,5 @@
 # source: http://194.182.77.249:4466/ikigai/dev
-# timestamp: Sun Jul 22 2018 20:58:52 GMT+0200 (EET)
+# timestamp: Mon Jul 23 2018 21:06:34 GMT+0200 (EET)
 
 type AggregateClientApplication {
   count: Int!
@@ -1186,6 +1186,7 @@ input FileUpdateInput {
 input FileUpdateOneInput {
   create: FileCreateInput
   connect: FileWhereUniqueInput
+  disconnect: Boolean
   delete: Boolean
   update: FileUpdateDataInput
   upsert: FileUpsertNestedInput
@@ -1958,7 +1959,7 @@ type Post implements Node {
   createdAt: DateTime!
   updatedAt: DateTime!
   thumbnailBody: String!
-  thumbnailImage(where: FileWhereInput): File!
+  thumbnailImage(where: FileWhereInput): File
 }
 
 """A connection to a list of items."""
@@ -1976,7 +1977,7 @@ input PostCreateInput {
   body: String!
   thumbnailBody: String!
   author: UserCreateOneWithoutPostsInput!
-  thumbnailImage: FileCreateOneInput!
+  thumbnailImage: FileCreateOneInput
 }
 
 input PostCreateManyWithoutAuthorInput {
@@ -1988,7 +1989,7 @@ input PostCreateWithoutAuthorInput {
   title: String!
   body: String!
   thumbnailBody: String!
-  thumbnailImage: FileCreateOneInput!
+  thumbnailImage: FileCreateOneInput
 }
 
 """An edge in a connection."""

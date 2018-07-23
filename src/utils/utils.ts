@@ -43,3 +43,8 @@ export const idle = {
 	loading: false,
 	failed: false
 };
+
+export function clearHeaders(input: string) {
+	const regex = /<\/?h[1-6]>/g;
+	return input.replace(regex, '');
+}

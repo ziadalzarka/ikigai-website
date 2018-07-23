@@ -1,3 +1,5 @@
+import { NgbModalStack } from '@ng-bootstrap/ng-bootstrap/modal/modal-stack';
+import { NgbModule, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -17,7 +19,9 @@ import { postsReducer } from '@app/redux/reducers/posts.reducer';
 		FroalaViewModule.forRoot(),
 		StoreModule.forFeature('posts', postsReducer),
 		FormsModule,
+		NgbModule,
 	],
-	declarations: [PostsComponent, EditPostComponent]
+	declarations: [PostsComponent, EditPostComponent],
+	providers: [NgbModal, NgbModalStack]
 })
 export class ContentModule { }

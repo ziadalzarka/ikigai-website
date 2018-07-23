@@ -5,6 +5,7 @@ import { LoaderComponent } from './loader/loader.component';
 import { NotfoundComponent } from './notfound/notfound.component';
 import { PermissionsPipe } from '@app/global/permissions.pipe';
 import { PackageColorPipe } from './package-color.pipe';
+import { SafeHtmlPipe } from './safehtml.pipe';
 
 @NgModule({
 	imports: [
@@ -16,12 +17,14 @@ import { PackageColorPipe } from './package-color.pipe';
 		NotfoundComponent,
 		PermissionsPipe,
 		PackageColorPipe,
+		SafeHtmlPipe,
 	],
 	exports: [
 		FooterComponent,
 		LoaderComponent,
 		PermissionsPipe,
-		PackageColorPipe
+		PackageColorPipe,
+		SafeHtmlPipe
 	]
 })
 export class GlobalModule { }

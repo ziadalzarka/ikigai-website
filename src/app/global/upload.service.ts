@@ -1,6 +1,6 @@
 import { environment } from 'environments/environment';
 import { Injectable } from '@angular/core';
-import { HttpRequest, HttpEvent, HttpEventType, HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpRequest, HttpClient, HttpHeaders } from '@angular/common/http';
 import { map, tap, last } from 'rxjs/operators';
 
 @Injectable({

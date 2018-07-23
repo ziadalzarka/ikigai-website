@@ -1300,6 +1300,7 @@ input FileUpdateInput {
 input FileUpdateOneInput {
   create: FileCreateInput
   connect: FileWhereUniqueInput
+  disconnect: Boolean
   delete: Boolean
   update: FileUpdateDataInput
   upsert: FileUpsertNestedInput
@@ -2072,7 +2073,7 @@ type Post implements Node {
   createdAt: DateTime!
   updatedAt: DateTime!
   thumbnailBody: String!
-  thumbnailImage(where: FileWhereInput): File!
+  thumbnailImage(where: FileWhereInput): File
 }
 
 """A connection to a list of items."""
@@ -2090,7 +2091,7 @@ input PostCreateInput {
   body: String!
   thumbnailBody: String!
   author: UserCreateOneWithoutPostsInput!
-  thumbnailImage: FileCreateOneInput!
+  thumbnailImage: FileCreateOneInput
 }
 
 input PostCreateManyWithoutAuthorInput {
@@ -2102,7 +2103,7 @@ input PostCreateWithoutAuthorInput {
   title: String!
   body: String!
   thumbnailBody: String!
-  thumbnailImage: FileCreateOneInput!
+  thumbnailImage: FileCreateOneInput
 }
 
 """An edge in a connection."""
@@ -3690,7 +3691,7 @@ export interface PostCreateInput {
   body: String
   thumbnailBody: String
   author: UserCreateOneWithoutPostsInput
-  thumbnailImage: FileCreateOneInput
+  thumbnailImage?: FileCreateOneInput
 }
 
 export interface UserUpdateWithoutPostsDataInput {
@@ -4073,6 +4074,7 @@ export interface ClientApplicationSubscriptionWhereInput {
 export interface FileUpdateOneInput {
   create?: FileCreateInput
   connect?: FileWhereUniqueInput
+  disconnect?: Boolean
   delete?: Boolean
   update?: FileUpdateDataInput
   upsert?: FileUpsertNestedInput
@@ -4683,7 +4685,7 @@ export interface PostCreateWithoutAuthorInput {
   title: String
   body: String
   thumbnailBody: String
-  thumbnailImage: FileCreateOneInput
+  thumbnailImage?: FileCreateOneInput
 }
 
 export interface PostCreateManyWithoutAuthorInput {
@@ -5027,7 +5029,7 @@ export interface Post extends Node {
   createdAt: DateTime
   updatedAt: DateTime
   thumbnailBody: String
-  thumbnailImage: File
+  thumbnailImage?: File
 }
 
 /*

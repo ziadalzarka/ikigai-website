@@ -151,6 +151,10 @@ label.bg-dashboard.active {
 	color: white !important;
 }
 
+.progress-bar {
+	@extend .bg-dashboard;
+}
+
 .linkedin {
   color: $linkedin !important;
 }

@@ -47,10 +47,10 @@ export class GraphqlUserService {
 
 	me() {
 		return this.apollo
-			.watchQuery({ query: meQuery })
-			.valueChanges.pipe(
+			.query({ query: meQuery })
+			.pipe(
 				map((res: any) => (res.data.me as User)),
-			);
+		);
 	}
 
 	login(username, password) {

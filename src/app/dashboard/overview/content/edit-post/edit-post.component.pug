@@ -23,3 +23,15 @@
 	.row
 		.col-12.col-lg-4.offset-lg-8
 			button.w-100.btn.btn-dashboard.btn.ml-auto.mt-1(type='button', (click)="publish(thumbnail.files[0])") Publish
+
+
+ng-template(#loading, let-close='close', let-dismiss='dismiss')
+	.modal-header
+		h3.modal-title Publishing Post
+	.modal-body
+		.progress(*ngIf="uploadPercentage")
+			.progress-bar(role='progressbar', [style.width]="uploadPercentage + '%'")
+		div(*ngIf="!uploadPercentage")
+			p.lead Published successfully!
+	.modal-footer(*ngIf="!uploadPercentage")
+		button.btn.btn-dashboard(type='button', (click)="dismiss()") OK

@@ -1,10 +1,18 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { PublicContentService } from '@app/global/public-content.service';
 
 @Component({
 	selector: 'app-home',
 	templateUrl: './home.component.pug',
 	styleUrls: ['./home.component.scss']
 })
-export class HomeComponent {
+export class HomeComponent implements OnInit {
 
+	feed$;
+
+	constructor(private publicContent: PublicContentService) { }
+
+	ngOnInit() {
+		this.feed$ = this.publicContent.feed();
+	}
 }
