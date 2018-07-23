@@ -141,8 +141,8 @@ export class GraphqlAdminService {
 
 	users() {
 		return this.apollo
-			.watchQuery({ query: usersQuery })
-			.valueChanges.pipe(
+			.query({ query: usersQuery })
+			.pipe(
 				map((res: any) => (res.data.usersConnection.edges)),
 				map(edges => edges.map(node => { return { ...node.node as User }; }))
 			);

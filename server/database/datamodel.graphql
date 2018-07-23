@@ -91,6 +91,8 @@ type ClientApplication {
 	# updated on add & edit
 	package: Package!
 	totalPrice: Int!
+	createdAt: DateTime!
+	# archived: boolean @default(value: false)
 }
 
 type ContactApplication {

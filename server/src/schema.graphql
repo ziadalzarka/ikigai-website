@@ -8,6 +8,7 @@ type Query {
 	usersConnection(after: String, first: Int): UserConnection!
 	jobApplicationsConnection(after: String, first: Int): JobApplicationConnection!
 	clientApplicationsConnection(after: String, first: Int): ClientApplicationConnection!
+	clientApplication(id: ID!): ClientApplication
 }
 
 enum Package {

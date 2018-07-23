@@ -7,28 +7,101 @@
 		br
 		.row
 			.col
-				table.table.table-hover
+				table.table.table-hover([mfData]='clientApplications$|async', #mf="mfDataTable", [mfRowsOnPage]='10')
 					thead.text-dark
 						tr
-							th Name
-							th Email Address
-							th Phone
-							th Package
+							th
+								mfDefaultSorter(by='name') Name
+							th
+								mfDefaultSorter(by='email') Email Address
+							th
+								mfDefaultSorter(by='phoneNumber') Phone
+							th
+								mfDefaultSorter(by='packageIndex') Package
+							th
+								mfDefaultSorter(by='totalPrice') Total Price
 							th Facebook Page
+							th
+								mfDefaultSorter(by='createdAt') Date Submitted
 					tbody.f-1.text-calm
-						tr
-							td.align-middle Gray, Inc.
-							td.align-middle gray@gmail.com
-							td.align-middle +201096707442
-							td.align-middle.text-info Starter
+						tr.cursor-pointer(*ngFor="let app of mf.data", (click)="openApplication(app)")
+							td.align-middle {{app.name}}
+							td.align-middle {{app.email}}
+							td.align-middle {{app.phoneNumber || '---'}}
+							td.align-middle.f-heavy([ngClass]="app.package|packageColor") {{app.package}}
+							td.align-middle {{app.totalPrice}}$
 							td.align-middle
-								a(href='https://facebook.com/zzthemadprogrammer' target='_blank')
+								a(href='{{app.facebook}}', target='_blank', *ngIf="app.facebook")
 									i.fa.fa-facebook.f-3
+								a(*ngIf="!app.facebook") ---
+							td.align-middle {{app.createdAt|date:'mediumDate'}}
+					tfoot
 						tr
-							td.align-middle Mohap Akram
-							td.align-middle themadkid@gmail.com
-							td.align-middle +201067425491
-							td.align-middle.text-success Pro
-							td.align-middle
-								a(href='https://www.facebook.com/mohapakram' target='_blank')
-									i.fa.fa-facebook.f-3
+							td(colspan='4')
+								mfBootstrapPaginator([rowsOnPageSet]='[5,10,25]')
+
+ng-template(#showClientApplication, let-close='close', let-dismiss='dismiss')
+	.modal-header
+		h3.modal-title {{(selectedApplication$|async)?.name}}
+	.modal-body
+		h4 Contact Information
+		hr
+		.row
+			.col-12.col-lg-6
+				div
+					label Email
+					p {{(selectedApplication$|async)?.email}}
+				div(*ngIf="(selectedApplication$|async)?.phoneNumber")
+					label Phone Number
+					p {{(selectedApplication$|async)?.phoneNumber}}
+				div(*ngIf="(selectedApplication$|async)?.address")
+					label Address
+					p {{(selectedApplication$|async)?.address}}
+			.col-12.col-lg-6
+				div
+					label Package
+					p.f-heavy([ngClass]="(selectedApplication$|async)?.package|packageColor") {{(selectedApplication$|async)?.package}} for {{(selectedApplication$|async)?.dealYears}} years.
+				div
+					label Total Price
+					p {{(selectedApplication$|async)?.totalPrice}}$
+				div
+					label Submitted At
+					p {{(selectedApplication$|async)?.createdAt | date:'short'}}
+				div(*ngIf="(selectedApplication$|async)?.facebook")
+					label Facebook
+					a.d-block(href='{{(selectedApplication$|async)?.facebook}}', target='_blank')
+						i.fa.fa-facebook.f-3
+		br
+		h4 Media
+		hr
+		.row
+			.col-12.col-lg-6
+				div
+					label Posts per month
+					p {{(selectedApplication$|async)?.postsPerMonth}}
+				div
+					label Photography
+					p {{(selectedApplication$|async)?.photography}}
+				div
+					label Gifs
+					p {{(selectedApplication$|async)?.gifs}}
+			.col-12.col-lg-6
+				div
+					label Videos
+					p {{(selectedApplication$|async)?.videos}} Videos 
+						| (Averaged
+						| {{(selectedApplication$|async)?.videoMinutesCount}} minutes)
+		br
+		div(*ngIf="(selectedApplication$|async)?.website")
+			h4 Website
+			hr
+			.row
+				.col-12.col-lg-6
+					strong.d-block.mt-1.text-info(*ngIf="(selectedApplication$|async)?.website") Wants a website
+					strong.d-block.mt-1.text-info(*ngIf="(selectedApplication$|async)?.hasHost") Has hosting 
+					strong.d-block.mt-1.text-info(*ngIf="(selectedApplication$|async)?.hasDomain") Has a domain
+					strong.d-block.mt-1.text-danger(*ngIf="!(selectedApplication$|async)?.hasHost") Doesn't have hosting
+					strong.d-block.mt-1.text-danger(*ngIf="!(selectedApplication$|async)?.hasDomain") Doesn't have a domain
+	.modal-footer
+		//- button.btn.btn-danger(type='button', (click)="dismiss()") Archive
+		button.btn.btn-secondary(type='button', (click)="dismiss()") OK

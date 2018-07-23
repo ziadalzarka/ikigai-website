@@ -1,4 +1,5 @@
 import { Context, Permissions, verifyPermission } from '../../utils';
+import { ClientApplicationOrderByInput, JobApplicationOrderByInput } from '../../generated/prisma';
 
 export const applicationsQuery = {
 	async jobApplicationsConnection(parent, args, ctx: Context, info) {
@@ -9,5 +10,10 @@ export const applicationsQuery = {
 	async clientApplicationsConnection(parent, args, ctx: Context, info) {
 		await verifyPermission(ctx, Permissions.ClientApplications);
 		return ctx.db.query.clientApplicationsConnection(args, info);
+	},
+
+	async clientApplication(parent, { id }, ctx: Context, info) {
+		await verifyPermission(ctx, Permissions.ClientApplications);
+		return ctx.db.query.clientApplication({ where: { id } }, info);
 	},
 };

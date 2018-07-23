@@ -9,7 +9,7 @@
 				i.fa.fa-angle-left.f-5.text-light
 		.row([hidden]="!permissions['Posts']")
 			.col
-				button.btn.bg-dashboard.text-pale.w-100(type='button' data-toggle='collapse' data-target='#contentCollapse' aria-expanded='true' aria-controls='contentCollapse')
+				button.btn.bg-dashboard.shadow-none.text-pale.w-100(type='button' data-toggle='collapse' data-target='#contentCollapse' aria-expanded='true' aria-controls='contentCollapse')
 					.row
 						.col-2.text-right
 							.fa.fa-calendar.f-3
@@ -22,7 +22,7 @@
 					button(navitem, routerLink='content/edit') New Post
 		.row([hidden]="!permissions['ClientApplications'] && !permissions['JobApplications'] && !permissions['ContactApplications']")
 			.col
-				button.btn.bg-dashboard.text-pale.w-100(type='button' data-toggle='collapse' data-target='#applicationsCollapse' aria-expanded='true' aria-controls='applicationsCollapse')
+				button.btn.bg-dashboard.shadow-none.text-pale.w-100(type='button' data-toggle='collapse' data-target='#applicationsCollapse' aria-expanded='true' aria-controls='applicationsCollapse')
 					.row
 						.col-2.text-right
 							.fa.fa-user.f-3
@@ -36,7 +36,7 @@
 					button(navitem, [hidden]="!permissions['ContactApplications']", routerLink='applications/contact') Contact
 		.row([hidden]="!permissions['Admin']")
 			.col
-				button.btn.bg-dashboard.text-pale.w-100(type='button' data-toggle='collapse' data-target='#settingsCollapse' aria-expanded='true' aria-controls='settingsCollapse')
+				button.btn.bg-dashboard.shadow-none.text-pale.w-100(type='button' data-toggle='collapse' data-target='#settingsCollapse' aria-expanded='true' aria-controls='settingsCollapse')
 					.row
 						.col-2.text-right
 							.fa.fa-cog.f-3
@@ -50,7 +50,7 @@
 					button(navitem, routerLink='settings/footer') Footer
 		.row
 			.col
-				button.btn.btn-danger.text-light.w-100(type='button', (click)="logout()")
+				button.btn.btn-danger.shadow-none.text-light.w-100(type='button', (click)="logout()")
 					.row
 						.col-2.text-right
 							.fa.fa-sign-out.f-3

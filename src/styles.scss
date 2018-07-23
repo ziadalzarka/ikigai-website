@@ -104,6 +104,13 @@ $dropdown-link-active-bg: $gray-300;
   z-index: 1200 !important;
 }
 
+// pagination
+.page-item.active .page-link {
+  color: #fff !important; // important for hover
+  background-color: $dashboard !important; // important to override
+  border-color: $dashboard !important; // important to override
+}
+
 // animations
 @keyframes modal-slide {
   from {
@@ -194,24 +201,35 @@ body {
 }
 
 .range-field {
-	margin-top: 1rem;
+  margin-top: 1rem;
 }
+
 .thumb {
-	z-index: 10;
+  z-index: 10;
 }
+
+strong {
+  @extend .lead;
+  font-weight: 900 !important;
+}
+
+.f-heavy {
+	font-weight: 900 !important;
+}
+
 label {
   &.range-min {
-		@extend .text-muted;
-		position: absolute;
-		float: left;
-		left: 0;
-		top: -0.8rem;
-	}
-	&.range-max {
-		@extend .text-muted;
-		position: absolute;
-		float: right;
-		right: 0;
-		top: -0.8rem;
-	}
+    @extend .text-muted;
+    position: absolute;
+    float: left;
+    left: 0;
+    top: -0.8rem;
+  }
+  &.range-max {
+    @extend .text-muted;
+    position: absolute;
+    float: right;
+    right: 0;
+    top: -0.8rem;
+  }
 }

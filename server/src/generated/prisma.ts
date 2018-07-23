@@ -166,6 +166,7 @@ type ClientApplication implements Node {
   dealYears: Int!
   package: Package!
   totalPrice: Int!
+  createdAt: DateTime!
 }
 
 """A connection to a list of items."""
@@ -241,10 +242,10 @@ enum ClientApplicationOrderByInput {
   package_DESC
   totalPrice_ASC
   totalPrice_DESC
-  updatedAt_ASC
-  updatedAt_DESC
   createdAt_ASC
   createdAt_DESC
+  updatedAt_ASC
+  updatedAt_DESC
 }
 
 type ClientApplicationPreviousValues {
@@ -265,6 +266,7 @@ type ClientApplicationPreviousValues {
   dealYears: Int!
   package: Package!
   totalPrice: Int!
+  createdAt: DateTime!
 }
 
 type ClientApplicationSubscriptionPayload {
@@ -750,6 +752,28 @@ input ClientApplicationWhereInput {
 
   """All values greater than or equal the given value."""
   totalPrice_gte: Int
+  createdAt: DateTime
+
+  """All values that are not equal to given value."""
+  createdAt_not: DateTime
+
+  """All values that are contained in given list."""
+  createdAt_in: [DateTime!]
+
+  """All values that are not contained in given list."""
+  createdAt_not_in: [DateTime!]
+
+  """All values less than the given value."""
+  createdAt_lt: DateTime
+
+  """All values less than or equal the given value."""
+  createdAt_lte: DateTime
+
+  """All values greater than the given value."""
+  createdAt_gt: DateTime
+
+  """All values greater than or equal the given value."""
+  createdAt_gte: DateTime
 }
 
 input ClientApplicationWhereUniqueInput {
@@ -3622,10 +3646,10 @@ export type ClientApplicationOrderByInput =   'id_ASC' |
   'package_DESC' |
   'totalPrice_ASC' |
   'totalPrice_DESC' |
-  'updatedAt_ASC' |
-  'updatedAt_DESC' |
   'createdAt_ASC' |
-  'createdAt_DESC'
+  'createdAt_DESC' |
+  'updatedAt_ASC' |
+  'updatedAt_DESC'
 
 export type ContactApplicationOrderByInput =   'id_ASC' |
   'id_DESC' |
@@ -4620,6 +4644,14 @@ export interface ClientApplicationWhereInput {
   totalPrice_lte?: Int
   totalPrice_gt?: Int
   totalPrice_gte?: Int
+  createdAt?: DateTime
+  createdAt_not?: DateTime
+  createdAt_in?: DateTime[] | DateTime
+  createdAt_not_in?: DateTime[] | DateTime
+  createdAt_lt?: DateTime
+  createdAt_lte?: DateTime
+  createdAt_gt?: DateTime
+  createdAt_gte?: DateTime
 }
 
 export interface UserCreatepermissionsInput {
@@ -4865,6 +4897,7 @@ export interface ClientApplication extends Node {
   dealYears: Int
   package: Package
   totalPrice: Int
+  createdAt: DateTime
 }
 
 export interface FilePreviousValues {
@@ -5150,6 +5183,7 @@ export interface ClientApplicationPreviousValues {
   dealYears: Int
   package: Package
   totalPrice: Int
+  createdAt: DateTime
 }
 
 export interface ClientApplicationSubscriptionPayload {

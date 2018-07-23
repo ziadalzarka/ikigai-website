@@ -1,3 +1,4 @@
+import { StoreModule } from '@ngrx/store';
 import { ReactiveFormsModule } from '@angular/forms';
 import { GlobalModule } from './../global/global.module';
 import { NgModule } from '@angular/core';
@@ -8,6 +9,7 @@ import {
 } from '@app/client/client-application/client-application.component';
 import { NgbModule, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { NgbModalStack } from '@ng-bootstrap/ng-bootstrap/modal/modal-stack';
+import { clientApplicationsReducer } from '@app/redux/reducers/client-applications.reducer';
 
 @NgModule({
 	imports: [
@@ -16,6 +18,7 @@ import { NgbModalStack } from '@ng-bootstrap/ng-bootstrap/modal/modal-stack';
 		GlobalModule,
 		ReactiveFormsModule,
 		NgbModule,
+		StoreModule.forFeature('clientApplications', clientApplicationsReducer)
 	],
 	declarations: [ClientApplicationComponent],
 	providers: [NgbModal, NgbModalStack]
