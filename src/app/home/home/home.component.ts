@@ -9,6 +9,7 @@ import { PublicContentService } from '@app/global/public-content.service';
 export class HomeComponent implements OnInit {
 
 	feed$;
+	showing;
 
 	constructor(private publicContent: PublicContentService) { }
 
@@ -17,6 +18,6 @@ export class HomeComponent implements OnInit {
 	}
 
 	showPost() {
-
+		this.showing = true;
 	}
 }

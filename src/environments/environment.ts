@@ -4,7 +4,7 @@
 
 export const environment = {
 	production: false,
-	uploadUrl: 'http://127.0.0.1:8090/upload',
+	uploadUrl: 'http://194.182.77.249:8090/upload',
 	storage: 'http://194.182.77.249:8090/storage',
 	graphql: {
 		url: 'http://localhost:4090'
