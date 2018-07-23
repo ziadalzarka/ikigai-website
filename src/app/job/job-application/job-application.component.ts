@@ -104,7 +104,7 @@ export class JobApplicationComponent implements OnInit {
 		this.loading = true;
 
 		if (resumeFile) {
-			resumeFileId = await this.uploadService.upload(resumeFile);
+			resumeFileId = await this.uploadService.getUploadId(resumeFile);
 		}
 
 		this.jobService.applyForJob(

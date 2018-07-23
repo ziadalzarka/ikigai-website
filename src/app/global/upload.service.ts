@@ -23,9 +23,13 @@ export class UploadService {
 			reportProgress: true
 		});
 
-		return this.http.request(req).pipe(
+		return this.http.request(req);
+	}
+
+	getUploadId(file) {
+		this.upload(file).pipe(
 			last(),
 			map((res: any) => res.body.id),
-		).toPromise();
+		);
 	}
 }

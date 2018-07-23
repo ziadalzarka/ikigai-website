@@ -67,11 +67,23 @@ export class EditPostComponent implements OnInit {
 		}
 	}
 
+	getPercentage(event: HttpEvent<any>) {
+		switch (event.type) {
+			case HttpEventType.UploadProgress:
+				const percentDone = Math.round(100 * event.loaded / event.total);
+				return percentDone;
+		}
+	}
+
 	async publish(thumbnailFile) {
 		let thumbnailImageId;
 
 		if (thumbnailFile) {
-			thumbnailImageId = await this.uploadService.upload(thumbnailFile);
+			thumbnailImageId = await this.uploadService.upload(thumbnailFile).pipe(
+				tap(ev => console.log(this.getPercentage(ev))),
+				last(),
+				map((res: any) => res.body.id),
+			).toPromise();
 		}
 
 		this.store.dispatch(new PublishPost({
