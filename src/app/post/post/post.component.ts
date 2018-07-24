@@ -18,19 +18,19 @@ export class PostComponent implements OnInit {
 	post: Post;
 
 	ngOnInit() {
-		this.route.params.subscribe(async (params) => {
-			try {
-				if (!params.id) {
-					this.navigationService.notFound();
-				}
-				this.post = await this.contentService.post(params.id).toPromise();
-				if (!this.post) {
-					this.navigationService.notFound();
-				}
-			} catch (error) {
-				this.navigationService.notFound();
-			}
-		}, () => this.navigationService.notFound());
+		// this.route.params.subscribe(async (params) => {
+		// 	try {
+		// 		if (!params.id) {
+		// 			this.navigationService.notFound();
+		// 		}
+		// 		this.post = await this.contentService.post(params.id).toPromise();
+		// 		if (!this.post) {
+		// 			this.navigationService.notFound();
+		// 		}
+		// 	} catch (error) {
+		// 		this.navigationService.notFound();
+		// 	}
+		// }, () => this.navigationService.notFound());
 	}
 
 }

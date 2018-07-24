@@ -24,11 +24,10 @@
             ],
             "styles": [
               "src/styles.scss",
-              "./node_modules/froala-editor/css/froala_editor.pkgd.min.css",
-              "./node_modules/froala-editor/css/froala_style.min.css"
+              
             ],
             "scripts": [
-              "./src/assets/js/froala_editor.pkgd.min.js"
+              
             ]
           },
           "configurations": {

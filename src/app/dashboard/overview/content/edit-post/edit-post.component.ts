@@ -3,7 +3,7 @@ import { AppState } from '@app/redux/app.state';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { froalaPlugins, clearHeaders, getUploadPercentage } from 'utils/utils';
+import { clearHeaders, getUploadPercentage } from 'utils/utils';
 import { HttpRequest, HttpClient, HttpEventType, HttpEvent } from '@angular/common/http';
 import { map, tap, last } from 'rxjs/operators';
 import { PublishPost } from '@app/redux/actions/posts.actions';
@@ -18,28 +18,8 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 export class EditPostComponent implements OnInit {
 
 	public editorContent: string = '';
-	title = '<h1>New Post</h1>';
+	title = 'Untitled';
 	thumbnailBody;
-
-	public titleOptions = {
-		toolbarInline: true,
-		pluginsEnabled: [],
-		htmlAllowedEmptyTags: ['h1'],
-		htmlAllowedTags: ['h1'],
-		wordDeniedTags: ['p'],
-		placeholderText: null,
-		toolbarContainer: '#empty',
-	};
-
-	public editorOptions = {
-		pluginsEnabled: froalaPlugins,
-		videoInsertButtons: ['videoBack', '|', 'videoByURL', 'videoEmbed'],
-		toolbarInline: false,
-		inlineStyles: [],
-		imageUploadURL: environment.uploadUrl,
-		imageUploadMethod: 'POST',
-		imageMaxSize: 1024 * 1024 * 2,
-	};
 
 	constructor(
 		private http: HttpClient,
@@ -51,14 +31,6 @@ export class EditPostComponent implements OnInit {
 	ngOnInit() { }
 
 	uploadPercentage = null;
-
-	handleSelectAll(event) {
-		if (event.ctrlKey) {
-			if (event.keyCode == 65) {
-				return false;
-			}
-		}
-	}
 
 	imgSrc;
 

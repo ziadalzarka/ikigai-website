@@ -3,8 +3,7 @@ import { NgbModule, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
-import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
+import { QuillModule } from 'ngx-quill'
 import { ContentRoutingModule } from './content-routing.module';
 import { PostsComponent } from './posts/posts.component';
 import { EditPostComponent } from './edit-post/edit-post.component';
@@ -15,8 +14,7 @@ import { postsReducer } from '@app/redux/reducers/posts.reducer';
 	imports: [
 		CommonModule,
 		ContentRoutingModule,
-		FroalaEditorModule.forRoot(),
-		FroalaViewModule.forRoot(),
+		QuillModule,
 		StoreModule.forFeature('posts', postsReducer),
 		FormsModule,
 		NgbModule,

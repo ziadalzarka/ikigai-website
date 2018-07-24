@@ -1,35 +1,4 @@
-import { HttpEventType, HttpEvent } from "@angular/common/http";
-
-export const froalaPlugins =
-	[
-		'align',
-		'charCounter',
-		'codeBeautifier',
-		'codeView',
-		'colors',
-		'draggable',
-		'embedly',
-		'emoticons',
-		'entities',
-		// 'file',
-		'fontFamily',
-		'fontSize',
-		'fullscreen',
-		'image',
-		// 'imageManager',
-		// 'inlineStyle',
-		'lineBreaker',
-		'link',
-		'lists',
-		'paragraphFormat',
-		'paragraphStyle',
-		// 'quickInsert',
-		'quote',
-		'save',
-		'table',
-		'url',
-		'video',
-		'wordPaste'];
+import { HttpEventType, HttpEvent } from '@angular/common/http';
 
 export const loading = {
 	loading: true,

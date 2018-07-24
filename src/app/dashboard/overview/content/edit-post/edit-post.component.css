@@ -1,0 +1,15 @@
+#titleEditor {
+  background: transparent;
+  outline: 0;
+  border: none;
+  margin-bottom: 0.5rem;
+  font-family: inherit;
+  font-weight: 600;
+  line-height: 1.2;
+  color: #2c3e50;
+  box-shadow: none !important;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  font-size: 2rem;
+  padding: 0;
+}

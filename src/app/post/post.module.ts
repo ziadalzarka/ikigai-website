@@ -1,3 +1,4 @@
+import { QuillModule } from 'ngx-quill';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { PostThumbnailComponent } from './post-thumbnail/post-thumbnail.component';
@@ -7,7 +8,8 @@ import { PostRoutingModule } from '@app/post/post-routing.module';
 @NgModule({
 	imports: [
 		CommonModule,
-		PostRoutingModule
+		PostRoutingModule,
+		QuillModule
 	],
 	declarations: [PostThumbnailComponent, PostComponent],
 	exports: [PostThumbnailComponent, PostComponent]
