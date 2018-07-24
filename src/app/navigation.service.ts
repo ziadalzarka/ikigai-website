@@ -20,6 +20,10 @@ export class NavigationService {
 		this.router.navigate(['dashboard']);
 	}
 
+	notFound() {
+		this.router.navigate(['404']);
+	}
+
 	posts() {
 		this.router.navigate(['dashboard', 'content', 'posts']);
 	}

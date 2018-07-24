@@ -91,7 +91,7 @@ export class PublicContentService {
 		);
 	}
 
-	post(id: string) {
+	post(id: string): Observable<Post> {
 		return this.apollo.query({
 			query: postQuery,
 			variables: { id }
