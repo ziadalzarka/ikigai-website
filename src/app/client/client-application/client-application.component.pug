@@ -37,13 +37,16 @@
 			br
 			.w-100.btn-group.btn-group-toggle
 				label.col-4.btn.btn-outline-dashboard.shadow-none([ngClass]="{'active': clientApplication.package == Package.Light }") Light
-					input(type='radio', formControlName="package", [value]="Package.Light", (change)='setPackage()')
+					input(type='radio', formControlName="package", [value]="Package.Light", (change)="onPackageChanged()")
 				label.col-4.btn.btn-outline-dashboard.shadow-none.bx-0([ngClass]="{'active': clientApplication.package == Package.Pro }") Pro
-					input(type='radio', formControlName="package", [value]="Package.Pro", (change)='setPackage()')
-				label.col-4.btn.btn-outline-dashboard.shadow-none([ngClass]="{'active': clientApplication.package == Package.Enterprise }") Enterprise
-					input(type='radio', formControlName="package", [value]="Package.Enterprise", (change)='setPackage()')
+					input(type='radio', formControlName="package", [value]="Package.Pro", (change)="onPackageChanged()")
+				label.col-4.btn.btn-outline-dashboard.shadow-none.br-0([ngClass]="{'active': clientApplication.package == Package.Enterprise }") Enterprise
+					input(type='radio', formControlName="package", [value]="Package.Enterprise", (change)="onPackageChanged()")
+				label.col-4.btn.btn-outline-dashboard.shadow-none([ngClass]="{'active': clientApplication.package == Package.Custom }") Custom
+					input(type='radio', formControlName="package", [value]="Package.Custom", (change)="onPackageChanged()")
 			br
 			br
+			p.lead.text-danger.f-heavy(*ngIf="clientApplication.package == Package.Custom") Custom packges discounts are determined after evaluation.
 			br
 			h2 Media
 			br
@@ -51,41 +54,41 @@
 				.col-12.col-lg-6
 					label Posts per month ({{clientApplication.postsPerMonth}})
 					.form-group.range-field
-						label.range-min {{packagesMins[clientApplication.package.toString()].postsPerMonth}}
-						input(type='range', min='{{packagesMins[clientApplication.package.toString()].postsPerMonth}}' max='120', formControlName="postsPerMonth", (change)="updatePriceAndPackages()")
+						label.range-min 0
+						input((change)="onMediaChanged()", type='range', min='0' max='120', formControlName="postsPerMonth")
 						label.range-max 120
 					label Photography ({{clientApplication.photography}})
 					.form-group.range-field
 						label.range-min 0
-						input(type="range", min="0" max="100" step="5", formControlName="photography", (change)="updatePriceAndPackages()")
+						input((change)="onMediaChanged()", type="range", min="0" max="100" step="5", formControlName="photography")
 						label.range-max 100
 					label Gifs ({{clientApplication.gifs}})
 					.form-group.range-field
-						label.range-min {{packagesMins[clientApplication.package.toString()].gifs}}
-						input(type="range", min="{{packagesMins[clientApplication.package.toString()].gifs}}", max="10", formControlName="gifs", (change)="updatePriceAndPackages()")
+						label.range-min 0
+						input((change)="onMediaChanged()", type="range", min="0", max="10", formControlName="gifs")
 						label.range-max 10
 				.col-12.col-lg-6
 					label Videos ({{clientApplication.videos}})
 					.form-group.range-field
-						label.range-min {{packagesMins[clientApplication.package.toString()].videos}}
-						input(type="range", min="{{packagesMins[clientApplication.package.toString()].videos}}" max="3", formControlName="videos", (change)="updatePriceAndPackages()")
+						label.range-min 0
+						input((change)="onMediaChanged()", type="range", min="0" max="3", formControlName="videos")
 						label.range-max 3
 					label Minutes per video ({{clientApplication.videoMinutesCount}})
 					.form-group.range-field
 						label.range-min 1
-						input(type="range", min="1" max="5", formControlName="videoMinutesCount", (change)="updatePriceAndPackages()")
+						input((change)="onMediaChanged()", type="range", min="1" max="5", formControlName="videoMinutesCount")
 						label.range-max 5
 			br
 			h2 Deal Years ({{clientApplication.dealYears}})
 			br
 			.form-group.range-field
 				label.range-min 1
-				input(type='range', min='1', max='5', formControlName="dealYears", (change)="updatePriceAndPackages()")
+				input((change)="onDealYearsChanged()", type='range', min='1', max='5', formControlName="dealYears")
 				label.range-max 5
 			br
 			hr
 			h2 Website
-			p.lead Website prices are discussed privately.
+			p.lead.text-danger.f-heavy(*ngIf="clientApplication.website") Website prices are discussed privately.
 			br
 			.row
 				.col-12.col-lg-6
@@ -122,7 +125,8 @@
 			br
 			hr
 			h3.text-right Price per month: {{pricePerMonth}} EGP				
-			h3.text-right Discount: {{-discount}} EGP
+			h3.text-right(*ngIf="discount") Discount: {{-discount}} EGP
+			h3.text-right.text-danger#beforeDiscount(*ngIf="discount") Total price: {{clientApplication.totalPrice + discount}} EGP
 			h3.text-right Total price: {{clientApplication.totalPrice}} EGP
 			hr
 			.row

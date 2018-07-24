@@ -2040,6 +2040,7 @@ enum Package {
   Light
   Pro
   Enterprise
+  Custom
 }
 
 """Information about pagination in a connection."""
@@ -3711,7 +3712,8 @@ export type VariableOrderByInput =   'index_ASC' |
 
 export type Package =   'Light' |
   'Pro' |
-  'Enterprise'
+  'Enterprise' |
+  'Custom'
 
 export type ClientApplicationOrderByInput =   'id_ASC' |
   'id_DESC' |

@@ -1,5 +1,5 @@
 # source: http://194.182.77.249:4466/ikigai/dev
-# timestamp: Tue Jul 24 2018 18:28:08 GMT+0200 (EET)
+# timestamp: Tue Jul 24 2018 19:52:39 GMT+0200 (EET)
 
 type AggregateClientApplication {
   count: Int!
@@ -1926,6 +1926,7 @@ enum Package {
   Light
   Pro
   Enterprise
+  Custom
 }
 
 """Information about pagination in a connection."""

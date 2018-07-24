@@ -31,7 +31,8 @@ export function clientApplicationsReducer(
 			const packageIndexes = {
 				[Package.Light]: 0,
 				[Package.Pro]: 1,
-				[Package.Enterprise]: 2
+				[Package.Enterprise]: 2,
+				[Package.Custom]: 3
 			};
 			return {
 				...clientApplicationsAdapter

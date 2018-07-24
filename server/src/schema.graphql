@@ -14,7 +14,8 @@ type Query {
 enum Package {
 	Light,
 	Pro,
-	Enterprise
+	Enterprise,
+	Custom
 }
 
 enum JobPosition {

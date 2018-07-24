@@ -209,10 +209,19 @@ body {
   overflow: hidden;
 }
 
-.bx-0 {
-  border-right: none !important;
-  border-left: none !important;
+.br-0 {
+	border-right: none !important;
 }
+
+.bl-0 {
+	border-left: none !important;
+}
+
+.bx-0 {
+	@extend .br-0;
+	@extend .bl-0;
+}
+
 
 .range-field {
   margin-top: 1rem;

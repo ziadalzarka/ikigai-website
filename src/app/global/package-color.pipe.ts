@@ -14,6 +14,8 @@ export class PackageColorPipe implements PipeTransform {
 				return 'text-warning';
 			case Package.Enterprise:
 				return 'text-success';
+				case Package.Custom:
+				return 'text-dashboard';
 		}
 	}
 
