@@ -46,8 +46,13 @@ const routes: Routes = [
 			state: 'post'
 		}
 	},
+	{
+		path: '404',
+		component: NotfoundComponent
+	},
 	{ path: 'login', redirectTo: 'dashboard', pathMatch: 'full' },
 	{ path: 'post', redirectTo: 'home', pathMatch: 'full' },
+	{ path: '**', redirectTo: '404', pathMatch: 'full' },
 ];
 
 @NgModule({

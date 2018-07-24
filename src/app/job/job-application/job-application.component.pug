@@ -23,8 +23,8 @@
 				.col-12.col-lg-6
 					.form-group
 						label Email address
-						input.form-control(type='email', placeholder='example@example.com', formControlName="email", required)
-						.has-error.mt-1(*ngIf='jobApplicationForm.controls.email.invalid && jobApplicationForm.controls.email.dirty') This field is required.
+						input.form-control(type='email', email, placeholder='example@example.com', formControlName="email", required)
+						.has-error.mt-1(*ngIf='jobApplicationForm.controls.email.invalid && jobApplicationForm.controls.email.dirty') Invalid email provided.
 					.form-group
 						label Address (optional)
 						input.form-control(type='text', placeholder='445 Mount Eden Road, Auckland', formControlName="address")
@@ -48,20 +48,21 @@
 				.form-check.my-1
 					input.form-check-input#pb-chk(type='checkbox', formControlName="pb")
 					label.form-check-label(for='pb-chk') Public Relations
-				.has-error.mt-1(*ngIf='jobApplicationForm.controls.positions.invalid') At least one position has to be selected.
+				.has-error.mt-1(*ngIf='jobApplicationForm.controls.positions.invalid && jobApplicationForm.controls.positions.dirty') At least one position has to be selected.
 			br
 			h2 Protifolio
 			br
 			.form-group
 				label(for='resumeFile') CV / Resume / Portifolio
-				input#resumeFile.form-control-file(type='file', formControlName="resume", #resume)
+				input#resumeFile.form-control-file(type='file', formControlName="resume", #resume, required)
+				.has-error.mt-1(*ngIf='jobApplicationForm.controls.resume.invalid && jobApplicationForm.controls.resume.dirty') This field is required.
 			.form-group
 				label LinkedIn Profile
 				input.form-control(type='text', placeholder='https://www.linkedin.com/in/...', formControlName="linkedIn")
 			hr
 			.row
 				.col-12.col-lg-4.offset-lg-8
-					button.w-100.btn.btn-primary.btn.ml-auto(type='button', (click)="send(resume.files[0])") Send
+					button.w-100.btn.btn-dashboard.btn.ml-auto(type='button', (click)="send(resume.files[0])") Send
 app-footer
 
 ng-template(#loading, let-close='close', let-dismiss='dismiss')
@@ -74,4 +75,4 @@ ng-template(#loading, let-close='close', let-dismiss='dismiss')
 			p.lead(*ngSwitchCase="true") Successfully submitted application.
 			p.lead(*ngSwitchCase="false") An error ocurred prevented application from being submit.
 	.modal-footer(*ngIf="!uploadPercentage")
-		button.btn(type='button', (click)="dismiss()", [ngClass]="successful ? 'btn-primary' : 'btn-danger'") OK
+		button.btn(type='button', (click)="dismiss()", [ngClass]="successful ? 'btn-dashboard' : 'btn-danger'") OK

@@ -9,12 +9,16 @@ const publishPostMutation = gql`
 		$title: String!,
 		$body: String!,
 		$thumbnailBody: String!,
-		$thumbnailImageId: String) {
+		$thumbnailImageId: String,
+		$badge: String,
+		$badgeColorClass: String) {
 		publish(
 			title: $title,
 			body: $body,
 			thumbnailBody: $thumbnailBody,
-			thumbnailImageId: $thumbnailImageId)
+			thumbnailImageId: $thumbnailImageId,
+			badge: $badge,
+			badgeColorClass: $badgeColorClass)
 			{
 				id
 			}

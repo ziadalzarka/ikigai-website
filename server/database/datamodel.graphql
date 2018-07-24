@@ -50,6 +50,8 @@ type Post {
   title: String!
   body: String!
   author: User!
+	badge: String
+	badgeColorClass: String
   createdAt: DateTime!
   updatedAt: DateTime!
 	thumbnailBody: String!
@@ -67,7 +69,7 @@ type JobApplication {
 	middleName: String!
 	lastName: String!
 	positions: [JobPosition!]!
-	resume: File
+	resume: File!
 	linkedIn: String
 }
 

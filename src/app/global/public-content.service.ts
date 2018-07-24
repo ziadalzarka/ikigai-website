@@ -2,7 +2,7 @@ import { Post } from './../redux/models/post.model';
 import gql from 'graphql-tag';
 import { Apollo } from 'apollo-angular';
 import { Injectable } from '@angular/core';
-import { map } from 'rxjs/operators';
+import { map, tap } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 
 const feedPostFragment = gql`
@@ -11,8 +11,13 @@ const feedPostFragment = gql`
 		title
 		updatedAt
 		thumbnailBody
+		badge
+		badgeColorClass
 		thumbnailImage {
 			id
+		}
+		author {
+			name
 		}
 	}
 `;
@@ -68,6 +73,7 @@ export class PublicContentService {
 			query: feedQuery,
 			variables: { first: 4 }
 		}).pipe(
+			tap(console.log),
 			map((res: any) => res.data.feed.edges.map(edge => {
 				return edge.node.thumbnailImage ? {
 					...edge.node,

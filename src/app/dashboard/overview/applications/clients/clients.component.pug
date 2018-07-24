@@ -29,7 +29,7 @@
 							td.align-middle {{app.email}}
 							td.align-middle {{app.phoneNumber || '---'}}
 							td.align-middle.f-heavy([ngClass]="app.package|packageColor") {{app.package}}
-							td.align-middle {{app.totalPrice}}$
+							td.align-middle {{app.totalPrice}} EGP
 							td.align-middle
 								a(href='{{app.facebook}}', target='_blank', *ngIf="app.facebook")
 									i.fa.fa-facebook.f-3
@@ -63,7 +63,7 @@ ng-template(#showClientApplication, let-close='close', let-dismiss='dismiss')
 					p.f-heavy([ngClass]="(selectedApplication$|async)?.package|packageColor") {{(selectedApplication$|async)?.package}} for {{(selectedApplication$|async)?.dealYears}} years.
 				div
 					label Total Price
-					p {{(selectedApplication$|async)?.totalPrice}}$
+					p {{(selectedApplication$|async)?.totalPrice}} EGP
 				div
 					label Submitted At
 					p {{(selectedApplication$|async)?.createdAt | date:'short'}}

@@ -7,16 +7,32 @@
 	h2.my-4 Thumbnail
 	hr
 	br
+	//- out of normal placement to keep image thumbnail aligned with no label
+	label Badge
 	.row
 		.col-12.col-lg-6
 			.form-group
-				textarea.form-control([(ngModel)]="thumbnailBody", type='textarea', placeholder='What you write here will be displayed on the home page.', row='3', style='min-height: 9em;')
+				input#badgeText.form-control(placeholder='Badge', type='text', [(ngModel)]="badge")
+			.form-group.btn-group-toggle
+				label.btn.badge.cursor-pointer.badge-pill.badge-warning([ngClass]="{active: badgeColorClass == 'warning'}") Warning
+					input(type='radio', [(ngModel)]="badgeColorClass", value='warning')
+				label.ml-2.btn.badge.cursor-pointer.badge-pill.badge-danger([ngClass]="{active: badgeColorClass == 'danger'}") Vigilant
+					input(type='radio', [(ngModel)]="badgeColorClass", value='danger')
+				label.ml-2.btn.badge.cursor-pointer.badge-pill.badge-info([ngClass]="{active: badgeColorClass == 'info'}") Info
+					input(type='radio', [(ngModel)]="badgeColorClass", value='info')
+				label.ml-2.btn.badge.cursor-pointer.badge-pill.badge-dashboard([ngClass]="{active: badgeColorClass == 'dashboard'}") Dark
+					input(type='radio', [(ngModel)]="badgeColorClass", value='dashboard')
+			.form-group.clearfix
+				label.float-left Preview
+				label.float-right([ngClass]="thumbnailBody?.length >= 350 ? 'text-danger' : 'text-muted'")
+					| {{thumbnailBody?.length || 0}}/350
+				textarea#thumbnailBody.form-control([(ngModel)]="thumbnailBody", type='textarea', placeholder='What you write here will be displayed on the home page.', row='3', style='min-height: 9em;', maxlength="350")
 		.col-12.col-lg-6
 			.form-group.image-upload
 				label.w-100(for='thumbnailFile')
 					div.w-100.dashed-border([ngClass]='imgSrc ? "" : "p-5"')
 						p.text-center.m-0([hidden]='imgSrc') Click to upload
-						img.img-fluid#thumbnailImg(" src='{{imgSrc}}' [hidden]='!imgSrc' ")
+						img.previewImg.img-fluid#thumbnailImg(" src='{{imgSrc}}' [hidden]='!imgSrc' ")
 				input#thumbnailFile.d-none.form-control-file(#thumbnail, type='file', accept='image/x-png,image/gif,image/jpeg', (change)="handleThumbnail($event)")
 	br
 	hr

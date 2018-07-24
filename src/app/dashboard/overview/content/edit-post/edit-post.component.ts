@@ -34,6 +34,7 @@ export class EditPostComponent implements OnInit {
 	public editorOptions = {
 		pluginsEnabled: froalaPlugins,
 		videoInsertButtons: ['videoBack', '|', 'videoByURL', 'videoEmbed'],
+		toolbarInline: false,
 		inlineStyles: [],
 		imageUploadURL: environment.uploadUrl,
 		imageUploadMethod: 'POST',
@@ -72,6 +73,8 @@ export class EditPostComponent implements OnInit {
 	}
 
 	@ViewChild('loading') loading;
+	badge;
+	badgeColorClass = 'dashboard';
 
 	async publish(thumbnailFile) {
 		let thumbnailImageId;
@@ -87,6 +90,8 @@ export class EditPostComponent implements OnInit {
 
 		this.store.dispatch(new PublishPost({
 			thumbnailImageId,
+			badge: this.badge,
+			badgeColorClass: this.badgeColorClass,
 			title: clearHeaders(this.title),
 			body: this.editorContent,
 			thumbnailBody: this.thumbnailBody,

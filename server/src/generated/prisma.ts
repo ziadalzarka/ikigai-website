@@ -1456,7 +1456,7 @@ type JobApplication implements Node {
   middleName: String!
   lastName: String!
   positions: [JobPosition!]
-  resume(where: FileWhereInput): File
+  resume(where: FileWhereInput): File!
   linkedIn: String
 }
 
@@ -1480,7 +1480,7 @@ input JobApplicationCreateInput {
   lastName: String!
   linkedIn: String
   positions: JobApplicationCreatepositionsInput
-  resume: FileCreateOneInput
+  resume: FileCreateOneInput!
 }
 
 input JobApplicationCreatepositionsInput {
@@ -2070,6 +2070,8 @@ type Post implements Node {
   title: String!
   body: String!
   author(where: UserWhereInput): User!
+  badge: String
+  badgeColorClass: String
   createdAt: DateTime!
   updatedAt: DateTime!
   thumbnailBody: String!
@@ -2089,6 +2091,8 @@ type PostConnection {
 input PostCreateInput {
   title: String!
   body: String!
+  badge: String
+  badgeColorClass: String
   thumbnailBody: String!
   author: UserCreateOneWithoutPostsInput!
   thumbnailImage: FileCreateOneInput
@@ -2102,6 +2106,8 @@ input PostCreateManyWithoutAuthorInput {
 input PostCreateWithoutAuthorInput {
   title: String!
   body: String!
+  badge: String
+  badgeColorClass: String
   thumbnailBody: String!
   thumbnailImage: FileCreateOneInput
 }
@@ -2122,6 +2128,10 @@ enum PostOrderByInput {
   title_DESC
   body_ASC
   body_DESC
+  badge_ASC
+  badge_DESC
+  badgeColorClass_ASC
+  badgeColorClass_DESC
   createdAt_ASC
   createdAt_DESC
   updatedAt_ASC
@@ -2134,6 +2144,8 @@ type PostPreviousValues {
   id: ID!
   title: String!
   body: String!
+  badge: String
+  badgeColorClass: String
   createdAt: DateTime!
   updatedAt: DateTime!
   thumbnailBody: String!
@@ -2181,6 +2193,8 @@ input PostSubscriptionWhereInput {
 input PostUpdateInput {
   title: String
   body: String
+  badge: String
+  badgeColorClass: String
   thumbnailBody: String
   author: UserUpdateOneWithoutPostsInput
   thumbnailImage: FileUpdateOneInput
@@ -2198,6 +2212,8 @@ input PostUpdateManyWithoutAuthorInput {
 input PostUpdateWithoutAuthorDataInput {
   title: String
   body: String
+  badge: String
+  badgeColorClass: String
   thumbnailBody: String
   thumbnailImage: FileUpdateOneInput
 }
@@ -2342,6 +2358,86 @@ input PostWhereInput {
 
   """All values not ending with the given string."""
   body_not_ends_with: String
+  badge: String
+
+  """All values that are not equal to given value."""
+  badge_not: String
+
+  """All values that are contained in given list."""
+  badge_in: [String!]
+
+  """All values that are not contained in given list."""
+  badge_not_in: [String!]
+
+  """All values less than the given value."""
+  badge_lt: String
+
+  """All values less than or equal the given value."""
+  badge_lte: String
+
+  """All values greater than the given value."""
+  badge_gt: String
+
+  """All values greater than or equal the given value."""
+  badge_gte: String
+
+  """All values containing the given string."""
+  badge_contains: String
+
+  """All values not containing the given string."""
+  badge_not_contains: String
+
+  """All values starting with the given string."""
+  badge_starts_with: String
+
+  """All values not starting with the given string."""
+  badge_not_starts_with: String
+
+  """All values ending with the given string."""
+  badge_ends_with: String
+
+  """All values not ending with the given string."""
+  badge_not_ends_with: String
+  badgeColorClass: String
+
+  """All values that are not equal to given value."""
+  badgeColorClass_not: String
+
+  """All values that are contained in given list."""
+  badgeColorClass_in: [String!]
+
+  """All values that are not contained in given list."""
+  badgeColorClass_not_in: [String!]
+
+  """All values less than the given value."""
+  badgeColorClass_lt: String
+
+  """All values less than or equal the given value."""
+  badgeColorClass_lte: String
+
+  """All values greater than the given value."""
+  badgeColorClass_gt: String
+
+  """All values greater than or equal the given value."""
+  badgeColorClass_gte: String
+
+  """All values containing the given string."""
+  badgeColorClass_contains: String
+
+  """All values not containing the given string."""
+  badgeColorClass_not_contains: String
+
+  """All values starting with the given string."""
+  badgeColorClass_starts_with: String
+
+  """All values not starting with the given string."""
+  badgeColorClass_not_starts_with: String
+
+  """All values ending with the given string."""
+  badgeColorClass_ends_with: String
+
+  """All values not ending with the given string."""
+  badgeColorClass_not_ends_with: String
   createdAt: DateTime
 
   """All values that are not equal to given value."""
@@ -3527,6 +3623,10 @@ export type PostOrderByInput =   'id_ASC' |
   'title_DESC' |
   'body_ASC' |
   'body_DESC' |
+  'badge_ASC' |
+  'badge_DESC' |
+  'badgeColorClass_ASC' |
+  'badgeColorClass_DESC' |
   'createdAt_ASC' |
   'createdAt_DESC' |
   'updatedAt_ASC' |
@@ -3689,6 +3789,8 @@ export interface ClientApplicationWhereUniqueInput {
 export interface PostCreateInput {
   title: String
   body: String
+  badge?: String
+  badgeColorClass?: String
   thumbnailBody: String
   author: UserCreateOneWithoutPostsInput
   thumbnailImage?: FileCreateOneInput
@@ -3906,6 +4008,8 @@ export interface PostSubscriptionWhereInput {
 export interface PostUpdateInput {
   title?: String
   body?: String
+  badge?: String
+  badgeColorClass?: String
   thumbnailBody?: String
   author?: UserUpdateOneWithoutPostsInput
   thumbnailImage?: FileUpdateOneInput
@@ -4011,6 +4115,34 @@ export interface PostWhereInput {
   body_not_starts_with?: String
   body_ends_with?: String
   body_not_ends_with?: String
+  badge?: String
+  badge_not?: String
+  badge_in?: String[] | String
+  badge_not_in?: String[] | String
+  badge_lt?: String
+  badge_lte?: String
+  badge_gt?: String
+  badge_gte?: String
+  badge_contains?: String
+  badge_not_contains?: String
+  badge_starts_with?: String
+  badge_not_starts_with?: String
+  badge_ends_with?: String
+  badge_not_ends_with?: String
+  badgeColorClass?: String
+  badgeColorClass_not?: String
+  badgeColorClass_in?: String[] | String
+  badgeColorClass_not_in?: String[] | String
+  badgeColorClass_lt?: String
+  badgeColorClass_lte?: String
+  badgeColorClass_gt?: String
+  badgeColorClass_gte?: String
+  badgeColorClass_contains?: String
+  badgeColorClass_not_contains?: String
+  badgeColorClass_starts_with?: String
+  badgeColorClass_not_starts_with?: String
+  badgeColorClass_ends_with?: String
+  badgeColorClass_not_ends_with?: String
   createdAt?: DateTime
   createdAt_not?: DateTime
   createdAt_in?: DateTime[] | DateTime
@@ -4187,6 +4319,8 @@ export interface ContactApplicationWhereInput {
 export interface PostUpdateWithoutAuthorDataInput {
   title?: String
   body?: String
+  badge?: String
+  badgeColorClass?: String
   thumbnailBody?: String
   thumbnailImage?: FileUpdateOneInput
 }
@@ -4364,7 +4498,7 @@ export interface JobApplicationCreateInput {
   lastName: String
   linkedIn?: String
   positions?: JobApplicationCreatepositionsInput
-  resume?: FileCreateOneInput
+  resume: FileCreateOneInput
 }
 
 export interface UserWhereInput {
@@ -4684,6 +4818,8 @@ export interface FileCreateOneInput {
 export interface PostCreateWithoutAuthorInput {
   title: String
   body: String
+  badge?: String
+  badgeColorClass?: String
   thumbnailBody: String
   thumbnailImage?: FileCreateOneInput
 }
@@ -4961,7 +5097,7 @@ export interface JobApplication extends Node {
   middleName: String
   lastName: String
   positions?: JobPosition[]
-  resume?: File
+  resume: File
   linkedIn?: String
 }
 
@@ -5026,6 +5162,8 @@ export interface Post extends Node {
   title: String
   body: String
   author: User
+  badge?: String
+  badgeColorClass?: String
   createdAt: DateTime
   updatedAt: DateTime
   thumbnailBody: String
@@ -5117,6 +5255,8 @@ export interface PostPreviousValues {
   id: ID_Output
   title: String
   body: String
+  badge?: String
+  badgeColorClass?: String
   createdAt: DateTime
   updatedAt: DateTime
   thumbnailBody: String

@@ -14,12 +14,6 @@ html {
   }
 }
 
-.clamp {
-  line-height: 1.5em;
-  height: 6em;
-  overflow: hidden;
-}
-
 .pre {
   white-space: pre;
 }
@@ -73,6 +67,8 @@ label {
   color: #ccc;
 }
 
+// range
+$radio-fill-color: #323443;
 // range from materialize
 @import 'materialize/range';
 // bootstrap theming
@@ -250,4 +246,16 @@ label {
     right: 0;
     top: -0.8rem;
   }
+}
+
+.hover-link:hover {
+	text-decoration: underline;
+}
+
+.badge.active {
+	box-shadow: 0 0 0 0.25rem rgba(0, 0, 0, 0.15) !important;
+}
+
+.previewImg {
+	min-width: 100%;
 }

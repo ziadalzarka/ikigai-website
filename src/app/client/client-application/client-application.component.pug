@@ -23,8 +23,8 @@
 				.col
 					.form-group
 						label Email address
-						input.form-control(type='email', placeholder='example@example.com', formControlName="email", required)
-						.has-error.mt-1(*ngIf='clientApplicationForm.controls.email.invalid && !clientApplicationForm.controls.email.pristine') This field is required.
+						input.form-control(type='email', email, placeholder='example@example.com', formControlName="email", required)
+						.has-error.mt-1(*ngIf='clientApplicationForm.controls.email.invalid && !clientApplicationForm.controls.email.pristine') Invalid email provided.
 					.form-group
 						label Address (optional)
 						input.form-control(type='text', placeholder='445 Mount Eden Road, Auckland', formControlName="address")
@@ -36,11 +36,11 @@
 			h2 Package
 			br
 			.w-100.btn-group.btn-group-toggle
-				label.col-4.btn.btn-outline-primary.shadow-none([ngClass]="{'active': clientApplication.package == Package.Light }") Light
+				label.col-4.btn.btn-outline-dashboard.shadow-none([ngClass]="{'active': clientApplication.package == Package.Light }") Light
 					input(type='radio', formControlName="package", [value]="Package.Light", (change)='setPackage()')
-				label.col-4.btn.btn-outline-primary.shadow-none.bx-0([ngClass]="{'active': clientApplication.package == Package.Pro }") Pro
+				label.col-4.btn.btn-outline-dashboard.shadow-none.bx-0([ngClass]="{'active': clientApplication.package == Package.Pro }") Pro
 					input(type='radio', formControlName="package", [value]="Package.Pro", (change)='setPackage()')
-				label.col-4.btn.btn-outline-primary.shadow-none([ngClass]="{'active': clientApplication.package == Package.Enterprise }") Enterprise
+				label.col-4.btn.btn-outline-dashboard.shadow-none([ngClass]="{'active': clientApplication.package == Package.Enterprise }") Enterprise
 					input(type='radio', formControlName="package", [value]="Package.Enterprise", (change)='setPackage()')
 			br
 			br
@@ -121,13 +121,13 @@
 							label.form-check-label(for='domain-rd-no') No
 			br
 			hr
-			h3.text-right Price per month: {{pricePerMonth}}$				
-			h3.text-right Discount: {{-discount}}$
-			h3.text-right Total price: {{clientApplication.totalPrice}}$
+			h3.text-right Price per month: {{pricePerMonth}} EGP				
+			h3.text-right Discount: {{-discount}} EGP
+			h3.text-right Total price: {{clientApplication.totalPrice}} EGP
 			hr
 			.row
 				.col-12.col-lg-4.offset-lg-8
-					button.w-100.btn.btn-primary.btn.ml-auto.mt-1(type='button', (click)="send()") Send
+					button.w-100.btn.btn-dashboard.btn.ml-auto.mt-1(type='button', (click)="send()") Send
 app-footer
 
 ng-template(#failed, let-close='close', let-dismiss='dismiss')
@@ -144,4 +144,4 @@ ng-template(#successful, let-close='close', let-dismiss='dismiss')
 	.modal-body
 		p.lead Successfully submitted application.
 	.modal-footer
-		button.btn.btn-primary(type='button',, (click)="dismiss()") OK
+		button.btn.btn-dashboard(type='button',, (click)="dismiss()") OK

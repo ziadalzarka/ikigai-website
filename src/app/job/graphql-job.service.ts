@@ -13,7 +13,7 @@ const applyForJobMutation = gql`
 		$middleName: String,
 		$lastName: String,
 		$positions: [JobPosition!]!,
-		$resumeFileId: String,
+		$resumeFileId: String!,
 		$linkedIn: String) {
 			applyForWork(
 				email: $email,

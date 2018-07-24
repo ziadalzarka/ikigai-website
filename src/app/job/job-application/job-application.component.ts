@@ -41,7 +41,7 @@ export class JobApplicationComponent implements OnInit {
 		phoneNumber: '',
 		// positions
 		positions: this.fb.group({
-			media: true,
+			media: false,
 			graphics: false,
 			photography: false,
 			pb: false,
@@ -91,6 +91,8 @@ export class JobApplicationComponent implements OnInit {
 		this.jobApplicationForm.controls.middleName.markAsDirty();
 		this.jobApplicationForm.controls.lastName.markAsDirty();
 		this.jobApplicationForm.controls.email.markAsDirty();
+		this.jobApplicationForm.controls.positions.markAsDirty();
+		this.jobApplicationForm.controls.resume.markAsDirty();
 	}
 
 	successful = true;

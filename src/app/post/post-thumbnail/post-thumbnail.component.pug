@@ -1,10 +1,17 @@
-.post-header.cursor-pointer((click)="emit()")
-	h2.d-inline-block.text-truncate {{post.title}}
-	i.float-right.fa.fa-angle-right.text-dashboard.f-5
+.row
+	.col-4(*ngIf="post.thumbnailImageId")
+		img#preview.previewImg.img-fluid.cursor-pointer((click)="emit()", style="border-radius: 2%;", src="{{storage}}/{{post.thumbnailImageId}}", alt="", srcset="")
+	.col-8
+		h2.hover-link.cursor-pointer.text-truncate((click)="emit()") {{post.title}}
+		div.text-dashboard
+			span By {{post.author.name}}
+			span.ml-2 {{post.updatedAt|date:'mediumDate'}}
+			span.ml-2.text-danger 5
+				i.fa.fa-comments.text-dashboard
+			span.ml-2.badge.badge-pill(*ngIf="post.badge", [ngClass]="'badge-' + post.badgeColorClass") {{post.badge}}
+		br
+		p.mb-0 {{post.thumbnailBody}}
+		a.text-danger.f-heavy.hover-link.cursor-pointer((click)="emit()") Continue reading...
+br
 hr
 br
-.row
-	.col
-		p {{post.thumbnailBody}}
-	.col-4(*ngIf="post.thumbnailImageId")
-		img.img-fluid(style="border-radius: 2%;", src="{{storage}}/{{post.thumbnailImageId}}", alt="", srcset="")
