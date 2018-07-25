@@ -10,10 +10,16 @@ const routes: Routes = [{
 		state: 'posts'
 	}
 }, {
-	path: 'edit',
+	path: 'new',
 	component: EditPostComponent,
 	data: {
-		state: 'edit'
+		state: 'new_post'
+	}
+}, {
+	path: 'edit/:id',
+	component: EditPostComponent,
+	data: {
+		state: 'edit_post'
 	}
 }];
 

@@ -63,6 +63,7 @@ $sm-size: 80vw;
 }
 
 #sidebar {
+	z-index: 999;
 	margin-left: 0;
 	height: 100%;
 	position: fixed;

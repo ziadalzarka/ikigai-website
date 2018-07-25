@@ -19,7 +19,7 @@
 							.fa.fa-angle-down.f-3
 				#contentCollapse.collapse.show
 					button(navitem, routerLink='content/posts') Posts
-					button(navitem, routerLink='content/edit') New Post
+					button(navitem, routerLink='content/new') New Post
 		.row([hidden]="!permissions['ClientApplications'] && !permissions['JobApplications'] && !permissions['ContactApplications']")
 			.col
 				button.btn.bg-dashboard.shadow-none.text-pale.w-100(type='button' data-toggle='collapse' data-target='#applicationsCollapse' aria-expanded='true' aria-controls='applicationsCollapse')

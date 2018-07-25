@@ -9,7 +9,9 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 export class PostThumbnailComponent implements OnInit {
 
 	@Input() post;
+	@Input() options: boolean;
 	@Output() open: EventEmitter<any> = new EventEmitter();
+	@Output() option: EventEmitter<any> = new EventEmitter();
 
 	storage = environment.storage;
 
@@ -19,7 +21,11 @@ export class PostThumbnailComponent implements OnInit {
 	}
 
 	emit() {
-		this.open.emit(this.post);
+		this.open.emit();
+	}
+
+	emitOption(name) {
+		this.option.emit(name);
 	}
 
 }

@@ -24,7 +24,8 @@
 		"graphql-yoga": "1.14.12",
 		"jsonwebtoken": "8.3.0",
 		"mkdirp": "^0.5.1",
-		"prisma-binding": "2.1.0"
+		"prisma-binding": "2.1.0",
+		"rendertron-middleware": "^0.1.2"
 	},
 	"devDependencies": {
 		"@types/body-parser": "^1.16.3",

@@ -1,18 +1,27 @@
 import { HttpEventType, HttpEvent } from '@angular/common/http';
 
+export const idle = {
+	loading: false,
+	failed: false,
+	success: false,
+};
+
 export const loading = {
 	loading: true,
-	failed: false
+	failed: false,
+	success: false,
 };
 
 export const failed = {
 	loading: false,
-	failed: true
+	failed: true,
+	success: false,
 };
 
-export const idle = {
+export const success = {
 	loading: false,
-	failed: false
+	failed: false,
+	success: true,
 };
 
 export function clearHeaders(input: string) {

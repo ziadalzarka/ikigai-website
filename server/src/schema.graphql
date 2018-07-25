@@ -1,7 +1,7 @@
 # import Post from "./generated/prisma.graphql"
 
 type Query {
-	feed(after: String, first: Int): PostConnection!
+	feed(first: Int, skip: Int): PostConnection!
 	post(id: ID!): Post
 	me: User
 	variables: PublicVariables
@@ -38,6 +38,14 @@ type Mutation {
 		thumbnailImageId: String,
 		badge: String,
 		badgeColorClass: String): Post!
+	updatePost(
+		id: ID!,
+		title: String,
+		body: String,
+		badge: String,
+		badgeColorClass: String,
+		thumbnailBody: String,
+		thumbnailImageId: String): Post
 	deletePost(id: ID!): Post!
 	# admin
 	addUser(name: String!, username: String!, password: String!, permissions: [Permission!]!): AuthPayload!

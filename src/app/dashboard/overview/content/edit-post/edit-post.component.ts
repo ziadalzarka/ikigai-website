@@ -1,3 +1,5 @@
+import { PublicContentService } from './../../../../global/public-content.service';
+import { ActivatedRoute } from '@angular/router';
 import { UploadService } from '@app/global/upload.service';
 import { AppState } from '@app/redux/app.state';
 import { Store } from '@ngrx/store';
@@ -6,7 +8,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { clearHeaders, getUploadPercentage } from 'utils/utils';
 import { HttpRequest, HttpClient, HttpEventType, HttpEvent } from '@angular/common/http';
 import { map, tap, last } from 'rxjs/operators';
-import { PublishPost } from '@app/redux/actions/posts.actions';
+import { PublishPost, UpdatePost } from '@app/redux/actions/posts.actions';
 import { environment } from 'environments/environment';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
@@ -17,22 +19,57 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 })
 export class EditPostComponent implements OnInit {
 
-	public editorContent: string = '';
-	title = 'Untitled';
-	thumbnailBody;
-
 	constructor(
 		private http: HttpClient,
 		private store: Store<AppState>,
 		private uploadService: UploadService,
 		private modalService: NgbModal,
+		private route: ActivatedRoute,
+		private publicContent: PublicContentService,
 	) { }
 
-	ngOnInit() { }
+	ready = false;
+	editing = false;
+
+	id = null;
+	public editorContent: string = '';
+	title = 'Untitled';
+	thumbnailBody;
+	badge;
+	badgeColorClass = 'dashboard';
+	imgSrc;
+
+	ngOnInit() {
+		this.route.params.subscribe(async ({ id }) => {
+			if (id) {
+				this.id = id;
+
+				const {
+					title,
+					badge,
+					badgeColorClass,
+					thumbnailBody,
+					thumbnailImageId,
+					body
+				} = await this.publicContent.post(id).toPromise();
+
+				this.title = title;
+				this.badge = badge;
+				this.badgeColorClass = badgeColorClass;
+				this.thumbnailBody = thumbnailBody;
+				this.editorContent = body;
+				this.imgSrc = `${environment.storage}/${thumbnailImageId}`;
+
+				this.ready = true;
+				this.editing = true;
+			} else {
+				this.ready = true;
+				this.editing = false;
+			}
+		});
+	}
 
 	uploadPercentage = null;
-
-	imgSrc;
 
 	handleThumbnail(event) {
 		if (event.target.files && event.target.files[0]) {
@@ -45,14 +82,13 @@ export class EditPostComponent implements OnInit {
 	}
 
 	@ViewChild('loading') loading;
-	badge;
-	badgeColorClass = 'dashboard';
 
 	async publish(thumbnailFile) {
 		let thumbnailImageId;
 
+		this.modalService.open(this.loading, { size: 'lg' });
+
 		if (thumbnailFile) {
-			this.modalService.open(this.loading, { size: 'lg' });
 			thumbnailImageId = await this.uploadService.upload(thumbnailFile).pipe(
 				tap(ev => { this.uploadPercentage = getUploadPercentage(ev); }),
 				last(),
@@ -60,14 +96,17 @@ export class EditPostComponent implements OnInit {
 			).toPromise();
 		}
 
-		this.store.dispatch(new PublishPost({
+		const payload = {
 			thumbnailImageId,
 			badge: this.badge,
 			badgeColorClass: this.badgeColorClass,
 			title: clearHeaders(this.title),
 			body: this.editorContent,
 			thumbnailBody: this.thumbnailBody,
-		}));
+		};
+
+		if (this.editing) this.store.dispatch(new UpdatePost({ id: this.id, post: payload }));
+		else this.store.dispatch(new PublishPost(payload));
 	}
 
 }

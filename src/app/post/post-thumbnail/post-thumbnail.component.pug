@@ -1,8 +1,18 @@
 .row.post
 	.col-12.col-md-4.mb-4(*ngIf="post.thumbnailImageId")
 		img#preview.previewImg.img-fluid.cursor-pointer((click)="emit()", style="border-radius: 2%;", src="{{storage}}/{{post.thumbnailImageId}}", alt="", srcset="")
-	.col-8
-		h2.hover-link.cursor-pointer.text-truncate((click)="emit()") {{post.title}}
+	.col-12([ngClass]="{ 'col-md-8': post.thumbnailImageId }")
+		.row.flex-nowrap.justify-content-between
+			div([ngClass]="{ 'col-12': !options, 'col': options }")
+				h2.hover-link.cursor-pointer((click)="emit()", [ngClass]="{ 'text-truncate': !options }") {{post.title}}
+			.col-auto.p-0.m-0(*ngIf="options")
+				.btn-group.dropdown
+					button.btn.btn-secondary(type='button', data-toggle='dropdown')
+						i.fa.fa-ellipsis-v.text-dashboard.f-4
+					.dropdown-menu.dropdown-menu-right
+						button.dropdown-item((click)="emitOption('edit')") Edit
+						.dropdown-divider
+						button.dropdown-item.text-danger(type='button') Delete
 		div.text-dashboard
 			span By {{post.author.name}}
 			span.ml-2 {{post.updatedAt|date:'mediumDate'}}

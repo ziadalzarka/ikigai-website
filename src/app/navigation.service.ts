@@ -28,6 +28,10 @@ export class NavigationService {
 		this.router.navigate(['dashboard', 'content', 'posts']);
 	}
 
+	editPost(id) {
+		this.router.navigate(['dashboard', 'content', 'edit', id]);
+	}
+
 	home() {
 		this.router.navigate(['home']);
 	}

@@ -284,11 +284,9 @@ label {
 }
 
 .post {
-  & .previewImg {
-    #preview {
-      max-height: 12.5rem;
-      object-fit: cover;
-    }
+  & .previewImg#preview {
+    max-height: 12.5rem;
+    object-fit: cover;
   }
 }
 

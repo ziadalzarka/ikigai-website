@@ -1,3 +1,4 @@
+import { ListPostsSuccessPayload } from './../redux/actions/posts.actions';
 import { Post } from './../redux/models/post.model';
 import gql from 'graphql-tag';
 import { Apollo } from 'apollo-angular';
@@ -5,7 +6,7 @@ import { Injectable } from '@angular/core';
 import { map, tap } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 
-const feedPostFragment = gql`
+export const feedPostFragment = gql`
 	fragment feedPost on Post {
 		id
 		title
@@ -32,14 +33,17 @@ const postQuery = gql`
 	${feedPostFragment}
 `;
 
-const feedQuery = gql`
-	query($first: Int!, $after: String) {
-		feed(first: $first, after: $after) {
+export const feedQuery = gql`
+	query($first: Int!, $skip: Int) {
+		feed(first: $first, skip: $skip) {
 			edges {
       	node {
 					...feedPost
 				}
 			}
+			aggregate {
+      	count
+    	}
 		}
 	}
 	${feedPostFragment}
@@ -82,6 +86,25 @@ export class PublicContentService {
 		);
 	}
 
+	feedConnection(first: number, skip: number): Observable<ListPostsSuccessPayload> {
+		return this.apollo.query({
+			query: feedQuery,
+			variables: { first, skip }
+		}).pipe(
+			map((res: any) => {
+				return {
+					posts: res.data.feed.edges.map(edge => {
+						return edge.node.thumbnailImage ? {
+							...edge.node,
+							thumbnailImageId: edge.node.thumbnailImage.id
+						} : edge.node;
+					}),
+					count: res.data.feed.aggregate.count
+				}
+			})
+		);
+	}
+
 	footer() {
 		return this.apollo.query({
 			query: footerQuery
@@ -95,7 +118,13 @@ export class PublicContentService {
 			query: postQuery,
 			variables: { id }
 		}).pipe(
-			map((res: any) => res.data.post)
+			map((res: any) => res.data.post),
+			map(post => {
+				return post.thumbnailImage ? {
+					...post,
+					thumbnailImageId: post.thumbnailImage.id
+				} : post;
+			})
 		);
 	}
 }

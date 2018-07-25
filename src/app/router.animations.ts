@@ -87,11 +87,15 @@ export const routerTransition = trigger('routerTransition', [
 
 	/* posts, clients, jobs, users, emails, footer */
 
+	// posts and edit post
+	transition('posts => edit_post', [swipeRight]),
+	transition('edit_post => posts', [swipeLeft]),
+	transition('edit_post => *', [swipeUp]),
+
 	// posts is at the top
-	// transition('edit => posts', [swipeDown]),
-	// transition('edit => *', [swipeUp]),
-	transition('edit => posts', [swipeDown]),
-	transition('edit => *', [swipeUp]),
+	transition('new_post => posts', [swipeDown]),
+	transition('new_post => edit_post', [swipeDown]),
+	transition('new_post => *', [swipeUp]),
 	transition('posts => *', [swipeUp]),
 	// going down
 	transition('emails => footer', [swipeUp]),
