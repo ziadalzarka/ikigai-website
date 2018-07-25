@@ -77,7 +77,7 @@ export class GraphqlPostsService {
 			// pagination needs to be implemented properly
 			update: (store, { data: { publish } }) => {
 				// Read the data from our cache for this query.
-				const data = store.readQuery({ query: feedQuery, variables: { first: 10, skip: 0 } });
+				const data: any = store.readQuery({ query: feedQuery, variables: { first: 10, skip: 0 } });
 				// Add our comment from the mutation to the end.
 				data.feed.edges.push(publish);
 				// Write our data back to the cache.
