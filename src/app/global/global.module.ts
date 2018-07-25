@@ -6,10 +6,13 @@ import { NotfoundComponent } from './notfound/notfound.component';
 import { PermissionsPipe } from '@app/global/permissions.pipe';
 import { PackageColorPipe } from './package-color.pipe';
 import { SafeHtmlPipe } from './safehtml.pipe';
+import { ToolbarComponent } from './toolbar/toolbar.component';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
 	imports: [
-		CommonModule
+		CommonModule,
+		RouterModule,
 	],
 	declarations: [
 		FooterComponent,
@@ -18,13 +21,15 @@ import { SafeHtmlPipe } from './safehtml.pipe';
 		PermissionsPipe,
 		PackageColorPipe,
 		SafeHtmlPipe,
+		ToolbarComponent,
 	],
 	exports: [
 		FooterComponent,
 		LoaderComponent,
 		PermissionsPipe,
 		PackageColorPipe,
-		SafeHtmlPipe
+		SafeHtmlPipe,
+		ToolbarComponent
 	]
 })
 export class GlobalModule { }

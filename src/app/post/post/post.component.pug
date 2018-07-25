@@ -1,2 +1,19 @@
-h2 test
-quill-editor
+app-toolbar
+.py-5.minh-100
+	.container.clearfix
+		.row
+			.col-12.col-md-4.mb-4(*ngIf="post?.thumbnailImage")
+				img#preview.previewImg.img-fluid(style="border-radius: 2%;", src="{{storage}}/{{post?.thumbnailImage.id}}", alt="", srcset="")
+			.col-8
+				h2.text-truncate {{post?.title}}
+				div.text-dashboard
+					span By {{post?.author.name}}
+					span.ml-2 {{post?.updatedAt|date:'mediumDate'}}
+					span.ml-2.text-danger 5
+						i.fa.fa-comments.text-dashboard
+					span.ml-2.badge.badge-pill(*ngIf="post?.badge", [ngClass]="'badge-' + post?.badgeColorClass") {{post?.badge}}
+				p {{post?.thumbnailBody}}
+		.row
+			.col
+				div.py-5([innerHTML]="post?.body|safehtml")
+app-footer

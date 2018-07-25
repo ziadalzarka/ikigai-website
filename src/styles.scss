@@ -97,56 +97,56 @@ $table-hover-bg: rgba($black, .025);
 $dropdown-link-active-bg: $gray-300;
 // modal in a child component
 .modal {
-	z-index: 1200 !important;
+  z-index: 1200 !important;
 }
 
 // pagination
 .page-item.active .page-link {
-	color: #fff !important; // important for hover
+  color: #fff !important; // important for hover
   background-color: $dashboard !important; // important to override
   border-color: $dashboard !important; // important to override
 }
 
 // animations
 @mixin slide($name, $offset) {
-	@keyframes #{$name} {
-		from {
-			opacity: 0;
-			transform: translate(0, $offset);
-		}
-		to {
-			opacity: 1;
-			transform: translate(0, 0);
-		}
-	}
+  @keyframes #{$name} {
+    from {
+      opacity: 0;
+      transform: translate(0, $offset);
+    }
+    to {
+      opacity: 1;
+      transform: translate(0, 0);
+    }
+  }
 }
 
 @include slide(modal-slide, 5vh);
 @include slide(full-slide, 100vh);
-
 .modal {
-	animation: modal-slide 0.25s;
+  animation: modal-slide 0.25s;
 }
 
 .has-error {
-	color: red;
+  color: red;
 }
 
 // build the theme
 @import 'node_modules/bootstrap/scss/bootstrap';
 @import 'theme/lux';
+@import 'utils/borders';
 // dashboard
 label.dashboard {
-	color: $dashboard;
+  color: $dashboard;
 }
 
 label.bg-dashboard.active {
-	@extend .bg-info;
-	color: white !important;
+  @extend .bg-info;
+  color: white !important;
 }
 
 .progress-bar {
-	@extend .bg-dashboard;
+  @extend .bg-dashboard;
 }
 
 .linkedin {
@@ -203,18 +203,39 @@ body {
 }
 
 .br-0 {
-	border-right: none !important;
+  border-right: none !important;
 }
 
 .bl-0 {
-	border-left: none !important;
+  border-left: none !important;
 }
 
 .bx-0 {
-	@extend .br-0;
-	@extend .bl-0;
+  @extend .br-0;
+  @extend .bl-0;
 }
 
+.bt-0 {
+  border-top: none !important;
+}
+
+.bb-0 {
+  border-bottom: none !important;
+}
+
+.by-0 {
+  @extend .bt-0;
+  @extend .bb-0;
+}
+
+.b-0 {
+  @extend .br-0;
+  @extend .bl-0;
+  @extend .bt-0;
+  @extend .bb-0;
+}
+
+@include lt-lg {}
 
 .range-field {
   margin-top: 1rem;
@@ -230,7 +251,7 @@ strong {
 }
 
 .f-heavy {
-	font-weight: 900 !important;
+  font-weight: 900 !important;
 }
 
 label {
@@ -251,13 +272,26 @@ label {
 }
 
 .hover-link:hover {
-	text-decoration: underline;
+  text-decoration: underline;
 }
 
 .badge.active {
-	box-shadow: 0 0 0 0.25rem rgba(0, 0, 0, 0.15) !important;
+  box-shadow: 0 0 0 0.25rem rgba(0, 0, 0, 0.15) !important;
 }
 
 .previewImg {
-	min-width: 100%;
+  min-width: 100%;
+}
+
+.post {
+  & .previewImg {
+    #preview {
+      max-height: 12.5rem;
+      object-fit: cover;
+    }
+  }
+}
+
+.minh-100 {
+  min-height: 100%;
 }

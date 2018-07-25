@@ -1,3 +1,4 @@
+import { GlobalModule } from './../global/global.module';
 import { QuillModule } from 'ngx-quill';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -9,7 +10,8 @@ import { PostRoutingModule } from '@app/post/post-routing.module';
 	imports: [
 		CommonModule,
 		PostRoutingModule,
-		QuillModule
+		QuillModule,
+		GlobalModule,
 	],
 	declarations: [PostThumbnailComponent, PostComponent],
 	exports: [PostThumbnailComponent, PostComponent]

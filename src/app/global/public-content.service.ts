@@ -10,9 +10,9 @@ const feedPostFragment = gql`
 		id
 		title
 		updatedAt
-		thumbnailBody
 		badge
 		badgeColorClass
+		thumbnailBody
 		thumbnailImage {
 			id
 		}
@@ -23,7 +23,7 @@ const feedPostFragment = gql`
 `;
 
 const postQuery = gql`
-	query($id: String!) {
+	query($id: ID!) {
 		post(id: $id) {
 			...feedPost
 			body
@@ -73,7 +73,6 @@ export class PublicContentService {
 			query: feedQuery,
 			variables: { first: 4 }
 		}).pipe(
-			tap(console.log),
 			map((res: any) => res.data.feed.edges.map(edge => {
 				return edge.node.thumbnailImage ? {
 					...edge.node,

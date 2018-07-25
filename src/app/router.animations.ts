@@ -1,6 +1,10 @@
 import { trigger, animate, style, group, query, transition, state } from '@angular/animations';
 
-export const initial = query(':enter, :leave', style({ position: 'absolute', width: '100%' }));
+export const initial = query(':enter, :leave', style({
+	position: 'absolute',
+	width: '100%',
+	'will-change': 'opacity, transform'
+}));
 
 export function constructQuery(from, middle, to, dir = 'X') {
 	return group([
@@ -33,6 +37,37 @@ export const scale = group([
 	], { optional: true })
 ]);
 
+export const flipIn = group([
+	initial,
+	query(':enter', [
+		style({
+			position: 'fixed',
+			width: '100%',
+			'will-change': 'opacity, transform',
+			'z-index': 99,
+			background: 'white',
+			height: '100%',
+			transform: 'translateY(100%)',
+			opacity: 0,
+		}),
+		animate('0.5s ease-in-out', style({ transform: `translateY(0%)`, opacity: 1 }))
+	], { optional: true }),
+]);
+
+export const flipOut = group([
+	initial,
+	query(':leave', [
+		style({
+			transform: 'translateY(0%)',
+			opacity: 1,
+			'z-index': 99,
+			background: 'white',
+			height: '100%'
+		}),
+		animate('0.5s ease-in-out', style({ transform: `translateY(100%)`, opacity: 0 }))
+	], { optional: true }),
+]);
+
 export const routerTransition = trigger('routerTransition', [
 	/* home, client, job */
 	transition('home => client', [swipeRight]),
@@ -41,6 +76,10 @@ export const routerTransition = trigger('routerTransition', [
 	transition('job => home', [swipeRight]),
 	transition('home => contact', [swipeDown]),
 	transition('contact => home', [swipeUp]),
+
+	/* post view */
+	transition('home => post', [flipIn]),
+	transition('post => home', [flipOut]),
 
 	/* login page */
 	transition('* => login', [scale]),

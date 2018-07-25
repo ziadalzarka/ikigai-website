@@ -59,9 +59,6 @@ ng-template(#showClientApplication, let-close='close', let-dismiss='dismiss')
 					p {{(selectedApplication$|async)?.address}}
 			.col-12.col-lg-6
 				div
-					label Package
-					p.f-heavy([ngClass]="(selectedApplication$|async)?.package|packageColor") {{(selectedApplication$|async)?.package}} for {{(selectedApplication$|async)?.dealYears}} years.
-				div
 					label Total Price
 					p {{(selectedApplication$|async)?.totalPrice}} EGP
 				div
@@ -72,7 +69,7 @@ ng-template(#showClientApplication, let-close='close', let-dismiss='dismiss')
 					a.d-block(href='{{(selectedApplication$|async)?.facebook}}', target='_blank')
 						i.fa.fa-facebook.f-3
 		br
-		h4 Media
+		h4([ngClass]="(selectedApplication$|async)?.package|packageColor") {{(selectedApplication$|async)?.package}} for {{(selectedApplication$|async)?.dealYears}} years
 		hr
 		.row
 			.col-12.col-lg-6

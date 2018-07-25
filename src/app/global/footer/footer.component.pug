@@ -13,11 +13,13 @@
 				div(*ngIf="(content$|async)?.email") Email: {{ (content$|async)?.email }}
 				div(*ngIf="(content$|async)?.phone1") Phone: {{ (content$|async)?.phone1 }}
 				div(*ngIf="(content$|async)?.phone2") Phone: {{ (content$|async)?.phone2 }}
+				br
 			.col-12.col-md-3
 				strong(*ngIf="(content$|async)?.additionalTitle") {{ (content$|async)?.additionalTitle }}
 				br
 				br
 				div(*ngIf="(content$|async)?.additionalBody") {{ (content$|async)?.additionalBody }}
+				br
 			.col-12.col-md-3.mt-4.d-flex.align-items-end.justify-content-center
 				ul#social
 					li.cursor-pointer(*ngIf="(content$|async)?.facebook")

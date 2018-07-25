@@ -19,7 +19,7 @@ export class PostThumbnailComponent implements OnInit {
 	}
 
 	emit() {
-		this.open.emit(null);
+		this.open.emit(this.post);
 	}
 
 }

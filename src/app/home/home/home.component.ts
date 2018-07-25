@@ -18,7 +18,7 @@ export class HomeComponent implements OnInit {
 		this.feed$ = this.publicContent.feed();
 	}
 
-	showPost() {
-
+	showPost({ id }) {
+		this.router.navigate(['post', id]);
 	}
 }

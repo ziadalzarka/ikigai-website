@@ -4,7 +4,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { JobRoutingModule } from './job-routing.module';
-import { JobApplicationComponent } from '@app/job/job-application/job-application.component';
+import { JobApplicationComponent } from './job-application/job-application.component';
 import { GlobalModule } from '@app/global/global.module';
 import { NgbModalStack } from '@ng-bootstrap/ng-bootstrap/modal/modal-stack';
 
@@ -14,7 +14,7 @@ import { NgbModalStack } from '@ng-bootstrap/ng-bootstrap/modal/modal-stack';
 		JobRoutingModule,
 		GlobalModule,
 		ReactiveFormsModule,
-		NgbModule
+		NgbModule,
 	],
 	declarations: [JobApplicationComponent],
 	providers: [NgbModal, NgbModalStack]

@@ -1,4 +1,5 @@
-.bg-light.py-5
+app-toolbar
+.bg-light.py-5.minh-100
 	.container.clearfix
 		form([formGroup]="clientApplicationForm")
 			h1.display-4.mb-2 Send us your proposal
@@ -30,21 +31,24 @@
 						input.form-control(type='text', placeholder='445 Mount Eden Road, Auckland', formControlName="address")
 					.form-group
 						label Phone number (optional)
-						input.form-control(type='tel', placeholder='01097543010', formControlName="phoneNumber")
+						input.form-control(type='tel', placeholder='0109751xxxx', formControlName="phoneNumber")
 			hr
 			br
 			h2 Package
 			br
-			.w-100.btn-group.btn-group-toggle
-				label.col-4.btn.btn-outline-dashboard.shadow-none([ngClass]="{'active': clientApplication.package == Package.Light }") Light
-					input(type='radio', formControlName="package", [value]="Package.Light", (change)="onPackageChanged()")
-				label.col-4.btn.btn-outline-dashboard.shadow-none.bx-0([ngClass]="{'active': clientApplication.package == Package.Pro }") Pro
-					input(type='radio', formControlName="package", [value]="Package.Pro", (change)="onPackageChanged()")
-				label.col-4.btn.btn-outline-dashboard.shadow-none.br-0([ngClass]="{'active': clientApplication.package == Package.Enterprise }") Enterprise
-					input(type='radio', formControlName="package", [value]="Package.Enterprise", (change)="onPackageChanged()")
-				label.col-4.btn.btn-outline-dashboard.shadow-none([ngClass]="{'active': clientApplication.package == Package.Custom }") Custom
-					input(type='radio', formControlName="package", [value]="Package.Custom", (change)="onPackageChanged()")
-			br
+			.row.no-gutters
+				.col-12.col-md-6.col-lg-3.btn-group-toggle
+					label.border-lt-md-bottom-0.border-md-right-0.mb-0.w-100.btn.btn-outline-dashboard.shadow-none([ngClass]="{'active': clientApplication.package == Package.Light }") Light
+						input(type='radio', formControlName="package", [value]="Package.Light", (change)="onPackageChanged()")
+				.col-12.col-md-6.col-lg-3.btn-group-toggle
+					label.border-lt-md-bottom-0.border-gt-lg-x-0.mb-0.w-100.btn.btn-outline-dashboard.shadow-none([ngClass]="{'active': clientApplication.package == Package.Pro }") Pro
+						input(type='radio', formControlName="package", [value]="Package.Pro", (change)="onPackageChanged()")
+				.col-12.col-md-6.col-lg-3.btn-group-toggle
+					label.border-lt-sm-bottom-0.border-md-right-0.border-gt-lg-right-0.mb-0.w-100.btn.btn-outline-dashboard.shadow-none([ngClass]="{'active': clientApplication.package == Package.Enterprise }") Enterprise
+						input(type='radio', formControlName="package", [value]="Package.Enterprise", (change)="onPackageChanged()")
+				.col-12.col-md-6.col-lg-3.btn-group-toggle
+					label.mb-0.w-100.btn.btn-outline-dashboard.shadow-none([ngClass]="{'active': clientApplication.package == Package.Custom }") Custom
+						input(type='radio', formControlName="package", [value]="Package.Custom", (change)="onPackageChanged()")
 			br
 			p.lead.text-danger.f-heavy(*ngIf="clientApplication.package == Package.Custom") Custom packges discounts are determined after evaluation.
 			br

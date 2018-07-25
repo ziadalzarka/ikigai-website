@@ -1,5 +1,5 @@
-.row
-	.col-4(*ngIf="post.thumbnailImageId")
+.row.post
+	.col-12.col-md-4.mb-4(*ngIf="post.thumbnailImageId")
 		img#preview.previewImg.img-fluid.cursor-pointer((click)="emit()", style="border-radius: 2%;", src="{{storage}}/{{post.thumbnailImageId}}", alt="", srcset="")
 	.col-8
 		h2.hover-link.cursor-pointer.text-truncate((click)="emit()") {{post.title}}
