@@ -6,4 +6,12 @@ export interface Post {
 	thumbnailImageId?: string;
 	badge?: string;
 	badgeColorClass?: string;
+	updatedAt?: Date;
+	thumbnailImage?: {
+		id?: string;
+	};
+	author?: {
+		id?: string;
+		name?: string;
+	}
 }
