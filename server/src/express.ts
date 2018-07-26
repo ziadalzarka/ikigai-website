@@ -13,6 +13,8 @@ const PORT = process.env.WEB_PORT;
 
 const app = express();
 
+console.log(process.env.RENDERTRON);
+
 app.use(rendertron.makeMiddleware({
 	proxyUrl: process.env.RENDERTRON,
 }));
