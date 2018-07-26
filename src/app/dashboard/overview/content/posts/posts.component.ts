@@ -15,6 +15,8 @@ import { Post } from '@app/redux/models/post.model';
 })
 export class PostsComponent implements OnInit {
 
+	public pageSize = 5;
+
 	_page = 0;
 	feed$: Observable<Post[]>;
 
@@ -23,7 +25,7 @@ export class PostsComponent implements OnInit {
 	}
 
 	set page(value) {
-		this.store.dispatch(new ListPosts({ first: 10, skip: (value - 1) * 10 }));
+		this.store.dispatch(new ListPosts({ first: this.pageSize, skip: (value - 1) * this.pageSize }));
 		this._page = value;
 	}
 

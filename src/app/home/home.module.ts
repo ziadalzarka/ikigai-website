@@ -1,3 +1,4 @@
+import { NgbModule, NgbPaginationConfig } from '@ng-bootstrap/ng-bootstrap';
 import { PostModule } from './../post/post.module';
 import { GlobalModule } from './../global/global.module';
 import { NgModule } from '@angular/core';
@@ -14,7 +15,9 @@ import { HomeComponent } from './home/home.component';
 		CommonModule,
 		HomeRoutingModule,
 		GlobalModule,
-		PostModule
-	]
+		PostModule,
+		NgbModule,
+	],
+	providers: [NgbPaginationConfig]
 })
 export class HomeModule { }

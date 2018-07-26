@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Meta } from '@angular/platform-browser';
+import { Meta, Title } from '@angular/platform-browser';
 
 export interface MetaConfig {
 	title: string;
@@ -12,7 +12,7 @@ export interface MetaConfig {
 })
 export class SeoService {
 
-	constructor(private meta: Meta) {
+	constructor(private meta: Meta, private titleService: Title) {
 
 	}
 
@@ -25,6 +25,8 @@ export class SeoService {
 			image: 'http://194.182.77.249:8090/assets/images/header.png',
 			...config
 		};
+
+		this.titleService.setTitle(config.title);
 
 		this.meta.updateTag({ name: 'title', content: config.title });
 		this.meta.updateTag({ name: 'description', content: config.description });

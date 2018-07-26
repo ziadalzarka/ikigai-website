@@ -5,10 +5,9 @@
 				h1 Posts
 		br
 		br
-		| {{(feed$|async).length}}
 		.row
 			.col-12(*ngFor="let post of feed$|async")
 				app-post-thumbnail([post]="post", (open)="openPost(post)", options="true", (option)="handleOption($event, post)")
 		.row
 			.col
-				<ngb-pagination [collectionSize]="count$|async" [maxSize]="5" [rotate]="true" [(page)]="page" aria-label="Default pagination"></ngb-pagination>
+				<ngb-pagination [collectionSize]="count$|async" [pageSize]="pageSize" [maxSize]="5" [rotate]="true" [(page)]="page" aria-label="Default pagination"></ngb-pagination>

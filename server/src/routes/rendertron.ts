@@ -48,7 +48,6 @@ function detectBot(userAgent) {
 			return true;
 		}
 	}
-	console.log('no bots found');
 	return false;
 }
 
@@ -58,10 +57,6 @@ export default express.Router()
 		const isBot = detectBot(req.headers['user-agent']);
 
 		const botUrl = generateUrl(req);
-
-		console.log(renderUrl);
-		console.log(botUrl);
-		console.log(`${renderUrl}/${botUrl}`);
 
 		if (isBot) {
 			fetch(`${renderUrl}/${botUrl}`)
