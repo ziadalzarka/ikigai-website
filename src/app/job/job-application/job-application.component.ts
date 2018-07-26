@@ -1,3 +1,4 @@
+import { SeoService } from '@app/seo.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { JobApplication } from '@app/redux/models/job-application.model';
@@ -81,9 +82,13 @@ export class JobApplicationComponent implements OnInit {
 		private fb: FormBuilder,
 		private uploadService: UploadService,
 		private jobService: GraphqlJobService,
-		private modalService: NgbModal) { }
+		private modalService: NgbModal,
+		private seoService: SeoService) { }
 
 	ngOnInit() {
+		this.seoService.generateTags({
+			title: 'Apply for a job at Ikigai',
+		});
 	}
 
 	markDirty() {

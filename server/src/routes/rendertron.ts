@@ -7,7 +7,7 @@ const appUrl = process.env.APP_URL;
 const renderUrl = process.env.RENDERTRON;
 
 function generateUrl(request) {
-	url.format({
+	return url.format({
 		protocol: request.protocol,
 		host: appUrl,
 		pathname: request.originalUrl
@@ -58,6 +58,10 @@ export default express.Router()
 		const isBot = detectBot(req.headers['user-agent']);
 
 		const botUrl = generateUrl(req);
+
+		console.log(renderUrl);
+		console.log(botUrl);
+		console.log(`${renderUrl}/${botUrl}`);
 
 		if (isBot) {
 			fetch(`${renderUrl}/${botUrl}`)

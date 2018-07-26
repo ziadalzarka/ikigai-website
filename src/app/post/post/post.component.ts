@@ -1,3 +1,4 @@
+import { SeoService } from '@app/seo.service';
 import { timer } from 'rxjs';
 import { Post } from '@app/redux/models/post.model';
 import { NavigationService } from './../../navigation.service';
@@ -15,7 +16,8 @@ export class PostComponent implements OnInit {
 
 	constructor(private route: ActivatedRoute,
 		private contentService: PublicContentService,
-		private navigationService: NavigationService) { }
+		private navigationService: NavigationService,
+		private seoService: SeoService) { }
 
 	post: Post;
 	storage = environment.storage;
@@ -27,16 +29,24 @@ export class PostComponent implements OnInit {
 
 	ngOnInit() {
 		this.scrollToTop();
+
 		this.route.params.subscribe(async (params) => {
 			try {
+
 				if (!params.id) {
 					this.navigationService.notFound();
 				}
 				this.post = await this.contentService.post(params.id).toPromise();
+
 				if (!this.post) {
 					this.navigationService.notFound();
 				}
-				console.log(this.post);
+
+				this.seoService.generateTags({
+					title: this.post.title,
+					image: `${this.storage}/${this.post.thumbnailImageId}`,
+					description: this.post.thumbnailBody,
+				});
 			} catch (error) {
 				this.navigationService.notFound();
 			}

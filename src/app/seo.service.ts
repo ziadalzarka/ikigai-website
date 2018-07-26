@@ -24,7 +24,11 @@ export class SeoService {
 			description: 'For digital marketing and media services',
 			image: 'http://194.182.77.249:8090/assets/images/header.png',
 			...config
-		}
+		};
+
+		this.meta.updateTag({ name: 'title', content: config.title });
+		this.meta.updateTag({ name: 'description', content: config.description });
+		this.meta.updateTag({ name: 'image', content: config.image });
 
 		this.meta.updateTag({ name: 'twitter:card', content: 'summary' });
 		this.meta.updateTag({ name: 'twitter:site', content: '@ikigai' });

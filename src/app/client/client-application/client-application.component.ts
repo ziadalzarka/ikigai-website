@@ -6,6 +6,7 @@ import { Package } from '@app/redux/enums/package.enum';
 import { merge, map, tap, skip } from 'rxjs/operators';
 import { of } from 'rxjs';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { SeoService } from '@app/seo.service';
 
 declare var loadMaterialize: any;
 
@@ -144,12 +145,16 @@ export class ClientApplicationComponent implements OnInit {
 	constructor(
 		private fb: FormBuilder,
 		private clientService: GraphqlClientService,
-		private modalService: NgbModal
-	) { }
+		private modalService: NgbModal,
+		private seoService: SeoService) { }
 
 	ngOnInit() {
 		loadMaterialize();
 		this.calculatePrice();
+
+		this.seoService.generateTags({
+			title: 'Hire Ikigai',
+		});
 	}
 
 	markAsDirty() {
