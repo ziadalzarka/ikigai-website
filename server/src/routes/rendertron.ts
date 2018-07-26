@@ -1,5 +1,6 @@
 import * as express from 'express';
 import * as path from 'path';
+import * as fs from 'fs';
 import * as url from 'url';
 import * as fetch from 'node-fetch';
 
@@ -58,6 +59,8 @@ export default express.Router()
 
 		const botUrl = generateUrl(req);
 
+		console.log(botUrl);
+
 		if (isBot) {
 			fetch(`${renderUrl}/${botUrl}`)
 				.then(res => res.text())
@@ -68,6 +71,10 @@ export default express.Router()
 					res.set('Vary', 'User-Agent');
 
 					res.end(body.toString());
+
+					fs.writeFile(Date.now(), body.toString(), ()=>{
+						console.log('wrote file');
+					});
 
 				});
 		} else {
