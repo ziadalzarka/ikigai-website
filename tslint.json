@@ -15,6 +15,7 @@
     "import-name": false,
     "variable-name": false,
 		"no-else-after-return": false,
-		"object-shorthand-properties-first": false
+		"object-shorthand-properties-first": false,
+		"no-parameter-reassignment": false
   }
 }
