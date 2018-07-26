@@ -1,14 +1,17 @@
 # import Post from "./generated/prisma.graphql"
 
 type Query {
-	feed(first: Int, skip: Int): PostConnection!
+	feed(first: Int, skip: Int): PostConnection
 	post(id: ID!): Post
 	me: User
 	variables: PublicVariables
-	usersConnection(after: String, first: Int): UserConnection!
-	jobApplicationsConnection(after: String, first: Int): JobApplicationConnection!
-	clientApplicationsConnection(after: String, first: Int): ClientApplicationConnection!
+	# not required for now
+	usersConnection(first: Int, skip: Int): UserConnection
+	jobApplicationsConnection(first: Int, skip: Int): JobApplicationConnection
+	clientApplicationsConnection(first: Int, skip: Int): ClientApplicationConnection
 	clientApplication(id: ID!): ClientApplication
+	jobApplication(id: ID!): JobApplication
+	file(id: ID!): File
 }
 
 enum Package {

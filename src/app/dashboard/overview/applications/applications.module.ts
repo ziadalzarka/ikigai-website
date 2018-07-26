@@ -8,6 +8,7 @@ import { JobsComponent } from './jobs/jobs.component';
 import { ClientsComponent } from './clients/clients.component';
 import { DataTableModule } from 'angular-6-datatable';
 import { NgbModalStack } from '@ng-bootstrap/ng-bootstrap/modal/modal-stack';
+import { PositionsPipe } from './positions.pipe';
 
 @NgModule({
 	imports: [
@@ -17,7 +18,7 @@ import { NgbModalStack } from '@ng-bootstrap/ng-bootstrap/modal/modal-stack';
 		NgbModule,
 		GlobalModule
 	],
-	declarations: [JobsComponent, ClientsComponent],
+	declarations: [JobsComponent, ClientsComponent, PositionsPipe],
 	providers: [NgbModal, NgbModalStack]
 })
 export class ApplicationsModule { }

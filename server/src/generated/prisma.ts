@@ -1452,12 +1452,10 @@ type JobApplication implements Node {
   phoneNumber: String
   email: String
   address: String
-  firstName: String!
-  middleName: String!
-  lastName: String!
   positions: [JobPosition!]
   resume(where: FileWhereInput): File!
   linkedIn: String
+  createdAt: DateTime!
 }
 
 """A connection to a list of items."""
@@ -1475,9 +1473,6 @@ input JobApplicationCreateInput {
   phoneNumber: String
   email: String
   address: String
-  firstName: String!
-  middleName: String!
-  lastName: String!
   linkedIn: String
   positions: JobApplicationCreatepositionsInput
   resume: FileCreateOneInput!
@@ -1507,18 +1502,12 @@ enum JobApplicationOrderByInput {
   email_DESC
   address_ASC
   address_DESC
-  firstName_ASC
-  firstName_DESC
-  middleName_ASC
-  middleName_DESC
-  lastName_ASC
-  lastName_DESC
   linkedIn_ASC
   linkedIn_DESC
-  updatedAt_ASC
-  updatedAt_DESC
   createdAt_ASC
   createdAt_DESC
+  updatedAt_ASC
+  updatedAt_DESC
 }
 
 type JobApplicationPreviousValues {
@@ -1527,11 +1516,9 @@ type JobApplicationPreviousValues {
   phoneNumber: String
   email: String
   address: String
-  firstName: String!
-  middleName: String!
-  lastName: String!
   positions: [JobPosition!]
   linkedIn: String
+  createdAt: DateTime!
 }
 
 type JobApplicationSubscriptionPayload {
@@ -1578,9 +1565,6 @@ input JobApplicationUpdateInput {
   phoneNumber: String
   email: String
   address: String
-  firstName: String
-  middleName: String
-  lastName: String
   linkedIn: String
   positions: JobApplicationUpdatepositionsInput
   resume: FileUpdateOneInput
@@ -1799,126 +1783,6 @@ input JobApplicationWhereInput {
 
   """All values not ending with the given string."""
   address_not_ends_with: String
-  firstName: String
-
-  """All values that are not equal to given value."""
-  firstName_not: String
-
-  """All values that are contained in given list."""
-  firstName_in: [String!]
-
-  """All values that are not contained in given list."""
-  firstName_not_in: [String!]
-
-  """All values less than the given value."""
-  firstName_lt: String
-
-  """All values less than or equal the given value."""
-  firstName_lte: String
-
-  """All values greater than the given value."""
-  firstName_gt: String
-
-  """All values greater than or equal the given value."""
-  firstName_gte: String
-
-  """All values containing the given string."""
-  firstName_contains: String
-
-  """All values not containing the given string."""
-  firstName_not_contains: String
-
-  """All values starting with the given string."""
-  firstName_starts_with: String
-
-  """All values not starting with the given string."""
-  firstName_not_starts_with: String
-
-  """All values ending with the given string."""
-  firstName_ends_with: String
-
-  """All values not ending with the given string."""
-  firstName_not_ends_with: String
-  middleName: String
-
-  """All values that are not equal to given value."""
-  middleName_not: String
-
-  """All values that are contained in given list."""
-  middleName_in: [String!]
-
-  """All values that are not contained in given list."""
-  middleName_not_in: [String!]
-
-  """All values less than the given value."""
-  middleName_lt: String
-
-  """All values less than or equal the given value."""
-  middleName_lte: String
-
-  """All values greater than the given value."""
-  middleName_gt: String
-
-  """All values greater than or equal the given value."""
-  middleName_gte: String
-
-  """All values containing the given string."""
-  middleName_contains: String
-
-  """All values not containing the given string."""
-  middleName_not_contains: String
-
-  """All values starting with the given string."""
-  middleName_starts_with: String
-
-  """All values not starting with the given string."""
-  middleName_not_starts_with: String
-
-  """All values ending with the given string."""
-  middleName_ends_with: String
-
-  """All values not ending with the given string."""
-  middleName_not_ends_with: String
-  lastName: String
-
-  """All values that are not equal to given value."""
-  lastName_not: String
-
-  """All values that are contained in given list."""
-  lastName_in: [String!]
-
-  """All values that are not contained in given list."""
-  lastName_not_in: [String!]
-
-  """All values less than the given value."""
-  lastName_lt: String
-
-  """All values less than or equal the given value."""
-  lastName_lte: String
-
-  """All values greater than the given value."""
-  lastName_gt: String
-
-  """All values greater than or equal the given value."""
-  lastName_gte: String
-
-  """All values containing the given string."""
-  lastName_contains: String
-
-  """All values not containing the given string."""
-  lastName_not_contains: String
-
-  """All values starting with the given string."""
-  lastName_starts_with: String
-
-  """All values not starting with the given string."""
-  lastName_not_starts_with: String
-
-  """All values ending with the given string."""
-  lastName_ends_with: String
-
-  """All values not ending with the given string."""
-  lastName_not_ends_with: String
   linkedIn: String
 
   """All values that are not equal to given value."""
@@ -1959,6 +1823,28 @@ input JobApplicationWhereInput {
 
   """All values not ending with the given string."""
   linkedIn_not_ends_with: String
+  createdAt: DateTime
+
+  """All values that are not equal to given value."""
+  createdAt_not: DateTime
+
+  """All values that are contained in given list."""
+  createdAt_in: [DateTime!]
+
+  """All values that are not contained in given list."""
+  createdAt_not_in: [DateTime!]
+
+  """All values less than the given value."""
+  createdAt_lt: DateTime
+
+  """All values less than or equal the given value."""
+  createdAt_lte: DateTime
+
+  """All values greater than the given value."""
+  createdAt_gt: DateTime
+
+  """All values greater than or equal the given value."""
+  createdAt_gte: DateTime
   resume: FileWhereInput
 }
 
@@ -3664,18 +3550,12 @@ export type JobApplicationOrderByInput =   'id_ASC' |
   'email_DESC' |
   'address_ASC' |
   'address_DESC' |
-  'firstName_ASC' |
-  'firstName_DESC' |
-  'middleName_ASC' |
-  'middleName_DESC' |
-  'lastName_ASC' |
-  'lastName_DESC' |
   'linkedIn_ASC' |
   'linkedIn_DESC' |
-  'updatedAt_ASC' |
-  'updatedAt_DESC' |
   'createdAt_ASC' |
-  'createdAt_DESC'
+  'createdAt_DESC' |
+  'updatedAt_ASC' |
+  'updatedAt_DESC'
 
 export type VariableOrderByInput =   'index_ASC' |
   'index_DESC' |
@@ -4417,9 +4297,6 @@ export interface JobApplicationUpdateInput {
   phoneNumber?: String
   email?: String
   address?: String
-  firstName?: String
-  middleName?: String
-  lastName?: String
   linkedIn?: String
   positions?: JobApplicationUpdatepositionsInput
   resume?: FileUpdateOneInput
@@ -4495,9 +4372,6 @@ export interface JobApplicationCreateInput {
   phoneNumber?: String
   email?: String
   address?: String
-  firstName: String
-  middleName: String
-  lastName: String
   linkedIn?: String
   positions?: JobApplicationCreatepositionsInput
   resume: FileCreateOneInput
@@ -4918,48 +4792,6 @@ export interface JobApplicationWhereInput {
   address_not_starts_with?: String
   address_ends_with?: String
   address_not_ends_with?: String
-  firstName?: String
-  firstName_not?: String
-  firstName_in?: String[] | String
-  firstName_not_in?: String[] | String
-  firstName_lt?: String
-  firstName_lte?: String
-  firstName_gt?: String
-  firstName_gte?: String
-  firstName_contains?: String
-  firstName_not_contains?: String
-  firstName_starts_with?: String
-  firstName_not_starts_with?: String
-  firstName_ends_with?: String
-  firstName_not_ends_with?: String
-  middleName?: String
-  middleName_not?: String
-  middleName_in?: String[] | String
-  middleName_not_in?: String[] | String
-  middleName_lt?: String
-  middleName_lte?: String
-  middleName_gt?: String
-  middleName_gte?: String
-  middleName_contains?: String
-  middleName_not_contains?: String
-  middleName_starts_with?: String
-  middleName_not_starts_with?: String
-  middleName_ends_with?: String
-  middleName_not_ends_with?: String
-  lastName?: String
-  lastName_not?: String
-  lastName_in?: String[] | String
-  lastName_not_in?: String[] | String
-  lastName_lt?: String
-  lastName_lte?: String
-  lastName_gt?: String
-  lastName_gte?: String
-  lastName_contains?: String
-  lastName_not_contains?: String
-  lastName_starts_with?: String
-  lastName_not_starts_with?: String
-  lastName_ends_with?: String
-  lastName_not_ends_with?: String
   linkedIn?: String
   linkedIn_not?: String
   linkedIn_in?: String[] | String
@@ -4974,6 +4806,14 @@ export interface JobApplicationWhereInput {
   linkedIn_not_starts_with?: String
   linkedIn_ends_with?: String
   linkedIn_not_ends_with?: String
+  createdAt?: DateTime
+  createdAt_not?: DateTime
+  createdAt_in?: DateTime[] | DateTime
+  createdAt_not_in?: DateTime[] | DateTime
+  createdAt_lt?: DateTime
+  createdAt_lte?: DateTime
+  createdAt_gt?: DateTime
+  createdAt_gte?: DateTime
   resume?: FileWhereInput
 }
 
@@ -5095,12 +4935,10 @@ export interface JobApplication extends Node {
   phoneNumber?: String
   email?: String
   address?: String
-  firstName: String
-  middleName: String
-  lastName: String
   positions?: JobPosition[]
   resume: File
   linkedIn?: String
+  createdAt: DateTime
 }
 
 export interface AggregateJobApplication {
@@ -5350,11 +5188,9 @@ export interface JobApplicationPreviousValues {
   phoneNumber?: String
   email?: String
   address?: String
-  firstName: String
-  middleName: String
-  lastName: String
   positions?: JobPosition[]
   linkedIn?: String
+  createdAt: DateTime
 }
 
 /*

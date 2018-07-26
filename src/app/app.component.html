@@ -1,4 +1,5 @@
 <div class="h-100" [@routerTransition]="getState(o)">
-  <router-outlet style="min-height: 100%; position: absolute; width: 100%;" #o="outlet"></router-outlet>
+  <!-- <router-outlet style="min-height: 100%; position: absolute; width: 100%;" #o="outlet"></router-outlet> -->
+  <router-outlet #o="outlet"></router-outlet>
 </div>
 <app-loader *ngIf="loading"></app-loader>

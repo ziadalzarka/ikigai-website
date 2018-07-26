@@ -3,6 +3,7 @@ import { Apollo } from 'apollo-angular';
 import gql from 'graphql-tag';
 import { Injectable } from '@angular/core';
 import { map, tap } from 'rxjs/operators';
+import { JobApplication } from '@app/redux/models/job-application.model';
 
 const listClientApplicationsQuery = gql`
 	{
@@ -23,7 +24,7 @@ const listClientApplicationsQuery = gql`
 	}
 `;
 
-const getClientApplicationsQuery = gql`
+const getClientApplicationQuery = gql`
 	query($id: ID!) {
 		clientApplication(id: $id) {
 			name
@@ -47,6 +48,36 @@ const getClientApplicationsQuery = gql`
 	}
 `;
 
+const jobApplicationFragment = gql`
+	fragment jobApplication on JobApplication {
+		id
+		name
+		phoneNumber
+		email
+		address
+		positions
+		resume {
+			id
+			name
+		}
+		linkedIn
+		createdAt
+	}
+`;
+
+const listJobApplicationsQuery = gql`
+	{
+		jobApplicationsConnection {
+			edges {
+				node {
+					...jobApplication
+				}
+			}
+		}
+	}
+	${jobApplicationFragment}
+`;
+
 @Injectable({
 	providedIn: 'root'
 })
@@ -65,10 +96,18 @@ export class GraphqlApplicationsService {
 	getClientApplication(id: string) {
 		return this.apollo
 			.query({
-				query: getClientApplicationsQuery,
+				query: getClientApplicationQuery,
 				variables: { id }
 			}).pipe(
 				map((res: any) => res.data.clientApplication)
+			);
+	}
+
+	listJobApplications() {
+		return this.apollo
+			.query({ query: listJobApplicationsQuery }).pipe(
+				map((res: any) => (res.data.jobApplicationsConnection.edges)),
+				map(edges => edges.map(node => { return { ...node.node as JobApplication }; }))
 			);
 	}
 }

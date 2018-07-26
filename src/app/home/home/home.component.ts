@@ -1,3 +1,4 @@
+import { GraphqlPostsService } from './../../dashboard/overview/content/graphql-posts.service';
 import { PostsComponent } from './../../dashboard/overview/content/posts/posts.component';
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
@@ -18,8 +19,9 @@ export class HomeComponent extends PostsComponent {
 		private router: Router,
 		private seoService: SeoService,
 		navigationService: NavigationService,
-		store: Store<AppState>) {
-		super(navigationService, store);
+		store: Store<AppState>,
+		postsService: GraphqlPostsService) {
+		super(navigationService, store, postsService);
 		this.seoService.generateTags({});
 	}
 

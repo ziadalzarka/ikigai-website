@@ -1,4 +1,5 @@
-import { Observable } from 'rxjs';
+import { GraphqlPostsService } from './../graphql-posts.service';
+import { Observable, interval, Subject, timer } from 'rxjs';
 import { ListPosts } from '@app/redux/actions/posts.actions';
 import { AppState } from '@app/redux/app.state';
 import { Store } from '@ngrx/store';
@@ -7,6 +8,7 @@ import { Component, OnInit } from '@angular/core';
 import { PublicContentService } from '@app/global/public-content.service';
 import * as fromPosts from '@app/redux/reducers/posts.reducer';
 import { Post } from '@app/redux/models/post.model';
+import { takeWhile, takeUntil, map, mergeMap, take } from 'rxjs/operators';
 
 @Component({
 	selector: 'app-posts',
@@ -31,7 +33,8 @@ export class PostsComponent implements OnInit {
 
 	constructor(
 		private navigationService: NavigationService,
-		private store: Store<AppState>) {
+		private store: Store<AppState>,
+		private postsService: GraphqlPostsService) {
 
 	}
 
@@ -46,6 +49,32 @@ export class PostsComponent implements OnInit {
 		this.navigationService.editPost(post.id);
 	}
 
+	async deletePost(post) {
+
+		this.postsService.deletePost(post.id).subscribe(async () => {
+
+			const done = new Subject();
+
+			interval(50).pipe(
+				takeUntil(done)
+			).subscribe(() => {
+				let orgLength;
+				this.feed$.pipe(take(2)).subscribe(feed => {
+					if (!orgLength) {
+						orgLength = feed.length;
+						this.page = this.page;
+					} else {
+						if (feed.length != orgLength) {
+							done.next();
+						}
+					}
+				});
+			});
+
+		});
+
+	}
+
 	openPost(post) {
 		window.open(`/post/${post.id}`, '_blank');
 	}
@@ -55,7 +84,8 @@ export class PostsComponent implements OnInit {
 			case 'edit':
 				this.editPost(post);
 				break;
-			default:
+			case 'delete':
+				this.deletePost(post);
 				break;
 		}
 	}

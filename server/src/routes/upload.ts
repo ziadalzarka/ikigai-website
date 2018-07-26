@@ -6,25 +6,19 @@ import gql from 'graphql-tag';
 
 const drive = process.env.VOLUME || 'storage';
 
-const client = new ApolloClient({
-	uri: 'http://localhost:4090'
-});
-
-const createEntryMutation = gql`
-	mutation ($name: String!, $checksum: String!) {
-		createFileEntry(name: $name, checksum: $checksum) {
-			id
-		}
-	}
-`;
-
 sync(path.join(drive, 'files'));
 
 const failed = { ok: false };
 const success = { ok: true };
 
 export default express.Router()
-	.use('/storage', express.static(path.join(drive, 'files')))
+	.get('/storage/*', (req, res) => {
+		const fileId = path.basename(req.originalUrl);
+		const filePath = path.join(drive, 'files', fileId);
+		getFilename(fileId).then(filename => {
+			res.download(filePath, filename);
+		});
+	})
 	.use('/upload', (req, res) => {
 
 		if (!req['files']) {
@@ -50,9 +44,36 @@ export default express.Router()
 		}).catch(err => res.status(500).send());
 	});
 
+const client = new ApolloClient({
+	uri: 'http://localhost:4090'
+});
+
+const createEntryMutation = gql`
+	mutation($name: String!, $checksum: String!) {
+		createFileEntry(name: $name, checksum: $checksum) {
+			id
+		}
+	}
+`;
+
+const getFilenameQuery = gql`
+	query($id: ID!) {
+		file(id: $id) {
+			name
+		}
+	}
+`;
+
+function getFilename(id): Promise<string> {
+	return client.query({
+		query: getFilenameQuery,
+		variables: { id }
+	}).then((res: any) => res.data.file.name);
+}
+
 function createEntry({ name, md5 }): Promise<string> {
 	return client.mutate({
 		mutation: createEntryMutation,
 		variables: { name, checksum: md5 }
-	}).then(res => res.data.createFileEntry.id);
+	}).then((res: any) => res.data.createFileEntry.id);
 }

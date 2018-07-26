@@ -12,7 +12,7 @@
 					.dropdown-menu.dropdown-menu-right
 						button.dropdown-item((click)="emitOption('edit')") Edit
 						.dropdown-divider
-						button.dropdown-item.text-danger(type='button') Delete
+						button.dropdown-item.text-danger((click)="emitOption('delete')") Delete
 		div.text-dashboard
 			span By {{post.author.name}}
 			span.ml-2 {{post.updatedAt|date:'mediumDate'}}

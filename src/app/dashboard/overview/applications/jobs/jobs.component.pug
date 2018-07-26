@@ -7,28 +7,70 @@
 		br
 		.row
 			.col
-				table.table.table-hover
+				table.table.table-hover([mfData]='jobApplications$|async', #mf="mfDataTable", [mfRowsOnPage]='10')
 					thead.text-dark
 						tr
-							th Name
-							th Email Address
-							th Phone
-							th Position
+							th
+								mfDefaultSorter(by='name') Name
+							th
+								mfDefaultSorter(by='email') Email Address
+							th
+								mfDefaultSorter(by='phoneNumber') Phone
+							th Positions
+							th Resume
 							th LinkedIn Profile
+							th
+								mfDefaultSorter(by='phoneNumber') Date Submitted
 					tbody.f-1.text-calm
-						tr((click)='showProfile("test")')
-							td.align-middle Mylene Benoit
-							td.align-middle mylenebenoit@gmail.com
-							td.align-middle +201096707442
-							td.align-middle Photography
+						tr.cursor-pointer(*ngFor="let app of mf.data", (click)="openApplication(app)")
+							td.align-middle {{app.name}}
+							td.align-middle {{app.email}}
+							td.align-middle {{app.phoneNumber || '---'}}
+							td.align-middle {{app.positions|positions}}
+							td.align-middle 
+								a.text-muted(href="{{storage}}/{{app.resume.id}}", target="_blank")
+									i.fa.fa-link.mr-2
+									| {{app.resume.name}}
 							td.align-middle
-								a(href='https://www.linkedin.com/in/mylene-benoit-a73132' target='_blank')
+								a(href='{{app.linkedIn}}', target='_blank', *ngIf="app.linkedIn")
 									i.fa.fa-linkedin.f-3
+								a(*ngIf="!app.linkedIn") ---
+							td.align-middle {{app.createdAt|date:'mediumDate'}}
+					tfoot
 						tr
-							td.align-middle Mohap Akram
-							td.align-middle themadkid@gmail.com
-							td.align-middle +201067425491
-							td.align-middle Graphics
-							td.align-middle
-								a(href='https://www.linkedin.com/in/mylene-benoit-a73132' target='_blank')
-									i.fa.fa-linkedin.f-3
+							td(colspan='4')
+								mfBootstrapPaginator([rowsOnPageSet]='[5,10,25]')
+						
+ng-template(#showJobApplication, let-close='close', let-dismiss='dismiss')
+	.modal-header
+		h3.modal-title {{selectedApplication.name}}
+	.modal-body
+		.row
+			.col-12.col-lg-6
+				label Email
+				p {{selectedApplication.email}}
+			.col-12.col-lg-6(*ngIf="selectedApplication.phoneNumber")
+				label Phone Number
+				p {{selectedApplication.phoneNumber}}
+			.col-12.col-lg-6(*ngIf="selectedApplication.address")
+					label Address
+					p {{selectedApplication.address}}
+			.col-12.col-lg-6
+				label Positions
+				p {{selectedApplication.positions|positions}}
+			.col-12.col-lg-6
+				label Resume
+				p
+					a.text-muted(href="{{storage}}/{{selectedApplication.resume.id}}", target="_blank")
+						i.fa.fa-link.mr-2
+						| {{selectedApplication.resume.name}}
+			.col-12.col-lg-6
+				label Date Submitted
+				p {{selectedApplication.createdAt | date:'short'}}
+			.col-12.col-lg-6(*ngIf="selectedApplication.linkedIn")
+				label LinkedIn
+				a.d-block(href='{{selectedApplication.linkedIn}}', target='_blank')
+					i.fa.fa-linkedin.f-3
+	.modal-footer
+		//- button.btn.btn-danger(type='button', (click)="dismiss()") Archive
+		button.btn.btn-secondary(type='button', (click)="dismiss()") OK

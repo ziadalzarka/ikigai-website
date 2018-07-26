@@ -1,6 +1,22 @@
 import { Action } from '@ngrx/store';
 import { Post } from '@app/redux/models/post.model';
 
+export const LOADING = 'LOADING';
+
+export class Loading implements Action {
+	readonly type = LOADING;
+
+	constructor() { }
+}
+
+export const RESET = 'RESET';
+
+export class Reset implements Action {
+	readonly type = RESET;
+
+	constructor() { }
+}
+
 export const OPEN_POST = '[OPEN] Post';
 export const OPEN_POST_SUCCESS = '[OPEN] Post !SUCCESS';
 export const OPEN_POST_FAIL = '[OPEN] Post !FAIL';
@@ -105,6 +121,7 @@ export class PublishPostFail implements Action {
 }
 
 export type All =
+	Reset | Loading |
 	PublishPost | PublishPostSuccess | PublishPostFail |
 	UpdatePost | UpdatePostSuccess | UpdatePostFail |
 	OpenPost | OpenPostSuccess | OpenPostFail |

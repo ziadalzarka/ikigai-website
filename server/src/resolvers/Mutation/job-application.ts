@@ -18,9 +18,6 @@ export const jobApplicationMutation = {
 					address,
 					phoneNumber,
 					// ------------
-					firstName,
-					middleName,
-					lastName,
 					linkedIn,
 					positions: {
 						set: positions

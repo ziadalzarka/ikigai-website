@@ -24,13 +24,15 @@ export function postsReducer(
 
 	switch (action.type) {
 
+		case PostsActions.RESET:
+			return { ...state, ...idle };
+		case PostsActions.LOADING:
+			return { ...state, ...loading };
+
 		case PostsActions.PUBLISH_POST:
 			return { ...state, ...loading };
 		case PostsActions.PUBLISH_POST_SUCCESS:
-			return {
-				...postsAdapter.addOne(action.payload, state),
-				...success,
-			};
+			return { ...state, ...success };
 		case PostsActions.PUBLISH_POST:
 			return { ...state, ...failed };
 
@@ -72,5 +74,7 @@ export const selectFailed = createSelector(getPostsState,
 	(state: State) => state.failed);
 export const selectCount = createSelector(getPostsState,
 	(state: State) => state.count);
+export const selectSuccess = createSelector(getPostsState,
+	(state: State) => state.success);
 
 export const { selectAll } = postsAdapter.getSelectors(getPostsState);

@@ -16,4 +16,9 @@ export const applicationsQuery = {
 		await verifyPermission(ctx, Permissions.ClientApplications);
 		return ctx.db.query.clientApplication({ where: { id } }, info);
 	},
+
+	async jobApplication(parent, { id }, ctx: Context, info) {
+		await verifyPermission(ctx, Permissions.JobApplications);
+		return ctx.db.query.jobApplications({ where: { id } }, info);
+	},
 };

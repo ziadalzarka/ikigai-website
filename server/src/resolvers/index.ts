@@ -10,6 +10,7 @@ import { me } from './Query/me';
 import { publicContent } from './Query/public-content';
 import { adminQuery } from './Query/admin';
 import { fileMutation } from './Mutation/file';
+import { file } from './Query/file';
 
 export default {
 	AuthPayload,
@@ -17,7 +18,8 @@ export default {
 		...me,
 		...publicContent,
 		...applicationsQuery,
-		...adminQuery
+		...adminQuery,
+		...file,
 	},
 	// Subscription,
 	Mutation: {
@@ -26,6 +28,6 @@ export default {
 		...postMutation,
 		...jobApplicationMutation,
 		...clientApplicationMutation,
-		...fileMutation
+		...fileMutation,
 	},
 };

@@ -7,6 +7,7 @@ import * as UserActions from '../actions/user.actions';
 import { GraphqlUserService, LoginResponse } from '@app/dashboard/login/graphql-user.service';
 import { User } from '@app/redux/models/user.model';
 import { NavigationService } from '@app/navigation.service';
+import { Permissions } from '@app/redux/enums/permission.enum';
 
 export type Action = UserActions.All;
 
@@ -40,7 +41,18 @@ export class UserEffects {
 			map((action: UserActions.LoginUserSuccess) => action.payload),
 			map((res: LoginResponse) => {
 				localStorage.setItem('token', res.token);
-				this.router.navigate(['dashboard', 'settings', 'footer']);
+				switch (res.user.permissions[0]) {
+					case Permissions.Admin:
+					case Permissions.Posts:
+						this.router.navigate(['dashboard', 'content', 'posts']);
+						break;
+						case Permissions.ClientApplications:
+						this.router.navigate(['dashboard', 'applications', 'clients']);
+						break;
+						case Permissions.JobApplications:
+						this.router.navigate(['dashboard', 'applications', 'jobs']);
+						break;
+				}
 			})
 		);
 

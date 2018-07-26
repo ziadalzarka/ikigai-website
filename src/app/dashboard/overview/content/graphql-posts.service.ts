@@ -3,7 +3,7 @@ import { Apollo } from 'apollo-angular';
 import { Injectable } from '@angular/core';
 import { Post } from '@app/redux/models/post.model';
 import { map } from 'rxjs/operators';
-import { feedPostFragment, feedQuery } from '@app/global/public-content.service';
+import { feedPostFragment, feedQuery, PublicContentService } from '@app/global/public-content.service';
 import { Observable } from 'rxjs';
 
 const updatePostMutation = gql`
@@ -54,6 +54,14 @@ const publishPostMutation = gql`
 	${feedPostFragment}
 `;
 
+const deletePostMutation = gql`
+	mutation($id: ID!) {
+		deletePost(id: $id) {
+			id
+		}
+	}
+`;
+
 @Injectable({
 	providedIn: 'root'
 })
@@ -61,10 +69,19 @@ export class GraphqlPostsService {
 
 	constructor(private apollo: Apollo) { }
 
+	deletePost(id: string) {
+		return this.apollo.mutate({
+			mutation: deletePostMutation,
+			variables: { id },
+			refetchQueries: PublicContentService.feedQueries,
+		});
+	}
+
 	updatePost(id: string, payload): Observable<Post> {
 		return this.apollo.mutate({
 			mutation: updatePostMutation,
 			variables: { id, ...payload },
+			refetchQueries: PublicContentService.feedQueries,
 		}).pipe(
 			map((res: any) => res.data.updatePost)
 		);
@@ -74,15 +91,7 @@ export class GraphqlPostsService {
 		return this.apollo.mutate({
 			mutation: publishPostMutation,
 			variables: post,
-			// pagination needs to be implemented properly
-			update: (store, { data: { publish } }) => {
-				// Read the data from our cache for this query.
-				const data: any = store.readQuery({ query: feedQuery, variables: { first: 10, skip: 0 } });
-				// Add our comment from the mutation to the end.
-				data.feed.edges.push(publish);
-				// Write our data back to the cache.
-				store.writeQuery({ query: feedQuery, variables: { first: 10, skip: 0 }, data });
-			},
+			refetchQueries: PublicContentService.feedQueries,
 		}).pipe(
 			map((res: any) => res.data.publish)
 		);

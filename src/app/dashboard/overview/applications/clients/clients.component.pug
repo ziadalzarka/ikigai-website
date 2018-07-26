@@ -44,50 +44,44 @@ ng-template(#showClientApplication, let-close='close', let-dismiss='dismiss')
 	.modal-header
 		h3.modal-title {{(selectedApplication$|async)?.name}}
 	.modal-body
-		h4 Contact Information
-		hr
 		.row
 			.col-12.col-lg-6
-				div
-					label Email
-					p {{(selectedApplication$|async)?.email}}
-				div(*ngIf="(selectedApplication$|async)?.phoneNumber")
-					label Phone Number
-					p {{(selectedApplication$|async)?.phoneNumber}}
-				div(*ngIf="(selectedApplication$|async)?.address")
-					label Address
-					p {{(selectedApplication$|async)?.address}}
+				label Email
+				p {{(selectedApplication$|async)?.email}}
+			.col-12.col-lg-6(*ngIf="(selectedApplication$|async)?.phoneNumber")
+				label Phone Number
+				p {{(selectedApplication$|async)?.phoneNumber}}
+			.col-12.col-lg-6(*ngIf="(selectedApplication$|async)?.address")
+				label Address
+				p {{(selectedApplication$|async)?.address}}
 			.col-12.col-lg-6
-				div
-					label Total Price
-					p {{(selectedApplication$|async)?.totalPrice}} EGP
-				div
-					label Submitted At
-					p {{(selectedApplication$|async)?.createdAt | date:'short'}}
-				div(*ngIf="(selectedApplication$|async)?.facebook")
-					label Facebook
-					a.d-block(href='{{(selectedApplication$|async)?.facebook}}', target='_blank')
-						i.fa.fa-facebook.f-3
+				label Total Price
+				p {{(selectedApplication$|async)?.totalPrice}} EGP
+			.col-12.col-lg-6
+				label Submitted At
+				p {{(selectedApplication$|async)?.createdAt | date:'short'}}
+			.col-12.col-lg-6(*ngIf="(selectedApplication$|async)?.facebook")
+				label Facebook
+				a.d-block(href='{{(selectedApplication$|async)?.facebook}}', target='_blank')
+					i.fa.fa-facebook.f-3
 		br
 		h4([ngClass]="(selectedApplication$|async)?.package|packageColor") {{(selectedApplication$|async)?.package}} for {{(selectedApplication$|async)?.dealYears}} years
 		hr
 		.row
 			.col-12.col-lg-6
-				div
-					label Posts per month
-					p {{(selectedApplication$|async)?.postsPerMonth}}
-				div
-					label Photography
-					p {{(selectedApplication$|async)?.photography}}
-				div
-					label Gifs
-					p {{(selectedApplication$|async)?.gifs}}
+				label Posts per month
+				p {{(selectedApplication$|async)?.postsPerMonth}}
 			.col-12.col-lg-6
-				div
-					label Videos
-					p {{(selectedApplication$|async)?.videos}} Videos 
-						| (Averaged
-						| {{(selectedApplication$|async)?.videoMinutesCount}} minutes)
+				label Photography
+				p {{(selectedApplication$|async)?.photography}}
+			.col-12.col-lg-6
+				label Gifs
+				p {{(selectedApplication$|async)?.gifs}}
+			.col-12.col-lg-6
+				label Videos
+				p {{(selectedApplication$|async)?.videos}} Videos 
+					| (Averaged
+					| {{(selectedApplication$|async)?.videoMinutesCount}} minutes)
 		br
 		div(*ngIf="(selectedApplication$|async)?.website")
 			h4 Website

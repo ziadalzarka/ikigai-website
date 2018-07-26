@@ -65,9 +65,9 @@ ng-template(#addUserModal, let-close='close', let-dismiss='dismiss')
 						.form-check.form-check-inline
 							input.form-check-input#jobapplications-chk(type='checkbox', formControlName='jobApplications')
 							label.form-check-label(for='jobapplications-chk') Job Applications
-						.form-check.form-check-inline
-							input.form-check-input#contactapplications-chk(type='checkbox', formControlName='contactApplications')
-							label.form-check-label(for='contactapplications-chk') Contact Applications
+						//- .form-check.form-check-inline
+						//- 	input.form-check-input#contactapplications-chk(type='checkbox', formControlName='contactApplications')
+						//- 	label.form-check-label(for='contactapplications-chk') Contact Applications
 	.modal-footer
 		button.btn.btn-secondary(type='button', (click)="dismiss()") Cancel
 		button.btn.btn-dashboard(type='button', (click)="addUserCheck(close)") Add
@@ -92,9 +92,9 @@ ng-template(#changeUserPermissionsModal, let-close='close', let-dismiss='dismiss
 						.form-check.form-check-inline
 							input.form-check-input#jobapplications-chk(type='checkbox', formControlName='jobApplications')
 							label.form-check-label(for='jobapplications-chk') Job Applications
-						.form-check.form-check-inline
-							input.form-check-input#contactapplications-chk(type='checkbox', formControlName='contactApplications')
-							label.form-check-label(for='contactapplications-chk') Contact Applications
+						//- .form-check.form-check-inline
+						//- 	input.form-check-input#contactapplications-chk(type='checkbox', formControlName='contactApplications')
+						//- 	label.form-check-label(for='contactapplications-chk') Contact Applications
 	.modal-footer
 		button.btn.btn-secondary(type='button', (click)="dismiss()") Cancel
 		button.btn.btn-dashboard(type='button', (click)="close()") Save

@@ -76,7 +76,6 @@ export class JobApplicationComponent implements OnInit {
 	}
 
 	@ViewChild('loading') loading;
-	uploadPercentage = null;
 
 	constructor(
 		private fb: FormBuilder,
@@ -101,6 +100,7 @@ export class JobApplicationComponent implements OnInit {
 	}
 
 	successful = true;
+	uploadPercentage = 100;
 
 	async send(resumeFile) {
 
@@ -109,6 +109,7 @@ export class JobApplicationComponent implements OnInit {
 
 		if (this.jobApplicationForm.invalid) return;
 
+		this.uploadPercentage = 100;
 		let resumeFileId = null;
 
 		this.modalService.open(this.loading, { size: 'lg' });

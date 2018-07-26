@@ -86,11 +86,15 @@ export class PublicContentService {
 		);
 	}
 
+	public static feedQueries = [];
+
 	feedConnection(first: number, skip: number): Observable<ListPostsSuccessPayload> {
-		return this.apollo.query({
+		const query = {
 			query: feedQuery,
 			variables: { first, skip }
-		}).pipe(
+		};
+		PublicContentService.feedQueries.push(query);
+		return this.apollo.query(query).pipe(
 			map((res: any) => {
 				return {
 					posts: res.data.feed.edges.map(edge => {

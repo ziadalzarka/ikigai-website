@@ -65,13 +65,11 @@ type JobApplication {
 	phoneNumber: String
 	email: String
 	address: String
-	# ------------------
-	firstName:  String!
-	middleName: String!
-	lastName: String!
 	positions: [JobPosition!]!
 	resume: File!
 	linkedIn: String
+	# ------------------
+	createdAt: DateTime!
 }
 
 type ClientApplication {

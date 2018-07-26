@@ -8,9 +8,10 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { clearHeaders, getUploadPercentage } from 'utils/utils';
 import { HttpRequest, HttpClient, HttpEventType, HttpEvent } from '@angular/common/http';
 import { map, tap, last } from 'rxjs/operators';
-import { PublishPost, UpdatePost } from '@app/redux/actions/posts.actions';
+import { PublishPost, UpdatePost, Reset, Loading } from '@app/redux/actions/posts.actions';
 import { environment } from 'environments/environment';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import * as fromPosts from '@app/redux/reducers/posts.reducer';
 
 @Component({
 	selector: 'app-edit-post',
@@ -34,12 +35,20 @@ export class EditPostComponent implements OnInit {
 	id = null;
 	public editorContent: string = '';
 	title = 'Untitled';
-	thumbnailBody;
+	thumbnailBody = 'Every post needs to have a thumbnail body';
 	badge;
 	badgeColorClass = 'dashboard';
 	imgSrc;
 
+	loading;
+	failed;
+	success;
+
 	ngOnInit() {
+		this.loading = this.store.select(fromPosts.selectLoading);
+		this.failed = this.store.select(fromPosts.selectFailed);
+		this.success = this.store.select(fromPosts.selectSuccess);
+
 		this.route.params.subscribe(async ({ id }) => {
 			if (id) {
 				this.id = id;
@@ -69,7 +78,7 @@ export class EditPostComponent implements OnInit {
 		});
 	}
 
-	uploadPercentage = null;
+	uploadPercentage = 100;
 
 	handleThumbnail(event) {
 		if (event.target.files && event.target.files[0]) {
@@ -81,12 +90,19 @@ export class EditPostComponent implements OnInit {
 		}
 	}
 
-	@ViewChild('loading') loading;
+	@ViewChild('loadingModal') loadingModal;
 
 	async publish(thumbnailFile) {
+
+		if (!this.title || !this.thumbnailBody) {
+			return;
+		}
+
 		let thumbnailImageId;
 
-		this.modalService.open(this.loading, { size: 'lg' });
+		this.store.dispatch(new Loading());
+
+		this.modalService.open(this.loadingModal, { size: 'lg' });
 
 		if (thumbnailFile) {
 			thumbnailImageId = await this.uploadService.upload(thumbnailFile).pipe(
