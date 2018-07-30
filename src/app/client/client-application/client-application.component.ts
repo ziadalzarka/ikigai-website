@@ -81,9 +81,7 @@ export class ClientApplicationComponent implements OnInit {
 	}
 
 	get clientApplication(): ClientApplication {
-		const val = this.clientApplicationForm.value;
-		delete val.coupon;
-		return val as ClientApplication;
+		return this.clientApplicationForm.value as ClientApplication;
 	}
 
 	pricePerMonth = 0;

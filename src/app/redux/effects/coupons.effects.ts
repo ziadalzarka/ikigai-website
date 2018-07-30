@@ -18,12 +18,24 @@ export class CouponsEffects {
 	) { }
 
 	@Effect()
-	listUsers: Observable<Action> = this.actions
+	createCoupon: Observable<Action> = this.actions
+		.ofType<Action>(CouponsActions.CREATE_COUPON)
+		.pipe(
+			map((action: CouponsActions.CreateCoupon) => action.payload),
+			mergeMap(payload =>
+				this.service.createCoupons(payload.data, payload.repeat).pipe(
+					map((res: Coupon[]) => new CouponsActions.CreateCouponSuccess(res)),
+					catchError(() => of(new CouponsActions.CreateCouponFail()))
+				)
+			),
+	);
+
+	@Effect()
+	listCoupons: Observable<Action> = this.actions
 		.ofType<Action>(CouponsActions.LIST_COUPON)
 		.pipe(
 			mergeMap(_ =>
 				this.service.listCoupons().pipe(
-					tap(console.log),
 					map((res: Coupon[]) => new CouponsActions.ListCouponSuccess(res)),
 					catchError(() => of(new CouponsActions.ListCouponFail()))
 				)

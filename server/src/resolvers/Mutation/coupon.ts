@@ -4,17 +4,28 @@ import { Context, verifyPermission } from '../../utils';
 
 export const couponMutation = {
 
-	async createCoupon(parent, data, ctx: Context, info) {
+	async createCoupons(parent, { discountType, value, repeat }, ctx: Context, info) {
 		const userId = await verifyPermission(ctx, Permissions.Coupons).catch(err => { throw err; });
-		return ctx.db.mutation.createCoupon({
-			data: {
-				...data,
-				author: {
-					connect: { id: userId }
-				},
-				coupon: shortid.generate()
-			}
-		}, info);
+
+		repeat = repeat || 1;
+		const coupons = [];
+
+		for (let i = 0; i < repeat; i++) {
+			const coupon = await ctx.db.mutation.createCoupon({
+				data: {
+					discountType,
+					value,
+					author: {
+						connect: { id: userId }
+					},
+					coupon: shortid.generate()
+				}
+			}, info);
+
+			coupons.push(coupon);
+		}
+
+		return coupons;
 	},
 
 	async updateCoupon(parent, {

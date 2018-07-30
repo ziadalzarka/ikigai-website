@@ -50,7 +50,7 @@ type Mutation {
 	# files
 	createFileEntry(name: String!, checksum: String!): File!
 	# coupons
-	createCoupon(value: Int!, discountType: DiscountType!): Coupon!
+	createCoupons(value: Int!, discountType: DiscountType!, repeat: Int): [Coupon!]!
 	updateCoupon(id: ID!, value: Int, discountType: DiscountType): Coupon!
 	deleteCoupon(id: ID!): Coupon!
 	# variables

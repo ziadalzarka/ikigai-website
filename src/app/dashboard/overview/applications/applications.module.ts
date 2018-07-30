@@ -1,3 +1,4 @@
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { GlobalModule } from '@app/global/global.module';
 import { NgbModule, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { NgModule } from '@angular/core';
@@ -21,6 +22,8 @@ import { StoreModule } from '@ngrx/store';
 		NgbModule,
 		GlobalModule,
 		StoreModule.forFeature('coupons', couponsReducer),
+		ReactiveFormsModule,
+		FormsModule,
 	],
 	declarations: [JobsComponent, ClientsComponent, PositionsPipe, CouponsComponent],
 	providers: [NgbModal, NgbModalStack]

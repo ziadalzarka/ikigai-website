@@ -94,5 +94,4 @@ ng-template(#showClientApplication, let-close='close', let-dismiss='dismiss')
 					strong.d-block.mt-1.text-danger(*ngIf="!(selectedApplication$|async)?.hasHost") Doesn't have hosting
 					strong.d-block.mt-1.text-danger(*ngIf="!(selectedApplication$|async)?.hasDomain") Doesn't have a domain
 	.modal-footer
-		//- button.btn.btn-danger(type='button', (click)="dismiss()") Archive
 		button.btn.btn-secondary(type='button', (click)="dismiss()") OK

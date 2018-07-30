@@ -33,6 +33,7 @@ const clientApplyMutation = gql`
 		$dealYears: Int!
 		$package: Package!
 		$totalPrice: Int!
+		$coupon: String
 	) {
 		applyClient(
 			name: $name
@@ -51,6 +52,7 @@ const clientApplyMutation = gql`
 			dealYears: $dealYears
 			dealPackage: $package
 			totalPrice: $totalPrice
+			coupon: $coupon
 		) {
 			id
 		}

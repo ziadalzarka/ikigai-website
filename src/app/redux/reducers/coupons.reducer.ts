@@ -9,6 +9,7 @@ export const couponsAdapter = createEntityAdapter<Coupon>();
 export interface State extends EntityState<Coupon> {
 	loading: boolean;
 	failed: boolean;
+	success: boolean;
 }
 
 export const initialState = couponsAdapter.getInitialState({
@@ -27,6 +28,13 @@ export function couponsReducer(
 			return { ...couponsAdapter.addAll(action.payload, state), ...idle };
 		case CouponsActions.LIST_COUPON_FAIL:
 			return { ...state, ...failed };
+
+		case CouponsActions.CREATE_COUPON:
+			return { ...state, ...loading };
+		case CouponsActions.CREATE_COUPON_SUCCESS:
+			return { ...couponsAdapter.addMany(action.payload, state), ...success };
+		case CouponsActions.CREATE_COUPON_FAIL:
+			return { ...state, ...failed };
 		default:
 			return state;
 	}
@@ -38,5 +46,7 @@ export const selectLoading = createSelector(getCouponsState,
 	(state: State) => state.loading);
 export const selectFailed = createSelector(getCouponsState,
 	(state: State) => state.failed);
+export const selectSuccess = createSelector(getCouponsState,
+	(state: State) => state.success);
 
 export const { selectAll } = couponsAdapter.getSelectors(getCouponsState);

@@ -76,4 +76,4 @@ ng-template(#loading, let-close='close', let-dismiss='dismiss')
 			p.lead(*ngSwitchCase="true") Successfully submitted application.
 			p.lead(*ngSwitchCase="false") An error ocurred prevented application from being submit.
 	.modal-footer(*ngIf="!uploadPercentage")
-		button.btn(type='button', (click)="dismiss()", [ngClass]="successful ? 'btn-dashboard' : 'btn-danger'") OK
+		button.btn.btn-dashboard(type='button', (click)="dismiss()") OK

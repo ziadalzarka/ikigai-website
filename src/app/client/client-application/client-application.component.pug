@@ -95,7 +95,7 @@ app-toolbar
 				span.text-danger.ml-2(*ngIf="activeCoupon") {{activeCoupon|coupon}}
 			br
 			.form-group
-				input.form-control.form-control-lg(placeholder='eWRhpRV', type='text', formControlName="coupon", (change)="onCouponChanged()")
+				input.form-control.form-control-lg(placeholder="4567489", type='text', formControlName="coupon", (change)="onCouponChanged()")
 				.has-error.mt-1(*ngIf='couponInvalid && coupon') Invalid coupon.
 			br
 			hr
@@ -156,7 +156,7 @@ ng-template(#failed, let-close='close', let-dismiss='dismiss')
 	.modal-body
 		p.lead An error ocurred prevented application from being submit.
 	.modal-footer
-		button.btn.btn-danger(type='button', (click)="dismiss()") OK
+		button.btn.btn-dashboard(type='button', (click)="dismiss()") OK
 
 ng-template(#successful, let-close='close', let-dismiss='dismiss')
 	.modal-header

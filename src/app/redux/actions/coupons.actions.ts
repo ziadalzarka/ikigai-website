@@ -5,16 +5,21 @@ export const CREATE_COUPON = '[CREATE] Coupon';
 export const CREATE_COUPON_SUCCESS = '[CREATE] Coupon !SUCCESS';
 export const CREATE_COUPON_FAIL = '[CREATE] Coupon !FAIL';
 
+export interface CreateCouponPayload {
+	data: Coupon;
+	repeat: number;
+}
+
 export class CreateCoupon implements Action {
 	readonly type = CREATE_COUPON;
 
-	constructor(public payload: Coupon) { }
+	constructor(public payload: CreateCouponPayload) { }
 }
 
 export class CreateCouponSuccess implements Action {
 	readonly type = CREATE_COUPON_SUCCESS;
 
-	constructor(public payload: Coupon) { }
+	constructor(public payload: Coupon[]) { }
 }
 
 export class CreateCouponFail implements Action {

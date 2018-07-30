@@ -30,4 +30,54 @@
 					tfoot
 						tr
 							td(colspan='4')
-								mfBootstrapPaginator([rowsOnPageSet]='[5,10,25]')
+								mfBootstrapPaginator
+
+button.btn.btn-dashboard.fab([@fabTransition]='getFabState()', (click)="showCreateCoupon()")
+	i.fa.fa-plus.f-5.text-white
+
+ng-template(#createCouponModal, let-close='close', let-dismiss='dismiss')
+	.modal-header
+		h3.modal-title Create coupons
+	.modal-body
+		form([formGroup]="createCouponForm")
+			.row.no-gutters
+				.col-12.col-md-6.btn-group-toggle
+					label.border-lt-sm-bottom-0.border-md-right-0.mb-0.w-100.btn.btn-outline-dashboard.shadow-none([ngClass]="{ active: discountTypeControl.value == discountType.Percentage }") Percentage
+						input(type='radio', formControlName="discountType", [value]="discountType.Percentage")
+				.col-12.col-md-6.btn-group-toggle
+					label.border-gt-lg-left-0.mb-0.w-100.btn.btn-outline-dashboard.shadow-none([ngClass]="{ active: discountTypeControl.value == discountType.Fixed }") Fixed
+						input(type='radio', formControlName="discountType", [value]="discountType.Fixed")
+			div([ngSwitch]="discountTypeControl.value").mt-4
+				.row(*ngSwitchCase="discountType.Fixed")
+					.col-12
+						label Discount
+						.form-group
+							.input-group
+								input.form-control(type='number', placeholder="5000", min="0", formControlName="fixedValue", required)
+								.input-group-append
+									span.input-group-text $
+						.has-error.mt-1(*ngIf="fixedValue.invalid && fixedValue.dirty")
+				.row(*ngSwitchCase="discountType.Percentage")
+					.col-12
+						label Discount
+						.form-group
+							.input-group
+								input.form-control(type='number', placeholder="20", min="0", max="100", formControlName="percentageValue", required)
+								.input-group-append
+									span.input-group-text %
+						.has-error.mt-1(*ngIf="percentageValue.invalid && percentageValue.dirty")
+			.row
+				.col-12
+					.form-group
+						label Repeat
+						input.form-control(
+							type='number',
+							placeholder="20",
+							min="1",
+							max="50",
+							[(ngModel)]="createRepeat",
+							[ngModelOptions]="{standalone: true}",
+							required)
+	.modal-footer
+		button.btn.btn-dashboard(type='button', (click)="createCouponCheck(close)") Create
+		button.btn.btn-secondary(type='button', (click)="dismiss()") Cancel

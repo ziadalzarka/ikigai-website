@@ -109,6 +109,8 @@ type ClientApplication {
 	package: Package!
 	totalPrice: Int!
 	createdAt: DateTime!
+	# coupon
+	coupon: Coupon
 	# archived: boolean @default(value: false)
 }
 

@@ -6,6 +6,7 @@ import gql from 'graphql-tag';
 
 const couponFragment = gql`
 	fragment coupon on Coupon {
+		id
 		coupon
 		value
 		discountType
@@ -32,6 +33,15 @@ const listCouponsQuery = gql`
 	${couponFragment}
 `;
 
+const createCouponMutation = gql`
+	mutation($discountType: DiscountType!, $value: Int!, $repeat: Int) {
+		createCoupons(discountType: $discountType, value: $value, repeat: $repeat) {
+			...coupon
+		}
+	}
+	${couponFragment}
+`;
+
 @Injectable({
 	providedIn: 'root'
 })
@@ -45,6 +55,15 @@ export class GraphqlCouponsService {
 		}).pipe(
 			map((res: any) => (res.data.couponsConnection.edges)),
 			map(edges => edges.map(node => { return { ...node.node as Coupon }; }))
+		);
+	}
+
+	createCoupons(payload, repeat) {
+		return this.apollo.mutate({
+			mutation: createCouponMutation,
+			variables: { ...payload, repeat }
+		}).pipe(
+			map((res: any) => res.data.createCoupons)
 		);
 	}
 }
