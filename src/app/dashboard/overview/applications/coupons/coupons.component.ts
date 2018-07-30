@@ -1,4 +1,3 @@
-import { Coupon } from './../../../../../../server/src/generated/prisma';
 import { FormBuilder } from '@angular/forms';
 import { GraphqlApplicationsService } from './../graphql-applications.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
