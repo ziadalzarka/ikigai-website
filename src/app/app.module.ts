@@ -23,6 +23,8 @@ import { FooterEffects } from '@app/redux/effects/footer.effects';
 import { clientApplicationsReducer } from '@app/redux/reducers/client-applications.reducer';
 import { ClientApplicationsEffects } from '@app/redux/effects/client-applications.effects';
 import { postsReducer } from '@app/redux/reducers/posts.reducer';
+import { couponsReducer } from '@app/redux/reducers/coupons.reducer';
+import { CouponsEffects } from '@app/redux/effects/coupons.effects';
 
 export function createApollo(httpLink: HttpLink) {
 	const http = httpLink.create({ uri: environment.graphql.url });
@@ -62,14 +64,16 @@ export function createApollo(httpLink: HttpLink) {
 			AdminUsersEffects,
 			FooterEffects,
 			ClientApplicationsEffects,
-			PostsEffects
+			PostsEffects,
+			CouponsEffects,
 		]),
 		StoreModule.forRoot({
 			user: userReducer,
 			adminUsers: adminUsersReducer,
 			footer: footerReducer,
 			clientApplications: clientApplicationsReducer,
-			posts: postsReducer
+			posts: postsReducer,
+			coupons: couponsReducer,
 		}),
 		StoreDevtoolsModule.instrument({ maxAge: 5 }),
 	],

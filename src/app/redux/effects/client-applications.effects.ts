@@ -1,4 +1,6 @@
-import { GraphqlApplicationsService } from './../../dashboard/overview/applications/graphql-applications.service';
+import {
+	GraphqlApplicationsService
+} from './../../dashboard/overview/applications/graphql-applications.service';
 import { GraphqlAdminService } from '@app/dashboard/overview/settings/graphql-admin.service';
 import { Router } from '@angular/router';
 import { Injectable } from '@angular/core';

@@ -89,6 +89,7 @@ type Mutation {
 		coupon: String,
 		# preserved even if prices change
 		dealPackage: Package!,
+		# needs to be calculated server side!!!!!
 		totalPrice: Int!
 		): ClientApplication!
 	applyForWork(

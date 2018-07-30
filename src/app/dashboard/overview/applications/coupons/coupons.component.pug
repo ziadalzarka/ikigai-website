@@ -1,1 +1,33 @@
-p coupons works!
+.p-5
+	.container-fluid
+		.row
+			.col.align-items-center.d-flex
+				h1 Coupons
+		br
+		br
+		.row
+			.col
+				table.table.table-hover([mfData]='coupons$|async', #mf="mfDataTable", [mfRowsOnPage]='10')
+					thead.text-dark
+						tr
+							th
+								mfDefaultSorter(by='coupon') Coupon
+							th
+								mfDefaultSorter(by='value') Discount
+							th
+								mfDefaultSorter(by='author.name') Created By
+							th
+								mfDefaultSorter(by='usedIn.name') Used In
+							th
+								mfDefaultSorter(by='createdAt') Date Created
+					tbody.f-1.text-calm
+						tr(*ngFor="let coupon of mf.data")
+							td.align-middle {{coupon.coupon}}
+							td.align-middle {{coupon|coupon}}
+							td.align-middle {{coupon.author.name}}
+							td.align-middle {{coupon.usedIn ? coupon.usedIn.name : '---'}}
+							td.align-middle {{coupon.createdAt|date:'mediumDate'}}
+					tfoot
+						tr
+							td(colspan='4')
+								mfBootstrapPaginator([rowsOnPageSet]='[5,10,25]')

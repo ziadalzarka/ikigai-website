@@ -10,6 +10,8 @@ import { DataTableModule } from 'angular-6-datatable';
 import { NgbModalStack } from '@ng-bootstrap/ng-bootstrap/modal/modal-stack';
 import { PositionsPipe } from './positions.pipe';
 import { CouponsComponent } from './coupons/coupons.component';
+import { couponsReducer } from '@app/redux/reducers/coupons.reducer';
+import { StoreModule } from '@ngrx/store';
 
 @NgModule({
 	imports: [
@@ -17,7 +19,8 @@ import { CouponsComponent } from './coupons/coupons.component';
 		ApplicationsRoutingModule,
 		DataTableModule,
 		NgbModule,
-		GlobalModule
+		GlobalModule,
+		StoreModule.forFeature('coupons', couponsReducer),
 	],
 	declarations: [JobsComponent, ClientsComponent, PositionsPipe, CouponsComponent],
 	providers: [NgbModal, NgbModalStack]

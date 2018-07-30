@@ -19,21 +19,10 @@ export const clientApplicationMutation = {
 		dealPackage,
 		totalPrice,
 		coupon, }, ctx: Context, info) {
-		if (coupon) {
-			const exists = await ctx.db.exists.Coupon({ coupon });
-			if (exists) {
-				const discount = await ctx.db.query.coupon({ where: { coupon } }, '{ discountType value }');
-				switch (discount.discountType) {
-					case 'Percentage':
-						totalPrice -= totalPrice * (discount.value / 100);
-						break;
-					case 'Fixed':
-						totalPrice -= discount.value;
-						break;
-				}
-			}
-		}
-		return ctx.db.mutation.createClientApplication(
+
+		coupon = await ctx.db.query.coupon({ where: { coupon } }, '{ id discountType value }');
+
+		const application = ctx.db.mutation.createClientApplication(
 			{
 				data: {
 					name,
@@ -56,5 +45,18 @@ export const clientApplicationMutation = {
 			},
 			info
 		);
+
+		application.then(({ id }) => {
+			ctx.db.mutation.updateCoupon({
+				where: { id: coupon.id },
+				data: {
+					usedIn: {
+						connect: { id }
+					}
+				}
+			});
+		});
+
+		return application;
 	},
 };

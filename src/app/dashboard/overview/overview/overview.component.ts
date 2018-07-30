@@ -4,7 +4,7 @@ import { AppState } from '@app/redux/app.state';
 import { Store } from '@ngrx/store';
 import { routerTransition } from '@app/router.animations';
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { Observable, of } from 'rxjs';
 import * as fromUser from '@app/redux/reducers/user.reducer';
 import { first } from 'rxjs/operators';
@@ -31,7 +31,10 @@ export class OverviewComponent implements OnInit {
 		[Permissions.Coupons]: false,
 	};
 
-	constructor(private router: Router, private store: Store<AppState>) { }
+	constructor(
+		private router: Router,
+		private route: ActivatedRoute,
+		private store: Store<AppState>) { }
 
 	ngOnInit() {
 		this.user = this.store.select(fromUser.selectUser);
@@ -50,20 +53,8 @@ export class OverviewComponent implements OnInit {
 
 		this.user.pipe(first()).subscribe(({ permissions }) => {
 
-			switch (permissions[0]) {
-				case Permissions.Admin:
-				case Permissions.Posts:
-					this.router.navigate(['dashboard', 'content', 'posts']);
-					break;
-				case Permissions.ClientApplications:
-					this.router.navigate(['dashboard', 'applications', 'clients']);
-					break;
-				case Permissions.JobApplications:
-					this.router.navigate(['dashboard', 'applications', 'jobs']);
-					break;
-				case Permissions.Coupons:
-					this.router.navigate(['dashboard', 'applications', 'coupons']);
-					break;
+			if (this.router.url.endsWith('dashboard')) {
+				this.goToDefaultTab(permissions);
 			}
 
 			permissions.forEach(permit => {
@@ -74,6 +65,24 @@ export class OverviewComponent implements OnInit {
 				}
 			});
 		});
+	}
+
+	goToDefaultTab(permissions) {
+		switch (permissions[0]) {
+			case Permissions.Admin:
+			case Permissions.Posts:
+				this.router.navigate(['dashboard', 'content', 'posts']);
+				break;
+			case Permissions.ClientApplications:
+				this.router.navigate(['dashboard', 'applications', 'clients']);
+				break;
+			case Permissions.JobApplications:
+				this.router.navigate(['dashboard', 'applications', 'jobs']);
+				break;
+			case Permissions.Coupons:
+				this.router.navigate(['dashboard', 'applications', 'coupons']);
+				break;
+		}
 	}
 
 	logout() {

@@ -1,5 +1,5 @@
 # source: http://194.182.77.249:4466/ikigai/dev
-# timestamp: Mon Jul 30 2018 16:05:14 GMT+0200 (EET)
+# timestamp: Mon Jul 30 2018 16:42:00 GMT+0200 (EET)
 
 type AggregateClientApplication {
   count: Int!
@@ -86,6 +86,11 @@ input ClientApplicationCreateInput {
   dealYears: Int!
   package: Package!
   totalPrice: Int!
+}
+
+input ClientApplicationCreateOneInput {
+  create: ClientApplicationCreateInput
+  connect: ClientApplicationWhereUniqueInput
 }
 
 """An edge in a connection."""
@@ -198,6 +203,25 @@ input ClientApplicationSubscriptionWhereInput {
   node: ClientApplicationWhereInput
 }
 
+input ClientApplicationUpdateDataInput {
+  name: String
+  phoneNumber: String
+  email: String
+  facebook: String
+  address: String
+  postsPerMonth: Int
+  photography: Int
+  gifs: Int
+  videos: Int
+  videoMinutesCount: Int
+  website: Boolean
+  hasHost: Boolean
+  hasDomain: Boolean
+  dealYears: Int
+  package: Package
+  totalPrice: Int
+}
+
 input ClientApplicationUpdateInput {
   name: String
   phoneNumber: String
@@ -215,6 +239,20 @@ input ClientApplicationUpdateInput {
   dealYears: Int
   package: Package
   totalPrice: Int
+}
+
+input ClientApplicationUpdateOneInput {
+  create: ClientApplicationCreateInput
+  connect: ClientApplicationWhereUniqueInput
+  disconnect: Boolean
+  delete: Boolean
+  update: ClientApplicationUpdateDataInput
+  upsert: ClientApplicationUpsertNestedInput
+}
+
+input ClientApplicationUpsertNestedInput {
+  update: ClientApplicationUpdateDataInput!
+  create: ClientApplicationCreateInput!
 }
 
 input ClientApplicationWhereInput {
@@ -1087,6 +1125,7 @@ type Coupon implements Node {
   coupon: String!
   value: Int!
   discountType: DiscountType!
+  usedIn(where: ClientApplicationWhereInput): ClientApplication
   author(where: UserWhereInput): User!
   createdAt: DateTime!
 }
@@ -1105,6 +1144,7 @@ input CouponCreateInput {
   coupon: String!
   value: Int!
   discountType: DiscountType!
+  usedIn: ClientApplicationCreateOneInput
   author: UserCreateOneInput!
 }
 
@@ -1183,6 +1223,7 @@ input CouponUpdateInput {
   coupon: String
   value: Int
   discountType: DiscountType
+  usedIn: ClientApplicationUpdateOneInput
   author: UserUpdateOneInput
 }
 
@@ -1329,6 +1370,7 @@ input CouponWhereInput {
 
   """All values greater than or equal the given value."""
   createdAt_gte: DateTime
+  usedIn: ClientApplicationWhereInput
   author: UserWhereInput
 }
 

@@ -10,9 +10,9 @@ export class CouponPipe implements PipeTransform {
 	transform(value: Coupon): string {
 		switch (value.discountType) {
 			case DiscountType.Percentage:
-				return `${value.value}% off`;
+				return `${value.value}% OFF`;
 			case DiscountType.Fixed:
-				return `${value.value} EGP off`;
+				return `${value.value} EGP OFF`;
 			default:
 				return '';
 		}

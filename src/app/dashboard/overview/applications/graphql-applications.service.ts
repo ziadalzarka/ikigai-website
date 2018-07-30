@@ -4,6 +4,7 @@ import gql from 'graphql-tag';
 import { Injectable } from '@angular/core';
 import { map, tap } from 'rxjs/operators';
 import { JobApplication } from '@app/redux/models/job-application.model';
+import { Coupon } from '@app/redux/models/coupon.model';
 
 const listClientApplicationsQuery = gql`
 	{
@@ -77,7 +78,6 @@ const listJobApplicationsQuery = gql`
 	}
 	${jobApplicationFragment}
 `;
-
 @Injectable({
 	providedIn: 'root'
 })
@@ -110,4 +110,5 @@ export class GraphqlApplicationsService {
 				map(edges => edges.map(node => { return { ...node.node as JobApplication }; }))
 			);
 	}
+
 }

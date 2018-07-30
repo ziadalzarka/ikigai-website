@@ -83,6 +83,7 @@ type Coupon {
 	coupon: String! @unique
 	value: Int!
 	discountType: DiscountType!
+	usedIn: ClientApplication
 	author: User!
 	createdAt: DateTime!
 }
