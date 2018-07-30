@@ -72,6 +72,20 @@ type JobApplication {
 	createdAt: DateTime!
 }
 
+enum DiscountType {
+	Percentage,
+	Fixed
+}
+
+type Coupon {
+	id: ID! @unique
+	coupon: String! @unique
+	value: Int!
+	discountType: DiscountType!
+	author: User!
+	createdAt: DateTime!
+}
+
 type ClientApplication {
 	id: ID! @unique
 	name: String!

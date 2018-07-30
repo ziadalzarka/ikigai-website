@@ -11,6 +11,8 @@ import { publicContent } from './Query/public-content';
 import { adminQuery } from './Query/admin';
 import { fileMutation } from './Mutation/file';
 import { file } from './Query/file';
+import { couponQuery } from './Query/coupon';
+import { couponMutation } from './Mutation/coupon';
 
 export default {
 	AuthPayload,
@@ -20,6 +22,7 @@ export default {
 		...applicationsQuery,
 		...adminQuery,
 		...file,
+		...couponQuery,
 	},
 	// Subscription,
 	Mutation: {
@@ -29,5 +32,6 @@ export default {
 		...jobApplicationMutation,
 		...clientApplicationMutation,
 		...fileMutation,
+		...couponMutation,
 	},
 };

@@ -8,6 +8,7 @@ import { PackageColorPipe } from './package-color.pipe';
 import { SafeHtmlPipe } from './safehtml.pipe';
 import { ToolbarComponent } from './toolbar/toolbar.component';
 import { RouterModule } from '@angular/router';
+import { CouponPipe } from './coupon.pipe';
 
 @NgModule({
 	imports: [
@@ -22,6 +23,7 @@ import { RouterModule } from '@angular/router';
 		PackageColorPipe,
 		SafeHtmlPipe,
 		ToolbarComponent,
+		CouponPipe,
 	],
 	exports: [
 		FooterComponent,
@@ -29,7 +31,8 @@ import { RouterModule } from '@angular/router';
 		PermissionsPipe,
 		PackageColorPipe,
 		SafeHtmlPipe,
-		ToolbarComponent
+		ToolbarComponent,
+		CouponPipe,
 	]
 })
 export class GlobalModule { }

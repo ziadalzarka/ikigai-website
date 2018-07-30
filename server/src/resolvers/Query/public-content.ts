@@ -15,5 +15,9 @@ export const publicContent = {
 
 	variables(parent, { }, ctx: Context, info) {
 		return ctx.db.query.variable({ where: { index: 0 } }, info);
+	},
+
+	coupon(parent, { coupon }, ctx: Context, info) {
+		return ctx.db.query.coupon({ where: { coupon } });
 	}
 };

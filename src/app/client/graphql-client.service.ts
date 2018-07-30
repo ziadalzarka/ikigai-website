@@ -3,6 +3,17 @@ import gql from 'graphql-tag';
 import { Injectable } from '@angular/core';
 import { ClientApplication } from '@app/redux/models/client-application.model';
 import { map } from 'rxjs/operators';
+import { Coupon } from '@app/redux/models/coupon.model';
+import { Observable, of } from 'rxjs';
+
+const couponQuery = gql`
+	query($coupon: String!) {
+		coupon(coupon: $coupon) {
+			discountType
+			value
+		}
+	}
+`;
 
 const clientApplyMutation = gql`
 	mutation(
@@ -59,6 +70,16 @@ export class GraphqlClientService {
 			variables: application
 		}).pipe(
 			map(res => res.data.applyClient)
+		);
+	}
+
+	checkCoupon(coupon: string): Observable<Coupon> {
+		if (!coupon) return of(null);
+		return this.apollo.query({
+			query: couponQuery,
+			variables: { coupon }
+		}).pipe(
+			map((res: any) => res.data.coupon)
 		);
 	}
 }

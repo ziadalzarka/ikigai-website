@@ -88,7 +88,15 @@ app-toolbar
 			.form-group.range-field
 				label.range-min 1
 				input((change)="onDealYearsChanged()", type='range', min='1', max='5', formControlName="dealYears")
-				label.range-max 5
+				label.range-max 5			
+			br
+			h2 Coupon
+				i.fa.fa-spin.fa-cog.ml-2(*ngIf="couponLoading")
+				span.text-danger.ml-2(*ngIf="activeCoupon") {{activeCoupon|coupon}}
+			br
+			.form-group
+				input.form-control.form-control-lg(placeholder='eWRhpRV', type='text', formControlName="coupon", (change)="onCouponChanged()")
+				.has-error.mt-1(*ngIf='couponInvalid && coupon') Invalid coupon.
 			br
 			hr
 			h2 Website
@@ -135,7 +143,7 @@ app-toolbar
 			hr
 			.row
 				.col-12.col-lg-4.offset-lg-8
-					button.w-100.btn.btn-dashboard.btn.ml-auto.mt-1(type='button', (click)="send()") Send
+					button.w-100.btn.btn-dashboard.btn.ml-auto.mt-1(type='button', (click)="send()", [disabled]="couponLoading") Send
 app-footer
 
 ng-template(#failed, let-close='close', let-dismiss='dismiss')

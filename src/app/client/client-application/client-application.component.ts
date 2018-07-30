@@ -3,10 +3,12 @@ import { ClientApplication } from '@app/redux/models/client-application.model';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { Package } from '@app/redux/enums/package.enum';
-import { merge, map, tap, skip } from 'rxjs/operators';
+import { merge, map, tap, skip, finalize } from 'rxjs/operators';
 import { of } from 'rxjs';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { SeoService } from '@app/seo.service';
+import { Coupon } from '@app/redux/models/coupon.model';
+import { DiscountType } from '@app/redux/enums/discount-type.enum';
 
 declare var loadMaterialize: any;
 
@@ -68,13 +70,20 @@ export class ClientApplicationComponent implements OnInit {
 		totalPrice: 0,
 		dealYears: 1,
 		videoMinutesCount: 1,
+		coupon: '',
 		// -----------
 		package: Package.Light,
 		...this.packagesQuotas[Package.Light]
 	});
 
+	get coupon(): string {
+		return this.clientApplicationForm.get('coupon').value;
+	}
+
 	get clientApplication(): ClientApplication {
-		return this.clientApplicationForm.value as ClientApplication;
+		const val = this.clientApplicationForm.value;
+		delete val.coupon;
+		return val as ClientApplication;
 	}
 
 	pricePerMonth = 0;
@@ -100,22 +109,38 @@ export class ClientApplicationComponent implements OnInit {
 
 		totalPrice *= 12 * this.clientApplication.dealYears;
 
-		totalPrice -= this.calculateDiscount();
+		totalPrice -= this.calculateDiscount(totalPrice);
 
 		this.clientApplicationForm.patchValue({ totalPrice });
 	}
 
-	calculateDiscount() {
+	calculateDiscount(currentPrice) {
 		const application = this.clientApplication;
+		let discount = 0;
+
 		if (application.dealYears > 1) {
 			switch (application.package) {
 				case Package.Pro:
-					return this.discount = 500 * application.dealYears * 12;
+					discount += 500 * application.dealYears * 12;
+					break;
 				case Package.Enterprise:
-					return this.discount = 1000 * application.dealYears * 12;
+					discount += 1000 * application.dealYears * 12;
+					break;
 			}
 		}
-		return this.discount = 0;
+
+		if (this.activeCoupon) {
+			switch (this.activeCoupon.discountType) {
+				case DiscountType.Fixed:
+					discount += this.activeCoupon.value;
+					break;
+				case DiscountType.Percentage:
+					discount += currentPrice * (this.activeCoupon.value / 100);
+					break;
+			}
+		}
+
+		return this.discount = discount;
 	}
 
 	patchPackage() {
@@ -140,6 +165,34 @@ export class ClientApplicationComponent implements OnInit {
 
 	onDealYearsChanged() {
 		this.calculatePrice();
+	}
+
+	couponLoading = false;
+	couponInvalid = false;
+
+	activeCoupon: Coupon;
+
+	onCouponChanged() {
+		this.couponLoading = true;
+		this.couponInvalid = false;
+		this.activeCoupon = null;
+
+		const invalidate = () => {
+			this.couponInvalid = true;
+			this.calculatePrice();
+		};
+
+		this.clientService.checkCoupon(this.coupon)
+			.pipe(
+				finalize(() => this.couponLoading = false)
+			).subscribe(cop => {
+				if (cop) {
+					this.activeCoupon = cop;
+					this.calculatePrice();
+				} else {
+					invalidate();
+				}
+			}, invalidate);
 	}
 
 	constructor(

@@ -26,7 +26,8 @@
 		"mkdirp": "^0.5.1",
 		"node-fetch": "^2.2.0",
 		"prisma-binding": "2.1.0",
-		"rendertron-middleware": "^0.1.2"
+		"rendertron-middleware": "^0.1.2",
+		"shortid": "^2.2.12"
 	},
 	"devDependencies": {
 		"@types/body-parser": "^1.16.3",

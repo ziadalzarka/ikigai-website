@@ -1,11 +1,15 @@
 # source: http://194.182.77.249:4466/ikigai/dev
-# timestamp: Thu Jul 26 2018 21:41:06 GMT+0200 (EET)
+# timestamp: Mon Jul 30 2018 14:29:41 GMT+0200 (EET)
 
 type AggregateClientApplication {
   count: Int!
 }
 
 type AggregateContactApplication {
+  count: Int!
+}
+
+type AggregateCoupon {
   count: Int!
 }
 
@@ -1078,7 +1082,267 @@ input ContactApplicationWhereUniqueInput {
   id: ID
 }
 
+type Coupon implements Node {
+  id: ID!
+  coupon: String!
+  value: Int!
+  discountType: DiscountType!
+  author(where: UserWhereInput): User!
+  createdAt: DateTime!
+}
+
+"""A connection to a list of items."""
+type CouponConnection {
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """A list of edges."""
+  edges: [CouponEdge]!
+  aggregate: AggregateCoupon!
+}
+
+input CouponCreateInput {
+  coupon: String!
+  value: Int!
+  discountType: DiscountType!
+  author: UserCreateOneInput!
+}
+
+"""An edge in a connection."""
+type CouponEdge {
+  """The item at the end of the edge."""
+  node: Coupon!
+
+  """A cursor for use in pagination."""
+  cursor: String!
+}
+
+enum CouponOrderByInput {
+  id_ASC
+  id_DESC
+  coupon_ASC
+  coupon_DESC
+  value_ASC
+  value_DESC
+  discountType_ASC
+  discountType_DESC
+  createdAt_ASC
+  createdAt_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+}
+
+type CouponPreviousValues {
+  id: ID!
+  coupon: String!
+  value: Int!
+  discountType: DiscountType!
+  createdAt: DateTime!
+}
+
+type CouponSubscriptionPayload {
+  mutation: MutationType!
+  node: Coupon
+  updatedFields: [String!]
+  previousValues: CouponPreviousValues
+}
+
+input CouponSubscriptionWhereInput {
+  """Logical AND on all given filters."""
+  AND: [CouponSubscriptionWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [CouponSubscriptionWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [CouponSubscriptionWhereInput!]
+
+  """
+  The subscription event gets dispatched when it's listed in mutation_in
+  """
+  mutation_in: [MutationType!]
+
+  """
+  The subscription event gets only dispatched when one of the updated fields names is included in this list
+  """
+  updatedFields_contains: String
+
+  """
+  The subscription event gets only dispatched when all of the field names included in this list have been updated
+  """
+  updatedFields_contains_every: [String!]
+
+  """
+  The subscription event gets only dispatched when some of the field names included in this list have been updated
+  """
+  updatedFields_contains_some: [String!]
+  node: CouponWhereInput
+}
+
+input CouponUpdateInput {
+  coupon: String
+  value: Int
+  discountType: DiscountType
+  author: UserUpdateOneInput
+}
+
+input CouponWhereInput {
+  """Logical AND on all given filters."""
+  AND: [CouponWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [CouponWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [CouponWhereInput!]
+  id: ID
+
+  """All values that are not equal to given value."""
+  id_not: ID
+
+  """All values that are contained in given list."""
+  id_in: [ID!]
+
+  """All values that are not contained in given list."""
+  id_not_in: [ID!]
+
+  """All values less than the given value."""
+  id_lt: ID
+
+  """All values less than or equal the given value."""
+  id_lte: ID
+
+  """All values greater than the given value."""
+  id_gt: ID
+
+  """All values greater than or equal the given value."""
+  id_gte: ID
+
+  """All values containing the given string."""
+  id_contains: ID
+
+  """All values not containing the given string."""
+  id_not_contains: ID
+
+  """All values starting with the given string."""
+  id_starts_with: ID
+
+  """All values not starting with the given string."""
+  id_not_starts_with: ID
+
+  """All values ending with the given string."""
+  id_ends_with: ID
+
+  """All values not ending with the given string."""
+  id_not_ends_with: ID
+  coupon: String
+
+  """All values that are not equal to given value."""
+  coupon_not: String
+
+  """All values that are contained in given list."""
+  coupon_in: [String!]
+
+  """All values that are not contained in given list."""
+  coupon_not_in: [String!]
+
+  """All values less than the given value."""
+  coupon_lt: String
+
+  """All values less than or equal the given value."""
+  coupon_lte: String
+
+  """All values greater than the given value."""
+  coupon_gt: String
+
+  """All values greater than or equal the given value."""
+  coupon_gte: String
+
+  """All values containing the given string."""
+  coupon_contains: String
+
+  """All values not containing the given string."""
+  coupon_not_contains: String
+
+  """All values starting with the given string."""
+  coupon_starts_with: String
+
+  """All values not starting with the given string."""
+  coupon_not_starts_with: String
+
+  """All values ending with the given string."""
+  coupon_ends_with: String
+
+  """All values not ending with the given string."""
+  coupon_not_ends_with: String
+  value: Int
+
+  """All values that are not equal to given value."""
+  value_not: Int
+
+  """All values that are contained in given list."""
+  value_in: [Int!]
+
+  """All values that are not contained in given list."""
+  value_not_in: [Int!]
+
+  """All values less than the given value."""
+  value_lt: Int
+
+  """All values less than or equal the given value."""
+  value_lte: Int
+
+  """All values greater than the given value."""
+  value_gt: Int
+
+  """All values greater than or equal the given value."""
+  value_gte: Int
+  discountType: DiscountType
+
+  """All values that are not equal to given value."""
+  discountType_not: DiscountType
+
+  """All values that are contained in given list."""
+  discountType_in: [DiscountType!]
+
+  """All values that are not contained in given list."""
+  discountType_not_in: [DiscountType!]
+  createdAt: DateTime
+
+  """All values that are not equal to given value."""
+  createdAt_not: DateTime
+
+  """All values that are contained in given list."""
+  createdAt_in: [DateTime!]
+
+  """All values that are not contained in given list."""
+  createdAt_not_in: [DateTime!]
+
+  """All values less than the given value."""
+  createdAt_lt: DateTime
+
+  """All values less than or equal the given value."""
+  createdAt_lte: DateTime
+
+  """All values greater than the given value."""
+  createdAt_gt: DateTime
+
+  """All values greater than or equal the given value."""
+  createdAt_gte: DateTime
+  author: UserWhereInput
+}
+
+input CouponWhereUniqueInput {
+  id: ID
+  coupon: String
+}
+
 scalar DateTime
+
+enum DiscountType {
+  Percentage
+  Fixed
+}
 
 type File implements Node {
   id: ID!
@@ -1756,6 +2020,7 @@ type Mutation {
   createUser(data: UserCreateInput!): User!
   createPost(data: PostCreateInput!): Post!
   createJobApplication(data: JobApplicationCreateInput!): JobApplication!
+  createCoupon(data: CouponCreateInput!): Coupon!
   createClientApplication(data: ClientApplicationCreateInput!): ClientApplication!
   createContactApplication(data: ContactApplicationCreateInput!): ContactApplication!
   createFile(data: FileCreateInput!): File!
@@ -1763,6 +2028,7 @@ type Mutation {
   updateUser(data: UserUpdateInput!, where: UserWhereUniqueInput!): User
   updatePost(data: PostUpdateInput!, where: PostWhereUniqueInput!): Post
   updateJobApplication(data: JobApplicationUpdateInput!, where: JobApplicationWhereUniqueInput!): JobApplication
+  updateCoupon(data: CouponUpdateInput!, where: CouponWhereUniqueInput!): Coupon
   updateClientApplication(data: ClientApplicationUpdateInput!, where: ClientApplicationWhereUniqueInput!): ClientApplication
   updateContactApplication(data: ContactApplicationUpdateInput!, where: ContactApplicationWhereUniqueInput!): ContactApplication
   updateFile(data: FileUpdateInput!, where: FileWhereUniqueInput!): File
@@ -1770,6 +2036,7 @@ type Mutation {
   deleteUser(where: UserWhereUniqueInput!): User
   deletePost(where: PostWhereUniqueInput!): Post
   deleteJobApplication(where: JobApplicationWhereUniqueInput!): JobApplication
+  deleteCoupon(where: CouponWhereUniqueInput!): Coupon
   deleteClientApplication(where: ClientApplicationWhereUniqueInput!): ClientApplication
   deleteContactApplication(where: ContactApplicationWhereUniqueInput!): ContactApplication
   deleteFile(where: FileWhereUniqueInput!): File
@@ -1777,6 +2044,7 @@ type Mutation {
   upsertUser(where: UserWhereUniqueInput!, create: UserCreateInput!, update: UserUpdateInput!): User!
   upsertPost(where: PostWhereUniqueInput!, create: PostCreateInput!, update: PostUpdateInput!): Post!
   upsertJobApplication(where: JobApplicationWhereUniqueInput!, create: JobApplicationCreateInput!, update: JobApplicationUpdateInput!): JobApplication!
+  upsertCoupon(where: CouponWhereUniqueInput!, create: CouponCreateInput!, update: CouponUpdateInput!): Coupon!
   upsertClientApplication(where: ClientApplicationWhereUniqueInput!, create: ClientApplicationCreateInput!, update: ClientApplicationUpdateInput!): ClientApplication!
   upsertContactApplication(where: ContactApplicationWhereUniqueInput!, create: ContactApplicationCreateInput!, update: ContactApplicationUpdateInput!): ContactApplication!
   upsertFile(where: FileWhereUniqueInput!, create: FileCreateInput!, update: FileUpdateInput!): File!
@@ -1784,6 +2052,7 @@ type Mutation {
   updateManyUsers(data: UserUpdateInput!, where: UserWhereInput): BatchPayload!
   updateManyPosts(data: PostUpdateInput!, where: PostWhereInput): BatchPayload!
   updateManyJobApplications(data: JobApplicationUpdateInput!, where: JobApplicationWhereInput): BatchPayload!
+  updateManyCoupons(data: CouponUpdateInput!, where: CouponWhereInput): BatchPayload!
   updateManyClientApplications(data: ClientApplicationUpdateInput!, where: ClientApplicationWhereInput): BatchPayload!
   updateManyContactApplications(data: ContactApplicationUpdateInput!, where: ContactApplicationWhereInput): BatchPayload!
   updateManyFiles(data: FileUpdateInput!, where: FileWhereInput): BatchPayload!
@@ -1791,6 +2060,7 @@ type Mutation {
   deleteManyUsers(where: UserWhereInput): BatchPayload!
   deleteManyPosts(where: PostWhereInput): BatchPayload!
   deleteManyJobApplications(where: JobApplicationWhereInput): BatchPayload!
+  deleteManyCoupons(where: CouponWhereInput): BatchPayload!
   deleteManyClientApplications(where: ClientApplicationWhereInput): BatchPayload!
   deleteManyContactApplications(where: ContactApplicationWhereInput): BatchPayload!
   deleteManyFiles(where: FileWhereInput): BatchPayload!
@@ -2308,6 +2578,7 @@ type Query {
   users(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [User]!
   posts(where: PostWhereInput, orderBy: PostOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Post]!
   jobApplications(where: JobApplicationWhereInput, orderBy: JobApplicationOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [JobApplication]!
+  coupons(where: CouponWhereInput, orderBy: CouponOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Coupon]!
   clientApplications(where: ClientApplicationWhereInput, orderBy: ClientApplicationOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [ClientApplication]!
   contactApplications(where: ContactApplicationWhereInput, orderBy: ContactApplicationOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [ContactApplication]!
   files(where: FileWhereInput, orderBy: FileOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [File]!
@@ -2315,6 +2586,7 @@ type Query {
   user(where: UserWhereUniqueInput!): User
   post(where: PostWhereUniqueInput!): Post
   jobApplication(where: JobApplicationWhereUniqueInput!): JobApplication
+  coupon(where: CouponWhereUniqueInput!): Coupon
   clientApplication(where: ClientApplicationWhereUniqueInput!): ClientApplication
   contactApplication(where: ContactApplicationWhereUniqueInput!): ContactApplication
   file(where: FileWhereUniqueInput!): File
@@ -2322,6 +2594,7 @@ type Query {
   usersConnection(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): UserConnection!
   postsConnection(where: PostWhereInput, orderBy: PostOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): PostConnection!
   jobApplicationsConnection(where: JobApplicationWhereInput, orderBy: JobApplicationOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): JobApplicationConnection!
+  couponsConnection(where: CouponWhereInput, orderBy: CouponOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): CouponConnection!
   clientApplicationsConnection(where: ClientApplicationWhereInput, orderBy: ClientApplicationOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): ClientApplicationConnection!
   contactApplicationsConnection(where: ContactApplicationWhereInput, orderBy: ContactApplicationOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): ContactApplicationConnection!
   filesConnection(where: FileWhereInput, orderBy: FileOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): FileConnection!
@@ -2338,6 +2611,7 @@ type Subscription {
   user(where: UserSubscriptionWhereInput): UserSubscriptionPayload
   post(where: PostSubscriptionWhereInput): PostSubscriptionPayload
   jobApplication(where: JobApplicationSubscriptionWhereInput): JobApplicationSubscriptionPayload
+  coupon(where: CouponSubscriptionWhereInput): CouponSubscriptionPayload
   clientApplication(where: ClientApplicationSubscriptionWhereInput): ClientApplicationSubscriptionPayload
   contactApplication(where: ContactApplicationSubscriptionWhereInput): ContactApplicationSubscriptionPayload
   file(where: FileSubscriptionWhereInput): FileSubscriptionPayload
@@ -2370,6 +2644,11 @@ input UserCreateInput {
   lastLogin: DateTime
   permissions: UserCreatepermissionsInput
   posts: PostCreateManyWithoutAuthorInput
+}
+
+input UserCreateOneInput {
+  create: UserCreateInput
+  connect: UserWhereUniqueInput
 }
 
 input UserCreateOneWithoutPostsInput {
@@ -2463,6 +2742,15 @@ input UserSubscriptionWhereInput {
   node: UserWhereInput
 }
 
+input UserUpdateDataInput {
+  name: String
+  username: String
+  password: String
+  lastLogin: DateTime
+  permissions: UserUpdatepermissionsInput
+  posts: PostUpdateManyWithoutAuthorInput
+}
+
 input UserUpdateInput {
   name: String
   username: String
@@ -2470,6 +2758,14 @@ input UserUpdateInput {
   lastLogin: DateTime
   permissions: UserUpdatepermissionsInput
   posts: PostUpdateManyWithoutAuthorInput
+}
+
+input UserUpdateOneInput {
+  create: UserCreateInput
+  connect: UserWhereUniqueInput
+  delete: Boolean
+  update: UserUpdateDataInput
+  upsert: UserUpsertNestedInput
 }
 
 input UserUpdateOneWithoutPostsInput {
@@ -2490,6 +2786,11 @@ input UserUpdateWithoutPostsDataInput {
   password: String
   lastLogin: DateTime
   permissions: UserUpdatepermissionsInput
+}
+
+input UserUpsertNestedInput {
+  update: UserUpdateDataInput!
+  create: UserCreateInput!
 }
 
 input UserUpsertWithoutPostsInput {

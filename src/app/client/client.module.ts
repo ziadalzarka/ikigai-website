@@ -1,5 +1,5 @@
 import { StoreModule } from '@ngrx/store';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { GlobalModule } from './../global/global.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -17,8 +17,8 @@ import { clientApplicationsReducer } from '@app/redux/reducers/client-applicatio
 		ClientRoutingModule,
 		GlobalModule,
 		ReactiveFormsModule,
+		FormsModule,
 		NgbModule,
-		StoreModule.forFeature('clientApplications', clientApplicationsReducer)
 	],
 	declarations: [ClientApplicationComponent],
 	providers: [NgbModal, NgbModalStack]

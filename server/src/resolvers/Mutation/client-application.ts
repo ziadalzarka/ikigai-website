@@ -17,7 +17,22 @@ export const clientApplicationMutation = {
 		hasDomain,
 		dealYears,
 		dealPackage,
-		totalPrice }, ctx: Context, info) {
+		totalPrice,
+		coupon, }, ctx: Context, info) {
+		if (coupon) {
+			const exists = await ctx.db.exists.Coupon({ coupon });
+			if (exists) {
+				const discount = await ctx.db.query.coupon({ where: { coupon } }, '{ discountType value }');
+				switch (discount.discountType) {
+					case 'Percentage':
+						totalPrice -= totalPrice * (discount.value / 100);
+						break;
+					case 'Fixed':
+						totalPrice -= discount.value;
+						break;
+				}
+			}
+		}
 		return ctx.db.mutation.createClientApplication(
 			{
 				data: {

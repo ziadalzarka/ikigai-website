@@ -1,17 +1,23 @@
 # import Post from "./generated/prisma.graphql"
 
 type Query {
-	feed(first: Int, skip: Int): PostConnection
-	post(id: ID!): Post
 	me: User
-	variables: PublicVariables
-	# not required for now
+	# admin
 	usersConnection(first: Int, skip: Int): UserConnection
+	# job applications
 	jobApplicationsConnection(first: Int, skip: Int): JobApplicationConnection
+	jobApplication(id: ID!): JobApplication
+	# client applications
 	clientApplicationsConnection(first: Int, skip: Int): ClientApplicationConnection
 	clientApplication(id: ID!): ClientApplication
-	jobApplication(id: ID!): JobApplication
+	# coupons
+	couponsConnection(first: Int, skip: Int): CouponConnection
+	# public content
+	feed(first: Int, skip: Int): PostConnection
+	post(id: ID!): Post
 	file(id: ID!): File
+	variables: PublicVariables
+	coupon(coupon: String!): Coupon
 }
 
 enum Package {
@@ -26,6 +32,11 @@ enum JobPosition {
 	Graphics,
 	Photography,
 	PublicRelations
+}
+
+enum DiscountType {
+	Percentage,
+	Fixed
 }
 
 type Mutation {
@@ -57,6 +68,10 @@ type Mutation {
 	deleteUser(id: ID!): User
 	# files
 	createFileEntry(name: String!, checksum: String!): File!
+	# coupons
+	createCoupon(value: Int!, discountType: DiscountType!): Coupon!
+	updateCoupon(id: ID!, value: Int, discountType: DiscountType): Coupon!
+	deleteCoupon(id: ID!): Coupon!
 	# variables
 	updateVariables(
 		email: String
@@ -79,18 +94,20 @@ type Mutation {
 		email: String!,
 		address: String,
 		phoneNumber: String,
-		facebook: String
-		postsPerMonth: Int!
-		photography: Int!
-		gifs: Int!
-		videos: Int!
-		videoMinutesCount: Int!
-		website: Boolean!
-		hasHost: Boolean!
-		hasDomain: Boolean!	
-		dealYears: Int!
+		facebook: String,
+		postsPerMonth: Int!,
+		photography: Int!,
+		gifs: Int!,
+		videos: Int!,
+		videoMinutesCount: Int!,
+		website: Boolean!,
+		hasHost: Boolean!,
+		hasDomain: Boolean!,
+		dealYears: Int!,
+		# coupons
+		coupon: String,
 		# preserved even if prices change
-		dealPackage: Package!
+		dealPackage: Package!,
 		totalPrice: Int!
 		): ClientApplication!
 	applyForWork(
