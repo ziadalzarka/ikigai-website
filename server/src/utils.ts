@@ -8,6 +8,7 @@ export class Permissions {
 	static JobApplications = 'JobApplications';
 	static ClientApplications = 'ClientApplications';
 	static ContactApplications = 'ContactApplications';
+	static Coupons = 'Coupons';
 }
 
 export interface Context {

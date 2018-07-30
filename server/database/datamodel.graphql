@@ -17,7 +17,8 @@ enum Permission {
 	Posts,
 	JobApplications,
 	ClientApplications,
-	ContactApplications
+	ContactApplications,
+	Coupons
 }
 
 type Variable {

@@ -20,25 +20,6 @@ type Query {
 	coupon(coupon: String!): Coupon
 }
 
-enum Package {
-	Light,
-	Pro,
-	Enterprise,
-	Custom
-}
-
-enum JobPosition {
-	Media,
-	Graphics,
-	Photography,
-	PublicRelations
-}
-
-enum DiscountType {
-	Percentage,
-	Fixed
-}
-
 type Mutation {
 	# DASHBOARD
 	# -----------

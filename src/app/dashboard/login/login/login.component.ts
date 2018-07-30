@@ -5,6 +5,7 @@ import * as fromUser from '@app/redux/reducers/user.reducer';
 import { FormGroup, Validators, FormControl } from '@angular/forms';
 import { User } from '@app/redux/models/user.model';
 import { LoginUser } from '@app/redux/actions/user.actions';
+import { of } from 'rxjs';
 
 @Component({
 	selector: 'app-login',
@@ -14,7 +15,7 @@ import { LoginUser } from '@app/redux/actions/user.actions';
 export class LoginComponent implements OnInit {
 
 	loading;
-	failed;
+	failed = of(false);
 
 	loginForm = new FormGroup({
 		username: new FormControl('', [
@@ -33,7 +34,7 @@ export class LoginComponent implements OnInit {
 
 	ngOnInit() {
 		this.loading = this.store.select(fromUser.selectLoading);
-		this.failed = this.store.select(fromUser.selectFailed);
+		this.failed = this.store.select(fromUser.selectLoginFailed);
 	}
 
 	login() {

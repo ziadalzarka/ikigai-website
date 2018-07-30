@@ -2231,6 +2231,7 @@ enum Permission {
   JobApplications
   ClientApplications
   ContactApplications
+  Coupons
 }
 
 type Post implements Node {
@@ -3872,7 +3873,8 @@ export type Permission =   'Admin' |
   'Posts' |
   'JobApplications' |
   'ClientApplications' |
-  'ContactApplications'
+  'ContactApplications' |
+  'Coupons'
 
 export type MutationType =   'CREATED' |
   'UPDATED' |

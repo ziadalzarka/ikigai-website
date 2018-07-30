@@ -5,8 +5,8 @@ import { Context, verifyPermission } from '../../utils';
 export const couponMutation = {
 
 	async createCoupon(parent, data, ctx: Context, info) {
-		const userId = await verifyPermission(ctx, Permissions.Admin).catch(err => { throw err; });
-		return ctx.db.mutation.createCoupon({ 
+		const userId = await verifyPermission(ctx, Permissions.Coupons).catch(err => { throw err; });
+		return ctx.db.mutation.createCoupon({
 			data: {
 				...data,
 				author: {
@@ -22,12 +22,12 @@ export const couponMutation = {
 		value,
 		discountType
 	}, ctx: Context, info) {
-		await verifyPermission(ctx, Permissions.Admin).catch(err => { throw err; });
+		await verifyPermission(ctx, Permissions.Coupons).catch(err => { throw err; });
 		return ctx.db.mutation.updateCoupon({ where: { id }, data: { value, discountType } }, info);
 	},
 
 	async deleteCoupon(parent, { id }, ctx: Context, info) {
-		await verifyPermission(ctx, Permissions.Admin).catch(err => { throw err; });
+		await verifyPermission(ctx, Permissions.Coupons).catch(err => { throw err; });
 		return ctx.db.mutation.deleteCoupon({ where: { id } }, info);
 	},
 

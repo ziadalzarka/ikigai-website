@@ -9,6 +9,7 @@ import { ClientsComponent } from './clients/clients.component';
 import { DataTableModule } from 'angular-6-datatable';
 import { NgbModalStack } from '@ng-bootstrap/ng-bootstrap/modal/modal-stack';
 import { PositionsPipe } from './positions.pipe';
+import { CouponsComponent } from './coupons/coupons.component';
 
 @NgModule({
 	imports: [
@@ -18,7 +19,7 @@ import { PositionsPipe } from './positions.pipe';
 		NgbModule,
 		GlobalModule
 	],
-	declarations: [JobsComponent, ClientsComponent, PositionsPipe],
+	declarations: [JobsComponent, ClientsComponent, PositionsPipe, CouponsComponent],
 	providers: [NgbModal, NgbModalStack]
 })
 export class ApplicationsModule { }

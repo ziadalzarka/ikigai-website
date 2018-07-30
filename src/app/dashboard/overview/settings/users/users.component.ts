@@ -35,7 +35,8 @@ export class UsersComponent {
 		posts: false,
 		clientApplications: false,
 		jobApplications: false,
-		contactApplications: false
+		contactApplications: false,
+		coupons: false,
 	});
 
 	addUserForm = this.fb.group({
@@ -46,7 +47,8 @@ export class UsersComponent {
 		posts: true,
 		clientApplications: true,
 		jobApplications: true,
-		contactApplications: true
+		contactApplications: false,
+		coupons: true,
 	});
 
 	getPermissionsFromForm(form: FormGroup) {
@@ -55,6 +57,7 @@ export class UsersComponent {
 			posts,
 			clientApplications,
 			jobApplications,
+			coupons,
 			contactApplications } = form.value;
 		return {
 			permissions: [
@@ -62,7 +65,8 @@ export class UsersComponent {
 					...(posts ? [Permissions.Posts] : []),
 					...(clientApplications ? [Permissions.ClientApplications] : []),
 					...(jobApplications ? [Permissions.JobApplications] : []),
-					...(contactApplications ? [Permissions.ContactApplications] : [])
+					...(contactApplications ? [Permissions.ContactApplications] : []),
+					...(coupons ? [Permissions.Coupons] : [])
 				])
 			]
 		};
@@ -94,18 +98,6 @@ export class UsersComponent {
 		timer(500 + 200).toPromise().then(() => this.showFab = true);
 	}
 
-	createForm(arg, validators): FormGroup {
-		const input = arg;
-		for (const validatorKey in validators) {
-			if (validators.hasOwnProperty(validatorKey)) {
-				if (input.hasOwnProperty(validatorKey)) {
-					input[validatorKey] = [arg[validatorKey], ...validators[validatorKey]];
-				}
-			}
-		}
-		return this.fb.group(arg);
-	}
-
 	getFabState() {
 		return this.showFab ? 'show' : 'hide';
 	}
@@ -133,7 +125,8 @@ export class UsersComponent {
 			posts: user.permissions.includes(Permissions.Posts),
 			clientApplications: user.permissions.includes(Permissions.ClientApplications),
 			jobApplications: user.permissions.includes(Permissions.JobApplications),
-			contactApplications: user.permissions.includes(Permissions.ContactApplications)
+			contactApplications: user.permissions.includes(Permissions.ContactApplications),
+			coupons: user.permissions.includes(Permissions.Coupons)
 		});
 		this.open(content).then(() => {
 			this.store.dispatch(new ChangeUserPermissions({

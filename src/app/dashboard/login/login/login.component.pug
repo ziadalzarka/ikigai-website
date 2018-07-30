@@ -2,11 +2,13 @@
 	.row.justify-content-center
 		form.col-12.col-lg-6([formGroup]='loginForm')
 			h1.text-center Log In
+				i.fa.fa-spin.fa-cog.ml-2(*ngIf="loading|async")
 			.form-group
 				label Username
 				input.form-control(type='text', placeholder='Username', formControlName="username")
 			.form-group
 				label Password
 				input.form-control(type='password', placeholder='*******', formControlName="password")
+			.has-error(*ngIf="failed|async") Invalid username or password.
 			button.w-100.btn.btn-dashboard.btn.my-2(type='button', (click)='login()') Log In
 			p Only the site admin can create users.

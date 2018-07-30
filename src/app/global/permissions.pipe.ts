@@ -16,6 +16,7 @@ export class PermissionsPipe implements PipeTransform {
 			[Permissions.ClientApplications]: 'Client Applications',
 			[Permissions.JobApplications]: 'Job Applications',
 			[Permissions.ContactApplications]: 'Contact Applications',
+			[Permissions.Coupons]: 'Coupons',
 		};
 
 		return value.map(permit => mappings[permit.toString()]).join(', ');

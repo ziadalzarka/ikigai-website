@@ -1,3 +1,4 @@
+import { CouponsComponent } from './coupons/coupons.component';
 import { ClientsComponent } from './clients/clients.component';
 import { JobsComponent } from './jobs/jobs.component';
 import { NgModule } from '@angular/core';
@@ -14,6 +15,12 @@ const routes: Routes = [{
 	component: ClientsComponent,
 	data: {
 		state: 'clients'
+	}
+}, {
+	path: 'coupons',
+	component: CouponsComponent,
+	data: {
+		state: 'coupons'
 	}
 }];
 

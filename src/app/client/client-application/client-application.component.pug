@@ -113,8 +113,9 @@ app-toolbar
 						.form-check.d-inline-block.mx-3
 							input.form-check-input#website-rd-no(type='radio', [value]="false", formControlName="website")
 							label.form-check-label(for='website-rd-no') No
-
-				.col-12.col-lg-6([hidden]="!clientApplication.website")
+					br
+			.row([hidden]="!clientApplication.website")
+				.col-12
 					label Do you want have a host?
 					br
 					.d-block
@@ -125,6 +126,8 @@ app-toolbar
 							input.form-check-input#host-rd-no(type='radio', [value]="false", formControlName="hasHost")
 							label.form-check-label(for='host-rd-no') No
 					br
+			.row([hidden]="!clientApplication.website")
+				.col-12
 					label Do you want have a domain?
 					br
 					.d-block
@@ -134,6 +137,7 @@ app-toolbar
 						.form-check.d-inline-block.mx-3
 							input.form-check-input#domain-rd-no(type='radio', [value]="false", formControlName="hasDomain")
 							label.form-check-label(for='domain-rd-no') No
+					br
 			br
 			hr
 			h3.text-right Price per month: {{pricePerMonth}} EGP				

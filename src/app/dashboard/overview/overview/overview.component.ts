@@ -28,6 +28,7 @@ export class OverviewComponent implements OnInit {
 		[Permissions.JobApplications]: false,
 		[Permissions.ClientApplications]: false,
 		[Permissions.ContactApplications]: false,
+		[Permissions.Coupons]: false,
 	};
 
 	constructor(private router: Router, private store: Store<AppState>) { }
@@ -48,6 +49,23 @@ export class OverviewComponent implements OnInit {
 		};
 
 		this.user.pipe(first()).subscribe(({ permissions }) => {
+
+			switch (permissions[0]) {
+				case Permissions.Admin:
+				case Permissions.Posts:
+					this.router.navigate(['dashboard', 'content', 'posts']);
+					break;
+				case Permissions.ClientApplications:
+					this.router.navigate(['dashboard', 'applications', 'clients']);
+					break;
+				case Permissions.JobApplications:
+					this.router.navigate(['dashboard', 'applications', 'jobs']);
+					break;
+				case Permissions.Coupons:
+					this.router.navigate(['dashboard', 'applications', 'coupons']);
+					break;
+			}
+
 			permissions.forEach(permit => {
 				if (permit.toString() == Permissions.Admin) {
 					grantAll();

@@ -41,18 +41,7 @@ export class UserEffects {
 			map((action: UserActions.LoginUserSuccess) => action.payload),
 			map((res: LoginResponse) => {
 				localStorage.setItem('token', res.token);
-				switch (res.user.permissions[0]) {
-					case Permissions.Admin:
-					case Permissions.Posts:
-						this.router.navigate(['dashboard', 'content', 'posts']);
-						break;
-						case Permissions.ClientApplications:
-						this.router.navigate(['dashboard', 'applications', 'clients']);
-						break;
-						case Permissions.JobApplications:
-						this.router.navigate(['dashboard', 'applications', 'jobs']);
-						break;
-				}
+				this.router.navigate(['dashboard']);
 			})
 		);
 

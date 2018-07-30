@@ -1,5 +1,5 @@
 # source: http://194.182.77.249:4466/ikigai/dev
-# timestamp: Mon Jul 30 2018 14:29:41 GMT+0200 (EET)
+# timestamp: Mon Jul 30 2018 16:05:14 GMT+0200 (EET)
 
 type AggregateClientApplication {
   count: Int!
@@ -2106,6 +2106,7 @@ enum Permission {
   JobApplications
   ClientApplications
   ContactApplications
+  Coupons
 }
 
 type Post implements Node {

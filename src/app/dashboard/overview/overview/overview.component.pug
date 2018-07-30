@@ -20,7 +20,7 @@
 				#contentCollapse.collapse.show
 					button(navitem, routerLink='content/posts') Posts
 					button(navitem, routerLink='content/new') New Post
-		.row([hidden]="!permissions['ClientApplications'] && !permissions['JobApplications'] && !permissions['ContactApplications']")
+		.row([hidden]="!permissions['ClientApplications'] && !permissions['JobApplications'] && !permissions['ContactApplications'] && !permissions['Coupons']")
 			.col
 				button.btn.bg-dashboard.shadow-none.text-pale.w-100(type='button' data-toggle='collapse' data-target='#applicationsCollapse' aria-expanded='true' aria-controls='applicationsCollapse')
 					.row
@@ -33,6 +33,7 @@
 				#applicationsCollapse.collapse.show
 					button(navitem, [hidden]="!permissions['ClientApplications']" ,routerLink='applications/clients') Clients
 					button(navitem, [hidden]="!permissions['JobApplications']", routerLink='applications/jobs') Jobs
+					button(navitem, [hidden]="!permissions['Coupons']", routerLink='applications/coupons') Coupons
 					//- button(navitem, [hidden]="!permissions['ContactApplications']", routerLink='applications/contact') Contact
 		.row([hidden]="!permissions['Admin']")
 			.col
