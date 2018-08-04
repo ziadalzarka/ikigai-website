@@ -1,5 +1,5 @@
 # source: http://194.182.77.249:4466/ikigai/dev
-# timestamp: Mon Jul 30 2018 16:42:00 GMT+0200 (EET)
+# timestamp: Sat Aug 04 2018 16:07:30 GMT+0200 (EET)
 
 type AggregateClientApplication {
   count: Int!
@@ -57,6 +57,7 @@ type ClientApplication implements Node {
   package: Package!
   totalPrice: Int!
   createdAt: DateTime!
+  coupon(where: CouponWhereInput): Coupon
 }
 
 """A connection to a list of items."""
@@ -86,11 +87,31 @@ input ClientApplicationCreateInput {
   dealYears: Int!
   package: Package!
   totalPrice: Int!
+  coupon: CouponCreateOneWithoutUsedInInput
 }
 
-input ClientApplicationCreateOneInput {
-  create: ClientApplicationCreateInput
+input ClientApplicationCreateOneWithoutCouponInput {
+  create: ClientApplicationCreateWithoutCouponInput
   connect: ClientApplicationWhereUniqueInput
+}
+
+input ClientApplicationCreateWithoutCouponInput {
+  name: String!
+  phoneNumber: String
+  email: String
+  facebook: String
+  address: String
+  postsPerMonth: Int!
+  photography: Int!
+  gifs: Int!
+  videos: Int!
+  videoMinutesCount: Int!
+  website: Boolean!
+  hasHost: Boolean!
+  hasDomain: Boolean!
+  dealYears: Int!
+  package: Package!
+  totalPrice: Int!
 }
 
 """An edge in a connection."""
@@ -203,25 +224,6 @@ input ClientApplicationSubscriptionWhereInput {
   node: ClientApplicationWhereInput
 }
 
-input ClientApplicationUpdateDataInput {
-  name: String
-  phoneNumber: String
-  email: String
-  facebook: String
-  address: String
-  postsPerMonth: Int
-  photography: Int
-  gifs: Int
-  videos: Int
-  videoMinutesCount: Int
-  website: Boolean
-  hasHost: Boolean
-  hasDomain: Boolean
-  dealYears: Int
-  package: Package
-  totalPrice: Int
-}
-
 input ClientApplicationUpdateInput {
   name: String
   phoneNumber: String
@@ -239,20 +241,40 @@ input ClientApplicationUpdateInput {
   dealYears: Int
   package: Package
   totalPrice: Int
+  coupon: CouponUpdateOneWithoutUsedInInput
 }
 
-input ClientApplicationUpdateOneInput {
-  create: ClientApplicationCreateInput
+input ClientApplicationUpdateOneWithoutCouponInput {
+  create: ClientApplicationCreateWithoutCouponInput
   connect: ClientApplicationWhereUniqueInput
   disconnect: Boolean
   delete: Boolean
-  update: ClientApplicationUpdateDataInput
-  upsert: ClientApplicationUpsertNestedInput
+  update: ClientApplicationUpdateWithoutCouponDataInput
+  upsert: ClientApplicationUpsertWithoutCouponInput
 }
 
-input ClientApplicationUpsertNestedInput {
-  update: ClientApplicationUpdateDataInput!
-  create: ClientApplicationCreateInput!
+input ClientApplicationUpdateWithoutCouponDataInput {
+  name: String
+  phoneNumber: String
+  email: String
+  facebook: String
+  address: String
+  postsPerMonth: Int
+  photography: Int
+  gifs: Int
+  videos: Int
+  videoMinutesCount: Int
+  website: Boolean
+  hasHost: Boolean
+  hasDomain: Boolean
+  dealYears: Int
+  package: Package
+  totalPrice: Int
+}
+
+input ClientApplicationUpsertWithoutCouponInput {
+  update: ClientApplicationUpdateWithoutCouponDataInput!
+  create: ClientApplicationCreateWithoutCouponInput!
 }
 
 input ClientApplicationWhereInput {
@@ -702,6 +724,7 @@ input ClientApplicationWhereInput {
 
   """All values greater than or equal the given value."""
   createdAt_gte: DateTime
+  coupon: CouponWhereInput
 }
 
 input ClientApplicationWhereUniqueInput {
@@ -1144,7 +1167,19 @@ input CouponCreateInput {
   coupon: String!
   value: Int!
   discountType: DiscountType!
-  usedIn: ClientApplicationCreateOneInput
+  usedIn: ClientApplicationCreateOneWithoutCouponInput
+  author: UserCreateOneInput!
+}
+
+input CouponCreateOneWithoutUsedInInput {
+  create: CouponCreateWithoutUsedInInput
+  connect: CouponWhereUniqueInput
+}
+
+input CouponCreateWithoutUsedInInput {
+  coupon: String!
+  value: Int!
+  discountType: DiscountType!
   author: UserCreateOneInput!
 }
 
@@ -1223,8 +1258,29 @@ input CouponUpdateInput {
   coupon: String
   value: Int
   discountType: DiscountType
-  usedIn: ClientApplicationUpdateOneInput
+  usedIn: ClientApplicationUpdateOneWithoutCouponInput
   author: UserUpdateOneInput
+}
+
+input CouponUpdateOneWithoutUsedInInput {
+  create: CouponCreateWithoutUsedInInput
+  connect: CouponWhereUniqueInput
+  disconnect: Boolean
+  delete: Boolean
+  update: CouponUpdateWithoutUsedInDataInput
+  upsert: CouponUpsertWithoutUsedInInput
+}
+
+input CouponUpdateWithoutUsedInDataInput {
+  coupon: String
+  value: Int
+  discountType: DiscountType
+  author: UserUpdateOneInput
+}
+
+input CouponUpsertWithoutUsedInInput {
+  update: CouponUpdateWithoutUsedInDataInput!
+  create: CouponCreateWithoutUsedInInput!
 }
 
 input CouponWhereInput {

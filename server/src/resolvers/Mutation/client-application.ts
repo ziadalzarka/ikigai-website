@@ -1,70 +1,55 @@
 import { Context } from '../../utils';
+import { ClientApplication } from '../../generated/prisma';
+
+function couponExists(coupon: string, ctx: Context): Promise<boolean> {
+	return ctx.db.exists.Coupon({ coupon });
+}
+
+function linkCoupon(couponId: string, application: Promise<ClientApplication>, ctx: Context): void {
+	application.then(({ id }) => {
+		ctx.db.mutation.updateCoupon({
+			where: {
+				id: couponId
+			},
+			data: {
+				usedIn: {
+					connect: { id }
+				}
+			}
+		}, `{ id }`);
+	});
+}
 
 export const clientApplicationMutation = {
-	async applyClient(parent, {
-		name,
-		email,
-		address,
-		phoneNumber,
-		postsPerMonth,
-		photography,
-		facebook,
-		gifs,
-		videos,
-		videoMinutesCount,
-		website,
-		hasHost,
-		hasDomain,
-		dealYears,
-		dealPackage,
-		totalPrice,
-		coupon, }, ctx: Context, info) {
+	async applyClient(parent, data, ctx: Context, info) {
 
-		const application = ctx.db.mutation.createClientApplication(
-			{
-				data: {
-					name,
-					email,
-					address,
-					phoneNumber,
-					postsPerMonth,
-					facebook,
-					photography,
-					gifs,
-					videos,
-					videoMinutesCount,
-					website,
-					hasHost,
-					hasDomain,
-					dealYears,
-					totalPrice,
-					package: dealPackage,
-				},
-			},
-			info
-		);
+		const { coupon, dealPackage } = data;
+		let couponId: any = coupon && await couponExists(coupon, ctx);
 
-		if (coupon) {
-
-			const exists = await ctx.db.exists.Coupon({ coupon });
-
-			if (exists) {
-				coupon = await ctx.db.query.coupon({ where: { coupon } }, '{ id discountType value }');
-
-				application.then(({ id }) => {
-					ctx.db.mutation.updateCoupon({
-						where: { id: coupon.id },
-						data: {
-							usedIn: {
-								connect: { id }
-							}
-						}
-					});
-				});
-			}
-
+		if (couponId) {
+			couponId = (await ctx.db.query.coupon({
+				where: {
+					coupon
+				}
+			}, `{ id }`)).id;
 		}
 
+		delete data.dealPackage;
+		delete data.coupon;
+
+		const application = ctx.db.mutation.createClientApplication({
+			data: {
+				...data,
+				package: dealPackage,
+				...couponId && {
+					coupon: {
+						connect: { id: couponId }
+					}
+				}
+			}
+		}, info);
+
+		linkCoupon(couponId, application, ctx);
 
 		return application;
 	},

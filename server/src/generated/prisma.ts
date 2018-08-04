@@ -182,6 +182,7 @@ type ClientApplication implements Node {
   package: Package!
   totalPrice: Int!
   createdAt: DateTime!
+  coupon(where: CouponWhereInput): Coupon
 }
 
 """A connection to a list of items."""
@@ -211,11 +212,31 @@ input ClientApplicationCreateInput {
   dealYears: Int!
   package: Package!
   totalPrice: Int!
+  coupon: CouponCreateOneWithoutUsedInInput
 }
 
-input ClientApplicationCreateOneInput {
-  create: ClientApplicationCreateInput
+input ClientApplicationCreateOneWithoutCouponInput {
+  create: ClientApplicationCreateWithoutCouponInput
   connect: ClientApplicationWhereUniqueInput
+}
+
+input ClientApplicationCreateWithoutCouponInput {
+  name: String!
+  phoneNumber: String
+  email: String
+  facebook: String
+  address: String
+  postsPerMonth: Int!
+  photography: Int!
+  gifs: Int!
+  videos: Int!
+  videoMinutesCount: Int!
+  website: Boolean!
+  hasHost: Boolean!
+  hasDomain: Boolean!
+  dealYears: Int!
+  package: Package!
+  totalPrice: Int!
 }
 
 """An edge in a connection."""
@@ -328,25 +349,6 @@ input ClientApplicationSubscriptionWhereInput {
   node: ClientApplicationWhereInput
 }
 
-input ClientApplicationUpdateDataInput {
-  name: String
-  phoneNumber: String
-  email: String
-  facebook: String
-  address: String
-  postsPerMonth: Int
-  photography: Int
-  gifs: Int
-  videos: Int
-  videoMinutesCount: Int
-  website: Boolean
-  hasHost: Boolean
-  hasDomain: Boolean
-  dealYears: Int
-  package: Package
-  totalPrice: Int
-}
-
 input ClientApplicationUpdateInput {
   name: String
   phoneNumber: String
@@ -364,20 +366,40 @@ input ClientApplicationUpdateInput {
   dealYears: Int
   package: Package
   totalPrice: Int
+  coupon: CouponUpdateOneWithoutUsedInInput
 }
 
-input ClientApplicationUpdateOneInput {
-  create: ClientApplicationCreateInput
+input ClientApplicationUpdateOneWithoutCouponInput {
+  create: ClientApplicationCreateWithoutCouponInput
   connect: ClientApplicationWhereUniqueInput
   disconnect: Boolean
   delete: Boolean
-  update: ClientApplicationUpdateDataInput
-  upsert: ClientApplicationUpsertNestedInput
+  update: ClientApplicationUpdateWithoutCouponDataInput
+  upsert: ClientApplicationUpsertWithoutCouponInput
 }
 
-input ClientApplicationUpsertNestedInput {
-  update: ClientApplicationUpdateDataInput!
-  create: ClientApplicationCreateInput!
+input ClientApplicationUpdateWithoutCouponDataInput {
+  name: String
+  phoneNumber: String
+  email: String
+  facebook: String
+  address: String
+  postsPerMonth: Int
+  photography: Int
+  gifs: Int
+  videos: Int
+  videoMinutesCount: Int
+  website: Boolean
+  hasHost: Boolean
+  hasDomain: Boolean
+  dealYears: Int
+  package: Package
+  totalPrice: Int
+}
+
+input ClientApplicationUpsertWithoutCouponInput {
+  update: ClientApplicationUpdateWithoutCouponDataInput!
+  create: ClientApplicationCreateWithoutCouponInput!
 }
 
 input ClientApplicationWhereInput {
@@ -827,6 +849,7 @@ input ClientApplicationWhereInput {
 
   """All values greater than or equal the given value."""
   createdAt_gte: DateTime
+  coupon: CouponWhereInput
 }
 
 input ClientApplicationWhereUniqueInput {
@@ -1269,7 +1292,19 @@ input CouponCreateInput {
   coupon: String!
   value: Int!
   discountType: DiscountType!
-  usedIn: ClientApplicationCreateOneInput
+  usedIn: ClientApplicationCreateOneWithoutCouponInput
+  author: UserCreateOneInput!
+}
+
+input CouponCreateOneWithoutUsedInInput {
+  create: CouponCreateWithoutUsedInInput
+  connect: CouponWhereUniqueInput
+}
+
+input CouponCreateWithoutUsedInInput {
+  coupon: String!
+  value: Int!
+  discountType: DiscountType!
   author: UserCreateOneInput!
 }
 
@@ -1348,8 +1383,29 @@ input CouponUpdateInput {
   coupon: String
   value: Int
   discountType: DiscountType
-  usedIn: ClientApplicationUpdateOneInput
+  usedIn: ClientApplicationUpdateOneWithoutCouponInput
   author: UserUpdateOneInput
+}
+
+input CouponUpdateOneWithoutUsedInInput {
+  create: CouponCreateWithoutUsedInInput
+  connect: CouponWhereUniqueInput
+  disconnect: Boolean
+  delete: Boolean
+  update: CouponUpdateWithoutUsedInDataInput
+  upsert: CouponUpsertWithoutUsedInInput
+}
+
+input CouponUpdateWithoutUsedInDataInput {
+  coupon: String
+  value: Int
+  discountType: DiscountType
+  author: UserUpdateOneInput
+}
+
+input CouponUpsertWithoutUsedInInput {
+  update: CouponUpdateWithoutUsedInDataInput!
+  create: CouponCreateWithoutUsedInInput!
 }
 
 input CouponWhereInput {
@@ -4036,13 +4092,13 @@ export type ContactApplicationOrderByInput =   'id_ASC' |
   'createdAt_ASC' |
   'createdAt_DESC'
 
-export interface UserCreateInput {
-  name: String
-  username: String
-  password: String
-  lastLogin?: DateTime
-  permissions?: UserCreatepermissionsInput
-  posts?: PostCreateManyWithoutAuthorInput
+export interface PostCreateWithoutAuthorInput {
+  title: String
+  body: String
+  badge?: String
+  badgeColorClass?: String
+  thumbnailBody: String
+  thumbnailImage?: FileCreateOneInput
 }
 
 export interface VariableWhereInput {
@@ -4227,48 +4283,45 @@ export interface VariableWhereInput {
   additionalBody_not_ends_with?: String
 }
 
-export interface ClientApplicationUpdateOneInput {
-  create?: ClientApplicationCreateInput
+export interface ClientApplicationUpdateOneWithoutCouponInput {
+  create?: ClientApplicationCreateWithoutCouponInput
   connect?: ClientApplicationWhereUniqueInput
   disconnect?: Boolean
   delete?: Boolean
-  update?: ClientApplicationUpdateDataInput
-  upsert?: ClientApplicationUpsertNestedInput
+  update?: ClientApplicationUpdateWithoutCouponDataInput
+  upsert?: ClientApplicationUpsertWithoutCouponInput
 }
 
-export interface ClientApplicationCreateInput {
-  name: String
-  phoneNumber?: String
+export interface VariableUpdateInput {
+  index?: Int
   email?: String
-  facebook?: String
+  phone1?: String
+  phone2?: String
   address?: String
-  postsPerMonth: Int
-  photography: Int
-  gifs: Int
-  videos: Int
-  videoMinutesCount: Int
-  website: Boolean
-  hasHost: Boolean
-  hasDomain: Boolean
-  dealYears: Int
-  package: Package
-  totalPrice: Int
+  facebook?: String
+  instagram?: String
+  linkedIn?: String
+  contactEmail?: String
+  clientsEmail?: String
+  jobsEmail?: String
+  additionalTitle?: String
+  additionalBody?: String
 }
 
 export interface CouponUpdateInput {
   coupon?: String
   value?: Int
   discountType?: DiscountType
-  usedIn?: ClientApplicationUpdateOneInput
+  usedIn?: ClientApplicationUpdateOneWithoutCouponInput
   author?: UserUpdateOneInput
 }
 
-export interface UserCreateWithoutPostsInput {
-  name: String
-  username: String
-  password: String
-  lastLogin?: DateTime
-  permissions?: UserCreatepermissionsInput
+export interface CouponCreateInput {
+  coupon: String
+  value: Int
+  discountType: DiscountType
+  usedIn?: ClientApplicationCreateOneWithoutCouponInput
+  author: UserCreateOneInput
 }
 
 export interface JobApplicationUpdatepositionsInput {
@@ -4597,13 +4650,426 @@ export interface PostUpdateManyWithoutAuthorInput {
   upsert?: PostUpsertWithWhereUniqueWithoutAuthorInput[] | PostUpsertWithWhereUniqueWithoutAuthorInput
 }
 
-export interface UserUpsertNestedInput {
-  update: UserUpdateDataInput
-  create: UserCreateInput
+export interface CouponUpdateWithoutUsedInDataInput {
+  coupon?: String
+  value?: Int
+  discountType?: DiscountType
+  author?: UserUpdateOneInput
+}
+
+export interface VariableCreateInput {
+  index: Int
+  email?: String
+  phone1?: String
+  phone2?: String
+  address?: String
+  facebook?: String
+  instagram?: String
+  linkedIn?: String
+  contactEmail?: String
+  clientsEmail?: String
+  jobsEmail?: String
+  additionalTitle?: String
+  additionalBody?: String
+}
+
+export interface ClientApplicationUpdateInput {
+  name?: String
+  phoneNumber?: String
+  email?: String
+  facebook?: String
+  address?: String
+  postsPerMonth?: Int
+  photography?: Int
+  gifs?: Int
+  videos?: Int
+  videoMinutesCount?: Int
+  website?: Boolean
+  hasHost?: Boolean
+  hasDomain?: Boolean
+  dealYears?: Int
+  package?: Package
+  totalPrice?: Int
+  coupon?: CouponUpdateOneWithoutUsedInInput
+}
+
+export interface UserCreateInput {
+  name: String
+  username: String
+  password: String
+  lastLogin?: DateTime
+  permissions?: UserCreatepermissionsInput
+  posts?: PostCreateManyWithoutAuthorInput
+}
+
+export interface UserUpdateDataInput {
+  name?: String
+  username?: String
+  password?: String
+  lastLogin?: DateTime
+  permissions?: UserUpdatepermissionsInput
+  posts?: PostUpdateManyWithoutAuthorInput
+}
+
+export interface UserCreatepermissionsInput {
+  set?: Permission[] | Permission
+}
+
+export interface ClientApplicationUpsertWithoutCouponInput {
+  update: ClientApplicationUpdateWithoutCouponDataInput
+  create: ClientApplicationCreateWithoutCouponInput
+}
+
+export interface PostCreateManyWithoutAuthorInput {
+  create?: PostCreateWithoutAuthorInput[] | PostCreateWithoutAuthorInput
+  connect?: PostWhereUniqueInput[] | PostWhereUniqueInput
+}
+
+export interface JobApplicationWhereInput {
+  AND?: JobApplicationWhereInput[] | JobApplicationWhereInput
+  OR?: JobApplicationWhereInput[] | JobApplicationWhereInput
+  NOT?: JobApplicationWhereInput[] | JobApplicationWhereInput
+  id?: ID_Input
+  id_not?: ID_Input
+  id_in?: ID_Input[] | ID_Input
+  id_not_in?: ID_Input[] | ID_Input
+  id_lt?: ID_Input
+  id_lte?: ID_Input
+  id_gt?: ID_Input
+  id_gte?: ID_Input
+  id_contains?: ID_Input
+  id_not_contains?: ID_Input
+  id_starts_with?: ID_Input
+  id_not_starts_with?: ID_Input
+  id_ends_with?: ID_Input
+  id_not_ends_with?: ID_Input
+  name?: String
+  name_not?: String
+  name_in?: String[] | String
+  name_not_in?: String[] | String
+  name_lt?: String
+  name_lte?: String
+  name_gt?: String
+  name_gte?: String
+  name_contains?: String
+  name_not_contains?: String
+  name_starts_with?: String
+  name_not_starts_with?: String
+  name_ends_with?: String
+  name_not_ends_with?: String
+  phoneNumber?: String
+  phoneNumber_not?: String
+  phoneNumber_in?: String[] | String
+  phoneNumber_not_in?: String[] | String
+  phoneNumber_lt?: String
+  phoneNumber_lte?: String
+  phoneNumber_gt?: String
+  phoneNumber_gte?: String
+  phoneNumber_contains?: String
+  phoneNumber_not_contains?: String
+  phoneNumber_starts_with?: String
+  phoneNumber_not_starts_with?: String
+  phoneNumber_ends_with?: String
+  phoneNumber_not_ends_with?: String
+  email?: String
+  email_not?: String
+  email_in?: String[] | String
+  email_not_in?: String[] | String
+  email_lt?: String
+  email_lte?: String
+  email_gt?: String
+  email_gte?: String
+  email_contains?: String
+  email_not_contains?: String
+  email_starts_with?: String
+  email_not_starts_with?: String
+  email_ends_with?: String
+  email_not_ends_with?: String
+  address?: String
+  address_not?: String
+  address_in?: String[] | String
+  address_not_in?: String[] | String
+  address_lt?: String
+  address_lte?: String
+  address_gt?: String
+  address_gte?: String
+  address_contains?: String
+  address_not_contains?: String
+  address_starts_with?: String
+  address_not_starts_with?: String
+  address_ends_with?: String
+  address_not_ends_with?: String
+  linkedIn?: String
+  linkedIn_not?: String
+  linkedIn_in?: String[] | String
+  linkedIn_not_in?: String[] | String
+  linkedIn_lt?: String
+  linkedIn_lte?: String
+  linkedIn_gt?: String
+  linkedIn_gte?: String
+  linkedIn_contains?: String
+  linkedIn_not_contains?: String
+  linkedIn_starts_with?: String
+  linkedIn_not_starts_with?: String
+  linkedIn_ends_with?: String
+  linkedIn_not_ends_with?: String
+  createdAt?: DateTime
+  createdAt_not?: DateTime
+  createdAt_in?: DateTime[] | DateTime
+  createdAt_not_in?: DateTime[] | DateTime
+  createdAt_lt?: DateTime
+  createdAt_lte?: DateTime
+  createdAt_gt?: DateTime
+  createdAt_gte?: DateTime
+  resume?: FileWhereInput
 }
 
 export interface UserUpdatepermissionsInput {
   set?: Permission[] | Permission
+}
+
+export interface CouponWhereInput {
+  AND?: CouponWhereInput[] | CouponWhereInput
+  OR?: CouponWhereInput[] | CouponWhereInput
+  NOT?: CouponWhereInput[] | CouponWhereInput
+  id?: ID_Input
+  id_not?: ID_Input
+  id_in?: ID_Input[] | ID_Input
+  id_not_in?: ID_Input[] | ID_Input
+  id_lt?: ID_Input
+  id_lte?: ID_Input
+  id_gt?: ID_Input
+  id_gte?: ID_Input
+  id_contains?: ID_Input
+  id_not_contains?: ID_Input
+  id_starts_with?: ID_Input
+  id_not_starts_with?: ID_Input
+  id_ends_with?: ID_Input
+  id_not_ends_with?: ID_Input
+  coupon?: String
+  coupon_not?: String
+  coupon_in?: String[] | String
+  coupon_not_in?: String[] | String
+  coupon_lt?: String
+  coupon_lte?: String
+  coupon_gt?: String
+  coupon_gte?: String
+  coupon_contains?: String
+  coupon_not_contains?: String
+  coupon_starts_with?: String
+  coupon_not_starts_with?: String
+  coupon_ends_with?: String
+  coupon_not_ends_with?: String
+  value?: Int
+  value_not?: Int
+  value_in?: Int[] | Int
+  value_not_in?: Int[] | Int
+  value_lt?: Int
+  value_lte?: Int
+  value_gt?: Int
+  value_gte?: Int
+  discountType?: DiscountType
+  discountType_not?: DiscountType
+  discountType_in?: DiscountType[] | DiscountType
+  discountType_not_in?: DiscountType[] | DiscountType
+  createdAt?: DateTime
+  createdAt_not?: DateTime
+  createdAt_in?: DateTime[] | DateTime
+  createdAt_not_in?: DateTime[] | DateTime
+  createdAt_lt?: DateTime
+  createdAt_lte?: DateTime
+  createdAt_gt?: DateTime
+  createdAt_gte?: DateTime
+  usedIn?: ClientApplicationWhereInput
+  author?: UserWhereInput
+}
+
+export interface FileCreateOneInput {
+  create?: FileCreateInput
+  connect?: FileWhereUniqueInput
+}
+
+export interface PostWhereInput {
+  AND?: PostWhereInput[] | PostWhereInput
+  OR?: PostWhereInput[] | PostWhereInput
+  NOT?: PostWhereInput[] | PostWhereInput
+  id?: ID_Input
+  id_not?: ID_Input
+  id_in?: ID_Input[] | ID_Input
+  id_not_in?: ID_Input[] | ID_Input
+  id_lt?: ID_Input
+  id_lte?: ID_Input
+  id_gt?: ID_Input
+  id_gte?: ID_Input
+  id_contains?: ID_Input
+  id_not_contains?: ID_Input
+  id_starts_with?: ID_Input
+  id_not_starts_with?: ID_Input
+  id_ends_with?: ID_Input
+  id_not_ends_with?: ID_Input
+  title?: String
+  title_not?: String
+  title_in?: String[] | String
+  title_not_in?: String[] | String
+  title_lt?: String
+  title_lte?: String
+  title_gt?: String
+  title_gte?: String
+  title_contains?: String
+  title_not_contains?: String
+  title_starts_with?: String
+  title_not_starts_with?: String
+  title_ends_with?: String
+  title_not_ends_with?: String
+  body?: String
+  body_not?: String
+  body_in?: String[] | String
+  body_not_in?: String[] | String
+  body_lt?: String
+  body_lte?: String
+  body_gt?: String
+  body_gte?: String
+  body_contains?: String
+  body_not_contains?: String
+  body_starts_with?: String
+  body_not_starts_with?: String
+  body_ends_with?: String
+  body_not_ends_with?: String
+  badge?: String
+  badge_not?: String
+  badge_in?: String[] | String
+  badge_not_in?: String[] | String
+  badge_lt?: String
+  badge_lte?: String
+  badge_gt?: String
+  badge_gte?: String
+  badge_contains?: String
+  badge_not_contains?: String
+  badge_starts_with?: String
+  badge_not_starts_with?: String
+  badge_ends_with?: String
+  badge_not_ends_with?: String
+  badgeColorClass?: String
+  badgeColorClass_not?: String
+  badgeColorClass_in?: String[] | String
+  badgeColorClass_not_in?: String[] | String
+  badgeColorClass_lt?: String
+  badgeColorClass_lte?: String
+  badgeColorClass_gt?: String
+  badgeColorClass_gte?: String
+  badgeColorClass_contains?: String
+  badgeColorClass_not_contains?: String
+  badgeColorClass_starts_with?: String
+  badgeColorClass_not_starts_with?: String
+  badgeColorClass_ends_with?: String
+  badgeColorClass_not_ends_with?: String
+  createdAt?: DateTime
+  createdAt_not?: DateTime
+  createdAt_in?: DateTime[] | DateTime
+  createdAt_not_in?: DateTime[] | DateTime
+  createdAt_lt?: DateTime
+  createdAt_lte?: DateTime
+  createdAt_gt?: DateTime
+  createdAt_gte?: DateTime
+  updatedAt?: DateTime
+  updatedAt_not?: DateTime
+  updatedAt_in?: DateTime[] | DateTime
+  updatedAt_not_in?: DateTime[] | DateTime
+  updatedAt_lt?: DateTime
+  updatedAt_lte?: DateTime
+  updatedAt_gt?: DateTime
+  updatedAt_gte?: DateTime
+  thumbnailBody?: String
+  thumbnailBody_not?: String
+  thumbnailBody_in?: String[] | String
+  thumbnailBody_not_in?: String[] | String
+  thumbnailBody_lt?: String
+  thumbnailBody_lte?: String
+  thumbnailBody_gt?: String
+  thumbnailBody_gte?: String
+  thumbnailBody_contains?: String
+  thumbnailBody_not_contains?: String
+  thumbnailBody_starts_with?: String
+  thumbnailBody_not_starts_with?: String
+  thumbnailBody_ends_with?: String
+  thumbnailBody_not_ends_with?: String
+  author?: UserWhereInput
+  thumbnailImage?: FileWhereInput
+}
+
+export interface FileCreateInput {
+  name: String
+  checksum: String
+}
+
+export interface UserSubscriptionWhereInput {
+  AND?: UserSubscriptionWhereInput[] | UserSubscriptionWhereInput
+  OR?: UserSubscriptionWhereInput[] | UserSubscriptionWhereInput
+  NOT?: UserSubscriptionWhereInput[] | UserSubscriptionWhereInput
+  mutation_in?: MutationType[] | MutationType
+  updatedFields_contains?: String
+  updatedFields_contains_every?: String[] | String
+  updatedFields_contains_some?: String[] | String
+  node?: UserWhereInput
+}
+
+export interface PostCreateInput {
+  title: String
+  body: String
+  badge?: String
+  badgeColorClass?: String
+  thumbnailBody: String
+  author: UserCreateOneWithoutPostsInput
+  thumbnailImage?: FileCreateOneInput
+}
+
+export interface FileUpdateInput {
+  name?: String
+  checksum?: String
+}
+
+export interface UserCreateOneWithoutPostsInput {
+  create?: UserCreateWithoutPostsInput
+  connect?: UserWhereUniqueInput
+}
+
+export interface JobApplicationWhereUniqueInput {
+  id?: ID_Input
+}
+
+export interface UserCreateWithoutPostsInput {
+  name: String
+  username: String
+  password: String
+  lastLogin?: DateTime
+  permissions?: UserCreatepermissionsInput
+}
+
+export interface FileWhereUniqueInput {
+  id?: ID_Input
+}
+
+export interface JobApplicationCreateInput {
+  name: String
+  phoneNumber?: String
+  email?: String
+  address?: String
+  linkedIn?: String
+  positions?: JobApplicationCreatepositionsInput
+  resume: FileCreateOneInput
+}
+
+export interface CouponUpdateOneWithoutUsedInInput {
+  create?: CouponCreateWithoutUsedInInput
+  connect?: CouponWhereUniqueInput
+  disconnect?: Boolean
+  delete?: Boolean
+  update?: CouponUpdateWithoutUsedInDataInput
+  upsert?: CouponUpsertWithoutUsedInInput
+}
+
+export interface JobApplicationCreatepositionsInput {
+  set?: JobPosition[] | JobPosition
 }
 
 export interface UserUpdateOneInput {
@@ -4623,41 +5089,6 @@ export interface UserUpdateInput {
   posts?: PostUpdateManyWithoutAuthorInput
 }
 
-export interface ClientApplicationUpdateDataInput {
-  name?: String
-  phoneNumber?: String
-  email?: String
-  facebook?: String
-  address?: String
-  postsPerMonth?: Int
-  photography?: Int
-  gifs?: Int
-  videos?: Int
-  videoMinutesCount?: Int
-  website?: Boolean
-  hasHost?: Boolean
-  hasDomain?: Boolean
-  dealYears?: Int
-  package?: Package
-  totalPrice?: Int
-}
-
-export interface VariableUpdateInput {
-  index?: Int
-  email?: String
-  phone1?: String
-  phone2?: String
-  address?: String
-  facebook?: String
-  instagram?: String
-  linkedIn?: String
-  contactEmail?: String
-  clientsEmail?: String
-  jobsEmail?: String
-  additionalTitle?: String
-  additionalBody?: String
-}
-
 export interface FileSubscriptionWhereInput {
   AND?: FileSubscriptionWhereInput[] | FileSubscriptionWhereInput
   OR?: FileSubscriptionWhereInput[] | FileSubscriptionWhereInput
@@ -4669,20 +5100,177 @@ export interface FileSubscriptionWhereInput {
   node?: FileWhereInput
 }
 
-export interface VariableCreateInput {
-  index: Int
+export interface ClientApplicationCreateOneWithoutCouponInput {
+  create?: ClientApplicationCreateWithoutCouponInput
+  connect?: ClientApplicationWhereUniqueInput
+}
+
+export interface JobApplicationSubscriptionWhereInput {
+  AND?: JobApplicationSubscriptionWhereInput[] | JobApplicationSubscriptionWhereInput
+  OR?: JobApplicationSubscriptionWhereInput[] | JobApplicationSubscriptionWhereInput
+  NOT?: JobApplicationSubscriptionWhereInput[] | JobApplicationSubscriptionWhereInput
+  mutation_in?: MutationType[] | MutationType
+  updatedFields_contains?: String
+  updatedFields_contains_every?: String[] | String
+  updatedFields_contains_some?: String[] | String
+  node?: JobApplicationWhereInput
+}
+
+export interface ClientApplicationCreateWithoutCouponInput {
+  name: String
+  phoneNumber?: String
   email?: String
-  phone1?: String
-  phone2?: String
-  address?: String
   facebook?: String
-  instagram?: String
-  linkedIn?: String
-  contactEmail?: String
-  clientsEmail?: String
-  jobsEmail?: String
-  additionalTitle?: String
-  additionalBody?: String
+  address?: String
+  postsPerMonth: Int
+  photography: Int
+  gifs: Int
+  videos: Int
+  videoMinutesCount: Int
+  website: Boolean
+  hasHost: Boolean
+  hasDomain: Boolean
+  dealYears: Int
+  package: Package
+  totalPrice: Int
+}
+
+export interface UserWhereUniqueInput {
+  id?: ID_Input
+  username?: String
+}
+
+export interface UserCreateOneInput {
+  create?: UserCreateInput
+  connect?: UserWhereUniqueInput
+}
+
+export interface CouponUpsertWithoutUsedInInput {
+  update: CouponUpdateWithoutUsedInDataInput
+  create: CouponCreateWithoutUsedInInput
+}
+
+export interface ContactApplicationCreateInput {
+  name: String
+  phoneNumber?: String
+  email?: String
+  address?: String
+  question: String
+  body: String
+}
+
+export interface CouponCreateWithoutUsedInInput {
+  coupon: String
+  value: Int
+  discountType: DiscountType
+  author: UserCreateOneInput
+}
+
+export interface CouponCreateOneWithoutUsedInInput {
+  create?: CouponCreateWithoutUsedInInput
+  connect?: CouponWhereUniqueInput
+}
+
+export interface ClientApplicationCreateInput {
+  name: String
+  phoneNumber?: String
+  email?: String
+  facebook?: String
+  address?: String
+  postsPerMonth: Int
+  photography: Int
+  gifs: Int
+  videos: Int
+  videoMinutesCount: Int
+  website: Boolean
+  hasHost: Boolean
+  hasDomain: Boolean
+  dealYears: Int
+  package: Package
+  totalPrice: Int
+  coupon?: CouponCreateOneWithoutUsedInInput
+}
+
+export interface UserUpsertNestedInput {
+  update: UserUpdateDataInput
+  create: UserCreateInput
+}
+
+export interface ClientApplicationWhereUniqueInput {
+  id?: ID_Input
+}
+
+export interface UserWhereInput {
+  AND?: UserWhereInput[] | UserWhereInput
+  OR?: UserWhereInput[] | UserWhereInput
+  NOT?: UserWhereInput[] | UserWhereInput
+  id?: ID_Input
+  id_not?: ID_Input
+  id_in?: ID_Input[] | ID_Input
+  id_not_in?: ID_Input[] | ID_Input
+  id_lt?: ID_Input
+  id_lte?: ID_Input
+  id_gt?: ID_Input
+  id_gte?: ID_Input
+  id_contains?: ID_Input
+  id_not_contains?: ID_Input
+  id_starts_with?: ID_Input
+  id_not_starts_with?: ID_Input
+  id_ends_with?: ID_Input
+  id_not_ends_with?: ID_Input
+  name?: String
+  name_not?: String
+  name_in?: String[] | String
+  name_not_in?: String[] | String
+  name_lt?: String
+  name_lte?: String
+  name_gt?: String
+  name_gte?: String
+  name_contains?: String
+  name_not_contains?: String
+  name_starts_with?: String
+  name_not_starts_with?: String
+  name_ends_with?: String
+  name_not_ends_with?: String
+  username?: String
+  username_not?: String
+  username_in?: String[] | String
+  username_not_in?: String[] | String
+  username_lt?: String
+  username_lte?: String
+  username_gt?: String
+  username_gte?: String
+  username_contains?: String
+  username_not_contains?: String
+  username_starts_with?: String
+  username_not_starts_with?: String
+  username_ends_with?: String
+  username_not_ends_with?: String
+  password?: String
+  password_not?: String
+  password_in?: String[] | String
+  password_not_in?: String[] | String
+  password_lt?: String
+  password_lte?: String
+  password_gt?: String
+  password_gte?: String
+  password_contains?: String
+  password_not_contains?: String
+  password_starts_with?: String
+  password_not_starts_with?: String
+  password_ends_with?: String
+  password_not_ends_with?: String
+  lastLogin?: DateTime
+  lastLogin_not?: DateTime
+  lastLogin_in?: DateTime[] | DateTime
+  lastLogin_not_in?: DateTime[] | DateTime
+  lastLogin_lt?: DateTime
+  lastLogin_lte?: DateTime
+  lastLogin_gt?: DateTime
+  lastLogin_gte?: DateTime
+  posts_every?: PostWhereInput
+  posts_some?: PostWhereInput
+  posts_none?: PostWhereInput
 }
 
 export interface ClientApplicationWhereInput {
@@ -4847,134 +5435,10 @@ export interface ClientApplicationWhereInput {
   createdAt_lte?: DateTime
   createdAt_gt?: DateTime
   createdAt_gte?: DateTime
+  coupon?: CouponWhereInput
 }
 
-export interface ContactApplicationCreateInput {
-  name: String
-  phoneNumber?: String
-  email?: String
-  address?: String
-  question: String
-  body: String
-}
-
-export interface JobApplicationSubscriptionWhereInput {
-  AND?: JobApplicationSubscriptionWhereInput[] | JobApplicationSubscriptionWhereInput
-  OR?: JobApplicationSubscriptionWhereInput[] | JobApplicationSubscriptionWhereInput
-  NOT?: JobApplicationSubscriptionWhereInput[] | JobApplicationSubscriptionWhereInput
-  mutation_in?: MutationType[] | MutationType
-  updatedFields_contains?: String
-  updatedFields_contains_every?: String[] | String
-  updatedFields_contains_some?: String[] | String
-  node?: JobApplicationWhereInput
-}
-
-export interface UserCreatepermissionsInput {
-  set?: Permission[] | Permission
-}
-
-export interface UserWhereInput {
-  AND?: UserWhereInput[] | UserWhereInput
-  OR?: UserWhereInput[] | UserWhereInput
-  NOT?: UserWhereInput[] | UserWhereInput
-  id?: ID_Input
-  id_not?: ID_Input
-  id_in?: ID_Input[] | ID_Input
-  id_not_in?: ID_Input[] | ID_Input
-  id_lt?: ID_Input
-  id_lte?: ID_Input
-  id_gt?: ID_Input
-  id_gte?: ID_Input
-  id_contains?: ID_Input
-  id_not_contains?: ID_Input
-  id_starts_with?: ID_Input
-  id_not_starts_with?: ID_Input
-  id_ends_with?: ID_Input
-  id_not_ends_with?: ID_Input
-  name?: String
-  name_not?: String
-  name_in?: String[] | String
-  name_not_in?: String[] | String
-  name_lt?: String
-  name_lte?: String
-  name_gt?: String
-  name_gte?: String
-  name_contains?: String
-  name_not_contains?: String
-  name_starts_with?: String
-  name_not_starts_with?: String
-  name_ends_with?: String
-  name_not_ends_with?: String
-  username?: String
-  username_not?: String
-  username_in?: String[] | String
-  username_not_in?: String[] | String
-  username_lt?: String
-  username_lte?: String
-  username_gt?: String
-  username_gte?: String
-  username_contains?: String
-  username_not_contains?: String
-  username_starts_with?: String
-  username_not_starts_with?: String
-  username_ends_with?: String
-  username_not_ends_with?: String
-  password?: String
-  password_not?: String
-  password_in?: String[] | String
-  password_not_in?: String[] | String
-  password_lt?: String
-  password_lte?: String
-  password_gt?: String
-  password_gte?: String
-  password_contains?: String
-  password_not_contains?: String
-  password_starts_with?: String
-  password_not_starts_with?: String
-  password_ends_with?: String
-  password_not_ends_with?: String
-  lastLogin?: DateTime
-  lastLogin_not?: DateTime
-  lastLogin_in?: DateTime[] | DateTime
-  lastLogin_not_in?: DateTime[] | DateTime
-  lastLogin_lt?: DateTime
-  lastLogin_lte?: DateTime
-  lastLogin_gt?: DateTime
-  lastLogin_gte?: DateTime
-  posts_every?: PostWhereInput
-  posts_some?: PostWhereInput
-  posts_none?: PostWhereInput
-}
-
-export interface PostCreateManyWithoutAuthorInput {
-  create?: PostCreateWithoutAuthorInput[] | PostCreateWithoutAuthorInput
-  connect?: PostWhereUniqueInput[] | PostWhereUniqueInput
-}
-
-export interface UserWhereUniqueInput {
-  id?: ID_Input
-  username?: String
-}
-
-export interface PostCreateWithoutAuthorInput {
-  title: String
-  body: String
-  badge?: String
-  badgeColorClass?: String
-  thumbnailBody: String
-  thumbnailImage?: FileCreateOneInput
-}
-
-export interface ClientApplicationWhereUniqueInput {
-  id?: ID_Input
-}
-
-export interface FileCreateOneInput {
-  create?: FileCreateInput
-  connect?: FileWhereUniqueInput
-}
-
-export interface ClientApplicationUpdateInput {
+export interface ClientApplicationUpdateWithoutCouponDataInput {
   name?: String
   phoneNumber?: String
   email?: String
@@ -4991,359 +5455,6 @@ export interface ClientApplicationUpdateInput {
   dealYears?: Int
   package?: Package
   totalPrice?: Int
-}
-
-export interface FileCreateInput {
-  name: String
-  checksum: String
-}
-
-export interface ClientApplicationUpsertNestedInput {
-  update: ClientApplicationUpdateDataInput
-  create: ClientApplicationCreateInput
-}
-
-export interface PostCreateInput {
-  title: String
-  body: String
-  badge?: String
-  badgeColorClass?: String
-  thumbnailBody: String
-  author: UserCreateOneWithoutPostsInput
-  thumbnailImage?: FileCreateOneInput
-}
-
-export interface CouponWhereInput {
-  AND?: CouponWhereInput[] | CouponWhereInput
-  OR?: CouponWhereInput[] | CouponWhereInput
-  NOT?: CouponWhereInput[] | CouponWhereInput
-  id?: ID_Input
-  id_not?: ID_Input
-  id_in?: ID_Input[] | ID_Input
-  id_not_in?: ID_Input[] | ID_Input
-  id_lt?: ID_Input
-  id_lte?: ID_Input
-  id_gt?: ID_Input
-  id_gte?: ID_Input
-  id_contains?: ID_Input
-  id_not_contains?: ID_Input
-  id_starts_with?: ID_Input
-  id_not_starts_with?: ID_Input
-  id_ends_with?: ID_Input
-  id_not_ends_with?: ID_Input
-  coupon?: String
-  coupon_not?: String
-  coupon_in?: String[] | String
-  coupon_not_in?: String[] | String
-  coupon_lt?: String
-  coupon_lte?: String
-  coupon_gt?: String
-  coupon_gte?: String
-  coupon_contains?: String
-  coupon_not_contains?: String
-  coupon_starts_with?: String
-  coupon_not_starts_with?: String
-  coupon_ends_with?: String
-  coupon_not_ends_with?: String
-  value?: Int
-  value_not?: Int
-  value_in?: Int[] | Int
-  value_not_in?: Int[] | Int
-  value_lt?: Int
-  value_lte?: Int
-  value_gt?: Int
-  value_gte?: Int
-  discountType?: DiscountType
-  discountType_not?: DiscountType
-  discountType_in?: DiscountType[] | DiscountType
-  discountType_not_in?: DiscountType[] | DiscountType
-  createdAt?: DateTime
-  createdAt_not?: DateTime
-  createdAt_in?: DateTime[] | DateTime
-  createdAt_not_in?: DateTime[] | DateTime
-  createdAt_lt?: DateTime
-  createdAt_lte?: DateTime
-  createdAt_gt?: DateTime
-  createdAt_gte?: DateTime
-  usedIn?: ClientApplicationWhereInput
-  author?: UserWhereInput
-}
-
-export interface UserCreateOneWithoutPostsInput {
-  create?: UserCreateWithoutPostsInput
-  connect?: UserWhereUniqueInput
-}
-
-export interface UserSubscriptionWhereInput {
-  AND?: UserSubscriptionWhereInput[] | UserSubscriptionWhereInput
-  OR?: UserSubscriptionWhereInput[] | UserSubscriptionWhereInput
-  NOT?: UserSubscriptionWhereInput[] | UserSubscriptionWhereInput
-  mutation_in?: MutationType[] | MutationType
-  updatedFields_contains?: String
-  updatedFields_contains_every?: String[] | String
-  updatedFields_contains_some?: String[] | String
-  node?: UserWhereInput
-}
-
-export interface UserCreateOneInput {
-  create?: UserCreateInput
-  connect?: UserWhereUniqueInput
-}
-
-export interface JobApplicationWhereUniqueInput {
-  id?: ID_Input
-}
-
-export interface ClientApplicationCreateOneInput {
-  create?: ClientApplicationCreateInput
-  connect?: ClientApplicationWhereUniqueInput
-}
-
-export interface CouponCreateInput {
-  coupon: String
-  value: Int
-  discountType: DiscountType
-  usedIn?: ClientApplicationCreateOneInput
-  author: UserCreateOneInput
-}
-
-export interface JobApplicationCreatepositionsInput {
-  set?: JobPosition[] | JobPosition
-}
-
-export interface JobApplicationCreateInput {
-  name: String
-  phoneNumber?: String
-  email?: String
-  address?: String
-  linkedIn?: String
-  positions?: JobApplicationCreatepositionsInput
-  resume: FileCreateOneInput
-}
-
-export interface FileWhereUniqueInput {
-  id?: ID_Input
-}
-
-export interface FileUpdateInput {
-  name?: String
-  checksum?: String
-}
-
-export interface PostWhereInput {
-  AND?: PostWhereInput[] | PostWhereInput
-  OR?: PostWhereInput[] | PostWhereInput
-  NOT?: PostWhereInput[] | PostWhereInput
-  id?: ID_Input
-  id_not?: ID_Input
-  id_in?: ID_Input[] | ID_Input
-  id_not_in?: ID_Input[] | ID_Input
-  id_lt?: ID_Input
-  id_lte?: ID_Input
-  id_gt?: ID_Input
-  id_gte?: ID_Input
-  id_contains?: ID_Input
-  id_not_contains?: ID_Input
-  id_starts_with?: ID_Input
-  id_not_starts_with?: ID_Input
-  id_ends_with?: ID_Input
-  id_not_ends_with?: ID_Input
-  title?: String
-  title_not?: String
-  title_in?: String[] | String
-  title_not_in?: String[] | String
-  title_lt?: String
-  title_lte?: String
-  title_gt?: String
-  title_gte?: String
-  title_contains?: String
-  title_not_contains?: String
-  title_starts_with?: String
-  title_not_starts_with?: String
-  title_ends_with?: String
-  title_not_ends_with?: String
-  body?: String
-  body_not?: String
-  body_in?: String[] | String
-  body_not_in?: String[] | String
-  body_lt?: String
-  body_lte?: String
-  body_gt?: String
-  body_gte?: String
-  body_contains?: String
-  body_not_contains?: String
-  body_starts_with?: String
-  body_not_starts_with?: String
-  body_ends_with?: String
-  body_not_ends_with?: String
-  badge?: String
-  badge_not?: String
-  badge_in?: String[] | String
-  badge_not_in?: String[] | String
-  badge_lt?: String
-  badge_lte?: String
-  badge_gt?: String
-  badge_gte?: String
-  badge_contains?: String
-  badge_not_contains?: String
-  badge_starts_with?: String
-  badge_not_starts_with?: String
-  badge_ends_with?: String
-  badge_not_ends_with?: String
-  badgeColorClass?: String
-  badgeColorClass_not?: String
-  badgeColorClass_in?: String[] | String
-  badgeColorClass_not_in?: String[] | String
-  badgeColorClass_lt?: String
-  badgeColorClass_lte?: String
-  badgeColorClass_gt?: String
-  badgeColorClass_gte?: String
-  badgeColorClass_contains?: String
-  badgeColorClass_not_contains?: String
-  badgeColorClass_starts_with?: String
-  badgeColorClass_not_starts_with?: String
-  badgeColorClass_ends_with?: String
-  badgeColorClass_not_ends_with?: String
-  createdAt?: DateTime
-  createdAt_not?: DateTime
-  createdAt_in?: DateTime[] | DateTime
-  createdAt_not_in?: DateTime[] | DateTime
-  createdAt_lt?: DateTime
-  createdAt_lte?: DateTime
-  createdAt_gt?: DateTime
-  createdAt_gte?: DateTime
-  updatedAt?: DateTime
-  updatedAt_not?: DateTime
-  updatedAt_in?: DateTime[] | DateTime
-  updatedAt_not_in?: DateTime[] | DateTime
-  updatedAt_lt?: DateTime
-  updatedAt_lte?: DateTime
-  updatedAt_gt?: DateTime
-  updatedAt_gte?: DateTime
-  thumbnailBody?: String
-  thumbnailBody_not?: String
-  thumbnailBody_in?: String[] | String
-  thumbnailBody_not_in?: String[] | String
-  thumbnailBody_lt?: String
-  thumbnailBody_lte?: String
-  thumbnailBody_gt?: String
-  thumbnailBody_gte?: String
-  thumbnailBody_contains?: String
-  thumbnailBody_not_contains?: String
-  thumbnailBody_starts_with?: String
-  thumbnailBody_not_starts_with?: String
-  thumbnailBody_ends_with?: String
-  thumbnailBody_not_ends_with?: String
-  author?: UserWhereInput
-  thumbnailImage?: FileWhereInput
-}
-
-export interface JobApplicationWhereInput {
-  AND?: JobApplicationWhereInput[] | JobApplicationWhereInput
-  OR?: JobApplicationWhereInput[] | JobApplicationWhereInput
-  NOT?: JobApplicationWhereInput[] | JobApplicationWhereInput
-  id?: ID_Input
-  id_not?: ID_Input
-  id_in?: ID_Input[] | ID_Input
-  id_not_in?: ID_Input[] | ID_Input
-  id_lt?: ID_Input
-  id_lte?: ID_Input
-  id_gt?: ID_Input
-  id_gte?: ID_Input
-  id_contains?: ID_Input
-  id_not_contains?: ID_Input
-  id_starts_with?: ID_Input
-  id_not_starts_with?: ID_Input
-  id_ends_with?: ID_Input
-  id_not_ends_with?: ID_Input
-  name?: String
-  name_not?: String
-  name_in?: String[] | String
-  name_not_in?: String[] | String
-  name_lt?: String
-  name_lte?: String
-  name_gt?: String
-  name_gte?: String
-  name_contains?: String
-  name_not_contains?: String
-  name_starts_with?: String
-  name_not_starts_with?: String
-  name_ends_with?: String
-  name_not_ends_with?: String
-  phoneNumber?: String
-  phoneNumber_not?: String
-  phoneNumber_in?: String[] | String
-  phoneNumber_not_in?: String[] | String
-  phoneNumber_lt?: String
-  phoneNumber_lte?: String
-  phoneNumber_gt?: String
-  phoneNumber_gte?: String
-  phoneNumber_contains?: String
-  phoneNumber_not_contains?: String
-  phoneNumber_starts_with?: String
-  phoneNumber_not_starts_with?: String
-  phoneNumber_ends_with?: String
-  phoneNumber_not_ends_with?: String
-  email?: String
-  email_not?: String
-  email_in?: String[] | String
-  email_not_in?: String[] | String
-  email_lt?: String
-  email_lte?: String
-  email_gt?: String
-  email_gte?: String
-  email_contains?: String
-  email_not_contains?: String
-  email_starts_with?: String
-  email_not_starts_with?: String
-  email_ends_with?: String
-  email_not_ends_with?: String
-  address?: String
-  address_not?: String
-  address_in?: String[] | String
-  address_not_in?: String[] | String
-  address_lt?: String
-  address_lte?: String
-  address_gt?: String
-  address_gte?: String
-  address_contains?: String
-  address_not_contains?: String
-  address_starts_with?: String
-  address_not_starts_with?: String
-  address_ends_with?: String
-  address_not_ends_with?: String
-  linkedIn?: String
-  linkedIn_not?: String
-  linkedIn_in?: String[] | String
-  linkedIn_not_in?: String[] | String
-  linkedIn_lt?: String
-  linkedIn_lte?: String
-  linkedIn_gt?: String
-  linkedIn_gte?: String
-  linkedIn_contains?: String
-  linkedIn_not_contains?: String
-  linkedIn_starts_with?: String
-  linkedIn_not_starts_with?: String
-  linkedIn_ends_with?: String
-  linkedIn_not_ends_with?: String
-  createdAt?: DateTime
-  createdAt_not?: DateTime
-  createdAt_in?: DateTime[] | DateTime
-  createdAt_not_in?: DateTime[] | DateTime
-  createdAt_lt?: DateTime
-  createdAt_lte?: DateTime
-  createdAt_gt?: DateTime
-  createdAt_gte?: DateTime
-  resume?: FileWhereInput
-}
-
-export interface UserUpdateDataInput {
-  name?: String
-  username?: String
-  password?: String
-  lastLogin?: DateTime
-  permissions?: UserUpdatepermissionsInput
-  posts?: PostUpdateManyWithoutAuthorInput
 }
 
 /*
@@ -5585,6 +5696,7 @@ export interface ClientApplication extends Node {
   package: Package
   totalPrice: Int
   createdAt: DateTime
+  coupon?: Coupon
 }
 
 export interface AggregateVariable {

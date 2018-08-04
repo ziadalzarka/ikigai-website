@@ -1,5 +1,4 @@
 import { FormBuilder } from '@angular/forms';
-import { GraphqlApplicationsService } from './../graphql-applications.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { AppState } from '@app/redux/app.state';

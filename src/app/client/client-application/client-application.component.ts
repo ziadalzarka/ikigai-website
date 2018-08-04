@@ -29,25 +29,21 @@ export class ClientApplicationComponent implements OnInit {
 			postsPerMonth: 30,
 			gifs: 1,
 			videos: 0,
-			photography: 0,
 		},
 		[Package.Pro]: {
 			postsPerMonth: 60,
 			gifs: 3,
 			videos: 1,
-			photography: 20,
 		},
 		[Package.Enterprise]: {
 			postsPerMonth: 120,
 			gifs: 5,
 			videos: 3,
-			photography: 100,
 		},
 		[Package.Custom]: {
 			postsPerMonth: 0,
 			gifs: 0,
 			videos: 0,
-			photography: 0,
 		}
 	};
 
@@ -72,6 +68,7 @@ export class ClientApplicationComponent implements OnInit {
 		videoMinutesCount: 1,
 		coupon: '',
 		// -----------
+		photography: 0,
 		package: Package.Light,
 		...this.packagesQuotas[Package.Light]
 	});
@@ -154,10 +151,12 @@ export class ClientApplicationComponent implements OnInit {
 		this.calculatePrice();
 	}
 
-	onMediaChanged() {
-		this.clientApplicationForm.patchValue({
-			package: Package.Custom
-		});
+	onMediaChanged(isolated) {
+		if (!isolated) {
+			this.clientApplicationForm.patchValue({
+				package: Package.Custom
+			});
+		}
 		this.calculatePrice();
 	}
 
