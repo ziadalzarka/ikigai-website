@@ -5,6 +5,7 @@ import { Routes, RouterModule } from '@angular/router';
 import {
 	EditEmailsComponent
 } from '@app/dashboard/overview/settings/edit-emails/edit-emails.component';
+import { PricesComponent } from '@app/dashboard/overview/settings/prices/prices.component';
 
 const routes: Routes = [{
 	path: 'footer',
@@ -23,6 +24,12 @@ const routes: Routes = [{
 	component: UsersComponent,
 	data: {
 		state: 'users'
+	}
+}, {
+	path: 'prices',
+	component: PricesComponent,
+	data: {
+		state: 'prices'
 	}
 }];
 

@@ -11,6 +11,7 @@ import { GlobalModule } from '@app/global/global.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NgbModalStack } from '@ng-bootstrap/ng-bootstrap/modal/modal-stack';
 import { NgbModal, NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { PricesComponent } from './prices/prices.component';
 
 @NgModule({
 	imports: [
@@ -20,6 +21,6 @@ import { NgbModal, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 		GlobalModule,
 		ReactiveFormsModule,
 	],
-	declarations: [EditFooterComponent, EditEmailsComponent, UsersComponent]
+	declarations: [EditFooterComponent, EditEmailsComponent, UsersComponent, PricesComponent]
 })
 export class SettingsModule { }

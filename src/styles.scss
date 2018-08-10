@@ -7,6 +7,14 @@ app-root {
   height: 100%;
 }
 
+body {
+  color: #555 !important;
+}
+
+p {
+	font-size: 1.3em;
+}
+
 html {
   font-size: 90%;
   @include lt-lg {
@@ -283,25 +291,22 @@ label {
   min-width: 100%;
 }
 
-.post {
-  & .previewImg#preview {
-    max-height: 12.5rem;
-    object-fit: cover;
-  }
+.previewImg#preview {
+  max-height: 12.5rem;
+  object-fit: cover;
 }
 
 .minh-100 {
   min-height: 100%;
 }
 
-
 .fab {
-	display: flex;
-	justify-content: center;
-	position: fixed;
-	bottom: 2%;
-	right: 2%;
-	border-radius: 50%;
-	width: 64px;
-	height: 64px;
+  display: flex;
+  justify-content: center;
+  position: fixed;
+  bottom: 2%;
+  right: 2%;
+  border-radius: 50%;
+  width: 64px;
+  height: 64px;
 }

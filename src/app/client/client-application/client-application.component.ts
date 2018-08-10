@@ -9,6 +9,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { SeoService } from '@app/seo.service';
 import { Coupon } from '@app/redux/models/coupon.model';
 import { DiscountType } from '@app/redux/enums/discount-type.enum';
+import Cashier from 'utils/cashier';
 
 declare var loadMaterialize: any;
 
@@ -84,61 +85,22 @@ export class ClientApplicationComponent implements OnInit {
 	pricePerMonth = 0;
 	discount = 0;
 
-	calculateMonthlyPrice() {
-		let price = 0;
-		price += this.clientApplication.postsPerMonth * this.prices.post;
-		price +=
-			this.clientApplication.videos *
-			this.clientApplication.videoMinutesCount *
-			this.prices.videoMinute;
-		price += this.clientApplication.photography * this.prices.photo;
-		price += this.clientApplication.gifs * this.prices.gif;
-
-		return price;
-	}
-
 	calculatePrice() {
-		this.pricePerMonth = this.calculateMonthlyPrice();
+		this.pricePerMonth = this.cashier.calculateMonthlyPrice(this.clientApplication);
 
 		let totalPrice = this.pricePerMonth;
 
 		totalPrice *= 12 * this.clientApplication.dealYears;
 
-		totalPrice -= this.calculateDiscount(totalPrice);
+		this.discount = this.cashier
+		.calculateDiscount(this.clientApplication, this.activeCoupon, totalPrice);
+
+		totalPrice -= this.discount;
 
 		this.clientApplicationForm.patchValue({ totalPrice });
 	}
 
-	calculateDiscount(currentPrice) {
-		const application = this.clientApplication;
-		let discount = 0;
-
-		if (application.dealYears > 1) {
-			switch (application.package) {
-				case Package.Pro:
-					discount += 500 * application.dealYears * 12;
-					break;
-				case Package.Enterprise:
-					discount += 1000 * application.dealYears * 12;
-					break;
-			}
-		}
-
-		if (this.activeCoupon) {
-			switch (this.activeCoupon.discountType) {
-				case DiscountType.Fixed:
-					discount += this.activeCoupon.value;
-					break;
-				case DiscountType.Percentage:
-					discount += currentPrice * (this.activeCoupon.value / 100);
-					break;
-			}
-		}
-
-		return this.discount = discount;
-	}
-
-	patchPackage() {
+		patchPackage() {
 		this.clientApplicationForm.patchValue(
 			this.packagesQuotas[this.clientApplication.package.toString()]
 		);
@@ -192,11 +154,14 @@ export class ClientApplicationComponent implements OnInit {
 			}, invalidate);
 	}
 
+	private cashier = new Cashier(this.prices, this.packagesQuotas);
+
 	constructor(
 		private fb: FormBuilder,
 		private clientService: GraphqlClientService,
 		private modalService: NgbModal,
-		private seoService: SeoService) { }
+		private seoService: SeoService,
+	) { }
 
 	ngOnInit() {
 		loadMaterialize();

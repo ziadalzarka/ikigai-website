@@ -98,17 +98,18 @@ export const routerTransition = trigger('routerTransition', [
 	transition('new_post => *', [swipeUp]),
 	transition('posts => *', [swipeUp]),
 	// going down
-	transition('emails => footer', [swipeUp]),
-	transition('users => emails, users => footer', [swipeUp]),
-	transition('coupons => users, coupons => emails, coupons => footer', [swipeUp]),
-	transition('jobs => users, jobs => emails, jobs => footer, jobs => coupons', [swipeUp]),
-	transition('clients => jobs, clients => coupons, clients => users, clients => emails, clients => footer', [swipeUp]),
+	transition('prices => footer', [swipeUp]),
+	transition('emails => prices, emails => footer', [swipeUp]),
+	transition('users => emails, users => prices, users => footer', [swipeUp]),
+	transition('coupons => users, coupons => emails, coupons => prices, coupons => footer', [swipeUp]),
+	transition('jobs => users, jobs => emails, jobs => coupons, jobs => prices, jobs => footer', [swipeUp]),
+	transition('clients => jobs, clients => users, clients => emails, clients => coupons, clients => prices, clients => footer', [swipeUp]),
 	// going up
 	transition('clients => *', [swipeDown]),
 	transition('jobs => *', [swipeDown]),
 	transition('coupons => *', [swipeDown]),
 	transition('users => *', [swipeDown]),
 	transition('emails => *', [swipeDown]),
+	transition('prices => *', [swipeDown]),
 	transition('footer => *', [swipeDown]),
-
 ]);

@@ -1,5 +1,9 @@
 nav.navbar.navbar-expand.navbar-dark.bg-dark
-	a.navbar-brand([routerLink]="['/']") Ikigai
+	a.navbar-brand([routerLink]="['/']")
+		.row
+			.col.align-items-baseline.d-flex
+				i.fa.fa-arrow-left.f-4
+				p.ml-4.mb-0 Back
 	//- button.navbar-toggler(type='button', data-toggle='collapse', data-target='#ikigaiNavbar', aria-controls='ikigaiNavbar', aria-expanded='false', aria-label='Toggle navigation')
 	//- 	span.navbar-toggler-icon
 	//- #ikigaiNavbar.collapse.navbar-collapse
