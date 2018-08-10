@@ -113,7 +113,7 @@ export class ClientApplicationComponent implements OnInit {
 		this.calculatePrice();
 	}
 
-	onMediaChanged(isolated) {
+	onMediaChanged(isolated = false) {
 		if (!isolated) {
 			this.clientApplicationForm.patchValue({
 				package: Package.Custom
