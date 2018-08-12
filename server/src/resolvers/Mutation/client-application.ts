@@ -1,3 +1,4 @@
+import Cashier from '../../../../src/utils/cashier';
 import { Context } from '../../utils';
 import { ClientApplication } from '../../generated/prisma';
 
@@ -20,27 +21,36 @@ function linkCoupon(couponId: string, application: Promise<ClientApplication>, c
 	});
 }
 
+const cashier = new Cashier();
+
 export const clientApplicationMutation = {
 	async applyClient(parent, data, ctx: Context, info) {
 
-		const { coupon, dealPackage } = data;
+		let { coupon } = data;
+		const { dealPackage } = data;
 		let couponId: any = coupon && await couponExists(coupon, ctx);
 
+		let totalPrice = 0;
+
 		if (couponId) {
-			couponId = (await ctx.db.query.coupon({
+			coupon = await ctx.db.query.coupon({
 				where: {
 					coupon
 				}
-			}, `{ id }`)).id;
+			}, `{ id value discountType }`);
+			couponId = coupon.id;
 		}
 
 		delete data.dealPackage;
 		delete data.coupon;
+		delete data.totalPrice;
+
+		data.package = dealPackage;
+		data.totalPrice = cashier.calculateTotalPrice(data, coupon);
 
 		const application = ctx.db.mutation.createClientApplication({
 			data: {
 				...data,
-				package: dealPackage,
 				...couponId && {
 					coupon: {
 						connect: { id: couponId }
@@ -49,7 +59,7 @@ export const clientApplicationMutation = {
 			}
 		}, info);
 
-		linkCoupon(couponId, application, ctx);
+		if (couponId) linkCoupon(couponId, application, ctx);
 
 		return application;
 	},

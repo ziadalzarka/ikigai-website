@@ -45,6 +45,11 @@ const getClientApplicationQuery = gql`
 			package
 			totalPrice
 			createdAt
+			coupon {
+				value
+				discountType
+				coupon
+			}
 		}
 	}
 `;

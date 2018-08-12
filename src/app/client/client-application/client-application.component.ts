@@ -23,37 +23,9 @@ export class ClientApplicationComponent implements OnInit {
 	@ViewChild('successful') submissionSuccessful;
 	@ViewChild('failed') submissionFailed;
 
+	private cashier = new Cashier();
+
 	Package = Package;
-
-	packagesQuotas = {
-		[Package.Light]: {
-			postsPerMonth: 30,
-			gifs: 1,
-			videos: 0,
-		},
-		[Package.Pro]: {
-			postsPerMonth: 60,
-			gifs: 3,
-			videos: 1,
-		},
-		[Package.Enterprise]: {
-			postsPerMonth: 120,
-			gifs: 5,
-			videos: 3,
-		},
-		[Package.Custom]: {
-			postsPerMonth: 0,
-			gifs: 0,
-			videos: 0,
-		}
-	};
-
-	prices = {
-		post: 70,
-		videoMinute: 1000,
-		photo: 25,
-		gif: 100,
-	};
 
 	clientApplicationForm = this.fb.group({
 		name: '',
@@ -71,7 +43,7 @@ export class ClientApplicationComponent implements OnInit {
 		// -----------
 		photography: 0,
 		package: Package.Light,
-		...this.packagesQuotas[Package.Light]
+		...this.cashier.quotas[Package.Light]
 	});
 
 	get coupon(): string {
@@ -86,23 +58,23 @@ export class ClientApplicationComponent implements OnInit {
 	discount = 0;
 
 	calculatePrice() {
-		this.pricePerMonth = this.cashier.calculateMonthlyPrice(this.clientApplication);
+		this.pricePerMonth = this.cashier.calculateMonthlyPrice(this.clientApplication).value;
 
 		let totalPrice = this.pricePerMonth;
 
 		totalPrice *= 12 * this.clientApplication.dealYears;
 
 		this.discount = this.cashier
-		.calculateDiscount(this.clientApplication, this.activeCoupon, totalPrice);
+			.calculateDiscount(this.clientApplication, this.activeCoupon, totalPrice).value;
 
 		totalPrice -= this.discount;
 
 		this.clientApplicationForm.patchValue({ totalPrice });
 	}
 
-		patchPackage() {
+	patchPackage() {
 		this.clientApplicationForm.patchValue(
-			this.packagesQuotas[this.clientApplication.package.toString()]
+			this.cashier.quotas[this.clientApplication.package.toString()]
 		);
 	}
 
@@ -153,8 +125,6 @@ export class ClientApplicationComponent implements OnInit {
 				}
 			}, invalidate);
 	}
-
-	private cashier = new Cashier(this.prices, this.packagesQuotas);
 
 	constructor(
 		private fb: FormBuilder,

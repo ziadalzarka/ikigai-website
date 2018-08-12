@@ -34,7 +34,7 @@
 								a(href='{{app.facebook}}', target='_blank', *ngIf="app.facebook")
 									i.fa.fa-facebook.f-3
 								a(*ngIf="!app.facebook") ---
-							td.align-middle {{app.createdAt|date:'mediumDate'}}
+							td.align-middle {{app.createdAt|date:'longDate'}}
 					tfoot
 						tr
 							td(colspan='4')
@@ -59,7 +59,7 @@ ng-template(#showClientApplication, let-close='close', let-dismiss='dismiss')
 				p {{(selectedApplication$|async)?.totalPrice}} EGP
 			.col-12.col-lg-6
 				label Submitted At
-				p {{(selectedApplication$|async)?.createdAt | date:'short'}}
+				p {{(selectedApplication$|async)?.createdAt | date:'longDate'}}
 			.col-12.col-lg-6(*ngIf="(selectedApplication$|async)?.facebook")
 				label Facebook
 				a.d-block(href='{{(selectedApplication$|async)?.facebook}}', target='_blank')
@@ -71,17 +71,33 @@ ng-template(#showClientApplication, let-close='close', let-dismiss='dismiss')
 			.col-12.col-lg-6
 				label Posts per month
 				p {{(selectedApplication$|async)?.postsPerMonth}}
+					//- span.ml-2 ({{selectedPrices.posts}} EGP)
 			.col-12.col-lg-6
 				label Photography
 				p {{(selectedApplication$|async)?.photography}}
+					//- span.ml-2 ({{selectedPrices.photography}} EGP)
 			.col-12.col-lg-6
 				label Gifs
 				p {{(selectedApplication$|async)?.gifs}}
+					//- span.ml-2 ({{selectedPrices.gifs}} EGP)
 			.col-12.col-lg-6
 				label Videos
 				p {{(selectedApplication$|async)?.videos}} Videos 
 					| (Averaged
 					| {{(selectedApplication$|async)?.videoMinutesCount}} minutes)
+					//- span.ml-2 ({{selectedPrices.videos}} EGP)
+		br
+		div
+			h4 Discounts
+			hr
+			.row
+				.col-12.col-lg-6(*ngIf="(selectedApplication$|async)?.coupon")
+					label Coupon
+					p.text-danger {{selectedDiscount?.coupon}} EGP
+						span.ml-2 ({{(selectedApplication$|async)?.coupon|coupon}})
+				.col-12.col-lg-6(*ngIf="selectedDiscount")
+					label Fixed Package
+					p.text-danger {{selectedDiscount?.years}} EGP
 		br
 		div(*ngIf="(selectedApplication$|async)?.website")
 			h4 Website

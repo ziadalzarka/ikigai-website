@@ -1,3 +1,4 @@
+import { Coupon } from './coupon.model';
 import { Package } from '@app/redux/enums/package.enum';
 
 export interface ClientApplication {
@@ -16,6 +17,7 @@ export interface ClientApplication {
 	hasHost: boolean;
 	hasDomain: boolean;
 	dealYears: number;
+	coupon: Coupon;
 	package: Package;
 	totalPrice: number;
 }

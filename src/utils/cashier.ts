@@ -1,6 +1,6 @@
-import { Package } from '@app/redux/enums/package.enum';
-import { Coupon } from '@app/redux/models/coupon.model';
-import { DiscountType } from '@app/redux/enums/discount-type.enum';
+import { Package } from '../app/redux/enums/package.enum';
+import { Coupon } from '../app/redux/models/coupon.model';
+import { DiscountType } from '../app/redux/enums/discount-type.enum';
 export interface CashierPrices {
 	post: number;
 	videoMinute: number;
@@ -16,33 +16,87 @@ export interface CashierQuotas {
 	videoMinutesCount?: number;
 }
 
+const defPackagesQuotas = {
+	[Package.Light]: {
+		postsPerMonth: 30,
+		gifs: 1,
+		videos: 0,
+	},
+	[Package.Pro]: {
+		postsPerMonth: 60,
+		gifs: 3,
+		videos: 1,
+	},
+	[Package.Enterprise]: {
+		postsPerMonth: 120,
+		gifs: 5,
+		videos: 3,
+	},
+	[Package.Custom]: {
+		postsPerMonth: 0,
+		gifs: 0,
+		videos: 0,
+	}
+};
+
+const defPrices = {
+	post: 70,
+	videoMinute: 1000,
+	photo: 25,
+	gif: 100,
+};
+
 export default class Cashier {
-	constructor(private prices: CashierPrices, private quotas: CashierQuotas) { }
+	constructor(
+		public prices: CashierPrices = defPrices,
+		public quotas: CashierQuotas = defPackagesQuotas) { }
+
+	calculateTotalPrice(application, coupon = null) {
+		const currentPrice = (this.calculateMonthlyPrice(application).value * 12 * application.dealYears);
+		return currentPrice - this.calculateDiscount(application, coupon, currentPrice).value;
+	}
+
+	calculatePrices(application) {
+		const prices = this.calculateMonthlyPrice(application);
+
+		prices.posts *= 12 * application.dealYears;
+		prices.videos *= 12 * application.dealYears;
+		prices.photography *= 12 * application.dealYears;
+		prices.gifs *= 12 * application.dealYears;
+
+		return prices;
+	}
 
 	calculateMonthlyPrice(cart: CashierQuotas) {
-		let price = 0;
 
-		price += cart.postsPerMonth * this.prices.post;
-		price += cart.videos *
-			cart.videoMinutesCount *
-			this.prices.videoMinute;
-		price += cart.photography * this.prices.photo;
-		price += cart.gifs * this.prices.gif;
+		const price = {
+			posts: cart.postsPerMonth * this.prices.post,
+			videos: cart.videos *
+				cart.videoMinutesCount *
+				this.prices.videoMinute,
+			photography: cart.photography * this.prices.photo,
+			gifs: cart.gifs * this.prices.gif,
+
+			get value() {
+				return this.posts + this.videos + this.photography + this.gifs;
+			}
+		};
 
 		return price;
 	}
 
-	calculateDiscount(application, coupon: Coupon = null, currentPrice = 0) {
+	calculateDiscount(application, coupon: Coupon = null, currentPrice = null) {
 
-		let discount = 0;
+		let yearsDiscount = 0;
+		let couponDiscount = 0;
 
 		if (application.dealYears > 1) {
 			switch (application.package) {
 				case Package.Pro:
-					discount += 500 * application.dealYears * 12;
+					yearsDiscount += 500 * application.dealYears * 12;
 					break;
 				case Package.Enterprise:
-					discount += 1000 * application.dealYears * 12;
+					yearsDiscount += 1000 * application.dealYears * 12;
 					break;
 			}
 		}
@@ -50,14 +104,25 @@ export default class Cashier {
 		if (coupon) {
 			switch (coupon.discountType) {
 				case DiscountType.Fixed:
-					discount += coupon.value;
+					couponDiscount += coupon.value;
 					break;
 				case DiscountType.Percentage:
-					discount += currentPrice * (coupon.value / 100);
+					if (currentPrice == null) {
+						currentPrice =
+							this.calculateMonthlyPrice(application).value * 12 * application.dealYears;
+					}
+					couponDiscount += currentPrice * (coupon.value / 100);
 					break;
 			}
 		}
 
-		return discount;
+		return {
+			get value() {
+				const discount = yearsDiscount + couponDiscount;
+				return discount;
+			},
+			years: yearsDiscount,
+			coupon: couponDiscount
+		};
 	}
 }
