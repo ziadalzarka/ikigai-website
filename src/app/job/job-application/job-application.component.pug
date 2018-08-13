@@ -35,7 +35,7 @@ app-toolbar
 			br
 			h2 Applying for
 			br
-			label Prefered position
+			label Preferred position
 			div(formGroupName="positions")
 				.form-check
 					input.form-check-input#media-chk(type='checkbox', formControlName="media")
@@ -51,10 +51,10 @@ app-toolbar
 					label.form-check-label(for='pb-chk') Public Relations
 				.has-error.mt-1(*ngIf='jobApplicationForm.controls.positions.invalid && jobApplicationForm.controls.positions.dirty') At least one position has to be selected.
 			br
-			h2 Protifolio
+			h2 Portfolio
 			br
 			.form-group
-				label(for='resumeFile') CV / Resume / Portifolio
+				label(for='resumeFile') CV / Resume / Portfolio
 				input#resumeFile.form-control-file(type='file', formControlName="resume", #resume, required)
 				.has-error.mt-1(*ngIf='jobApplicationForm.controls.resume.invalid && jobApplicationForm.controls.resume.dirty') This field is required.
 			.form-group

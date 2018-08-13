@@ -1,8 +1,7 @@
 import * as express from 'express';
 import * as path from 'path';
 
-const sitemap = `
-<?xml version="1.0" encoding="UTF-8"?>
+const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
    <url>
       <loc>http://www.ikigaiadv.com/</loc>

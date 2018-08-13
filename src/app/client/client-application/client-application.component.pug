@@ -2,7 +2,7 @@ app-toolbar
 .bg-light.py-5.minh-100
 	.container.clearfix
 		form([formGroup]="clientApplicationForm")
-			h1.display-4.mb-2 Send us your proposal
+			h1.display-4.mb-2 Fill out your proposal
 			p.lead We will contact you as soon as possible.
 			hr
 			h2 Your company
@@ -116,7 +116,7 @@ app-toolbar
 					br
 			.row([hidden]="!clientApplication.website")
 				.col-12
-					label Do you want have a host?
+					label Do you own a host?
 					br
 					.d-block
 						.form-check.d-inline-block
@@ -128,7 +128,7 @@ app-toolbar
 					br
 			.row([hidden]="!clientApplication.website")
 				.col-12
-					label Do you want have a domain?
+					label Do you own a domain?
 					br
 					.d-block
 						.form-check.d-inline-block
