@@ -22,7 +22,7 @@ export class SeoService {
 		config = {
 			title: 'Ikigai',
 			description: 'For digital marketing and media services',
-			image: 'http://194.182.77.249:8090/assets/images/header.png',
+			image: 'http://ikigaiadv.com/assets/images/header.png',
 			...config
 		};
 
@@ -43,6 +43,6 @@ export class SeoService {
 		this.meta.updateTag({ property: 'og:title', content: config.title });
 		this.meta.updateTag({ property: 'og:description', content: config.description });
 		this.meta.updateTag({ property: 'og:image', content: config.image });
-		this.meta.updateTag({ property: 'og:url', content: `http://194.182.77.249:8090` });
+		this.meta.updateTag({ property: 'og:url', content: `http://ikigaiadv.com` });
 	}
 }
