@@ -2,8 +2,8 @@ export const environment = {
 	production: true,
 	uploadUrl: '/upload',
 	// storage: '/storage',
-	storage: 'http://ikigaiadv.com/storage',
+	storage: 'https://ikigaiadv.com/storage',
 	graphql: {
-		url: 'http://graph.ikigaiadv.com'
+		url: 'https://graph.ikigaiadv.com'
 	}
 };
