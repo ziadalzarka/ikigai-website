@@ -72,10 +72,6 @@ export default express.Router()
 
 					res.end(body.toString());
 
-					fs.writeFile(Date.now(), body.toString(), ()=>{
-						console.log('wrote file');
-					});
-
 				});
 		} else {
 			next();
