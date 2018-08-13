@@ -4,6 +4,6 @@ export const environment = {
 	// storage: '/storage',
 	storage: 'http://ikigaiadv.com/storage',
 	graphql: {
-		url: 'http://ikigaiadv.com'
+		url: 'http://graph.ikigaiadv.com'
 	}
 };
