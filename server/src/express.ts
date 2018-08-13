@@ -5,6 +5,7 @@ import * as cors from 'cors';
 import * as compression from 'compression';
 import * as fileUpload from 'express-fileupload';
 
+import sitemapRoute from './routes/sitemap';
 import webRoutes from './routes/website';
 import uploadRoutes from './routes/upload';
 import renderer from './routes/rendertron';
@@ -18,6 +19,7 @@ app.use(cookieParser());
 app.use(bodyParser.json());
 app.use(fileUpload());
 app.use(compression());
+app.use(sitemapRoute);
 app.use(renderer);
 app.use(uploadRoutes);
 app.use(webRoutes);
