@@ -1,6 +1,7 @@
-import { Package } from 'app/redux/enums/package.enum';
-import { Coupon } from 'app/redux/models/coupon.model';
-import { DiscountType } from 'app/redux/enums/discount-type.enum';
+import { Package } from './package.enum';
+import { Coupon } from './coupon.model';
+import { DiscountType } from './discount-type.enum';
+
 export interface CashierPrices {
 	post: number;
 	videoMinute: number;

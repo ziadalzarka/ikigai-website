@@ -1,4 +1,4 @@
-import Cashier from '../../../../src/utils/cashier';
+import Cashier from '../../cashier/cashier';
 import { Context } from '../../utils';
 import { ClientApplication } from '../../generated/prisma';
 
