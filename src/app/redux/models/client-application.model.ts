@@ -16,7 +16,7 @@ export interface ClientApplication {
 	website: boolean;
 	hasHost: boolean;
 	hasDomain: boolean;
-	dealYears: number;
+	dealMonths: number;
 	coupon: Coupon;
 	package: Package;
 	totalPrice: number;

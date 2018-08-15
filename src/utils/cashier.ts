@@ -42,7 +42,7 @@ const defPackagesQuotas = {
 const defPrices = {
 	post: 70,
 	videoMinute: 1000,
-	photo: 25,
+	photo: 30,
 	gif: 100,
 };
 
@@ -52,17 +52,17 @@ export default class Cashier {
 		public quotas: CashierQuotas = defPackagesQuotas) { }
 
 	calculateTotalPrice(application, coupon = null) {
-		const currentPrice = (this.calculateMonthlyPrice(application).value * 12 * application.dealYears);
+		const currentPrice = (this.calculateMonthlyPrice(application).value * application.dealMonths);
 		return currentPrice - this.calculateDiscount(application, coupon, currentPrice).value;
 	}
 
 	calculatePrices(application) {
 		const prices = this.calculateMonthlyPrice(application);
 
-		prices.posts *= 12 * application.dealYears;
-		prices.videos *= 12 * application.dealYears;
-		prices.photography *= 12 * application.dealYears;
-		prices.gifs *= 12 * application.dealYears;
+		prices.posts *= application.dealMonths;
+		prices.videos *= application.dealMonths;
+		prices.photography *= application.dealMonths;
+		prices.gifs *= application.dealMonths;
 
 		return prices;
 	}
@@ -87,16 +87,16 @@ export default class Cashier {
 
 	calculateDiscount(application, coupon: Coupon = null, currentPrice = null) {
 
-		let yearsDiscount = 0;
+		let packageDiscount = 0;
 		let couponDiscount = 0;
 
-		if (application.dealYears > 1) {
+		if (application.dealMonths > 12) {
 			switch (application.package) {
 				case Package.Pro:
-					yearsDiscount += 500 * application.dealYears * 12;
+					packageDiscount += 500 * application.dealMonths;
 					break;
 				case Package.Enterprise:
-					yearsDiscount += 1000 * application.dealYears * 12;
+					packageDiscount += 1000 * application.dealMonths;
 					break;
 			}
 		}
@@ -109,7 +109,7 @@ export default class Cashier {
 				case DiscountType.Percentage:
 					if (currentPrice == null) {
 						currentPrice =
-							this.calculateMonthlyPrice(application).value * 12 * application.dealYears;
+							this.calculateMonthlyPrice(application).value * application.dealMonths;
 					}
 					couponDiscount += currentPrice * (coupon.value / 100);
 					break;
@@ -118,10 +118,10 @@ export default class Cashier {
 
 		return {
 			get value() {
-				const discount = yearsDiscount + couponDiscount;
+				const discount = packageDiscount + couponDiscount;
 				return discount;
 			},
-			years: yearsDiscount,
+			package: packageDiscount,
 			coupon: couponDiscount
 		};
 	}

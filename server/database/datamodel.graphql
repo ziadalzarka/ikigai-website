@@ -104,7 +104,7 @@ type ClientApplication {
 	website: Boolean!
 	hasHost: Boolean!
 	hasDomain: Boolean!	
-	dealYears: Int!
+	dealMonths: Int!
 	# updated on add & edit
 	package: Package!
 	totalPrice: Int!

@@ -65,7 +65,7 @@ ng-template(#showClientApplication, let-close='close', let-dismiss='dismiss')
 				a.d-block(href='{{(selectedApplication$|async)?.facebook}}', target='_blank')
 					i.fa.fa-facebook.f-3
 		br
-		h4([ngClass]="(selectedApplication$|async)?.package|packageColor") {{(selectedApplication$|async)?.package}} for {{(selectedApplication$|async)?.dealYears}} years
+		h4([ngClass]="(selectedApplication$|async)?.package|packageColor") {{(selectedApplication$|async)?.package}} for {{(selectedApplication$|async)?.dealMonths}} months
 		hr
 		.row
 			.col-12.col-lg-6
@@ -97,7 +97,7 @@ ng-template(#showClientApplication, let-close='close', let-dismiss='dismiss')
 						span.ml-2 ({{(selectedApplication$|async)?.coupon|coupon}})
 				.col-12.col-lg-6(*ngIf="selectedDiscount")
 					label Fixed Package
-					p.text-danger {{selectedDiscount?.years}} EGP
+					p.text-danger {{selectedDiscount?.package}} EGP
 		br
 		div(*ngIf="(selectedApplication$|async)?.website")
 			h4 Website

@@ -84,7 +84,7 @@ type Mutation {
 		website: Boolean!,
 		hasHost: Boolean!,
 		hasDomain: Boolean!,
-		dealYears: Int!,
+		dealMonths: Int!,
 		# coupons
 		coupon: String,
 		# preserved even if prices change

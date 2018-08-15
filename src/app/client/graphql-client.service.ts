@@ -30,7 +30,7 @@ const clientApplyMutation = gql`
 		$website: Boolean!
 		$hasHost: Boolean!
 		$hasDomain: Boolean!
-		$dealYears: Int!
+		$dealMonths: Int!
 		$package: Package!
 		$totalPrice: Int!
 		$coupon: String
@@ -49,7 +49,7 @@ const clientApplyMutation = gql`
 			website: $website
 			hasHost: $hasHost
 			hasDomain: $hasDomain
-			dealYears: $dealYears
+			dealMonths: $dealMonths
 			dealPackage: $package
 			totalPrice: $totalPrice
 			coupon: $coupon

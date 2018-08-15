@@ -178,7 +178,7 @@ type ClientApplication implements Node {
   website: Boolean!
   hasHost: Boolean!
   hasDomain: Boolean!
-  dealYears: Int!
+  dealMonths: Int!
   package: Package!
   totalPrice: Int!
   createdAt: DateTime!
@@ -209,7 +209,7 @@ input ClientApplicationCreateInput {
   website: Boolean!
   hasHost: Boolean!
   hasDomain: Boolean!
-  dealYears: Int!
+  dealMonths: Int!
   package: Package!
   totalPrice: Int!
   coupon: CouponCreateOneWithoutUsedInInput
@@ -234,7 +234,7 @@ input ClientApplicationCreateWithoutCouponInput {
   website: Boolean!
   hasHost: Boolean!
   hasDomain: Boolean!
-  dealYears: Int!
+  dealMonths: Int!
   package: Package!
   totalPrice: Int!
 }
@@ -277,8 +277,8 @@ enum ClientApplicationOrderByInput {
   hasHost_DESC
   hasDomain_ASC
   hasDomain_DESC
-  dealYears_ASC
-  dealYears_DESC
+  dealMonths_ASC
+  dealMonths_DESC
   package_ASC
   package_DESC
   totalPrice_ASC
@@ -304,7 +304,7 @@ type ClientApplicationPreviousValues {
   website: Boolean!
   hasHost: Boolean!
   hasDomain: Boolean!
-  dealYears: Int!
+  dealMonths: Int!
   package: Package!
   totalPrice: Int!
   createdAt: DateTime!
@@ -363,7 +363,7 @@ input ClientApplicationUpdateInput {
   website: Boolean
   hasHost: Boolean
   hasDomain: Boolean
-  dealYears: Int
+  dealMonths: Int
   package: Package
   totalPrice: Int
   coupon: CouponUpdateOneWithoutUsedInInput
@@ -392,7 +392,7 @@ input ClientApplicationUpdateWithoutCouponDataInput {
   website: Boolean
   hasHost: Boolean
   hasDomain: Boolean
-  dealYears: Int
+  dealMonths: Int
   package: Package
   totalPrice: Int
 }
@@ -773,28 +773,28 @@ input ClientApplicationWhereInput {
 
   """All values that are not equal to given value."""
   hasDomain_not: Boolean
-  dealYears: Int
+  dealMonths: Int
 
   """All values that are not equal to given value."""
-  dealYears_not: Int
+  dealMonths_not: Int
 
   """All values that are contained in given list."""
-  dealYears_in: [Int!]
+  dealMonths_in: [Int!]
 
   """All values that are not contained in given list."""
-  dealYears_not_in: [Int!]
+  dealMonths_not_in: [Int!]
 
   """All values less than the given value."""
-  dealYears_lt: Int
+  dealMonths_lt: Int
 
   """All values less than or equal the given value."""
-  dealYears_lte: Int
+  dealMonths_lte: Int
 
   """All values greater than the given value."""
-  dealYears_gt: Int
+  dealMonths_gt: Int
 
   """All values greater than or equal the given value."""
-  dealYears_gte: Int
+  dealMonths_gte: Int
   package: Package
 
   """All values that are not equal to given value."""
@@ -4062,8 +4062,8 @@ export type ClientApplicationOrderByInput =   'id_ASC' |
   'hasHost_DESC' |
   'hasDomain_ASC' |
   'hasDomain_DESC' |
-  'dealYears_ASC' |
-  'dealYears_DESC' |
+  'dealMonths_ASC' |
+  'dealMonths_DESC' |
   'package_ASC' |
   'package_DESC' |
   'totalPrice_ASC' |
@@ -4687,7 +4687,7 @@ export interface ClientApplicationUpdateInput {
   website?: Boolean
   hasHost?: Boolean
   hasDomain?: Boolean
-  dealYears?: Int
+  dealMonths?: Int
   package?: Package
   totalPrice?: Int
   coupon?: CouponUpdateOneWithoutUsedInInput
@@ -5130,7 +5130,7 @@ export interface ClientApplicationCreateWithoutCouponInput {
   website: Boolean
   hasHost: Boolean
   hasDomain: Boolean
-  dealYears: Int
+  dealMonths: Int
   package: Package
   totalPrice: Int
 }
@@ -5185,7 +5185,7 @@ export interface ClientApplicationCreateInput {
   website: Boolean
   hasHost: Boolean
   hasDomain: Boolean
-  dealYears: Int
+  dealMonths: Int
   package: Package
   totalPrice: Int
   coupon?: CouponCreateOneWithoutUsedInInput
@@ -5407,14 +5407,14 @@ export interface ClientApplicationWhereInput {
   hasHost_not?: Boolean
   hasDomain?: Boolean
   hasDomain_not?: Boolean
-  dealYears?: Int
-  dealYears_not?: Int
-  dealYears_in?: Int[] | Int
-  dealYears_not_in?: Int[] | Int
-  dealYears_lt?: Int
-  dealYears_lte?: Int
-  dealYears_gt?: Int
-  dealYears_gte?: Int
+  dealMonths?: Int
+  dealMonths_not?: Int
+  dealMonths_in?: Int[] | Int
+  dealMonths_not_in?: Int[] | Int
+  dealMonths_lt?: Int
+  dealMonths_lte?: Int
+  dealMonths_gt?: Int
+  dealMonths_gte?: Int
   package?: Package
   package_not?: Package
   package_in?: Package[] | Package
@@ -5452,7 +5452,7 @@ export interface ClientApplicationUpdateWithoutCouponDataInput {
   website?: Boolean
   hasHost?: Boolean
   hasDomain?: Boolean
-  dealYears?: Int
+  dealMonths?: Int
   package?: Package
   totalPrice?: Int
 }
@@ -5692,7 +5692,7 @@ export interface ClientApplication extends Node {
   website: Boolean
   hasHost: Boolean
   hasDomain: Boolean
-  dealYears: Int
+  dealMonths: Int
   package: Package
   totalPrice: Int
   createdAt: DateTime
@@ -5851,7 +5851,7 @@ export interface ClientApplicationPreviousValues {
   website: Boolean
   hasHost: Boolean
   hasDomain: Boolean
-  dealYears: Int
+  dealMonths: Int
   package: Package
   totalPrice: Int
   createdAt: DateTime

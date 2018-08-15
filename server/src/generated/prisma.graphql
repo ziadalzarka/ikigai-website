@@ -1,5 +1,5 @@
-# source: http://194.182.77.249:4466/ikigai/dev
-# timestamp: Sat Aug 04 2018 16:07:30 GMT+0200 (EET)
+# source: https://prisma.ikigaiadv.com/ikigai
+# timestamp: Wed Aug 15 2018 16:27:26 GMT+0200 (EET)
 
 type AggregateClientApplication {
   count: Int!
@@ -53,7 +53,7 @@ type ClientApplication implements Node {
   website: Boolean!
   hasHost: Boolean!
   hasDomain: Boolean!
-  dealYears: Int!
+  dealMonths: Int!
   package: Package!
   totalPrice: Int!
   createdAt: DateTime!
@@ -84,7 +84,7 @@ input ClientApplicationCreateInput {
   website: Boolean!
   hasHost: Boolean!
   hasDomain: Boolean!
-  dealYears: Int!
+  dealMonths: Int!
   package: Package!
   totalPrice: Int!
   coupon: CouponCreateOneWithoutUsedInInput
@@ -109,7 +109,7 @@ input ClientApplicationCreateWithoutCouponInput {
   website: Boolean!
   hasHost: Boolean!
   hasDomain: Boolean!
-  dealYears: Int!
+  dealMonths: Int!
   package: Package!
   totalPrice: Int!
 }
@@ -152,8 +152,8 @@ enum ClientApplicationOrderByInput {
   hasHost_DESC
   hasDomain_ASC
   hasDomain_DESC
-  dealYears_ASC
-  dealYears_DESC
+  dealMonths_ASC
+  dealMonths_DESC
   package_ASC
   package_DESC
   totalPrice_ASC
@@ -179,7 +179,7 @@ type ClientApplicationPreviousValues {
   website: Boolean!
   hasHost: Boolean!
   hasDomain: Boolean!
-  dealYears: Int!
+  dealMonths: Int!
   package: Package!
   totalPrice: Int!
   createdAt: DateTime!
@@ -238,7 +238,7 @@ input ClientApplicationUpdateInput {
   website: Boolean
   hasHost: Boolean
   hasDomain: Boolean
-  dealYears: Int
+  dealMonths: Int
   package: Package
   totalPrice: Int
   coupon: CouponUpdateOneWithoutUsedInInput
@@ -267,7 +267,7 @@ input ClientApplicationUpdateWithoutCouponDataInput {
   website: Boolean
   hasHost: Boolean
   hasDomain: Boolean
-  dealYears: Int
+  dealMonths: Int
   package: Package
   totalPrice: Int
 }
@@ -648,28 +648,28 @@ input ClientApplicationWhereInput {
 
   """All values that are not equal to given value."""
   hasDomain_not: Boolean
-  dealYears: Int
+  dealMonths: Int
 
   """All values that are not equal to given value."""
-  dealYears_not: Int
+  dealMonths_not: Int
 
   """All values that are contained in given list."""
-  dealYears_in: [Int!]
+  dealMonths_in: [Int!]
 
   """All values that are not contained in given list."""
-  dealYears_not_in: [Int!]
+  dealMonths_not_in: [Int!]
 
   """All values less than the given value."""
-  dealYears_lt: Int
+  dealMonths_lt: Int
 
   """All values less than or equal the given value."""
-  dealYears_lte: Int
+  dealMonths_lte: Int
 
   """All values greater than the given value."""
-  dealYears_gt: Int
+  dealMonths_gt: Int
 
   """All values greater than or equal the given value."""
-  dealYears_gte: Int
+  dealMonths_gte: Int
   package: Package
 
   """All values that are not equal to given value."""

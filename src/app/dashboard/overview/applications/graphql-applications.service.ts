@@ -41,7 +41,7 @@ const getClientApplicationQuery = gql`
 			website
 			hasHost
 			hasDomain
-			dealYears
+			dealMonths
 			package
 			totalPrice
 			createdAt

@@ -37,7 +37,7 @@ export class ClientApplicationComponent implements OnInit {
 		hasHost: false,
 		hasDomain: false,
 		totalPrice: 0,
-		dealYears: 1,
+		dealMonths: 12,
 		videoMinutesCount: 1,
 		coupon: '',
 		// -----------
@@ -62,7 +62,7 @@ export class ClientApplicationComponent implements OnInit {
 
 		let totalPrice = this.pricePerMonth;
 
-		totalPrice *= 12 * this.clientApplication.dealYears;
+		totalPrice *= this.clientApplication.dealMonths;
 
 		this.discount = this.cashier
 			.calculateDiscount(this.clientApplication, this.activeCoupon, totalPrice).value;
@@ -94,7 +94,7 @@ export class ClientApplicationComponent implements OnInit {
 		this.calculatePrice();
 	}
 
-	onDealYearsChanged() {
+	onDealMonthsChanged() {
 		this.calculatePrice();
 	}
 
