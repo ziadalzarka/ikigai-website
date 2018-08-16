@@ -1,6 +1,7 @@
 version: '3'
 services:
   webapp:
+    restart: always
     ports: 
       - "8090:8090"
       - "4090:4090"
