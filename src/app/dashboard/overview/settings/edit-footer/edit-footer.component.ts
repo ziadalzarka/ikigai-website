@@ -23,6 +23,7 @@ export class EditFooterComponent implements OnInit {
 		facebook: '',
 		linkedIn: '',
 		instagram: '',
+		youtube: '',
 		additionalTitle: '',
 		additionalBody: '',
 	});

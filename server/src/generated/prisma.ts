@@ -3827,6 +3827,7 @@ type Variable {
   facebook: String
   instagram: String
   linkedIn: String
+  youtube: String
   contactEmail: String
   clientsEmail: String
   jobsEmail: String
@@ -3853,6 +3854,7 @@ input VariableCreateInput {
   facebook: String
   instagram: String
   linkedIn: String
+  youtube: String
   contactEmail: String
   clientsEmail: String
   jobsEmail: String
@@ -3886,6 +3888,8 @@ enum VariableOrderByInput {
   instagram_DESC
   linkedIn_ASC
   linkedIn_DESC
+  youtube_ASC
+  youtube_DESC
   contactEmail_ASC
   contactEmail_DESC
   clientsEmail_ASC
@@ -3913,6 +3917,7 @@ type VariablePreviousValues {
   facebook: String
   instagram: String
   linkedIn: String
+  youtube: String
   contactEmail: String
   clientsEmail: String
   jobsEmail: String
@@ -3968,6 +3973,7 @@ input VariableUpdateInput {
   facebook: String
   instagram: String
   linkedIn: String
+  youtube: String
   contactEmail: String
   clientsEmail: String
   jobsEmail: String
@@ -4286,6 +4292,46 @@ input VariableWhereInput {
 
   """All values not ending with the given string."""
   linkedIn_not_ends_with: String
+  youtube: String
+
+  """All values that are not equal to given value."""
+  youtube_not: String
+
+  """All values that are contained in given list."""
+  youtube_in: [String!]
+
+  """All values that are not contained in given list."""
+  youtube_not_in: [String!]
+
+  """All values less than the given value."""
+  youtube_lt: String
+
+  """All values less than or equal the given value."""
+  youtube_lte: String
+
+  """All values greater than the given value."""
+  youtube_gt: String
+
+  """All values greater than or equal the given value."""
+  youtube_gte: String
+
+  """All values containing the given string."""
+  youtube_contains: String
+
+  """All values not containing the given string."""
+  youtube_not_contains: String
+
+  """All values starting with the given string."""
+  youtube_starts_with: String
+
+  """All values not starting with the given string."""
+  youtube_not_starts_with: String
+
+  """All values ending with the given string."""
+  youtube_ends_with: String
+
+  """All values not ending with the given string."""
+  youtube_not_ends_with: String
   contactEmail: String
 
   """All values that are not equal to given value."""
@@ -4540,6 +4586,8 @@ export type VariableOrderByInput =   'index_ASC' |
   'instagram_DESC' |
   'linkedIn_ASC' |
   'linkedIn_DESC' |
+  'youtube_ASC' |
+  'youtube_DESC' |
   'contactEmail_ASC' |
   'contactEmail_DESC' |
   'clientsEmail_ASC' |
@@ -4842,6 +4890,20 @@ export interface VariableWhereInput {
   linkedIn_not_starts_with?: String
   linkedIn_ends_with?: String
   linkedIn_not_ends_with?: String
+  youtube?: String
+  youtube_not?: String
+  youtube_in?: String[] | String
+  youtube_not_in?: String[] | String
+  youtube_lt?: String
+  youtube_lte?: String
+  youtube_gt?: String
+  youtube_gte?: String
+  youtube_contains?: String
+  youtube_not_contains?: String
+  youtube_starts_with?: String
+  youtube_not_starts_with?: String
+  youtube_ends_with?: String
+  youtube_not_ends_with?: String
   contactEmail?: String
   contactEmail_not?: String
   contactEmail_in?: String[] | String
@@ -5511,6 +5573,7 @@ export interface VariableUpdateInput {
   facebook?: String
   instagram?: String
   linkedIn?: String
+  youtube?: String
   contactEmail?: String
   clientsEmail?: String
   jobsEmail?: String
@@ -5536,6 +5599,7 @@ export interface VariableCreateInput {
   facebook?: String
   instagram?: String
   linkedIn?: String
+  youtube?: String
   contactEmail?: String
   clientsEmail?: String
   jobsEmail?: String
@@ -6434,6 +6498,7 @@ export interface VariablePreviousValues {
   facebook?: String
   instagram?: String
   linkedIn?: String
+  youtube?: String
   contactEmail?: String
   clientsEmail?: String
   jobsEmail?: String
@@ -6707,6 +6772,7 @@ export interface Variable {
   facebook?: String
   instagram?: String
   linkedIn?: String
+  youtube?: String
   contactEmail?: String
   clientsEmail?: String
   jobsEmail?: String

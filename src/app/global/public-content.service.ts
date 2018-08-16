@@ -61,6 +61,7 @@ const footerQuery = gql`
 			facebook
 			instagram
 			linkedIn
+			youtube
 		}
 	}
 `;

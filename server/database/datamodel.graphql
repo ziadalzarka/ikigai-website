@@ -30,6 +30,7 @@ type Variable {
 	facebook: String
 	instagram: String
 	linkedIn: String
+	youtube: String
 	contactEmail: String
 	clientsEmail: String
 	jobsEmail: String

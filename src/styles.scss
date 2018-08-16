@@ -91,6 +91,7 @@ $coffee:#584b4b;
 $ocean:#2c3e50;
 $facebook: #3B5998;
 $instagram: #fb3958;
+$youtube: #f00;
 $linkedin: #0077B5;
 // dashboard
 $pale: #d8d8d8;
@@ -169,6 +170,10 @@ label.bg-dashboard.active {
   color: $instagram !important;
 }
 
+.youtube {
+  color: $youtube !important;
+}
+
 .fa-linkedin {
   @extend .linkedin;
 }
@@ -179,6 +184,10 @@ label.bg-dashboard.active {
 
 .fa-instagram {
   @extend .instagram;
+}
+
+.fa-youtube {
+  @extend .youtube;
 }
 
 /* for the dashboard animations */

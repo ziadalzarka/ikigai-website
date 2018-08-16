@@ -30,6 +30,10 @@
 						.linkedin((click)="newTab('linkedIn')")
 							a
 								i.fa.fa-linkedin
+					li.cursor-pointer(*ngIf="(content$|async)?.youtube")
+						.youtube((click)="newTab('youtube')")
+							a
+								i.fa.fa-youtube
 					li.cursor-pointer(*ngIf="(content$|async)?.instagram")
 						.instagram((click)="newTab('instagram')")
 							a

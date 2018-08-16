@@ -81,6 +81,7 @@ const footerVariablesQuery = gql`
 			address
 			facebook
 			instagram
+			youtube
 			linkedIn
 			additionalTitle
 			additionalBody
@@ -107,6 +108,7 @@ const updateVariablesMutation = gql`
 		$facebook: String
 		$instagram: String
 		$linkedIn: String
+		$youtube: String
 		$contactEmail: String
 		$clientsEmail: String
 		$jobsEmail: String
@@ -121,6 +123,7 @@ const updateVariablesMutation = gql`
 			facebook: $facebook
 			instagram: $instagram
 			linkedIn: $linkedIn
+			youtube: $youtube
 			contactEmail: $contactEmail
 			clientsEmail: $clientsEmail
 			jobsEmail: $jobsEmail

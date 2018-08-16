@@ -6,6 +6,7 @@ export interface FooterVariables {
 	facebook: string;
 	instagram: string;
 	linkedIn: string;
+	youtube: string;
 	additionalTitle: string;
 	additionalBody: string;
 }
