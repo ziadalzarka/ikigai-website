@@ -20,18 +20,18 @@ export interface CashierQuotas {
 const defPackagesQuotas = {
 	[Package.Light]: {
 		postsPerMonth: 30,
-		gifs: 1,
+		gifs: 0,
 		videos: 0,
 	},
 	[Package.Pro]: {
 		postsPerMonth: 60,
-		gifs: 3,
-		videos: 1,
+		gifs: 0,
+		videos: 0,
 	},
 	[Package.Enterprise]: {
 		postsPerMonth: 120,
-		gifs: 5,
-		videos: 3,
+		gifs: 0,
+		videos: 0,
 	},
 	[Package.Custom]: {
 		postsPerMonth: 0,
