@@ -4,6 +4,9 @@ import { FormBuilder } from '@angular/forms';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { PublicContentService } from '@app/global/public-content.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { timer } from 'rxjs';
+
+declare var loadMaterialize: any;
 
 @Component({
 	selector: 'app-prices',
@@ -29,7 +32,15 @@ export class PricesComponent implements OnInit {
 		videoMinute: null,
 		photo: null,
 		gif: null,
+		light_discountPerMonth: null,
+		pro_discountPerMonth: null,
+		enterprise_discountPerMonth: null,
+		discountAfterMonths: null,
 	});
+
+	get discountAfterMonths() {
+		return this.settingsForm.get('discountAfterMonths');
+	}
 
 	constructor(
 		private fb: FormBuilder,
@@ -44,6 +55,7 @@ export class PricesComponent implements OnInit {
 		this.publicContent.applicationSettingsQuery().pipe(take(1)).subscribe(settings => {
 			this.settingsForm.patchValue(settings);
 			this.loaded = true;
+			timer(500).subscribe(loadMaterialize);
 		});
 	}
 

@@ -45,6 +45,10 @@ mutation {
 		videoMinute: 1000,
 		photo: 30,
 		gif: 100,
+		discountAfterMonths: 12,
+		light_discountPerMonth: 0,
+		pro_discountPerMonth: 500,
+		enterprise_discountPerMonth: 1000
 	}) {
 		index
 	}

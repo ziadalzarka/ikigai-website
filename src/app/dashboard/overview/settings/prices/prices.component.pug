@@ -25,6 +25,30 @@
 			br
 			.row
 				.col
+					h2 Discounts
+					hr
+			.row
+				.col-12.col-md-6
+					.form-group
+						label Light Discount
+						input.form-control(type='number', min='0', required, placeholder='70', formControlName="light_discountPerMonth")
+				.col-12.col-md-6
+					.form-group
+						label Pro Discount
+						input.form-control(type='number', min='0', required, placeholder='500', formControlName="pro_discountPerMonth")
+				.col-12.col-md-6
+					.form-group
+						label Enterprise Discount
+						input.form-control(type='number', min='0', required, placeholder='1000', formControlName="enterprise_discountPerMonth")
+				.col-12.col-md-6
+					label Discount starts after ({{discountAfterMonths.value}} months)
+					.form-group.range-field
+						label.range-min 1
+						input(type='range', min='1', max='120', required, placeholder='12', formControlName="discountAfterMonths")
+						label.range-max 120
+			br
+			.row
+				.col
 					h2 Light Package Quotas
 					hr
 			.row

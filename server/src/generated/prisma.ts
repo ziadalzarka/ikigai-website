@@ -191,6 +191,10 @@ type ApplicationSetting {
   videoMinute: Int!
   photo: Int!
   gif: Int!
+  discountAfterMonths: Int!
+  light_discountPerMonth: Int!
+  pro_discountPerMonth: Int!
+  enterprise_discountPerMonth: Int!
 }
 
 """A connection to a list of items."""
@@ -221,6 +225,10 @@ input ApplicationSettingCreateInput {
   videoMinute: Int!
   photo: Int!
   gif: Int!
+  discountAfterMonths: Int!
+  light_discountPerMonth: Int!
+  pro_discountPerMonth: Int!
+  enterprise_discountPerMonth: Int!
 }
 
 """An edge in a connection."""
@@ -267,6 +275,14 @@ enum ApplicationSettingOrderByInput {
   photo_DESC
   gif_ASC
   gif_DESC
+  discountAfterMonths_ASC
+  discountAfterMonths_DESC
+  light_discountPerMonth_ASC
+  light_discountPerMonth_DESC
+  pro_discountPerMonth_ASC
+  pro_discountPerMonth_DESC
+  enterprise_discountPerMonth_ASC
+  enterprise_discountPerMonth_DESC
   id_ASC
   id_DESC
   updatedAt_ASC
@@ -293,6 +309,10 @@ type ApplicationSettingPreviousValues {
   videoMinute: Int!
   photo: Int!
   gif: Int!
+  discountAfterMonths: Int!
+  light_discountPerMonth: Int!
+  pro_discountPerMonth: Int!
+  enterprise_discountPerMonth: Int!
 }
 
 type ApplicationSettingSubscriptionPayload {
@@ -352,6 +372,10 @@ input ApplicationSettingUpdateInput {
   videoMinute: Int
   photo: Int
   gif: Int
+  discountAfterMonths: Int
+  light_discountPerMonth: Int
+  pro_discountPerMonth: Int
+  enterprise_discountPerMonth: Int
 }
 
 input ApplicationSettingWhereInput {
@@ -737,6 +761,94 @@ input ApplicationSettingWhereInput {
 
   """All values greater than or equal the given value."""
   gif_gte: Int
+  discountAfterMonths: Int
+
+  """All values that are not equal to given value."""
+  discountAfterMonths_not: Int
+
+  """All values that are contained in given list."""
+  discountAfterMonths_in: [Int!]
+
+  """All values that are not contained in given list."""
+  discountAfterMonths_not_in: [Int!]
+
+  """All values less than the given value."""
+  discountAfterMonths_lt: Int
+
+  """All values less than or equal the given value."""
+  discountAfterMonths_lte: Int
+
+  """All values greater than the given value."""
+  discountAfterMonths_gt: Int
+
+  """All values greater than or equal the given value."""
+  discountAfterMonths_gte: Int
+  light_discountPerMonth: Int
+
+  """All values that are not equal to given value."""
+  light_discountPerMonth_not: Int
+
+  """All values that are contained in given list."""
+  light_discountPerMonth_in: [Int!]
+
+  """All values that are not contained in given list."""
+  light_discountPerMonth_not_in: [Int!]
+
+  """All values less than the given value."""
+  light_discountPerMonth_lt: Int
+
+  """All values less than or equal the given value."""
+  light_discountPerMonth_lte: Int
+
+  """All values greater than the given value."""
+  light_discountPerMonth_gt: Int
+
+  """All values greater than or equal the given value."""
+  light_discountPerMonth_gte: Int
+  pro_discountPerMonth: Int
+
+  """All values that are not equal to given value."""
+  pro_discountPerMonth_not: Int
+
+  """All values that are contained in given list."""
+  pro_discountPerMonth_in: [Int!]
+
+  """All values that are not contained in given list."""
+  pro_discountPerMonth_not_in: [Int!]
+
+  """All values less than the given value."""
+  pro_discountPerMonth_lt: Int
+
+  """All values less than or equal the given value."""
+  pro_discountPerMonth_lte: Int
+
+  """All values greater than the given value."""
+  pro_discountPerMonth_gt: Int
+
+  """All values greater than or equal the given value."""
+  pro_discountPerMonth_gte: Int
+  enterprise_discountPerMonth: Int
+
+  """All values that are not equal to given value."""
+  enterprise_discountPerMonth_not: Int
+
+  """All values that are contained in given list."""
+  enterprise_discountPerMonth_in: [Int!]
+
+  """All values that are not contained in given list."""
+  enterprise_discountPerMonth_not_in: [Int!]
+
+  """All values less than the given value."""
+  enterprise_discountPerMonth_lt: Int
+
+  """All values less than or equal the given value."""
+  enterprise_discountPerMonth_lte: Int
+
+  """All values greater than the given value."""
+  enterprise_discountPerMonth_gt: Int
+
+  """All values greater than or equal the given value."""
+  enterprise_discountPerMonth_gte: Int
 }
 
 input ApplicationSettingWhereUniqueInput {
@@ -4715,6 +4827,14 @@ export type ApplicationSettingOrderByInput =   'index_ASC' |
   'photo_DESC' |
   'gif_ASC' |
   'gif_DESC' |
+  'discountAfterMonths_ASC' |
+  'discountAfterMonths_DESC' |
+  'light_discountPerMonth_ASC' |
+  'light_discountPerMonth_DESC' |
+  'pro_discountPerMonth_ASC' |
+  'pro_discountPerMonth_DESC' |
+  'enterprise_discountPerMonth_ASC' |
+  'enterprise_discountPerMonth_DESC' |
   'id_ASC' |
   'id_DESC' |
   'updatedAt_ASC' |
@@ -5542,6 +5662,10 @@ export interface ApplicationSettingUpdateInput {
   videoMinute?: Int
   photo?: Int
   gif?: Int
+  discountAfterMonths?: Int
+  light_discountPerMonth?: Int
+  pro_discountPerMonth?: Int
+  enterprise_discountPerMonth?: Int
 }
 
 export interface ClientApplicationUpdateInput {
@@ -5630,6 +5754,10 @@ export interface ApplicationSettingCreateInput {
   videoMinute: Int
   photo: Int
   gif: Int
+  discountAfterMonths: Int
+  light_discountPerMonth: Int
+  pro_discountPerMonth: Int
+  enterprise_discountPerMonth: Int
 }
 
 export interface FileSubscriptionWhereInput {
@@ -6002,6 +6130,38 @@ export interface ApplicationSettingWhereInput {
   gif_lte?: Int
   gif_gt?: Int
   gif_gte?: Int
+  discountAfterMonths?: Int
+  discountAfterMonths_not?: Int
+  discountAfterMonths_in?: Int[] | Int
+  discountAfterMonths_not_in?: Int[] | Int
+  discountAfterMonths_lt?: Int
+  discountAfterMonths_lte?: Int
+  discountAfterMonths_gt?: Int
+  discountAfterMonths_gte?: Int
+  light_discountPerMonth?: Int
+  light_discountPerMonth_not?: Int
+  light_discountPerMonth_in?: Int[] | Int
+  light_discountPerMonth_not_in?: Int[] | Int
+  light_discountPerMonth_lt?: Int
+  light_discountPerMonth_lte?: Int
+  light_discountPerMonth_gt?: Int
+  light_discountPerMonth_gte?: Int
+  pro_discountPerMonth?: Int
+  pro_discountPerMonth_not?: Int
+  pro_discountPerMonth_in?: Int[] | Int
+  pro_discountPerMonth_not_in?: Int[] | Int
+  pro_discountPerMonth_lt?: Int
+  pro_discountPerMonth_lte?: Int
+  pro_discountPerMonth_gt?: Int
+  pro_discountPerMonth_gte?: Int
+  enterprise_discountPerMonth?: Int
+  enterprise_discountPerMonth_not?: Int
+  enterprise_discountPerMonth_in?: Int[] | Int
+  enterprise_discountPerMonth_not_in?: Int[] | Int
+  enterprise_discountPerMonth_lt?: Int
+  enterprise_discountPerMonth_lte?: Int
+  enterprise_discountPerMonth_gt?: Int
+  enterprise_discountPerMonth_gte?: Int
 }
 
 export interface FileCreateOneInput {
@@ -6424,6 +6584,10 @@ export interface ApplicationSetting {
   videoMinute: Int
   photo: Int
   gif: Int
+  discountAfterMonths: Int
+  light_discountPerMonth: Int
+  pro_discountPerMonth: Int
+  enterprise_discountPerMonth: Int
 }
 
 /*
@@ -6576,6 +6740,10 @@ export interface ApplicationSettingPreviousValues {
   videoMinute: Int
   photo: Int
   gif: Int
+  discountAfterMonths: Int
+  light_discountPerMonth: Int
+  pro_discountPerMonth: Int
+  enterprise_discountPerMonth: Int
 }
 
 /*

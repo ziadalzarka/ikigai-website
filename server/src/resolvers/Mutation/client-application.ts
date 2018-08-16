@@ -1,4 +1,4 @@
-import Cashier from '../../cashier/cashier';
+import Cashier, { getPackagesQuotas } from '../../cashier/cashier';
 import { Context } from '../../utils';
 import { ClientApplication } from '../../generated/prisma';
 
@@ -21,8 +21,6 @@ function linkCoupon(couponId: string, application: Promise<ClientApplication>, c
 	});
 }
 
-const cashier = new Cashier();
-
 export const clientApplicationMutation = {
 	async applyClient(parent, data, ctx: Context, info) {
 
@@ -30,7 +28,9 @@ export const clientApplicationMutation = {
 		const { dealPackage } = data;
 		let couponId: any = coupon && await couponExists(coupon, ctx);
 
-		let totalPrice = 0;
+		const settings: any = await ctx.db.query.applicationSetting({ where: { index: 0 } });
+
+		const cashier = new Cashier(settings, getPackagesQuotas(settings));
 
 		if (couponId) {
 			coupon = await ctx.db.query.coupon({

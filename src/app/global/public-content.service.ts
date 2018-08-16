@@ -85,6 +85,10 @@ const applicationSettingsQuery = gql`
 			videoMinute
 			photo
 			gif
+			discountAfterMonths
+			light_discountPerMonth
+			pro_discountPerMonth
+			enterprise_discountPerMonth
 		}
 	}
 `;

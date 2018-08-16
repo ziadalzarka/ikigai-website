@@ -60,6 +60,11 @@ type ApplicationSetting {
 	videoMinute: Int!
 	photo: Int!
 	gif: Int!
+	# discount
+	discountAfterMonths: Int!
+	light_discountPerMonth: Int!
+	pro_discountPerMonth: Int!
+	enterprise_discountPerMonth: Int!
 }
 
 type User {

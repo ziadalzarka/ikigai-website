@@ -7,6 +7,10 @@ export interface CashierPrices {
 	videoMinute: number;
 	photo: number;
 	gif: number;
+	discountAfterMonths: number;
+	light_discountPerMonth: number;
+	pro_discountPerMonth: number;
+	enterprise_discountPerMonth: number;
 }
 
 export interface CashierQuotas {
@@ -15,6 +19,35 @@ export interface CashierQuotas {
 	videos?: number;
 	photography?: number;
 	videoMinutesCount?: number;
+}
+
+export function getPackagesQuotas(settings) {
+	return {
+		[Package.Light]: {
+			postsPerMonth: settings.light_postsPerMonth,
+			gifs: settings.light_gifs,
+			videos: settings.light_videos,
+			photography: settings.light_photography,
+		},
+		[Package.Pro]: {
+			postsPerMonth: settings.pro_postsPerMonth,
+			gifs: settings.pro_gifs,
+			videos: settings.pro_videos,
+			photography: settings.pro_photography,
+		},
+		[Package.Enterprise]: {
+			postsPerMonth: settings.enterprise_postsPerMonth,
+			gifs: settings.enterprise_gifs,
+			videos: settings.enterprise_videos,
+			photography: settings.enterprise_photography,
+		},
+		[Package.Custom]: {
+			postsPerMonth: 0,
+			gifs: 0,
+			videos: 0,
+			photography: 0,
+		}
+	};
 }
 
 const defPackagesQuotas = {
@@ -49,6 +82,10 @@ const defPrices = {
 	videoMinute: 1000,
 	photo: 30,
 	gif: 100,
+	discountAfterMonths: 12,
+	light_discountPerMonth: 0,
+	pro_discountPerMonth: 500,
+	enterprise_discountPerMonth: 1000,
 };
 
 export default class Cashier {
@@ -95,13 +132,16 @@ export default class Cashier {
 		let packageDiscount = 0;
 		let couponDiscount = 0;
 
-		if (application.dealMonths > 12) {
+		if (application.dealMonths > this.prices.discountAfterMonths) {
 			switch (application.package) {
+				case Package.Light:
+					packageDiscount += this.prices.light_discountPerMonth * application.dealMonths;
+					break;
 				case Package.Pro:
-					packageDiscount += 500 * application.dealMonths;
+					packageDiscount += this.prices.pro_discountPerMonth * application.dealMonths;
 					break;
 				case Package.Enterprise:
-					packageDiscount += 1000 * application.dealMonths;
+					packageDiscount += this.prices.enterprise_discountPerMonth * application.dealMonths;
 					break;
 			}
 		}

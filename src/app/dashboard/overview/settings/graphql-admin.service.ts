@@ -153,6 +153,10 @@ const updateApplicationSettingsMutation = gql`
 		$videoMinute: Int!
 		$photo: Int!
 		$gif: Int!
+		$discountAfterMonths: Int!
+		$light_discountPerMonth: Int!
+		$pro_discountPerMonth: Int!
+		$enterprise_discountPerMonth: Int!
 	) {
 		updateApplicationSettings(
 			light_postsPerMonth: $light_postsPerMonth,
@@ -171,6 +175,10 @@ const updateApplicationSettingsMutation = gql`
 			videoMinute: $videoMinute,
 			photo: $photo,
 			gif: $gif,
+			discountAfterMonths: $discountAfterMonths,
+			light_discountPerMonth: $light_discountPerMonth,
+			pro_discountPerMonth: $pro_discountPerMonth,
+			enterprise_discountPerMonth: $enterprise_discountPerMonth,
 		) {
 			index
 		}

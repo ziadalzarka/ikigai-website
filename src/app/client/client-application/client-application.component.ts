@@ -4,7 +4,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { Package } from '@app/redux/enums/package.enum';
 import { merge, map, tap, skip, finalize, take } from 'rxjs/operators';
-import { of } from 'rxjs';
+import { of, timer } from 'rxjs';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { SeoService } from '@app/seo.service';
 import { Coupon } from '@app/redux/models/coupon.model';
@@ -24,27 +24,31 @@ export class ClientApplicationComponent implements OnInit {
 	@ViewChild('successful') submissionSuccessful;
 	@ViewChild('failed') submissionFailed;
 
-	private cashier = new Cashier();
+	private cashier;
 
 	Package = Package;
 
-	clientApplicationForm = this.fb.group({
-		name: '',
-		phoneNumber: '',
-		email: '',
-		address: '',
-		facebook: '',
-		website: true,
-		hasHost: false,
-		hasDomain: false,
-		totalPrice: 0,
-		dealMonths: 12,
-		videoMinutesCount: 1,
-		coupon: '',
-		// -----------
-		package: Package.Light,
-		...this.cashier.quotas[Package.Light]
-	});
+	clientApplicationForm;
+
+	createClientApplicationForm() {
+		this.clientApplicationForm = this.fb.group({
+			name: '',
+			phoneNumber: '',
+			email: '',
+			address: '',
+			facebook: '',
+			website: true,
+			hasHost: false,
+			hasDomain: false,
+			totalPrice: 0,
+			dealMonths: 12,
+			videoMinutesCount: 1,
+			coupon: '',
+			// -----------
+			package: Package.Light,
+			...this.cashier.quotas[Package.Light]
+		});
+	}
 
 	get coupon(): string {
 		return this.clientApplicationForm.get('coupon').value;
@@ -137,8 +141,7 @@ export class ClientApplicationComponent implements OnInit {
 	loaded = false;
 
 	ngOnInit() {
-		loadMaterialize();
-		this.calculatePrice();
+		timer(500).subscribe(loadMaterialize);
 
 		this.seoService.generateTags({
 			title: 'Hire Ikigai',
@@ -147,8 +150,9 @@ export class ClientApplicationComponent implements OnInit {
 		this.publicContent.applicationSettingsQuery().pipe(take(1)).subscribe(
 			(settings) => {
 				this.loaded = true;
-
 				this.cashier = new Cashier(settings, getPackagesQuotas(settings));
+				this.createClientApplicationForm();
+				this.calculatePrice();
 			}
 		);
 	}
