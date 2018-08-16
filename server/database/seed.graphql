@@ -26,4 +26,25 @@ mutation {
   }) {
     index
   }
+	createApplicationSetting(data: {
+		index: 0,
+		light_postsPerMonth: 30,
+		light_gifs: 0,
+		light_videos: 0,
+		light_photography: 0,
+		pro_postsPerMonth: 60,
+		pro_gifs: 0,
+		pro_videos: 0,
+		pro_photography: 0,
+		enterprise_postsPerMonth: 120,
+		enterprise_gifs: 0,
+		enterprise_videos: 0,
+		enterprise_photography: 0,
+		post: 70,
+		videoMinute: 1000,
+		photo: 30,
+		gif: 100,
+	}) {
+		index
+	}
 }

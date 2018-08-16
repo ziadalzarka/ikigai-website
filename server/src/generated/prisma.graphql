@@ -1,5 +1,9 @@
 # source: https://prisma.ikigaiadv.com/ikigai
-# timestamp: Wed Aug 15 2018 16:27:26 GMT+0200 (EET)
+# timestamp: Thu Aug 16 2018 06:30:25 GMT+0200 (EET)
+
+type AggregateApplicationSetting {
+  count: Int!
+}
 
 type AggregateClientApplication {
   count: Int!
@@ -31,6 +35,576 @@ type AggregateUser {
 
 type AggregateVariable {
   count: Int!
+}
+
+type ApplicationSetting {
+  index: Int!
+  light_postsPerMonth: Int!
+  light_gifs: Int!
+  light_videos: Int!
+  light_photography: Int!
+  pro_postsPerMonth: Int!
+  pro_gifs: Int!
+  pro_videos: Int!
+  pro_photography: Int!
+  enterprise_postsPerMonth: Int!
+  enterprise_gifs: Int!
+  enterprise_videos: Int!
+  enterprise_photography: Int!
+  post: Int!
+  videoMinute: Int!
+  photo: Int!
+  gif: Int!
+}
+
+"""A connection to a list of items."""
+type ApplicationSettingConnection {
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """A list of edges."""
+  edges: [ApplicationSettingEdge]!
+  aggregate: AggregateApplicationSetting!
+}
+
+input ApplicationSettingCreateInput {
+  index: Int!
+  light_postsPerMonth: Int!
+  light_gifs: Int!
+  light_videos: Int!
+  light_photography: Int!
+  pro_postsPerMonth: Int!
+  pro_gifs: Int!
+  pro_videos: Int!
+  pro_photography: Int!
+  enterprise_postsPerMonth: Int!
+  enterprise_gifs: Int!
+  enterprise_videos: Int!
+  enterprise_photography: Int!
+  post: Int!
+  videoMinute: Int!
+  photo: Int!
+  gif: Int!
+}
+
+"""An edge in a connection."""
+type ApplicationSettingEdge {
+  """The item at the end of the edge."""
+  node: ApplicationSetting!
+
+  """A cursor for use in pagination."""
+  cursor: String!
+}
+
+enum ApplicationSettingOrderByInput {
+  index_ASC
+  index_DESC
+  light_postsPerMonth_ASC
+  light_postsPerMonth_DESC
+  light_gifs_ASC
+  light_gifs_DESC
+  light_videos_ASC
+  light_videos_DESC
+  light_photography_ASC
+  light_photography_DESC
+  pro_postsPerMonth_ASC
+  pro_postsPerMonth_DESC
+  pro_gifs_ASC
+  pro_gifs_DESC
+  pro_videos_ASC
+  pro_videos_DESC
+  pro_photography_ASC
+  pro_photography_DESC
+  enterprise_postsPerMonth_ASC
+  enterprise_postsPerMonth_DESC
+  enterprise_gifs_ASC
+  enterprise_gifs_DESC
+  enterprise_videos_ASC
+  enterprise_videos_DESC
+  enterprise_photography_ASC
+  enterprise_photography_DESC
+  post_ASC
+  post_DESC
+  videoMinute_ASC
+  videoMinute_DESC
+  photo_ASC
+  photo_DESC
+  gif_ASC
+  gif_DESC
+  id_ASC
+  id_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+  createdAt_ASC
+  createdAt_DESC
+}
+
+type ApplicationSettingPreviousValues {
+  index: Int!
+  light_postsPerMonth: Int!
+  light_gifs: Int!
+  light_videos: Int!
+  light_photography: Int!
+  pro_postsPerMonth: Int!
+  pro_gifs: Int!
+  pro_videos: Int!
+  pro_photography: Int!
+  enterprise_postsPerMonth: Int!
+  enterprise_gifs: Int!
+  enterprise_videos: Int!
+  enterprise_photography: Int!
+  post: Int!
+  videoMinute: Int!
+  photo: Int!
+  gif: Int!
+}
+
+type ApplicationSettingSubscriptionPayload {
+  mutation: MutationType!
+  node: ApplicationSetting
+  updatedFields: [String!]
+  previousValues: ApplicationSettingPreviousValues
+}
+
+input ApplicationSettingSubscriptionWhereInput {
+  """Logical AND on all given filters."""
+  AND: [ApplicationSettingSubscriptionWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [ApplicationSettingSubscriptionWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [ApplicationSettingSubscriptionWhereInput!]
+
+  """
+  The subscription event gets dispatched when it's listed in mutation_in
+  """
+  mutation_in: [MutationType!]
+
+  """
+  The subscription event gets only dispatched when one of the updated fields names is included in this list
+  """
+  updatedFields_contains: String
+
+  """
+  The subscription event gets only dispatched when all of the field names included in this list have been updated
+  """
+  updatedFields_contains_every: [String!]
+
+  """
+  The subscription event gets only dispatched when some of the field names included in this list have been updated
+  """
+  updatedFields_contains_some: [String!]
+  node: ApplicationSettingWhereInput
+}
+
+input ApplicationSettingUpdateInput {
+  index: Int
+  light_postsPerMonth: Int
+  light_gifs: Int
+  light_videos: Int
+  light_photography: Int
+  pro_postsPerMonth: Int
+  pro_gifs: Int
+  pro_videos: Int
+  pro_photography: Int
+  enterprise_postsPerMonth: Int
+  enterprise_gifs: Int
+  enterprise_videos: Int
+  enterprise_photography: Int
+  post: Int
+  videoMinute: Int
+  photo: Int
+  gif: Int
+}
+
+input ApplicationSettingWhereInput {
+  """Logical AND on all given filters."""
+  AND: [ApplicationSettingWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [ApplicationSettingWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [ApplicationSettingWhereInput!]
+  index: Int
+
+  """All values that are not equal to given value."""
+  index_not: Int
+
+  """All values that are contained in given list."""
+  index_in: [Int!]
+
+  """All values that are not contained in given list."""
+  index_not_in: [Int!]
+
+  """All values less than the given value."""
+  index_lt: Int
+
+  """All values less than or equal the given value."""
+  index_lte: Int
+
+  """All values greater than the given value."""
+  index_gt: Int
+
+  """All values greater than or equal the given value."""
+  index_gte: Int
+  light_postsPerMonth: Int
+
+  """All values that are not equal to given value."""
+  light_postsPerMonth_not: Int
+
+  """All values that are contained in given list."""
+  light_postsPerMonth_in: [Int!]
+
+  """All values that are not contained in given list."""
+  light_postsPerMonth_not_in: [Int!]
+
+  """All values less than the given value."""
+  light_postsPerMonth_lt: Int
+
+  """All values less than or equal the given value."""
+  light_postsPerMonth_lte: Int
+
+  """All values greater than the given value."""
+  light_postsPerMonth_gt: Int
+
+  """All values greater than or equal the given value."""
+  light_postsPerMonth_gte: Int
+  light_gifs: Int
+
+  """All values that are not equal to given value."""
+  light_gifs_not: Int
+
+  """All values that are contained in given list."""
+  light_gifs_in: [Int!]
+
+  """All values that are not contained in given list."""
+  light_gifs_not_in: [Int!]
+
+  """All values less than the given value."""
+  light_gifs_lt: Int
+
+  """All values less than or equal the given value."""
+  light_gifs_lte: Int
+
+  """All values greater than the given value."""
+  light_gifs_gt: Int
+
+  """All values greater than or equal the given value."""
+  light_gifs_gte: Int
+  light_videos: Int
+
+  """All values that are not equal to given value."""
+  light_videos_not: Int
+
+  """All values that are contained in given list."""
+  light_videos_in: [Int!]
+
+  """All values that are not contained in given list."""
+  light_videos_not_in: [Int!]
+
+  """All values less than the given value."""
+  light_videos_lt: Int
+
+  """All values less than or equal the given value."""
+  light_videos_lte: Int
+
+  """All values greater than the given value."""
+  light_videos_gt: Int
+
+  """All values greater than or equal the given value."""
+  light_videos_gte: Int
+  light_photography: Int
+
+  """All values that are not equal to given value."""
+  light_photography_not: Int
+
+  """All values that are contained in given list."""
+  light_photography_in: [Int!]
+
+  """All values that are not contained in given list."""
+  light_photography_not_in: [Int!]
+
+  """All values less than the given value."""
+  light_photography_lt: Int
+
+  """All values less than or equal the given value."""
+  light_photography_lte: Int
+
+  """All values greater than the given value."""
+  light_photography_gt: Int
+
+  """All values greater than or equal the given value."""
+  light_photography_gte: Int
+  pro_postsPerMonth: Int
+
+  """All values that are not equal to given value."""
+  pro_postsPerMonth_not: Int
+
+  """All values that are contained in given list."""
+  pro_postsPerMonth_in: [Int!]
+
+  """All values that are not contained in given list."""
+  pro_postsPerMonth_not_in: [Int!]
+
+  """All values less than the given value."""
+  pro_postsPerMonth_lt: Int
+
+  """All values less than or equal the given value."""
+  pro_postsPerMonth_lte: Int
+
+  """All values greater than the given value."""
+  pro_postsPerMonth_gt: Int
+
+  """All values greater than or equal the given value."""
+  pro_postsPerMonth_gte: Int
+  pro_gifs: Int
+
+  """All values that are not equal to given value."""
+  pro_gifs_not: Int
+
+  """All values that are contained in given list."""
+  pro_gifs_in: [Int!]
+
+  """All values that are not contained in given list."""
+  pro_gifs_not_in: [Int!]
+
+  """All values less than the given value."""
+  pro_gifs_lt: Int
+
+  """All values less than or equal the given value."""
+  pro_gifs_lte: Int
+
+  """All values greater than the given value."""
+  pro_gifs_gt: Int
+
+  """All values greater than or equal the given value."""
+  pro_gifs_gte: Int
+  pro_videos: Int
+
+  """All values that are not equal to given value."""
+  pro_videos_not: Int
+
+  """All values that are contained in given list."""
+  pro_videos_in: [Int!]
+
+  """All values that are not contained in given list."""
+  pro_videos_not_in: [Int!]
+
+  """All values less than the given value."""
+  pro_videos_lt: Int
+
+  """All values less than or equal the given value."""
+  pro_videos_lte: Int
+
+  """All values greater than the given value."""
+  pro_videos_gt: Int
+
+  """All values greater than or equal the given value."""
+  pro_videos_gte: Int
+  pro_photography: Int
+
+  """All values that are not equal to given value."""
+  pro_photography_not: Int
+
+  """All values that are contained in given list."""
+  pro_photography_in: [Int!]
+
+  """All values that are not contained in given list."""
+  pro_photography_not_in: [Int!]
+
+  """All values less than the given value."""
+  pro_photography_lt: Int
+
+  """All values less than or equal the given value."""
+  pro_photography_lte: Int
+
+  """All values greater than the given value."""
+  pro_photography_gt: Int
+
+  """All values greater than or equal the given value."""
+  pro_photography_gte: Int
+  enterprise_postsPerMonth: Int
+
+  """All values that are not equal to given value."""
+  enterprise_postsPerMonth_not: Int
+
+  """All values that are contained in given list."""
+  enterprise_postsPerMonth_in: [Int!]
+
+  """All values that are not contained in given list."""
+  enterprise_postsPerMonth_not_in: [Int!]
+
+  """All values less than the given value."""
+  enterprise_postsPerMonth_lt: Int
+
+  """All values less than or equal the given value."""
+  enterprise_postsPerMonth_lte: Int
+
+  """All values greater than the given value."""
+  enterprise_postsPerMonth_gt: Int
+
+  """All values greater than or equal the given value."""
+  enterprise_postsPerMonth_gte: Int
+  enterprise_gifs: Int
+
+  """All values that are not equal to given value."""
+  enterprise_gifs_not: Int
+
+  """All values that are contained in given list."""
+  enterprise_gifs_in: [Int!]
+
+  """All values that are not contained in given list."""
+  enterprise_gifs_not_in: [Int!]
+
+  """All values less than the given value."""
+  enterprise_gifs_lt: Int
+
+  """All values less than or equal the given value."""
+  enterprise_gifs_lte: Int
+
+  """All values greater than the given value."""
+  enterprise_gifs_gt: Int
+
+  """All values greater than or equal the given value."""
+  enterprise_gifs_gte: Int
+  enterprise_videos: Int
+
+  """All values that are not equal to given value."""
+  enterprise_videos_not: Int
+
+  """All values that are contained in given list."""
+  enterprise_videos_in: [Int!]
+
+  """All values that are not contained in given list."""
+  enterprise_videos_not_in: [Int!]
+
+  """All values less than the given value."""
+  enterprise_videos_lt: Int
+
+  """All values less than or equal the given value."""
+  enterprise_videos_lte: Int
+
+  """All values greater than the given value."""
+  enterprise_videos_gt: Int
+
+  """All values greater than or equal the given value."""
+  enterprise_videos_gte: Int
+  enterprise_photography: Int
+
+  """All values that are not equal to given value."""
+  enterprise_photography_not: Int
+
+  """All values that are contained in given list."""
+  enterprise_photography_in: [Int!]
+
+  """All values that are not contained in given list."""
+  enterprise_photography_not_in: [Int!]
+
+  """All values less than the given value."""
+  enterprise_photography_lt: Int
+
+  """All values less than or equal the given value."""
+  enterprise_photography_lte: Int
+
+  """All values greater than the given value."""
+  enterprise_photography_gt: Int
+
+  """All values greater than or equal the given value."""
+  enterprise_photography_gte: Int
+  post: Int
+
+  """All values that are not equal to given value."""
+  post_not: Int
+
+  """All values that are contained in given list."""
+  post_in: [Int!]
+
+  """All values that are not contained in given list."""
+  post_not_in: [Int!]
+
+  """All values less than the given value."""
+  post_lt: Int
+
+  """All values less than or equal the given value."""
+  post_lte: Int
+
+  """All values greater than the given value."""
+  post_gt: Int
+
+  """All values greater than or equal the given value."""
+  post_gte: Int
+  videoMinute: Int
+
+  """All values that are not equal to given value."""
+  videoMinute_not: Int
+
+  """All values that are contained in given list."""
+  videoMinute_in: [Int!]
+
+  """All values that are not contained in given list."""
+  videoMinute_not_in: [Int!]
+
+  """All values less than the given value."""
+  videoMinute_lt: Int
+
+  """All values less than or equal the given value."""
+  videoMinute_lte: Int
+
+  """All values greater than the given value."""
+  videoMinute_gt: Int
+
+  """All values greater than or equal the given value."""
+  videoMinute_gte: Int
+  photo: Int
+
+  """All values that are not equal to given value."""
+  photo_not: Int
+
+  """All values that are contained in given list."""
+  photo_in: [Int!]
+
+  """All values that are not contained in given list."""
+  photo_not_in: [Int!]
+
+  """All values less than the given value."""
+  photo_lt: Int
+
+  """All values less than or equal the given value."""
+  photo_lte: Int
+
+  """All values greater than the given value."""
+  photo_gt: Int
+
+  """All values greater than or equal the given value."""
+  photo_gte: Int
+  gif: Int
+
+  """All values that are not equal to given value."""
+  gif_not: Int
+
+  """All values that are contained in given list."""
+  gif_in: [Int!]
+
+  """All values that are not contained in given list."""
+  gif_not_in: [Int!]
+
+  """All values less than the given value."""
+  gif_lt: Int
+
+  """All values less than or equal the given value."""
+  gif_lte: Int
+
+  """All values greater than the given value."""
+  gif_gt: Int
+
+  """All values greater than or equal the given value."""
+  gif_gte: Int
+}
+
+input ApplicationSettingWhereUniqueInput {
+  index: Int
 }
 
 type BatchPayload {
@@ -2115,6 +2689,7 @@ scalar Long
 
 type Mutation {
   createVariable(data: VariableCreateInput!): Variable!
+  createApplicationSetting(data: ApplicationSettingCreateInput!): ApplicationSetting!
   createUser(data: UserCreateInput!): User!
   createPost(data: PostCreateInput!): Post!
   createJobApplication(data: JobApplicationCreateInput!): JobApplication!
@@ -2123,6 +2698,7 @@ type Mutation {
   createContactApplication(data: ContactApplicationCreateInput!): ContactApplication!
   createFile(data: FileCreateInput!): File!
   updateVariable(data: VariableUpdateInput!, where: VariableWhereUniqueInput!): Variable
+  updateApplicationSetting(data: ApplicationSettingUpdateInput!, where: ApplicationSettingWhereUniqueInput!): ApplicationSetting
   updateUser(data: UserUpdateInput!, where: UserWhereUniqueInput!): User
   updatePost(data: PostUpdateInput!, where: PostWhereUniqueInput!): Post
   updateJobApplication(data: JobApplicationUpdateInput!, where: JobApplicationWhereUniqueInput!): JobApplication
@@ -2131,6 +2707,7 @@ type Mutation {
   updateContactApplication(data: ContactApplicationUpdateInput!, where: ContactApplicationWhereUniqueInput!): ContactApplication
   updateFile(data: FileUpdateInput!, where: FileWhereUniqueInput!): File
   deleteVariable(where: VariableWhereUniqueInput!): Variable
+  deleteApplicationSetting(where: ApplicationSettingWhereUniqueInput!): ApplicationSetting
   deleteUser(where: UserWhereUniqueInput!): User
   deletePost(where: PostWhereUniqueInput!): Post
   deleteJobApplication(where: JobApplicationWhereUniqueInput!): JobApplication
@@ -2139,6 +2716,7 @@ type Mutation {
   deleteContactApplication(where: ContactApplicationWhereUniqueInput!): ContactApplication
   deleteFile(where: FileWhereUniqueInput!): File
   upsertVariable(where: VariableWhereUniqueInput!, create: VariableCreateInput!, update: VariableUpdateInput!): Variable!
+  upsertApplicationSetting(where: ApplicationSettingWhereUniqueInput!, create: ApplicationSettingCreateInput!, update: ApplicationSettingUpdateInput!): ApplicationSetting!
   upsertUser(where: UserWhereUniqueInput!, create: UserCreateInput!, update: UserUpdateInput!): User!
   upsertPost(where: PostWhereUniqueInput!, create: PostCreateInput!, update: PostUpdateInput!): Post!
   upsertJobApplication(where: JobApplicationWhereUniqueInput!, create: JobApplicationCreateInput!, update: JobApplicationUpdateInput!): JobApplication!
@@ -2147,6 +2725,7 @@ type Mutation {
   upsertContactApplication(where: ContactApplicationWhereUniqueInput!, create: ContactApplicationCreateInput!, update: ContactApplicationUpdateInput!): ContactApplication!
   upsertFile(where: FileWhereUniqueInput!, create: FileCreateInput!, update: FileUpdateInput!): File!
   updateManyVariables(data: VariableUpdateInput!, where: VariableWhereInput): BatchPayload!
+  updateManyApplicationSettings(data: ApplicationSettingUpdateInput!, where: ApplicationSettingWhereInput): BatchPayload!
   updateManyUsers(data: UserUpdateInput!, where: UserWhereInput): BatchPayload!
   updateManyPosts(data: PostUpdateInput!, where: PostWhereInput): BatchPayload!
   updateManyJobApplications(data: JobApplicationUpdateInput!, where: JobApplicationWhereInput): BatchPayload!
@@ -2155,6 +2734,7 @@ type Mutation {
   updateManyContactApplications(data: ContactApplicationUpdateInput!, where: ContactApplicationWhereInput): BatchPayload!
   updateManyFiles(data: FileUpdateInput!, where: FileWhereInput): BatchPayload!
   deleteManyVariables(where: VariableWhereInput): BatchPayload!
+  deleteManyApplicationSettings(where: ApplicationSettingWhereInput): BatchPayload!
   deleteManyUsers(where: UserWhereInput): BatchPayload!
   deleteManyPosts(where: PostWhereInput): BatchPayload!
   deleteManyJobApplications(where: JobApplicationWhereInput): BatchPayload!
@@ -2674,6 +3254,7 @@ input PostWhereUniqueInput {
 
 type Query {
   variables(where: VariableWhereInput, orderBy: VariableOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Variable]!
+  applicationSettings(where: ApplicationSettingWhereInput, orderBy: ApplicationSettingOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [ApplicationSetting]!
   users(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [User]!
   posts(where: PostWhereInput, orderBy: PostOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Post]!
   jobApplications(where: JobApplicationWhereInput, orderBy: JobApplicationOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [JobApplication]!
@@ -2682,6 +3263,7 @@ type Query {
   contactApplications(where: ContactApplicationWhereInput, orderBy: ContactApplicationOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [ContactApplication]!
   files(where: FileWhereInput, orderBy: FileOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [File]!
   variable(where: VariableWhereUniqueInput!): Variable
+  applicationSetting(where: ApplicationSettingWhereUniqueInput!): ApplicationSetting
   user(where: UserWhereUniqueInput!): User
   post(where: PostWhereUniqueInput!): Post
   jobApplication(where: JobApplicationWhereUniqueInput!): JobApplication
@@ -2690,6 +3272,7 @@ type Query {
   contactApplication(where: ContactApplicationWhereUniqueInput!): ContactApplication
   file(where: FileWhereUniqueInput!): File
   variablesConnection(where: VariableWhereInput, orderBy: VariableOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): VariableConnection!
+  applicationSettingsConnection(where: ApplicationSettingWhereInput, orderBy: ApplicationSettingOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): ApplicationSettingConnection!
   usersConnection(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): UserConnection!
   postsConnection(where: PostWhereInput, orderBy: PostOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): PostConnection!
   jobApplicationsConnection(where: JobApplicationWhereInput, orderBy: JobApplicationOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): JobApplicationConnection!
@@ -2707,6 +3290,7 @@ type Query {
 
 type Subscription {
   variable(where: VariableSubscriptionWhereInput): VariableSubscriptionPayload
+  applicationSetting(where: ApplicationSettingSubscriptionWhereInput): ApplicationSettingSubscriptionPayload
   user(where: UserSubscriptionWhereInput): UserSubscriptionPayload
   post(where: PostSubscriptionWhereInput): PostSubscriptionPayload
   jobApplication(where: JobApplicationSubscriptionWhereInput): JobApplicationSubscriptionPayload

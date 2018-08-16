@@ -41,7 +41,7 @@ export class UserEffects {
 			map((action: UserActions.LoginUserSuccess) => action.payload),
 			map((res: LoginResponse) => {
 				localStorage.setItem('token', res.token);
-				this.router.navigate(['dashboard']);
+				location.reload();
 			})
 		);
 

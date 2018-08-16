@@ -16,26 +16,59 @@ export interface CashierQuotas {
 	videoMinutesCount?: number;
 }
 
+export function getPackagesQuotas(settings) {
+	return {
+		[Package.Light]: {
+			postsPerMonth: settings.light_postsPerMonth,
+			gifs: settings.light_gifs,
+			videos: settings.light_videos,
+			photography: settings.light_photography,
+		},
+		[Package.Pro]: {
+			postsPerMonth: settings.pro_postsPerMonth,
+			gifs: settings.pro_gifs,
+			videos: settings.pro_videos,
+			photography: settings.pro_photography,
+		},
+		[Package.Enterprise]: {
+			postsPerMonth: settings.enterprise_postsPerMonth,
+			gifs: settings.enterprise_gifs,
+			videos: settings.enterprise_videos,
+			photography: settings.enterprise_photography,
+		},
+		[Package.Custom]: {
+			postsPerMonth: 0,
+			gifs: 0,
+			videos: 0,
+			photography: 0,
+		}
+	}
+}
+
 const defPackagesQuotas = {
 	[Package.Light]: {
 		postsPerMonth: 30,
 		gifs: 0,
 		videos: 0,
+		photography: 0,
 	},
 	[Package.Pro]: {
 		postsPerMonth: 60,
 		gifs: 0,
 		videos: 0,
+		photography: 0,
 	},
 	[Package.Enterprise]: {
 		postsPerMonth: 120,
 		gifs: 0,
 		videos: 0,
+		photography: 0,
 	},
 	[Package.Custom]: {
 		postsPerMonth: 0,
 		gifs: 0,
 		videos: 0,
+		photography: 0,
 	}
 };
 

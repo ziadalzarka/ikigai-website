@@ -60,4 +60,12 @@ export const adminMutation = {
 			where: { index: 0 },
 		}, info);
 	},
+
+	async updateApplicationSettings(parent, data, ctx: Context, info) {
+		await verifyPermission(ctx, Permissions.Admin).catch(err => { throw err; });
+		ctx.db.mutation.updateApplicationSetting({
+			data,
+			where: { index: 0 }
+		}, info);
+	}
 };

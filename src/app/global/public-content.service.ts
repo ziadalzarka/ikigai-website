@@ -65,6 +65,29 @@ const footerQuery = gql`
 	}
 `;
 
+const applicationSettingsQuery = gql`
+	query {
+		applicationSettings {
+			light_postsPerMonth
+			light_gifs
+			light_videos
+			light_photography
+			pro_postsPerMonth
+			pro_gifs
+			pro_videos
+			pro_photography
+			enterprise_postsPerMonth
+			enterprise_gifs
+			enterprise_videos
+			enterprise_photography
+			post
+			videoMinute
+			photo
+			gif
+		}
+	}
+`;
+
 @Injectable({
 	providedIn: 'root'
 })
@@ -129,6 +152,14 @@ export class PublicContentService {
 					thumbnailImageId: post.thumbnailImage.id
 				} : post;
 			})
+		);
+	}
+
+	applicationSettingsQuery() {
+		return this.apollo.query({
+			query: applicationSettingsQuery,
+		}).pipe(
+			map((res: any) => res.data.applicationSettings),
 		);
 	}
 }

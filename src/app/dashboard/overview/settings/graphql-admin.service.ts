@@ -132,6 +132,48 @@ const updateVariablesMutation = gql`
 	}
 `;
 
+const updateApplicationSettingsMutation = gql`
+	mutation(
+		$light_postsPerMonth: Int!
+		$light_gifs: Int!
+		$light_videos: Int!
+		$light_photography: Int!
+		$pro_postsPerMonth: Int!
+		$pro_gifs: Int!
+		$pro_videos: Int!
+		$pro_photography: Int!
+		$enterprise_postsPerMonth: Int!
+		$enterprise_gifs: Int!
+		$enterprise_videos: Int!
+		$enterprise_photography: Int!
+		$post: Int!
+		$videoMinute: Int!
+		$photo: Int!
+		$gif: Int!
+	) {
+		updateApplicationSettings(
+			light_postsPerMonth: $light_postsPerMonth,
+			light_gifs: $light_gifs,
+			light_videos: $light_videos,
+			light_photography: $light_photography,
+			pro_postsPerMonth: $pro_postsPerMonth,
+			pro_gifs: $pro_gifs,
+			pro_videos: $pro_videos,
+			pro_photography: $pro_photography,
+			enterprise_postsPerMonth: $enterprise_postsPerMonth,
+			enterprise_gifs: $enterprise_gifs,
+			enterprise_videos: $enterprise_videos,
+			enterprise_photography: $enterprise_photography,
+			post: $post,
+			videoMinute: $videoMinute,
+			photo: $photo,
+			gif: $gif,
+		) {
+			index
+		}
+	}
+`;
+
 @Injectable({
 	providedIn: 'root'
 })
@@ -198,6 +240,15 @@ export class GraphqlAdminService {
 			variables: data
 		}).pipe(
 			map((res: any) => res.data.updateVariables)
+		);
+	}
+
+	updateApplicationSettings(data) {
+		return this.apollo.mutate({
+			mutation: updateApplicationSettingsMutation,
+			variables: data,
+		}).pipe(
+			map((res: any) => res.data.updateApplicationSettings),
 		);
 	}
 }

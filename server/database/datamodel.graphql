@@ -37,6 +37,30 @@ type Variable {
 	additionalBody: String
 }
 
+type ApplicationSetting {
+	index: Int! @unique
+	# light
+	light_postsPerMonth: Int!
+	light_gifs: Int!
+	light_videos: Int!
+	light_photography: Int!
+	# pro
+	pro_postsPerMonth: Int!
+	pro_gifs: Int!
+	pro_videos: Int!
+	pro_photography: Int!
+	# enterprise
+	enterprise_postsPerMonth: Int!
+	enterprise_gifs: Int!
+	enterprise_videos: Int!
+	enterprise_photography: Int!
+	# prices
+	post: Int!
+	videoMinute: Int!
+	photo: Int!
+	gif: Int!
+}
+
 type User {
   id: ID! @unique
   name: String!

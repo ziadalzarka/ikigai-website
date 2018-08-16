@@ -1,1 +1,110 @@
-p shit happens here!
+.p-5
+	.container-fluid(*ngIf="loaded")
+		form([formGroup]="settingsForm")
+			.row
+				.col
+					h2 Prices
+					hr
+			.row
+				.col-12.col-md-6
+					.form-group
+						label Post
+						input.form-control(type='number', min='0', required, placeholder='70', formControlName="post")
+				.col-12.col-md-6
+					.form-group
+						label Gif
+						input.form-control(type='number', min='0', required, placeholder='1000', formControlName="gif")
+				.col-12.col-md-6
+					.form-group
+						label Video Minute
+						input.form-control(type='number', min='0', required, placeholder='30', formControlName="videoMinute")
+				.col-12.col-md-6
+					.form-group
+						label Photo
+						input.form-control(type='number', min='0', required, placeholder='100', formControlName="photo")
+			br
+			.row
+				.col
+					h2 Light Package Quotas
+					hr
+			.row
+				.col-12.col-md-6
+					.form-group
+						label Posts per month
+						input.form-control(type='number', min='0', required, placeholder='30', formControlName="light_postsPerMonth")
+				.col-12.col-md-6
+					.form-group
+						label Gifs
+						input.form-control(type='number', min='0', required, placeholder='0', formControlName="light_gifs")
+				.col-12.col-md-6
+					.form-group
+						label Videos
+						input.form-control(type='number', min='0', required, placeholder='0', formControlName="light_videos")
+				.col-12.col-md-6
+					.form-group
+						label Photography
+						input.form-control(type='number', min='0', required, placeholder='0', formControlName="light_photography")
+			br
+			.row
+				.col
+					h2 Pro Package Quotas
+					hr
+			.row
+				.col-12.col-md-6
+					.form-group
+						label Posts per month
+						input.form-control(type='number', min='0', required, placeholder='60', formControlName="pro_postsPerMonth")
+				.col-12.col-md-6
+					.form-group
+						label Gifs
+						input.form-control(type='number', min='0', required, placeholder='0', formControlName="pro_gifs")
+				.col-12.col-md-6
+					.form-group
+						label Videos
+						input.form-control(type='number', min='0', required, placeholder='0', formControlName="pro_videos")
+				.col-12.col-md-6
+					.form-group
+						label Photography
+						input.form-control(type='number', min='0', required, placeholder='0', formControlName="pro_photography")
+			br
+			.row
+				.col
+					h2 Enterprise Package Quotas
+					hr
+			.row
+				.col-12.col-md-6
+					.form-group
+						label Posts per month
+						input.form-control(type='number', min='0', required, placeholder='120', formControlName="enterprise_postsPerMonth")
+				.col-12.col-md-6
+					.form-group
+						label Gifs
+						input.form-control(type='number', min='0', required, placeholder='0', formControlName="enterprise_gifs")
+				.col-12.col-md-6
+					.form-group
+						label Videos
+						input.form-control(type='number', min='0', required, placeholder='0', formControlName="enterprise_videos")
+				.col-12.col-md-6
+					.form-group
+						label Photography
+						input.form-control(type='number', min='0', required, placeholder='0', formControlName="enterprise_photography")
+			hr
+			.row
+				.col-12.col-lg-4.offset-lg-8
+					button.w-100.btn.btn-dashboard.btn.ml-auto.mt-1(type='button', (click)="save()", [disabled]="settingsForm.invalid") Save
+
+ng-template(#updateSuccess, let-close='close', let-dismiss='dismiss')
+	.modal-header
+		h3.modal-title Successfully saved
+	.modal-body
+		p.lead Successfully saved new prices.
+	.modal-footer
+		button.btn.btn-dashboard(type='button', (click)="close()") OK
+
+ng-template(#updateFailed, let-close='close', let-dismiss='dismiss')
+	.modal-header
+		h3.modal-title Operation failed
+	.modal-body
+		p.lead Failed to update prices.
+	.modal-footer
+		button.btn.btn-dashboard(type='button', (click)="close()") OK

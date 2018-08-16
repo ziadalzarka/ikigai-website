@@ -17,6 +17,10 @@ export const publicContent = {
 		return ctx.db.query.variable({ where: { index: 0 } }, info);
 	},
 
+	applicationSettings(parent, { }, ctx: Context, info) {
+		return ctx.db.query.applicationSetting({ where: { index: 0 } }, info);
+	},
+
 	coupon(parent, { coupon }, ctx: Context, info) {
 		return ctx.db.query.coupon({ where: { coupon } });
 	}

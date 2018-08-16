@@ -22,21 +22,25 @@ const defPackagesQuotas = {
 		postsPerMonth: 30,
 		gifs: 0,
 		videos: 0,
+		photography: 0,
 	},
 	[Package.Pro]: {
 		postsPerMonth: 60,
 		gifs: 0,
 		videos: 0,
+		photography: 0,
 	},
 	[Package.Enterprise]: {
 		postsPerMonth: 120,
 		gifs: 0,
 		videos: 0,
+		photography: 0,
 	},
 	[Package.Custom]: {
 		postsPerMonth: 0,
 		gifs: 0,
 		videos: 0,
+		photography: 0,
 	}
 };
 

@@ -3,13 +3,14 @@ import { ClientApplication } from '@app/redux/models/client-application.model';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { Package } from '@app/redux/enums/package.enum';
-import { merge, map, tap, skip, finalize } from 'rxjs/operators';
+import { merge, map, tap, skip, finalize, take } from 'rxjs/operators';
 import { of } from 'rxjs';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { SeoService } from '@app/seo.service';
 import { Coupon } from '@app/redux/models/coupon.model';
 import { DiscountType } from '@app/redux/enums/discount-type.enum';
-import Cashier from 'utils/cashier';
+import Cashier, { getPackagesQuotas } from 'utils/cashier';
+import { PublicContentService } from '@app/global/public-content.service';
 
 declare var loadMaterialize: any;
 
@@ -41,7 +42,6 @@ export class ClientApplicationComponent implements OnInit {
 		videoMinutesCount: 1,
 		coupon: '',
 		// -----------
-		photography: 0,
 		package: Package.Light,
 		...this.cashier.quotas[Package.Light]
 	});
@@ -131,7 +131,10 @@ export class ClientApplicationComponent implements OnInit {
 		private clientService: GraphqlClientService,
 		private modalService: NgbModal,
 		private seoService: SeoService,
+		private publicContent: PublicContentService
 	) { }
+
+	loaded = false;
 
 	ngOnInit() {
 		loadMaterialize();
@@ -140,6 +143,14 @@ export class ClientApplicationComponent implements OnInit {
 		this.seoService.generateTags({
 			title: 'Hire Ikigai',
 		});
+
+		this.publicContent.applicationSettingsQuery().pipe(take(1)).subscribe(
+			(settings) => {
+				this.loaded = true;
+
+				this.cashier = new Cashier(settings, getPackagesQuotas(settings));
+			}
+		);
 	}
 
 	markAsDirty() {
