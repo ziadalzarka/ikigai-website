@@ -3,8 +3,8 @@ div.minh-100
 		.container-fluid
 			.row
 				.col
-					img.mb-5#header(src="assets/images/header.png")
-			.container.mb-4
+					img.my-5#header(src="assets/images/header.png")
+			.container.my-5
 				.row.d-none.d-md-inline-block
 					.col
 						button.btn.btn-lg.btn-light(routerLink="/job")
@@ -25,5 +25,5 @@ div.minh-100
 					app-post-thumbnail([post]="post", (open)="showPost(post)")
 			.row
 				.col
-					<ngb-pagination [collectionSize]="count$|async" [pageSize]="pageSize" [maxSize]="5" [rotate]="true" [(page)]="page" aria-label="Default pagination"></ngb-pagination>
+					ngb-pagination([collectionSize]="count$|async", [pageSize]="pageSize", [maxSize]="5", [rotate]="true", [(page)]="page")
 app-footer
