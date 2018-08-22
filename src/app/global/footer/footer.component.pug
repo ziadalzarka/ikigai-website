@@ -1,47 +1,31 @@
-.bg-dark.p-5
+.bg-dark.py-5
 	.container
 		.row.text-light
 			.col-12.col-md-3
 				strong Address
 				br
 				br
-				p.pre(*ngIf="(content$|async)?.address") {{ (content$|async)?.address }}
+				div.f-1.pre(*ngIf="(content$|async)?.address") {{ (content$|async)?.address }}
 			.col-12.col-md-3
-				strong Contacts
+				strong Phones
 				br
 				br
-				div(*ngIf="(content$|async)?.email") Email: {{ (content$|async)?.email }}
-				div(*ngIf="(content$|async)?.phone1") Phone: {{ (content$|async)?.phone1 }}
-				div(*ngIf="(content$|async)?.phone2") Phone: {{ (content$|async)?.phone2 }}
+				div.f-1(*ngIf="(content$|async)?.phone1") {{ (content$|async)?.phone1 }}
+				div.f-1(*ngIf="(content$|async)?.phone2") {{ (content$|async)?.phone2 }}
+				br
+			.col-12.col-md-3
+				strong Email
+				br
+				br
+				div.f-1(*ngIf="(content$|async)?.email") {{ (content$|async)?.email }}
 				br
 			.col-12.col-md-3
 				strong(*ngIf="(content$|async)?.additionalTitle") {{ (content$|async)?.additionalTitle }}
 				br
 				br
-				div(*ngIf="(content$|async)?.additionalBody") {{ (content$|async)?.additionalBody }}
-				br
-			.col-12.col-md-3.mt-4.d-flex.align-items-end.justify-content-center
-				ul#social
-					li.cursor-pointer(*ngIf="(content$|async)?.facebook")
-						.facebook((click)="newTab('facebook')")
-							a
-								i.fa.fa-facebook
-					li.cursor-pointer(*ngIf="(content$|async)?.linkedIn")
-						.linkedin((click)="newTab('linkedIn')")
-							a
-								i.fa.fa-linkedin
-					li.cursor-pointer(*ngIf="(content$|async)?.youtube")
-						.youtube((click)="newTab('youtube')")
-							a
-								i.fa.fa-youtube
-					li.cursor-pointer(*ngIf="(content$|async)?.instagram")
-						.instagram((click)="newTab('instagram')")
-							a
-								i.fa.fa-instagram
-		.row
-			.col-sm-6
-				hr
-				p#copyright
-					| &copy; Copyright 2017 
-					a#company-link(href="https://www.facebook.com/graystudios00", target="_blank") Gray Studios
-					|  - All Rights Reserved
+				div.f-1(*ngIf="(content$|async)?.additionalBody") {{ (content$|async)?.additionalBody }}
+.copyright.text-center
+	span
+		| &copy; Copyright 2018 
+		a#company-link(href="https://www.facebook.com/graystudios00", target="_blank") Gray Studios
+		|  - All Rights Reserved

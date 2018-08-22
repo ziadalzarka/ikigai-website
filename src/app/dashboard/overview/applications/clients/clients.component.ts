@@ -9,6 +9,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { Store } from '@ngrx/store';
 import * as fromClientApplications from '@app/redux/reducers/client-applications.reducer';
 import Cashier from 'utils/cashier';
+import { scrollToTop } from 'utils/utils';
 
 @Component({
 	selector: 'app-clients',

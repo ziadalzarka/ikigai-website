@@ -70,12 +70,10 @@ export const flipOut = group([
 
 export const routerTransition = trigger('routerTransition', [
 	/* home, client, job */
-	transition('home => client', [swipeRight]),
-	transition('client => home', [swipeLeft]),
-	transition('home => job', [swipeLeft]),
-	transition('job => home', [swipeRight]),
-	transition('home => contact', [swipeDown]),
-	transition('contact => home', [swipeUp]),
+	transition('home => client', [flipIn]),
+	transition('client => home', [flipOut]),
+	transition('home => job', [flipIn]),
+	transition('job => home', [flipOut]),
 
 	/* post view */
 	transition('home => post', [flipIn]),

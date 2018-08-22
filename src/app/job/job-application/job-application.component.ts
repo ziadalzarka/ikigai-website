@@ -6,7 +6,7 @@ import { JobPosition } from '@app/redux/enums/job-position.enum';
 import { UploadService } from '@app/global/upload.service';
 import { GraphqlJobService } from '@app/job/graphql-job.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { getUploadPercentage } from 'utils/utils';
+import { getUploadPercentage, scrollToTop } from 'utils/utils';
 import { tap, last, map } from 'rxjs/operators';
 
 enum Position {
@@ -85,6 +85,7 @@ export class JobApplicationComponent implements OnInit {
 		private seoService: SeoService) { }
 
 	ngOnInit() {
+		scrollToTop();
 		this.seoService.generateTags({
 			title: 'Apply for a job at Ikigai',
 		});

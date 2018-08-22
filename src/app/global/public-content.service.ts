@@ -5,6 +5,7 @@ import { Apollo } from 'apollo-angular';
 import { Injectable } from '@angular/core';
 import { map, tap } from 'rxjs/operators';
 import { Observable } from 'rxjs';
+import { FooterVariables } from '@app/redux/models/variables.model';
 
 export const feedPostFragment = gql`
 	fragment feedPost on Post {
@@ -132,12 +133,12 @@ export class PublicContentService {
 						} : edge.node;
 					}),
 					count: res.data.feed.aggregate.count
-				}
+				};
 			})
 		);
 	}
 
-	footer() {
+	footer(): Observable<FooterVariables> {
 		return this.apollo.query({
 			query: footerQuery
 		}).pipe(

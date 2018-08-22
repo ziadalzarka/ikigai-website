@@ -11,6 +11,7 @@ import { Coupon } from '@app/redux/models/coupon.model';
 import { DiscountType } from '@app/redux/enums/discount-type.enum';
 import Cashier, { getPackagesQuotas } from 'utils/cashier';
 import { PublicContentService } from '@app/global/public-content.service';
+import { scrollToTop } from 'utils/utils';
 
 declare var loadMaterialize: any;
 
@@ -142,6 +143,7 @@ export class ClientApplicationComponent implements OnInit {
 
 	ngOnInit() {
 		timer(500).subscribe(loadMaterialize);
+		scrollToTop();
 
 		this.seoService.generateTags({
 			title: 'Hire Ikigai',

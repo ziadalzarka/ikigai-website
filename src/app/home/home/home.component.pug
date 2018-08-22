@@ -1,29 +1,106 @@
-div.minh-100
-	header.background-img.center-align.text-center.justify-content-center.py-5
-		.container-fluid
-			.row
-				.col
-					img.my-5#header(src="assets/images/header.png")
-			.container.my-5
-				.row.d-none.d-md-inline-block
-					.col
-						button.btn.btn-lg.btn-light(routerLink="/job")
-							h5.my-0 I&apos;m looking for work
-						button.btn.btn-lg.btn-ocean(routerLink="/client")
-							h5.my-0.text-light I&apos;m a client
-				.row.d-md-none
-					.col-12
-						button.w-100.btn.btn-lg.btn-ocean(routerLink="/job")
-							h5.text-light.my-0.white-space-normal I&apos;m looking for work
-					.col-12
-						button.w-100.btn.btn-lg.btn-light(routerLink="/client")
-							h5.my-0 I&apos;m a client
-	section.minh-100.py-5
-		.container.pt-4
-			.row
-				.col-12(*ngFor="let post of feed$|async")
-					app-post-thumbnail([post]="post", (open)="showPost(post)")
-			.row
-				.col
-					ngb-pagination([collectionSize]="count$|async", [pageSize]="pageSize", [maxSize]="5", [rotate]="true", [(page)]="page")
+section.h-100.background-img
+	.container.h-100.text-center.no-overflow
+		.row.h-100
+			//- for alignment purposes
+			.col-12.align-self-start 
+			.col-12.align-self-center
+				h1.brand Ikigai
+				p.mb-5.subtitle For digital marketing and media services
+				div.mt-5.d-flex.justify-content-center
+					.social-link.mx-2.cursor-pointer(*ngIf="(content$|async)?.facebook", (click)="newTab('facebook')")
+						i.fa.fa-facebook.text-white.f-4
+					.social-link.mx-2.cursor-pointer(*ngIf="(content$|async)?.linkedin", (click)="newTab('linkedin')")
+						i.fa.fa-linkedin.text-white.f-4
+					.social-link.mx-2.cursor-pointer(*ngIf="(content$|async)?.instagram", (click)="newTab('instagram')")
+						i.fa.fa-instagram.text-white.f-4
+					.social-link.mx-2.cursor-pointer(*ngIf="(content$|async)?.youtube", (click)="newTab('youtube')")
+						i.fa.fa-youtube.text-white.f-4
+			.col-12.align-self-end.mb-5
+				img(src="assets/images/down-arrow.svg", alt="", srcset="")
+		//- .social-links.d-none.d-md-flex
+		//- 	.social-link.my-2.cursor-pointer
+		//- 		i.fa.fa-facebook.text-white.f-4
+		//- 	.social-link.my-2.cursor-pointer
+		//- 		i.fa.fa-linkedin.text-white.f-4
+		//- 	.social-link.my-2.cursor-pointer
+		//- 			i.fa.fa-instagram.text-white.f-4
+		//- 	.social-link.my-2.cursor-pointer
+		//- 		i.fa.fa-youtube.text-white.f-4
+
+section#apply-section.py-5
+	.container
+		h1 Join Us
+		.row
+			.col.mt-5
+				.apply-card
+					img(src="assets/images/avatar-designer.svg")
+					h2.my-4 I'm looking for work
+					p.my-2 We are looking forward to hiring people with exquisite expertise in their field(s).
+					ul.mt-4
+						li 
+							i.bullet
+							| Media
+						li 
+							i.bullet
+							| Graphic Design
+						li 
+							i.bullet
+							| Photography
+						li
+							i.bullet
+							| Public Relations
+					button.btn.btn-coffee.w-100.shadow-none.mt-2(routerLink="/job") Apply Now
+			.col.mt-5
+				.apply-card
+					img(src="assets/images/avatar-client.svg")
+					h2.my-4 I'm a client
+					p.my-2 We make sure your products and services get to the right customers quick and fast.
+					ul.mt-4
+						li 
+							i.bullet
+							| Marketing Campaign
+						li 
+							i.bullet
+							| Social Media Posts
+						li 
+							i.bullet
+							| Videos & Animated Gifs
+						li
+							i.bullet
+							| Photography
+					button.btn.btn-coffee.w-100.shadow-none.mt-2(routerLink="/client") Apply Now
+
+section#posts-section.py-5(*ngIf="(feed$|async) != {}")
+	.container.pt-5
+		.row
+			.col-12(*ngFor="let post of feed$|async")
+				app-post-thumbnail([post]="post", (open)="showPost(post)")
+		.row
+			.col
+				ngb-pagination([collectionSize]="count$|async", [pageSize]="pageSize", [maxSize]="5", [rotate]="true", [(page)]="page")
+
+section#contact-section.py-5
+	h1 Get in touch
+	.container-fluid
+		.row
+			.col-2.d-none.d-lg-block.text-center
+				img.decoration(src="assets/images/media.svg")
+			.col
+				.form-group
+					label Name
+					input.form-control(type='text', placeholder='Your name')
+				.form-group
+					label Email address
+					input.form-control(type='email', placeholder='example@example.com')
+				.form-group
+					label Phone number (optional)
+					input.form-control(type='tel', placeholder='01097543010')
+				.form-group
+					label Question
+					textarea.form-control(type='textarea', placeholder='Ask what you want', row='3')
+				hr
+				button.w-100.btn.btn-coffee.btn.ml-auto(type='button') Send
+			.col-2.d-none.d-lg-block.text-center
+				img.decoration(src="assets/images/loadspeaker.svg")
+
 app-footer

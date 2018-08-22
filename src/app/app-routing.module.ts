@@ -26,13 +26,6 @@ const routes: Routes = [
 		}
 	},
 	{
-		path: 'contact',
-		loadChildren: 'app/contact/contact.module#ContactModule',
-		data: {
-			state: 'contact'
-		}
-	},
-	{
 		path: 'dashboard',
 		loadChildren: 'app/dashboard/dashboard.module#DashboardModule',
 		data: {

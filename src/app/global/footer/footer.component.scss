@@ -1,54 +1,14 @@
-.company-link {
-  color: white;
-}
-
-html,
-body {
-  margin: 0;
-  background-color: #77cc6d;
-  font-family: 'Raleway Dots', sans-serif;
-}
-
-#social-container {
-  height: 100%;
-}
-
-$size: 3.2rem;
-$font-size: 1.5rem;
-#social {
-  text-align: center;
-  padding: 0;
-  margin: 0;
-}
-
-#social li {
-  display: inline-block;
-  margin-left: 1rem;
-  list-style: none;
-  width: $size;
-  height: $size;
-}
-
-#social li div {
-  width: $size;
-  height: $size;
-  border-radius: 50%;
-  color: #74d4b3;
-  font-size: 1.5rem;
-  text-align: center;
-  line-height: $size;
-  background-color: #fff;
-  transition: all 0.5s ease;
-}
-
-#social li div:hover {
-  transform: rotate(360deg);
-}
-
-#copyright {
-	color: #919aa1;
+.copyright {
+	background: #111;
+	padding: 0.3rem 0;
+	color: #f2f2f2;
 }
 
 #company-link {
-	color: indianred;
+	color: #f2f2f2;
+}
+
+span {
+	font-family: 'Montserrat', sans-serif;
+	font-size: 1rem;
 }

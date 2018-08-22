@@ -4,7 +4,7 @@ app-toolbar
 		.row
 			.col-12.col-md-4.mb-4(*ngIf="post?.thumbnailImage")
 				img#preview.previewImg.img-fluid(style="border-radius: 2%;", src="{{storage}}/{{post?.thumbnailImage.id}}", alt="", srcset="")
-			.col-8
+			.col-12([ngClass]="{ 'col-md-8': post?.thumbnailImage }")
 				h2.text-truncate {{post?.title}}
 				div.text-dashboard
 					span By {{post?.author.name}}

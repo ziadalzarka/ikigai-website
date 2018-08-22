@@ -17,7 +17,11 @@ const app = express();
 app.use(cors());
 app.use(cookieParser());
 app.use(bodyParser.json());
-app.use(fileUpload());
+app.use(fileUpload({
+	limits: {
+		fileSize: 4 * 1024 * 1024
+	}
+}));
 app.use(compression());
 app.use(sitemapRoute);
 app.use(renderer);

@@ -6,6 +6,7 @@ import { PublicContentService } from '@app/global/public-content.service';
 import { ActivatedRoute } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { environment } from 'environments/environment';
+import { scrollToTop } from 'utils/utils';
 
 @Component({
 	selector: 'app-post',
@@ -22,13 +23,8 @@ export class PostComponent implements OnInit {
 	post: Post;
 	storage = environment.storage;
 
-	async scrollToTop() {
-		await timer(500).toPromise();
-		scroll(0, 0);
-	}
-
 	ngOnInit() {
-		this.scrollToTop();
+		scrollToTop();
 
 		this.route.params.subscribe(async (params) => {
 			try {
