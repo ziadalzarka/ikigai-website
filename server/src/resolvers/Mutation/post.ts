@@ -8,7 +8,7 @@ export const postMutation = {
 		thumbnailImageId,
 		badgeColorClass,
 		badge }, ctx: Context, info) {
-		const userId = getUserId(ctx);
+		const userId = await verifyPermission(ctx, Permissions.Posts).catch(err => { throw err; });
 		return ctx.db.mutation.createPost(
 			{
 				data: {

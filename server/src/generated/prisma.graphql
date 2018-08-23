@@ -1,5 +1,5 @@
 # source: https://prisma.ikigaiadv.com/ikigai
-# timestamp: Thu Aug 16 2018 07:28:32 GMT+0200 (EET)
+# timestamp: Thu Aug 23 2018 15:27:22 GMT+0200 (EET)
 
 type AggregateApplicationSetting {
   count: Int!
@@ -1421,10 +1421,8 @@ type ContactApplication implements Node {
   id: ID!
   name: String!
   phoneNumber: String
-  email: String
-  address: String
+  email: String!
   question: String!
-  body: String!
 }
 
 """A connection to a list of items."""
@@ -1440,10 +1438,8 @@ type ContactApplicationConnection {
 input ContactApplicationCreateInput {
   name: String!
   phoneNumber: String
-  email: String
-  address: String
+  email: String!
   question: String!
-  body: String!
 }
 
 """An edge in a connection."""
@@ -1464,12 +1460,8 @@ enum ContactApplicationOrderByInput {
   phoneNumber_DESC
   email_ASC
   email_DESC
-  address_ASC
-  address_DESC
   question_ASC
   question_DESC
-  body_ASC
-  body_DESC
   updatedAt_ASC
   updatedAt_DESC
   createdAt_ASC
@@ -1480,10 +1472,8 @@ type ContactApplicationPreviousValues {
   id: ID!
   name: String!
   phoneNumber: String
-  email: String
-  address: String
+  email: String!
   question: String!
-  body: String!
 }
 
 type ContactApplicationSubscriptionPayload {
@@ -1529,9 +1519,7 @@ input ContactApplicationUpdateInput {
   name: String
   phoneNumber: String
   email: String
-  address: String
   question: String
-  body: String
 }
 
 input ContactApplicationWhereInput {
@@ -1703,46 +1691,6 @@ input ContactApplicationWhereInput {
 
   """All values not ending with the given string."""
   email_not_ends_with: String
-  address: String
-
-  """All values that are not equal to given value."""
-  address_not: String
-
-  """All values that are contained in given list."""
-  address_in: [String!]
-
-  """All values that are not contained in given list."""
-  address_not_in: [String!]
-
-  """All values less than the given value."""
-  address_lt: String
-
-  """All values less than or equal the given value."""
-  address_lte: String
-
-  """All values greater than the given value."""
-  address_gt: String
-
-  """All values greater than or equal the given value."""
-  address_gte: String
-
-  """All values containing the given string."""
-  address_contains: String
-
-  """All values not containing the given string."""
-  address_not_contains: String
-
-  """All values starting with the given string."""
-  address_starts_with: String
-
-  """All values not starting with the given string."""
-  address_not_starts_with: String
-
-  """All values ending with the given string."""
-  address_ends_with: String
-
-  """All values not ending with the given string."""
-  address_not_ends_with: String
   question: String
 
   """All values that are not equal to given value."""
@@ -1783,46 +1731,6 @@ input ContactApplicationWhereInput {
 
   """All values not ending with the given string."""
   question_not_ends_with: String
-  body: String
-
-  """All values that are not equal to given value."""
-  body_not: String
-
-  """All values that are contained in given list."""
-  body_in: [String!]
-
-  """All values that are not contained in given list."""
-  body_not_in: [String!]
-
-  """All values less than the given value."""
-  body_lt: String
-
-  """All values less than or equal the given value."""
-  body_lte: String
-
-  """All values greater than the given value."""
-  body_gt: String
-
-  """All values greater than or equal the given value."""
-  body_gte: String
-
-  """All values containing the given string."""
-  body_contains: String
-
-  """All values not containing the given string."""
-  body_not_contains: String
-
-  """All values starting with the given string."""
-  body_starts_with: String
-
-  """All values not starting with the given string."""
-  body_not_starts_with: String
-
-  """All values ending with the given string."""
-  body_ends_with: String
-
-  """All values not ending with the given string."""
-  body_not_ends_with: String
 }
 
 input ContactApplicationWhereUniqueInput {

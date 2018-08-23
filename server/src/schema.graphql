@@ -93,6 +93,13 @@ type Mutation {
 		additionalBody: String): Variable
 	# PUBLIC
 	# -----------
+	# contact
+	contact(
+		name: String!, 
+		phoneNumber: String,
+		email: String!,
+		question: String!
+	): ContactApplication
 	# applications
 	applyClient(
 		name: String!

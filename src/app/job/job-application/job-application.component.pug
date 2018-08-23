@@ -63,7 +63,7 @@ app-toolbar
 			hr
 			.row
 				.col-12.col-lg-4.offset-lg-8
-					button.w-100.btn.btn-dashboard.btn.ml-auto(type='button', (click)="send(resume.files[0])") Send
+					button.w-100.btn.btn-coffee.btn.ml-auto(type='button', (click)="send(resume.files[0])") Send
 app-footer
 
 ng-template(#loading, let-close='close', let-dismiss='dismiss')
@@ -76,4 +76,4 @@ ng-template(#loading, let-close='close', let-dismiss='dismiss')
 			p.lead(*ngSwitchCase="true") Successfully submitted application.
 			p.lead(*ngSwitchCase="false") An error ocurred prevented application from being submit.
 	.modal-footer(*ngIf="!uploadPercentage")
-		button.btn.btn-dashboard(type='button', (click)="dismiss()") OK
+		button.btn.btn-coffee(type='button', (click)="dismiss()") OK

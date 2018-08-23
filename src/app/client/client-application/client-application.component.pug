@@ -148,7 +148,7 @@ div.h-100(*ngIf="loaded")
 				hr
 				.row
 					.col-12.col-lg-4.offset-lg-8
-						button.w-100.btn.btn-dashboard.btn.ml-auto.mt-1(type='button', (click)="send()", [disabled]="couponLoading") Send
+						button.w-100.btn.btn-coffee.btn.ml-auto.mt-1(type='button', (click)="send()", [disabled]="couponLoading") Send
 	app-footer
 
 ng-template(#failed, let-close='close', let-dismiss='dismiss')
@@ -157,7 +157,7 @@ ng-template(#failed, let-close='close', let-dismiss='dismiss')
 	.modal-body
 		p.lead An error ocurred prevented application from being submit.
 	.modal-footer
-		button.btn.btn-dashboard(type='button', (click)="dismiss()") OK
+		button.btn.btn-coffee(type='button', (click)="dismiss()") OK
 
 ng-template(#successful, let-close='close', let-dismiss='dismiss')
 	.modal-header
@@ -165,4 +165,4 @@ ng-template(#successful, let-close='close', let-dismiss='dismiss')
 	.modal-body
 		p.lead Successfully submitted application.
 	.modal-footer
-		button.btn.btn-dashboard(type='button',, (click)="dismiss()") OK
+		button.btn.btn-coffee(type='button',, (click)="dismiss()") OK

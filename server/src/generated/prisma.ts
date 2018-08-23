@@ -1557,10 +1557,8 @@ type ContactApplication implements Node {
   id: ID!
   name: String!
   phoneNumber: String
-  email: String
-  address: String
+  email: String!
   question: String!
-  body: String!
 }
 
 """A connection to a list of items."""
@@ -1576,10 +1574,8 @@ type ContactApplicationConnection {
 input ContactApplicationCreateInput {
   name: String!
   phoneNumber: String
-  email: String
-  address: String
+  email: String!
   question: String!
-  body: String!
 }
 
 """An edge in a connection."""
@@ -1600,12 +1596,8 @@ enum ContactApplicationOrderByInput {
   phoneNumber_DESC
   email_ASC
   email_DESC
-  address_ASC
-  address_DESC
   question_ASC
   question_DESC
-  body_ASC
-  body_DESC
   updatedAt_ASC
   updatedAt_DESC
   createdAt_ASC
@@ -1616,10 +1608,8 @@ type ContactApplicationPreviousValues {
   id: ID!
   name: String!
   phoneNumber: String
-  email: String
-  address: String
+  email: String!
   question: String!
-  body: String!
 }
 
 type ContactApplicationSubscriptionPayload {
@@ -1665,9 +1655,7 @@ input ContactApplicationUpdateInput {
   name: String
   phoneNumber: String
   email: String
-  address: String
   question: String
-  body: String
 }
 
 input ContactApplicationWhereInput {
@@ -1839,46 +1827,6 @@ input ContactApplicationWhereInput {
 
   """All values not ending with the given string."""
   email_not_ends_with: String
-  address: String
-
-  """All values that are not equal to given value."""
-  address_not: String
-
-  """All values that are contained in given list."""
-  address_in: [String!]
-
-  """All values that are not contained in given list."""
-  address_not_in: [String!]
-
-  """All values less than the given value."""
-  address_lt: String
-
-  """All values less than or equal the given value."""
-  address_lte: String
-
-  """All values greater than the given value."""
-  address_gt: String
-
-  """All values greater than or equal the given value."""
-  address_gte: String
-
-  """All values containing the given string."""
-  address_contains: String
-
-  """All values not containing the given string."""
-  address_not_contains: String
-
-  """All values starting with the given string."""
-  address_starts_with: String
-
-  """All values not starting with the given string."""
-  address_not_starts_with: String
-
-  """All values ending with the given string."""
-  address_ends_with: String
-
-  """All values not ending with the given string."""
-  address_not_ends_with: String
   question: String
 
   """All values that are not equal to given value."""
@@ -1919,46 +1867,6 @@ input ContactApplicationWhereInput {
 
   """All values not ending with the given string."""
   question_not_ends_with: String
-  body: String
-
-  """All values that are not equal to given value."""
-  body_not: String
-
-  """All values that are contained in given list."""
-  body_in: [String!]
-
-  """All values that are not contained in given list."""
-  body_not_in: [String!]
-
-  """All values less than the given value."""
-  body_lt: String
-
-  """All values less than or equal the given value."""
-  body_lte: String
-
-  """All values greater than the given value."""
-  body_gt: String
-
-  """All values greater than or equal the given value."""
-  body_gte: String
-
-  """All values containing the given string."""
-  body_contains: String
-
-  """All values not containing the given string."""
-  body_not_contains: String
-
-  """All values starting with the given string."""
-  body_starts_with: String
-
-  """All values not starting with the given string."""
-  body_not_starts_with: String
-
-  """All values ending with the given string."""
-  body_ends_with: String
-
-  """All values not ending with the given string."""
-  body_not_ends_with: String
 }
 
 input ContactApplicationWhereUniqueInput {
@@ -4728,12 +4636,8 @@ export type ContactApplicationOrderByInput =   'id_ASC' |
   'phoneNumber_DESC' |
   'email_ASC' |
   'email_DESC' |
-  'address_ASC' |
-  'address_DESC' |
   'question_ASC' |
   'question_DESC' |
-  'body_ASC' |
-  'body_DESC' |
   'updatedAt_ASC' |
   'updatedAt_DESC' |
   'createdAt_ASC' |
@@ -5517,20 +5421,6 @@ export interface ContactApplicationWhereInput {
   email_not_starts_with?: String
   email_ends_with?: String
   email_not_ends_with?: String
-  address?: String
-  address_not?: String
-  address_in?: String[] | String
-  address_not_in?: String[] | String
-  address_lt?: String
-  address_lte?: String
-  address_gt?: String
-  address_gte?: String
-  address_contains?: String
-  address_not_contains?: String
-  address_starts_with?: String
-  address_not_starts_with?: String
-  address_ends_with?: String
-  address_not_ends_with?: String
   question?: String
   question_not?: String
   question_in?: String[] | String
@@ -5545,20 +5435,6 @@ export interface ContactApplicationWhereInput {
   question_not_starts_with?: String
   question_ends_with?: String
   question_not_ends_with?: String
-  body?: String
-  body_not?: String
-  body_in?: String[] | String
-  body_not_in?: String[] | String
-  body_lt?: String
-  body_lte?: String
-  body_gt?: String
-  body_gte?: String
-  body_contains?: String
-  body_not_contains?: String
-  body_starts_with?: String
-  body_not_starts_with?: String
-  body_ends_with?: String
-  body_not_ends_with?: String
 }
 
 export interface FileUpdateDataInput {
@@ -5794,10 +5670,8 @@ export interface ClientApplicationSubscriptionWhereInput {
 export interface ContactApplicationCreateInput {
   name: String
   phoneNumber?: String
-  email?: String
-  address?: String
+  email: String
   question: String
-  body: String
 }
 
 export interface ClientApplicationWhereInput {
@@ -6399,9 +6273,7 @@ export interface ContactApplicationUpdateInput {
   name?: String
   phoneNumber?: String
   email?: String
-  address?: String
   question?: String
-  body?: String
 }
 
 export interface PostSubscriptionWhereInput {
@@ -6526,10 +6398,8 @@ export interface ContactApplication extends Node {
   id: ID_Output
   name: String
   phoneNumber?: String
-  email?: String
-  address?: String
+  email: String
   question: String
-  body: String
 }
 
 export interface FilePreviousValues {
@@ -6866,10 +6736,8 @@ export interface ContactApplicationPreviousValues {
   id: ID_Output
   name: String
   phoneNumber?: String
-  email?: String
-  address?: String
+  email: String
   question: String
-  body: String
 }
 
 export interface AggregateJobApplication {

@@ -15,17 +15,8 @@ section.h-100.background-img
 						i.fa.fa-instagram.text-white.f-4
 					.social-link.mx-2.cursor-pointer(*ngIf="(content$|async)?.youtube", (click)="newTab('youtube')")
 						i.fa.fa-youtube.text-white.f-4
-			.col-12.align-self-end.mb-5
+			.col-12.align-self-end.mb-5.cursor-pointer([ngx-scroll-to]="'apply-section'")
 				img(src="assets/images/down-arrow.svg", alt="", srcset="")
-		//- .social-links.d-none.d-md-flex
-		//- 	.social-link.my-2.cursor-pointer
-		//- 		i.fa.fa-facebook.text-white.f-4
-		//- 	.social-link.my-2.cursor-pointer
-		//- 		i.fa.fa-linkedin.text-white.f-4
-		//- 	.social-link.my-2.cursor-pointer
-		//- 			i.fa.fa-instagram.text-white.f-4
-		//- 	.social-link.my-2.cursor-pointer
-		//- 		i.fa.fa-youtube.text-white.f-4
 
 section#apply-section.py-5
 	.container
@@ -86,21 +77,40 @@ section#contact-section.py-5
 			.col-2.d-none.d-lg-block.text-center
 				img.decoration(src="assets/images/media.svg")
 			.col
-				.form-group
-					label Name
-					input.form-control(type='text', placeholder='Your name')
-				.form-group
-					label Email address
-					input.form-control(type='email', placeholder='example@example.com')
-				.form-group
-					label Phone number (optional)
-					input.form-control(type='tel', placeholder='01097543010')
-				.form-group
-					label Question
-					textarea.form-control(type='textarea', placeholder='Ask what you want', row='3')
-				hr
-				button.w-100.btn.btn-coffee.btn.ml-auto(type='button') Send
+				form([formGroup]="contactForm")
+					.form-group
+						label Name
+						input.form-control(type='text', formControlName="name", placeholder='Your name', required)
+						.has-error.mt-1(*ngIf='name.invalid && name.dirty') This field is required.
+					.form-group
+						label Email address
+						input.form-control(type='email', formControlName="email", placeholder='example@example.com', required, email)
+						.has-error.mt-1(*ngIf='email.invalid && email.dirty') Invalid email provided.
+					.form-group
+						label Phone number (optional)
+						input.form-control(type='tel', formControlName="phoneNumber", placeholder='010975xxxxx')
+					.form-group
+						label Question
+						textarea.form-control(type='textarea', formControlName="question", placeholder='Ask what you want', row='3', required)
+						.has-error.mt-1(*ngIf='question.invalid && question.dirty') This field is required.
+					button.w-100.btn.btn-coffee.btn.ml-auto(type='button', (click)="sendContact()") Send
 			.col-2.d-none.d-lg-block.text-center
 				img.decoration(src="assets/images/loadspeaker.svg")
 
 app-footer
+
+ng-template(#failed, let-close='close', let-dismiss='dismiss')
+	.modal-header
+		h3.modal-title Submission Failed
+	.modal-body
+		p.lead An error ocurred prevented application from being submit.
+	.modal-footer
+		button.btn.btn-coffee(type='button', (click)="dismiss()") OK
+
+ng-template(#successful, let-close='close', let-dismiss='dismiss')
+	.modal-header
+		h3.modal-title Submission Successful
+	.modal-body
+		p.lead Successfully submitted contact info.
+	.modal-footer
+		button.btn.btn-coffee(type='button',, (click)="dismiss()") OK

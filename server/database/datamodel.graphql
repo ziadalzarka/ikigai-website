@@ -148,11 +148,8 @@ type ContactApplication {
 	id: ID! @unique
 	name: String!
 	phoneNumber: String
-	email: String
-	address: String
-	# ------------------
+	email: String!
 	question: String!
-	body: String!
 }
 
 type File {

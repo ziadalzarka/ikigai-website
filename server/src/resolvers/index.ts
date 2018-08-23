@@ -13,6 +13,7 @@ import { fileMutation } from './Mutation/file';
 import { file } from './Query/file';
 import { couponQuery } from './Query/coupon';
 import { couponMutation } from './Mutation/coupon';
+import { contactMutation } from './Mutation/contact';
 
 export default {
 	AuthPayload,
@@ -33,5 +34,6 @@ export default {
 		...clientApplicationMutation,
 		...fileMutation,
 		...couponMutation,
+		...contactMutation,
 	},
 };

@@ -26,6 +26,7 @@
     "@ngrx/effects": "^6.0.1",
     "@ngrx/entity": "^6.0.1",
     "@ngrx/store": "^6.0.1",
+    "@nicky-lenaers/ngx-scroll-to": "^1.0.0",
     "angular-6-clipboard": "^1.0.0",
     "angular-6-datatable": "^0.8.0",
     "apollo-angular": "^1.1.2",
