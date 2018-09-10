@@ -2,21 +2,19 @@ section.h-100.background-img
 	.container.h-100.text-center.no-overflow
 		.row.h-100
 			//- for alignment purposes
-			.col-12.align-self-start 
+			.col-12.align-self-start
 			.col-12.align-self-center
-				h1.brand Ikigai
-				p.mb-5.subtitle For digital marketing and media services
-				div.mt-5.d-flex.justify-content-center
-					.social-link.mx-2.cursor-pointer(*ngIf="(content$|async)?.facebook", (click)="newTab('facebook')")
-						i.fa.fa-facebook.text-white.f-4
-					.social-link.mx-2.cursor-pointer(*ngIf="(content$|async)?.linkedin", (click)="newTab('linkedin')")
-						i.fa.fa-linkedin.text-white.f-4
-					.social-link.mx-2.cursor-pointer(*ngIf="(content$|async)?.instagram", (click)="newTab('instagram')")
-						i.fa.fa-instagram.text-white.f-4
-					.social-link.mx-2.cursor-pointer(*ngIf="(content$|async)?.youtube", (click)="newTab('youtube')")
-						i.fa.fa-youtube.text-white.f-4
 			.col-12.align-self-end.mb-5.cursor-pointer([ngx-scroll-to]="'apply-section'")
 				img(src="assets/images/down-arrow.svg", alt="", srcset="")
+		.social-links
+			.social-link.mx-2.cursor-pointer(*ngIf="(content$|async)?.facebook", (click)="newTab('facebook')")
+				i.fa.fa-facebook.text-white.f-4
+			.social-link.mx-2.cursor-pointer(*ngIf="(content$|async)?.linkedin", (click)="newTab('linkedin')")
+				i.fa.fa-linkedin.text-white.f-4
+			.social-link.mx-2.cursor-pointer(*ngIf="(content$|async)?.instagram", (click)="newTab('instagram')")
+				i.fa.fa-instagram.text-white.f-4
+			.social-link.mx-2.cursor-pointer(*ngIf="(content$|async)?.youtube", (click)="newTab('youtube')")
+				i.fa.fa-youtube.text-white.f-4
 
 section#apply-section.py-5
 	.container
