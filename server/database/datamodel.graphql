@@ -22,6 +22,7 @@ enum Permission {
 }
 
 type Variable {
+  id: ID! @id @unique
 	index: Int! @unique
 	email: String
 	phone1: String
@@ -39,6 +40,7 @@ type Variable {
 }
 
 type ApplicationSetting {
+  id: ID! @id @unique
 	index: Int! @unique
 	# light
 	light_postsPerMonth: Int!
@@ -68,39 +70,39 @@ type ApplicationSetting {
 }
 
 type User {
-  id: ID! @unique
+  id: ID! @id @unique
   name: String!
   username: String! @unique
   password: String!
-	permissions: [Permission!]!
+	permissions: [Permission!]! @scalarList(strategy: RELATION)
 	posts: [Post!]!
 	lastLogin: DateTime
 }
 
 type Post {
-  id: ID! @unique
+  id: ID! @id @unique
   title: String!
   body: String!
   author: User!
 	badge: String
 	badgeColorClass: String
-  createdAt: DateTime!
-  updatedAt: DateTime!
+  createdAt: DateTime! @createdAt
+  updatedAt: DateTime! @updatedAt
 	thumbnailBody: String!
 	thumbnailImage: File
 }
 
 type JobApplication {
-	id: ID! @unique
+	id: ID! @id @unique
 	name: String!
 	phoneNumber: String
 	email: String
 	address: String
-	positions: [JobPosition!]!
+	positions: [JobPosition!]! @scalarList(strategy: RELATION)
 	resume: File!
 	linkedIn: String
 	# ------------------
-	createdAt: DateTime!
+	createdAt: DateTime! @createdAt
 }
 
 enum DiscountType {
@@ -109,17 +111,17 @@ enum DiscountType {
 }
 
 type Coupon {
-	id: ID! @unique
+	id: ID! @id @unique
 	coupon: String! @unique
 	value: Int!
 	discountType: DiscountType!
-	usedIn: ClientApplication
+	usedIn: ClientApplication @relation(link: TABLE)
 	author: User!
-	createdAt: DateTime!
+	createdAt: DateTime! @createdAt
 }
 
 type ClientApplication {
-	id: ID! @unique
+	id: ID! @id @unique
 	name: String!
 	phoneNumber: String
 	email: String
@@ -138,14 +140,14 @@ type ClientApplication {
 	# updated on add & edit
 	package: Package!
 	totalPrice: Int!
-	createdAt: DateTime!
+	createdAt: DateTime! @createdAt
 	# coupon
 	coupon: Coupon
 	# archived: boolean @default(value: false)
 }
 
 type ContactApplication {
-	id: ID! @unique
+	id: ID! @id @unique
 	name: String!
 	phoneNumber: String
 	email: String!
@@ -153,7 +155,7 @@ type ContactApplication {
 }
 
 type File {
-	id: ID! @unique
+	id: ID! @id @unique
 	name: String!
 	checksum: String!
 }

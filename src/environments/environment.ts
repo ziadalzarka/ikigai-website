@@ -4,8 +4,8 @@
 
 export const environment = {
 	production: false,
-	uploadUrl: 'https://ikigaiadv.com/upload',
-	storage: 'https://ikigaiadv.com/storage',
+	uploadUrl: 'http://localhost:8090/upload',
+	storage: 'http://localhost:8090/storage',
 	graphql: {
 		url: 'http://localhost:4090'
 	}

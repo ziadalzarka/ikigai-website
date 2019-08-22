@@ -1,5 +1,5 @@
-# source: https://prisma.ikigaiadv.com/ikigai
-# timestamp: Thu Aug 23 2018 15:27:22 GMT+0200 (EET)
+# source: https://eu1.prisma.sh/ziad-alzarka/prisma-hello-world/dev
+# timestamp: Thu Aug 22 2019 18:01:43 GMT+0200 (Eastern European Standard Time)
 
 type AggregateApplicationSetting {
   count: Int!
@@ -37,7 +37,8 @@ type AggregateVariable {
   count: Int!
 }
 
-type ApplicationSetting {
+type ApplicationSetting implements Node {
+  id: ID!
   index: Int!
   light_postsPerMonth: Int!
   light_gifs: Int!
@@ -72,6 +73,7 @@ type ApplicationSettingConnection {
 }
 
 input ApplicationSettingCreateInput {
+  id: ID
   index: Int!
   light_postsPerMonth: Int!
   light_gifs: Int!
@@ -105,6 +107,8 @@ type ApplicationSettingEdge {
 }
 
 enum ApplicationSettingOrderByInput {
+  id_ASC
+  id_DESC
   index_ASC
   index_DESC
   light_postsPerMonth_ASC
@@ -147,15 +151,10 @@ enum ApplicationSettingOrderByInput {
   pro_discountPerMonth_DESC
   enterprise_discountPerMonth_ASC
   enterprise_discountPerMonth_DESC
-  id_ASC
-  id_DESC
-  updatedAt_ASC
-  updatedAt_DESC
-  createdAt_ASC
-  createdAt_DESC
 }
 
 type ApplicationSettingPreviousValues {
+  id: ID!
   index: Int!
   light_postsPerMonth: Int!
   light_gifs: Int!
@@ -242,6 +241,30 @@ input ApplicationSettingUpdateInput {
   enterprise_discountPerMonth: Int
 }
 
+input ApplicationSettingUpdateManyMutationInput {
+  index: Int
+  light_postsPerMonth: Int
+  light_gifs: Int
+  light_videos: Int
+  light_photography: Int
+  pro_postsPerMonth: Int
+  pro_gifs: Int
+  pro_videos: Int
+  pro_photography: Int
+  enterprise_postsPerMonth: Int
+  enterprise_gifs: Int
+  enterprise_videos: Int
+  enterprise_photography: Int
+  post: Int
+  videoMinute: Int
+  photo: Int
+  gif: Int
+  discountAfterMonths: Int
+  light_discountPerMonth: Int
+  pro_discountPerMonth: Int
+  enterprise_discountPerMonth: Int
+}
+
 input ApplicationSettingWhereInput {
   """Logical AND on all given filters."""
   AND: [ApplicationSettingWhereInput!]
@@ -251,6 +274,46 @@ input ApplicationSettingWhereInput {
 
   """Logical NOT on all given filters combined by AND."""
   NOT: [ApplicationSettingWhereInput!]
+  id: ID
+
+  """All values that are not equal to given value."""
+  id_not: ID
+
+  """All values that are contained in given list."""
+  id_in: [ID!]
+
+  """All values that are not contained in given list."""
+  id_not_in: [ID!]
+
+  """All values less than the given value."""
+  id_lt: ID
+
+  """All values less than or equal the given value."""
+  id_lte: ID
+
+  """All values greater than the given value."""
+  id_gt: ID
+
+  """All values greater than or equal the given value."""
+  id_gte: ID
+
+  """All values containing the given string."""
+  id_contains: ID
+
+  """All values not containing the given string."""
+  id_not_contains: ID
+
+  """All values starting with the given string."""
+  id_starts_with: ID
+
+  """All values not starting with the given string."""
+  id_not_starts_with: ID
+
+  """All values ending with the given string."""
+  id_ends_with: ID
+
+  """All values not ending with the given string."""
+  id_not_ends_with: ID
   index: Int
 
   """All values that are not equal to given value."""
@@ -716,6 +779,7 @@ input ApplicationSettingWhereInput {
 }
 
 input ApplicationSettingWhereUniqueInput {
+  id: ID
   index: Int
 }
 
@@ -743,7 +807,7 @@ type ClientApplication implements Node {
   package: Package!
   totalPrice: Int!
   createdAt: DateTime!
-  coupon(where: CouponWhereInput): Coupon
+  coupon: Coupon
 }
 
 """A connection to a list of items."""
@@ -757,6 +821,7 @@ type ClientApplicationConnection {
 }
 
 input ClientApplicationCreateInput {
+  id: ID
   name: String!
   phoneNumber: String
   email: String
@@ -782,6 +847,7 @@ input ClientApplicationCreateOneWithoutCouponInput {
 }
 
 input ClientApplicationCreateWithoutCouponInput {
+  id: ID
   name: String!
   phoneNumber: String
   email: String
@@ -846,8 +912,6 @@ enum ClientApplicationOrderByInput {
   totalPrice_DESC
   createdAt_ASC
   createdAt_DESC
-  updatedAt_ASC
-  updatedAt_DESC
 }
 
 type ClientApplicationPreviousValues {
@@ -928,6 +992,25 @@ input ClientApplicationUpdateInput {
   package: Package
   totalPrice: Int
   coupon: CouponUpdateOneWithoutUsedInInput
+}
+
+input ClientApplicationUpdateManyMutationInput {
+  name: String
+  phoneNumber: String
+  email: String
+  facebook: String
+  address: String
+  postsPerMonth: Int
+  photography: Int
+  gifs: Int
+  videos: Int
+  videoMinutesCount: Int
+  website: Boolean
+  hasHost: Boolean
+  hasDomain: Boolean
+  dealMonths: Int
+  package: Package
+  totalPrice: Int
 }
 
 input ClientApplicationUpdateOneWithoutCouponInput {
@@ -1436,6 +1519,7 @@ type ContactApplicationConnection {
 }
 
 input ContactApplicationCreateInput {
+  id: ID
   name: String!
   phoneNumber: String
   email: String!
@@ -1462,10 +1546,6 @@ enum ContactApplicationOrderByInput {
   email_DESC
   question_ASC
   question_DESC
-  updatedAt_ASC
-  updatedAt_DESC
-  createdAt_ASC
-  createdAt_DESC
 }
 
 type ContactApplicationPreviousValues {
@@ -1516,6 +1596,13 @@ input ContactApplicationSubscriptionWhereInput {
 }
 
 input ContactApplicationUpdateInput {
+  name: String
+  phoneNumber: String
+  email: String
+  question: String
+}
+
+input ContactApplicationUpdateManyMutationInput {
   name: String
   phoneNumber: String
   email: String
@@ -1742,8 +1829,8 @@ type Coupon implements Node {
   coupon: String!
   value: Int!
   discountType: DiscountType!
-  usedIn(where: ClientApplicationWhereInput): ClientApplication
-  author(where: UserWhereInput): User!
+  usedIn: ClientApplication
+  author: User!
   createdAt: DateTime!
 }
 
@@ -1758,6 +1845,7 @@ type CouponConnection {
 }
 
 input CouponCreateInput {
+  id: ID
   coupon: String!
   value: Int!
   discountType: DiscountType!
@@ -1771,6 +1859,7 @@ input CouponCreateOneWithoutUsedInInput {
 }
 
 input CouponCreateWithoutUsedInInput {
+  id: ID
   coupon: String!
   value: Int!
   discountType: DiscountType!
@@ -1797,8 +1886,6 @@ enum CouponOrderByInput {
   discountType_DESC
   createdAt_ASC
   createdAt_DESC
-  updatedAt_ASC
-  updatedAt_DESC
 }
 
 type CouponPreviousValues {
@@ -1853,7 +1940,13 @@ input CouponUpdateInput {
   value: Int
   discountType: DiscountType
   usedIn: ClientApplicationUpdateOneWithoutCouponInput
-  author: UserUpdateOneInput
+  author: UserUpdateOneRequiredInput
+}
+
+input CouponUpdateManyMutationInput {
+  coupon: String
+  value: Int
+  discountType: DiscountType
 }
 
 input CouponUpdateOneWithoutUsedInInput {
@@ -1869,7 +1962,7 @@ input CouponUpdateWithoutUsedInDataInput {
   coupon: String
   value: Int
   discountType: DiscountType
-  author: UserUpdateOneInput
+  author: UserUpdateOneRequiredInput
 }
 
 input CouponUpsertWithoutUsedInInput {
@@ -2053,6 +2146,7 @@ type FileConnection {
 }
 
 input FileCreateInput {
+  id: ID
   name: String!
   checksum: String!
 }
@@ -2078,10 +2172,6 @@ enum FileOrderByInput {
   name_DESC
   checksum_ASC
   checksum_DESC
-  updatedAt_ASC
-  updatedAt_DESC
-  createdAt_ASC
-  createdAt_DESC
 }
 
 type FilePreviousValues {
@@ -2139,11 +2229,23 @@ input FileUpdateInput {
   checksum: String
 }
 
+input FileUpdateManyMutationInput {
+  name: String
+  checksum: String
+}
+
 input FileUpdateOneInput {
   create: FileCreateInput
   connect: FileWhereUniqueInput
   disconnect: Boolean
   delete: Boolean
+  update: FileUpdateDataInput
+  upsert: FileUpsertNestedInput
+}
+
+input FileUpdateOneRequiredInput {
+  create: FileCreateInput
+  connect: FileWhereUniqueInput
   update: FileUpdateDataInput
   upsert: FileUpsertNestedInput
 }
@@ -2294,8 +2396,8 @@ type JobApplication implements Node {
   phoneNumber: String
   email: String
   address: String
-  positions: [JobPosition!]
-  resume(where: FileWhereInput): File!
+  positions: [JobPosition!]!
+  resume: File!
   linkedIn: String
   createdAt: DateTime!
 }
@@ -2311,6 +2413,7 @@ type JobApplicationConnection {
 }
 
 input JobApplicationCreateInput {
+  id: ID
   name: String!
   phoneNumber: String
   email: String
@@ -2348,8 +2451,6 @@ enum JobApplicationOrderByInput {
   linkedIn_DESC
   createdAt_ASC
   createdAt_DESC
-  updatedAt_ASC
-  updatedAt_DESC
 }
 
 type JobApplicationPreviousValues {
@@ -2358,7 +2459,7 @@ type JobApplicationPreviousValues {
   phoneNumber: String
   email: String
   address: String
-  positions: [JobPosition!]
+  positions: [JobPosition!]!
   linkedIn: String
   createdAt: DateTime!
 }
@@ -2409,7 +2510,16 @@ input JobApplicationUpdateInput {
   address: String
   linkedIn: String
   positions: JobApplicationUpdatepositionsInput
-  resume: FileUpdateOneInput
+  resume: FileUpdateOneRequiredInput
+}
+
+input JobApplicationUpdateManyMutationInput {
+  name: String
+  phoneNumber: String
+  email: String
+  address: String
+  linkedIn: String
+  positions: JobApplicationUpdatepositionsInput
 }
 
 input JobApplicationUpdatepositionsInput {
@@ -2710,57 +2820,57 @@ scalar Long
 type Mutation {
   createVariable(data: VariableCreateInput!): Variable!
   createApplicationSetting(data: ApplicationSettingCreateInput!): ApplicationSetting!
-  createUser(data: UserCreateInput!): User!
   createPost(data: PostCreateInput!): Post!
   createJobApplication(data: JobApplicationCreateInput!): JobApplication!
   createCoupon(data: CouponCreateInput!): Coupon!
   createClientApplication(data: ClientApplicationCreateInput!): ClientApplication!
   createContactApplication(data: ContactApplicationCreateInput!): ContactApplication!
+  createUser(data: UserCreateInput!): User!
   createFile(data: FileCreateInput!): File!
   updateVariable(data: VariableUpdateInput!, where: VariableWhereUniqueInput!): Variable
   updateApplicationSetting(data: ApplicationSettingUpdateInput!, where: ApplicationSettingWhereUniqueInput!): ApplicationSetting
-  updateUser(data: UserUpdateInput!, where: UserWhereUniqueInput!): User
   updatePost(data: PostUpdateInput!, where: PostWhereUniqueInput!): Post
   updateJobApplication(data: JobApplicationUpdateInput!, where: JobApplicationWhereUniqueInput!): JobApplication
   updateCoupon(data: CouponUpdateInput!, where: CouponWhereUniqueInput!): Coupon
   updateClientApplication(data: ClientApplicationUpdateInput!, where: ClientApplicationWhereUniqueInput!): ClientApplication
   updateContactApplication(data: ContactApplicationUpdateInput!, where: ContactApplicationWhereUniqueInput!): ContactApplication
+  updateUser(data: UserUpdateInput!, where: UserWhereUniqueInput!): User
   updateFile(data: FileUpdateInput!, where: FileWhereUniqueInput!): File
   deleteVariable(where: VariableWhereUniqueInput!): Variable
   deleteApplicationSetting(where: ApplicationSettingWhereUniqueInput!): ApplicationSetting
-  deleteUser(where: UserWhereUniqueInput!): User
   deletePost(where: PostWhereUniqueInput!): Post
   deleteJobApplication(where: JobApplicationWhereUniqueInput!): JobApplication
   deleteCoupon(where: CouponWhereUniqueInput!): Coupon
   deleteClientApplication(where: ClientApplicationWhereUniqueInput!): ClientApplication
   deleteContactApplication(where: ContactApplicationWhereUniqueInput!): ContactApplication
+  deleteUser(where: UserWhereUniqueInput!): User
   deleteFile(where: FileWhereUniqueInput!): File
   upsertVariable(where: VariableWhereUniqueInput!, create: VariableCreateInput!, update: VariableUpdateInput!): Variable!
   upsertApplicationSetting(where: ApplicationSettingWhereUniqueInput!, create: ApplicationSettingCreateInput!, update: ApplicationSettingUpdateInput!): ApplicationSetting!
-  upsertUser(where: UserWhereUniqueInput!, create: UserCreateInput!, update: UserUpdateInput!): User!
   upsertPost(where: PostWhereUniqueInput!, create: PostCreateInput!, update: PostUpdateInput!): Post!
   upsertJobApplication(where: JobApplicationWhereUniqueInput!, create: JobApplicationCreateInput!, update: JobApplicationUpdateInput!): JobApplication!
   upsertCoupon(where: CouponWhereUniqueInput!, create: CouponCreateInput!, update: CouponUpdateInput!): Coupon!
   upsertClientApplication(where: ClientApplicationWhereUniqueInput!, create: ClientApplicationCreateInput!, update: ClientApplicationUpdateInput!): ClientApplication!
   upsertContactApplication(where: ContactApplicationWhereUniqueInput!, create: ContactApplicationCreateInput!, update: ContactApplicationUpdateInput!): ContactApplication!
+  upsertUser(where: UserWhereUniqueInput!, create: UserCreateInput!, update: UserUpdateInput!): User!
   upsertFile(where: FileWhereUniqueInput!, create: FileCreateInput!, update: FileUpdateInput!): File!
-  updateManyVariables(data: VariableUpdateInput!, where: VariableWhereInput): BatchPayload!
-  updateManyApplicationSettings(data: ApplicationSettingUpdateInput!, where: ApplicationSettingWhereInput): BatchPayload!
-  updateManyUsers(data: UserUpdateInput!, where: UserWhereInput): BatchPayload!
-  updateManyPosts(data: PostUpdateInput!, where: PostWhereInput): BatchPayload!
-  updateManyJobApplications(data: JobApplicationUpdateInput!, where: JobApplicationWhereInput): BatchPayload!
-  updateManyCoupons(data: CouponUpdateInput!, where: CouponWhereInput): BatchPayload!
-  updateManyClientApplications(data: ClientApplicationUpdateInput!, where: ClientApplicationWhereInput): BatchPayload!
-  updateManyContactApplications(data: ContactApplicationUpdateInput!, where: ContactApplicationWhereInput): BatchPayload!
-  updateManyFiles(data: FileUpdateInput!, where: FileWhereInput): BatchPayload!
+  updateManyVariables(data: VariableUpdateManyMutationInput!, where: VariableWhereInput): BatchPayload!
+  updateManyApplicationSettings(data: ApplicationSettingUpdateManyMutationInput!, where: ApplicationSettingWhereInput): BatchPayload!
+  updateManyPosts(data: PostUpdateManyMutationInput!, where: PostWhereInput): BatchPayload!
+  updateManyJobApplications(data: JobApplicationUpdateManyMutationInput!, where: JobApplicationWhereInput): BatchPayload!
+  updateManyCoupons(data: CouponUpdateManyMutationInput!, where: CouponWhereInput): BatchPayload!
+  updateManyClientApplications(data: ClientApplicationUpdateManyMutationInput!, where: ClientApplicationWhereInput): BatchPayload!
+  updateManyContactApplications(data: ContactApplicationUpdateManyMutationInput!, where: ContactApplicationWhereInput): BatchPayload!
+  updateManyUsers(data: UserUpdateManyMutationInput!, where: UserWhereInput): BatchPayload!
+  updateManyFiles(data: FileUpdateManyMutationInput!, where: FileWhereInput): BatchPayload!
   deleteManyVariables(where: VariableWhereInput): BatchPayload!
   deleteManyApplicationSettings(where: ApplicationSettingWhereInput): BatchPayload!
-  deleteManyUsers(where: UserWhereInput): BatchPayload!
   deleteManyPosts(where: PostWhereInput): BatchPayload!
   deleteManyJobApplications(where: JobApplicationWhereInput): BatchPayload!
   deleteManyCoupons(where: CouponWhereInput): BatchPayload!
   deleteManyClientApplications(where: ClientApplicationWhereInput): BatchPayload!
   deleteManyContactApplications(where: ContactApplicationWhereInput): BatchPayload!
+  deleteManyUsers(where: UserWhereInput): BatchPayload!
   deleteManyFiles(where: FileWhereInput): BatchPayload!
 }
 
@@ -2811,13 +2921,13 @@ type Post implements Node {
   id: ID!
   title: String!
   body: String!
-  author(where: UserWhereInput): User!
+  author: User!
   badge: String
   badgeColorClass: String
   createdAt: DateTime!
   updatedAt: DateTime!
   thumbnailBody: String!
-  thumbnailImage(where: FileWhereInput): File
+  thumbnailImage: File
 }
 
 """A connection to a list of items."""
@@ -2831,6 +2941,7 @@ type PostConnection {
 }
 
 input PostCreateInput {
+  id: ID
   title: String!
   body: String!
   badge: String
@@ -2846,6 +2957,7 @@ input PostCreateManyWithoutAuthorInput {
 }
 
 input PostCreateWithoutAuthorInput {
+  id: ID
   title: String!
   body: String!
   badge: String
@@ -2893,6 +3005,301 @@ type PostPreviousValues {
   thumbnailBody: String!
 }
 
+input PostScalarWhereInput {
+  """Logical AND on all given filters."""
+  AND: [PostScalarWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [PostScalarWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [PostScalarWhereInput!]
+  id: ID
+
+  """All values that are not equal to given value."""
+  id_not: ID
+
+  """All values that are contained in given list."""
+  id_in: [ID!]
+
+  """All values that are not contained in given list."""
+  id_not_in: [ID!]
+
+  """All values less than the given value."""
+  id_lt: ID
+
+  """All values less than or equal the given value."""
+  id_lte: ID
+
+  """All values greater than the given value."""
+  id_gt: ID
+
+  """All values greater than or equal the given value."""
+  id_gte: ID
+
+  """All values containing the given string."""
+  id_contains: ID
+
+  """All values not containing the given string."""
+  id_not_contains: ID
+
+  """All values starting with the given string."""
+  id_starts_with: ID
+
+  """All values not starting with the given string."""
+  id_not_starts_with: ID
+
+  """All values ending with the given string."""
+  id_ends_with: ID
+
+  """All values not ending with the given string."""
+  id_not_ends_with: ID
+  title: String
+
+  """All values that are not equal to given value."""
+  title_not: String
+
+  """All values that are contained in given list."""
+  title_in: [String!]
+
+  """All values that are not contained in given list."""
+  title_not_in: [String!]
+
+  """All values less than the given value."""
+  title_lt: String
+
+  """All values less than or equal the given value."""
+  title_lte: String
+
+  """All values greater than the given value."""
+  title_gt: String
+
+  """All values greater than or equal the given value."""
+  title_gte: String
+
+  """All values containing the given string."""
+  title_contains: String
+
+  """All values not containing the given string."""
+  title_not_contains: String
+
+  """All values starting with the given string."""
+  title_starts_with: String
+
+  """All values not starting with the given string."""
+  title_not_starts_with: String
+
+  """All values ending with the given string."""
+  title_ends_with: String
+
+  """All values not ending with the given string."""
+  title_not_ends_with: String
+  body: String
+
+  """All values that are not equal to given value."""
+  body_not: String
+
+  """All values that are contained in given list."""
+  body_in: [String!]
+
+  """All values that are not contained in given list."""
+  body_not_in: [String!]
+
+  """All values less than the given value."""
+  body_lt: String
+
+  """All values less than or equal the given value."""
+  body_lte: String
+
+  """All values greater than the given value."""
+  body_gt: String
+
+  """All values greater than or equal the given value."""
+  body_gte: String
+
+  """All values containing the given string."""
+  body_contains: String
+
+  """All values not containing the given string."""
+  body_not_contains: String
+
+  """All values starting with the given string."""
+  body_starts_with: String
+
+  """All values not starting with the given string."""
+  body_not_starts_with: String
+
+  """All values ending with the given string."""
+  body_ends_with: String
+
+  """All values not ending with the given string."""
+  body_not_ends_with: String
+  badge: String
+
+  """All values that are not equal to given value."""
+  badge_not: String
+
+  """All values that are contained in given list."""
+  badge_in: [String!]
+
+  """All values that are not contained in given list."""
+  badge_not_in: [String!]
+
+  """All values less than the given value."""
+  badge_lt: String
+
+  """All values less than or equal the given value."""
+  badge_lte: String
+
+  """All values greater than the given value."""
+  badge_gt: String
+
+  """All values greater than or equal the given value."""
+  badge_gte: String
+
+  """All values containing the given string."""
+  badge_contains: String
+
+  """All values not containing the given string."""
+  badge_not_contains: String
+
+  """All values starting with the given string."""
+  badge_starts_with: String
+
+  """All values not starting with the given string."""
+  badge_not_starts_with: String
+
+  """All values ending with the given string."""
+  badge_ends_with: String
+
+  """All values not ending with the given string."""
+  badge_not_ends_with: String
+  badgeColorClass: String
+
+  """All values that are not equal to given value."""
+  badgeColorClass_not: String
+
+  """All values that are contained in given list."""
+  badgeColorClass_in: [String!]
+
+  """All values that are not contained in given list."""
+  badgeColorClass_not_in: [String!]
+
+  """All values less than the given value."""
+  badgeColorClass_lt: String
+
+  """All values less than or equal the given value."""
+  badgeColorClass_lte: String
+
+  """All values greater than the given value."""
+  badgeColorClass_gt: String
+
+  """All values greater than or equal the given value."""
+  badgeColorClass_gte: String
+
+  """All values containing the given string."""
+  badgeColorClass_contains: String
+
+  """All values not containing the given string."""
+  badgeColorClass_not_contains: String
+
+  """All values starting with the given string."""
+  badgeColorClass_starts_with: String
+
+  """All values not starting with the given string."""
+  badgeColorClass_not_starts_with: String
+
+  """All values ending with the given string."""
+  badgeColorClass_ends_with: String
+
+  """All values not ending with the given string."""
+  badgeColorClass_not_ends_with: String
+  createdAt: DateTime
+
+  """All values that are not equal to given value."""
+  createdAt_not: DateTime
+
+  """All values that are contained in given list."""
+  createdAt_in: [DateTime!]
+
+  """All values that are not contained in given list."""
+  createdAt_not_in: [DateTime!]
+
+  """All values less than the given value."""
+  createdAt_lt: DateTime
+
+  """All values less than or equal the given value."""
+  createdAt_lte: DateTime
+
+  """All values greater than the given value."""
+  createdAt_gt: DateTime
+
+  """All values greater than or equal the given value."""
+  createdAt_gte: DateTime
+  updatedAt: DateTime
+
+  """All values that are not equal to given value."""
+  updatedAt_not: DateTime
+
+  """All values that are contained in given list."""
+  updatedAt_in: [DateTime!]
+
+  """All values that are not contained in given list."""
+  updatedAt_not_in: [DateTime!]
+
+  """All values less than the given value."""
+  updatedAt_lt: DateTime
+
+  """All values less than or equal the given value."""
+  updatedAt_lte: DateTime
+
+  """All values greater than the given value."""
+  updatedAt_gt: DateTime
+
+  """All values greater than or equal the given value."""
+  updatedAt_gte: DateTime
+  thumbnailBody: String
+
+  """All values that are not equal to given value."""
+  thumbnailBody_not: String
+
+  """All values that are contained in given list."""
+  thumbnailBody_in: [String!]
+
+  """All values that are not contained in given list."""
+  thumbnailBody_not_in: [String!]
+
+  """All values less than the given value."""
+  thumbnailBody_lt: String
+
+  """All values less than or equal the given value."""
+  thumbnailBody_lte: String
+
+  """All values greater than the given value."""
+  thumbnailBody_gt: String
+
+  """All values greater than or equal the given value."""
+  thumbnailBody_gte: String
+
+  """All values containing the given string."""
+  thumbnailBody_contains: String
+
+  """All values not containing the given string."""
+  thumbnailBody_not_contains: String
+
+  """All values starting with the given string."""
+  thumbnailBody_starts_with: String
+
+  """All values not starting with the given string."""
+  thumbnailBody_not_starts_with: String
+
+  """All values ending with the given string."""
+  thumbnailBody_ends_with: String
+
+  """All values not ending with the given string."""
+  thumbnailBody_not_ends_with: String
+}
+
 type PostSubscriptionPayload {
   mutation: MutationType!
   node: Post
@@ -2938,17 +3345,41 @@ input PostUpdateInput {
   badge: String
   badgeColorClass: String
   thumbnailBody: String
-  author: UserUpdateOneWithoutPostsInput
+  author: UserUpdateOneRequiredWithoutPostsInput
   thumbnailImage: FileUpdateOneInput
+}
+
+input PostUpdateManyDataInput {
+  title: String
+  body: String
+  badge: String
+  badgeColorClass: String
+  thumbnailBody: String
+}
+
+input PostUpdateManyMutationInput {
+  title: String
+  body: String
+  badge: String
+  badgeColorClass: String
+  thumbnailBody: String
 }
 
 input PostUpdateManyWithoutAuthorInput {
   create: [PostCreateWithoutAuthorInput!]
   connect: [PostWhereUniqueInput!]
+  set: [PostWhereUniqueInput!]
   disconnect: [PostWhereUniqueInput!]
   delete: [PostWhereUniqueInput!]
   update: [PostUpdateWithWhereUniqueWithoutAuthorInput!]
+  updateMany: [PostUpdateManyWithWhereNestedInput!]
+  deleteMany: [PostScalarWhereInput!]
   upsert: [PostUpsertWithWhereUniqueWithoutAuthorInput!]
+}
+
+input PostUpdateManyWithWhereNestedInput {
+  where: PostScalarWhereInput!
+  data: PostUpdateManyDataInput!
 }
 
 input PostUpdateWithoutAuthorDataInput {
@@ -3275,30 +3706,30 @@ input PostWhereUniqueInput {
 type Query {
   variables(where: VariableWhereInput, orderBy: VariableOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Variable]!
   applicationSettings(where: ApplicationSettingWhereInput, orderBy: ApplicationSettingOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [ApplicationSetting]!
-  users(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [User]!
   posts(where: PostWhereInput, orderBy: PostOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Post]!
   jobApplications(where: JobApplicationWhereInput, orderBy: JobApplicationOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [JobApplication]!
   coupons(where: CouponWhereInput, orderBy: CouponOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Coupon]!
   clientApplications(where: ClientApplicationWhereInput, orderBy: ClientApplicationOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [ClientApplication]!
   contactApplications(where: ContactApplicationWhereInput, orderBy: ContactApplicationOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [ContactApplication]!
+  users(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [User]!
   files(where: FileWhereInput, orderBy: FileOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [File]!
   variable(where: VariableWhereUniqueInput!): Variable
   applicationSetting(where: ApplicationSettingWhereUniqueInput!): ApplicationSetting
-  user(where: UserWhereUniqueInput!): User
   post(where: PostWhereUniqueInput!): Post
   jobApplication(where: JobApplicationWhereUniqueInput!): JobApplication
   coupon(where: CouponWhereUniqueInput!): Coupon
   clientApplication(where: ClientApplicationWhereUniqueInput!): ClientApplication
   contactApplication(where: ContactApplicationWhereUniqueInput!): ContactApplication
+  user(where: UserWhereUniqueInput!): User
   file(where: FileWhereUniqueInput!): File
   variablesConnection(where: VariableWhereInput, orderBy: VariableOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): VariableConnection!
   applicationSettingsConnection(where: ApplicationSettingWhereInput, orderBy: ApplicationSettingOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): ApplicationSettingConnection!
-  usersConnection(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): UserConnection!
   postsConnection(where: PostWhereInput, orderBy: PostOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): PostConnection!
   jobApplicationsConnection(where: JobApplicationWhereInput, orderBy: JobApplicationOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): JobApplicationConnection!
   couponsConnection(where: CouponWhereInput, orderBy: CouponOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): CouponConnection!
   clientApplicationsConnection(where: ClientApplicationWhereInput, orderBy: ClientApplicationOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): ClientApplicationConnection!
   contactApplicationsConnection(where: ContactApplicationWhereInput, orderBy: ContactApplicationOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): ContactApplicationConnection!
+  usersConnection(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): UserConnection!
   filesConnection(where: FileWhereInput, orderBy: FileOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): FileConnection!
 
   """Fetches an object given its ID"""
@@ -3311,12 +3742,12 @@ type Query {
 type Subscription {
   variable(where: VariableSubscriptionWhereInput): VariableSubscriptionPayload
   applicationSetting(where: ApplicationSettingSubscriptionWhereInput): ApplicationSettingSubscriptionPayload
-  user(where: UserSubscriptionWhereInput): UserSubscriptionPayload
   post(where: PostSubscriptionWhereInput): PostSubscriptionPayload
   jobApplication(where: JobApplicationSubscriptionWhereInput): JobApplicationSubscriptionPayload
   coupon(where: CouponSubscriptionWhereInput): CouponSubscriptionPayload
   clientApplication(where: ClientApplicationSubscriptionWhereInput): ClientApplicationSubscriptionPayload
   contactApplication(where: ContactApplicationSubscriptionWhereInput): ContactApplicationSubscriptionPayload
+  user(where: UserSubscriptionWhereInput): UserSubscriptionPayload
   file(where: FileSubscriptionWhereInput): FileSubscriptionPayload
 }
 
@@ -3325,7 +3756,7 @@ type User implements Node {
   name: String!
   username: String!
   password: String!
-  permissions: [Permission!]
+  permissions: [Permission!]!
   posts(where: PostWhereInput, orderBy: PostOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Post!]
   lastLogin: DateTime
 }
@@ -3341,6 +3772,7 @@ type UserConnection {
 }
 
 input UserCreateInput {
+  id: ID
   name: String!
   username: String!
   password: String!
@@ -3364,6 +3796,7 @@ input UserCreatepermissionsInput {
 }
 
 input UserCreateWithoutPostsInput {
+  id: ID
   name: String!
   username: String!
   password: String!
@@ -3391,10 +3824,6 @@ enum UserOrderByInput {
   password_DESC
   lastLogin_ASC
   lastLogin_DESC
-  updatedAt_ASC
-  updatedAt_DESC
-  createdAt_ASC
-  createdAt_DESC
 }
 
 type UserPreviousValues {
@@ -3402,7 +3831,7 @@ type UserPreviousValues {
   name: String!
   username: String!
   password: String!
-  permissions: [Permission!]
+  permissions: [Permission!]!
   lastLogin: DateTime
 }
 
@@ -3463,18 +3892,24 @@ input UserUpdateInput {
   posts: PostUpdateManyWithoutAuthorInput
 }
 
-input UserUpdateOneInput {
+input UserUpdateManyMutationInput {
+  name: String
+  username: String
+  password: String
+  lastLogin: DateTime
+  permissions: UserUpdatepermissionsInput
+}
+
+input UserUpdateOneRequiredInput {
   create: UserCreateInput
   connect: UserWhereUniqueInput
-  delete: Boolean
   update: UserUpdateDataInput
   upsert: UserUpsertNestedInput
 }
 
-input UserUpdateOneWithoutPostsInput {
+input UserUpdateOneRequiredWithoutPostsInput {
   create: UserCreateWithoutPostsInput
   connect: UserWhereUniqueInput
-  delete: Boolean
   update: UserUpdateWithoutPostsDataInput
   upsert: UserUpsertWithoutPostsInput
 }
@@ -3702,7 +4137,8 @@ input UserWhereUniqueInput {
   username: String
 }
 
-type Variable {
+type Variable implements Node {
+  id: ID!
   index: Int!
   email: String
   phone1: String
@@ -3730,6 +4166,7 @@ type VariableConnection {
 }
 
 input VariableCreateInput {
+  id: ID
   index: Int!
   email: String
   phone1: String
@@ -3756,6 +4193,8 @@ type VariableEdge {
 }
 
 enum VariableOrderByInput {
+  id_ASC
+  id_DESC
   index_ASC
   index_DESC
   email_ASC
@@ -3784,15 +4223,10 @@ enum VariableOrderByInput {
   additionalTitle_DESC
   additionalBody_ASC
   additionalBody_DESC
-  id_ASC
-  id_DESC
-  updatedAt_ASC
-  updatedAt_DESC
-  createdAt_ASC
-  createdAt_DESC
 }
 
 type VariablePreviousValues {
+  id: ID!
   index: Int!
   email: String
   phone1: String
@@ -3865,6 +4299,23 @@ input VariableUpdateInput {
   additionalBody: String
 }
 
+input VariableUpdateManyMutationInput {
+  index: Int
+  email: String
+  phone1: String
+  phone2: String
+  address: String
+  facebook: String
+  instagram: String
+  linkedIn: String
+  youtube: String
+  contactEmail: String
+  clientsEmail: String
+  jobsEmail: String
+  additionalTitle: String
+  additionalBody: String
+}
+
 input VariableWhereInput {
   """Logical AND on all given filters."""
   AND: [VariableWhereInput!]
@@ -3874,6 +4325,46 @@ input VariableWhereInput {
 
   """Logical NOT on all given filters combined by AND."""
   NOT: [VariableWhereInput!]
+  id: ID
+
+  """All values that are not equal to given value."""
+  id_not: ID
+
+  """All values that are contained in given list."""
+  id_in: [ID!]
+
+  """All values that are not contained in given list."""
+  id_not_in: [ID!]
+
+  """All values less than the given value."""
+  id_lt: ID
+
+  """All values less than or equal the given value."""
+  id_lte: ID
+
+  """All values greater than the given value."""
+  id_gt: ID
+
+  """All values greater than or equal the given value."""
+  id_gte: ID
+
+  """All values containing the given string."""
+  id_contains: ID
+
+  """All values not containing the given string."""
+  id_not_contains: ID
+
+  """All values starting with the given string."""
+  id_starts_with: ID
+
+  """All values not starting with the given string."""
+  id_not_starts_with: ID
+
+  """All values ending with the given string."""
+  id_ends_with: ID
+
+  """All values not ending with the given string."""
+  id_not_ends_with: ID
   index: Int
 
   """All values that are not equal to given value."""
@@ -4419,5 +4910,6 @@ input VariableWhereInput {
 }
 
 input VariableWhereUniqueInput {
+  id: ID
   index: Int
 }
